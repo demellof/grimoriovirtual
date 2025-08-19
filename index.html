@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rota Pagã: Guia Holístico Pessoal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #1a1a1a; color: #e0e0e0; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .card { background-color: #2c2c2c; border: 1px solid #444; transition: all 0.3s ease; }
+        .card:hover:not(.no-hover) { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); border-color: #a37e2c; }
+        .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
+        .btn-primary:hover { background-color: #c8a44d; }
+        .btn-primary:disabled { background-color: #5f4a1a; cursor: not-allowed; }
+        .btn-secondary { background-color: #444; color: #e0e0e0; font-weight: bold; transition: background-color 0.3s ease; }
+        .btn-secondary:hover { background-color: #555; }
+        .form-input { background-color: #333; border: 1px solid #555; color: #e0e0e0; border-radius: 0.5rem; padding: 0.75rem; width: 100%; }
+        .tab.active { border-bottom: 2px solid #a37e2c; color: #c8a44d; }
+        .pillar-card { background-color: #2c2c2c; border: 1px solid #444; transition: all 0.3s ease; cursor: pointer; }
+        .pillar-card:hover { background-color: #3a3a3a; border-color: #a37e2c; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .accordion-header { cursor: pointer; transition: background-color 0.2s ease; }
+        .accordion-header:hover { background-color: #3a3a3a; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+    </style>
+</head>
+<body class="bg-[#1a1a1a] text-[#e0e0e0]">
+
+    <div id="loading-message" class="fixed inset-0 flex items-center justify-center bg-[#1a1a1a] z-50">
+        <div class="text-center p-8 rounded-lg">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#a37e2c] mx-auto mb-4"></div>
+            <p class="text-lg font-semibold font-cinzel text-[#a37e2c]">Despertando a Rota Pagã...</p>
+        </div>
+    </div>
+
+    <div id="error-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+        <div class="bg-[#2c2c2c] rounded-lg p-8 shadow-xl max-w-md mx-auto border border-[#a37e2c]">
+            <h3 id="modal-title" class="text-xl font-bold font-cinzel text-red-500 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i><span>Erro de Conexão</span></h3>
+            <div id="modal-message" class="text-[#e0e0e0] mb-6 text-sm space-y-2"></div>
+            <button id="close-modal-btn" class="w-full btn-primary py-2 px-4 rounded-lg">Compreendido</button>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <header class="bg-[#111] text-white p-6 text-center shadow-lg border-b-2 border-[#a37e2c]">
+            <h1 class="text-3xl font-bold font-cinzel tracking-wider">Rota Pagã</h1>
+            <p class="text-sm mt-2 text-gray-400" id="user-id-display"></p>
+        </header>
+        
+        <nav id="main-nav" class="bg-[#222] flex flex-wrap justify-center shadow-md">
+            <button class="tab active py-4 px-6 font-semibold transition-colors text-sm" data-section="main-section"><i class="fas fa-home mr-2"></i>Santuário</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="jornada-section"><i class="fas fa-seedling mr-2"></i>Jornada Florescer</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-section"><i class="fas fa-star mr-2"></i>Cosmograma</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="tomo-de-poder-section"><i class="fas fa-book-dead mr-2"></i>Tomo de Poder</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="herbario-sazonal-section"><i class="fas fa-leaf mr-2"></i>Herbário Sazonal</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cristalopedia-arcana-section"><i class="fas fa-gem mr-2"></i>Cristalopedia Arcana</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="chakra-section"><i class="fas fa-atom mr-2"></i>Centros de Poder</button>
+             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="pranayama-section"><i class="fas fa-wind mr-2"></i>Sopros de Vida</button>
+        </nav>
+
+        <main class="container mx-auto p-4 md:p-8">
+            
+            <section id="main-section" class="content-section active">
+                <div class="card rounded-lg p-6 mb-8 text-center no-hover">
+                    <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Oráculo do Alvorecer</h2>
+                    <p class="mb-6 text-gray-400">Decifre os sussurros do universo. Receba a sabedoria dos Pilares para iluminar sua jornada diária.</p>
+                    <button id="oracle-btn" class="btn-primary py-3 px-6 rounded-lg inline-flex items-center justify-center">
+                        <i class="fas fa-eye mr-2"></i>
+                        <span id="oracle-btn-text">Consultar o Oráculo</span>
+                        <div id="oracle-spinner" class="hidden w-5 h-5 border-2 border-[#1a1a1a] border-t-transparent rounded-full animate-spin ml-2"></div>
+                    </button>
+                    <div id="oracle-result" class="mt-6 p-4 bg-[#1f1f1f] rounded-lg border border-[#444] min-h-[100px] text-left whitespace-pre-wrap"><p class="text-gray-500">Sua mensagem sagrada se manifestará aqui...</p></div>
+                </div>
+
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
+                <div id="pillar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"></div>
+            </section>
+            
+            <section id="jornada-section" class="content-section">
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">A Jornada do Florescer</h2>
+                <p class="text-sm text-gray-400 mb-8 text-center max-w-3xl mx-auto">Este é o seu mapa sagrado, um organograma vivo que detalha as 7 Etapas da jornada de "Florescer - Domando a Fera Interior". Cada etapa é um portal, clique para desvendar seus mistérios.</p>
+                <div id="jornada-container" class="space-y-4"></div>
+            </section>
+
+            <section id="cosmograma-section" class="content-section">
+                 <div class="card p-6 no-hover">
+                     <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Seu Cosmograma Sagrado</h2>
+                     <p class="text-sm text-gray-400 mb-8 text-center max-w-2xl mx-auto">Uma linha do tempo simbólica dos trânsitos arquetípicos que tecem a tapeçaria da sua jornada. Medite sobre estas correntes cósmicas para navegar com maior maestria.</p>
+                     <div id="timeline-container" class="relative p-6"></div>
+                </div>
+            </section>
+            
+            <section id="tomo-de-poder-section" class="content-section">
+                <div class="card rounded-lg p-6 mb-8 no-hover">
+                    <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Seu Tomo de Poder</h2>
+                    <p class="text-sm text-gray-400 mb-4">Inscreva seu grimório pessoal. Registre aqui seus rituais, encantamentos e as sabedorias reveladas em sua jornada.</p>
+
+                    <div class="accordion-header flex justify-between items-center p-3 mt-6 bg-[#1f1f1f] rounded-t-lg">
+                        <h3 class="font-semibold">Forjar Nova Inscrição</h3>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                    <div class="accordion-content bg-[#1f1f1f] p-4 rounded-b-lg">
+                        <form id="add-grimoire-form" class="space-y-4" data-collection="grimoire_entries">
+                            <input type="text" name="title" placeholder="Título da Inscrição" required class="form-input w-full">
+                            <textarea name="content" rows="4" placeholder="Descreva o rito, feitiço ou sabedoria..." required class="form-input w-full"></textarea>
+                            <input type="text" name="tags" placeholder="Selos (ex: Hécate, Ritual de Lua Nova, PNL)" class="form-input w-full">
+                            <button type="submit" class="btn-primary w-full py-2 px-4 rounded-lg">Selar Inscrição</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="grimoire-list" class="list-container space-y-4" data-collection="grimoire_entries"></div>
+            </section>
+
+            <section id="herbario-sazonal-section" class="content-section">
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Herbário Sazonal</h2>
+                <div id="herbs-list" class="space-y-6"></div>
+            </section>
+            
+            <section id="cristalopedia-arcana-section" class="content-section">
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Cristalopedia Arcana</h2>
+                <div id="crystals-list" class="space-y-6"></div>
+            </section>
+
+             <section id="chakra-section" class="content-section">
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Seus Centros de Poder</h2>
+                 <p class="text-sm text-gray-400 mb-8 text-center max-w-2xl mx-auto">Conheça os 7 vórtices de energia que governam seu ser. Harmonizá-los é a chave para desbloquear seu pleno potencial e alinhar-se com a Fonte.</p>
+                <div id="chakra-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </section>
+
+             <section id="pranayama-section" class="content-section">
+                <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Sopros de Vida</h2>
+                 <p class="text-sm text-gray-400 mb-8 text-center max-w-2xl mx-auto">Domine a ciência sagrada da respiração. Pranayamas são chaves para controlar sua energia vital (Prana), purificar sua mente e expandir sua consciência.</p>
+                <div id="pranayama-list" class="space-y-8"></div>
+            </section>
+
+            <section id="pillar-detail-section" class="content-section">
+                 <button class="back-to-main btn-secondary py-2 px-4 rounded-lg mb-6"><i class="fas fa-arrow-left mr-2"></i> Voltar aos Pilares</button>
+                 <div id="pillar-content" class="card rounded-lg p-6 no-hover"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script type="module" src="index.tsx"></script>
+</body>
+</html>
