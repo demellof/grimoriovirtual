@@ -105,6 +105,7 @@
         .accordion-header { cursor: pointer; transition: background-color 0.2s ease; }
         .accordion-header:hover { background-color: #3a2c5a; }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+        .section-intro { text-align: center; margin-bottom: 2rem; max-w: 800px; margin-left: auto; margin-right: auto; }
 
         /* --- Grimoire --- */
         .grimoire-entry-card { position: relative; }
@@ -113,17 +114,6 @@
         .delete-btn:hover { color: #ef4444; }
 
         /* --- Herbarium Section --- */
-        .herbarium-intro {
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            border: 1px solid #4a3a69;
-            border-radius: 0.5rem;
-            background-color: rgba(20, 15, 30, 0.7);
-        }
         .herb-tabs { border-bottom: 1px solid #4a3a69; }
         .herb-tab {
             background-color: transparent;
@@ -164,6 +154,41 @@
             border-bottom: 1px solid #4a3a69;
         }
 
+        /* --- Altar de Manifestação (Cosmograma Sagrado) --- */
+        .altar-container { text-align: center; }
+        .sigil-central {
+            width: 150px; height: 150px;
+            margin: 2rem auto;
+            border: 2px solid #a37e2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            animation: pulse 4s infinite, spin 60s linear infinite;
+        }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .planetary-seals { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+        .planetary-seal {
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .planetary-seal:hover { transform: scale(1.1); }
+        .seal-icon {
+            width: 80px; height: 80px;
+            border: 1px solid #4a3a69;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 0.5rem auto;
+            font-size: 2.5rem;
+            background-color: rgba(20, 15, 30, 0.8);
+            transition: all 0.3s ease;
+        }
+        .planetary-seal:hover .seal-icon { border-color: #c8a44d; box-shadow: 0 0 15px rgba(200, 164, 77, 0.4); }
+        .planetary-seal.active .seal-icon { border-color: #c8a44d; background-color: rgba(200, 164, 77, 0.2); animation: pulse 4s infinite; }
+        #intention-form textarea { min-height: 100px; }
+
         /* --- Cosmogram Section --- */
         .cosmogram-intro { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
         .cosmogram-sun { text-align: center; margin-bottom: 3rem; }
@@ -191,7 +216,6 @@
             box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
         }
         .crystal-orb-icon { font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1; }
-
         .sun-orb {
             width: 220px;
             height: 220px;
@@ -201,27 +225,17 @@
         }
         @keyframes pulse { 0%, 100% { box-shadow: 0 0 30px rgba(200, 164, 77, 0.6); } 50% { box-shadow: 0 0 45px rgba(255, 223, 135, 0.8); } }
         
-        /* --- Chakra Section --- */
-        .chakra-column { position: relative; max-width: 600px; margin: 0 auto; }
-        .chakra-line {
-            position: absolute; top: 25px; bottom: 25px; left: 25px; width: 2px;
-            background: linear-gradient(to bottom, rgba(163, 126, 44, 0), rgba(163, 126, 44, 0.5), rgba(163, 126, 44, 0));
-            z-index: -1;
+        /* --- Chakra & Pranayama Sections --- */
+        .chakra-card .accordion-header, .pranayama-card .accordion-header { border-left: 4px solid #a37e2c; }
+        .chakra-card .accordion-content, .pranayama-card .accordion-content { border-left: 4px solid #4a3a69; }
+        .pranayama-image-placeholder {
+             width: 120px; height: 120px;
+             background: linear-gradient(135deg, #4a3a69, #2a2042);
+             border-radius: 0.5rem;
+             display: flex; align-items: center; justify-content: center;
+             font-size: 3rem; color: #a37e2c;
+             float: left; margin-right: 1.5rem; margin-bottom: 0.5rem;
         }
-        .chakra-card { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; position: relative; }
-        .chakra-orb {
-            width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            animation: chakra-pulse 3s infinite ease-in-out; position: relative;
-        }
-        .chakra-orb::before {
-            content: ''; position: absolute; inset: 0; border-radius: 50%;
-            box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
-        }
-        @keyframes chakra-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } }
-
-        /* --- Pranayama Section --- */
-        .pranayama-card .accordion-header { border-left: 4px solid #a37e2c; }
-        .pranayama-card .accordion-content { border-left: 4px solid #4a3a69; }
 
         /* --- Generic Detail Modal --- */
         .detail-modal {

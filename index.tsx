@@ -1,7 +1,8 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, addDoc, deleteDoc, onSnapshot, collection, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData, seasonalHerbData, cosmogramData, chakraData, pranayamaData } from "./data.js";
+import { pillarZeroData, pillarData, jornadaFlorescerData, seasonalHerbData, cosmogramData, chakraData, pranayamaData, altarData } from "./data.js";
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
@@ -56,8 +57,6 @@ function showHerbDetails(season, herbName) {
     if (!herb) return;
 
     let content;
-
-    // Check if the herb has the new detailed content structure
     if (herb.content) {
         content = `
             <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
@@ -77,7 +76,6 @@ function showHerbDetails(season, herbName) {
             </div>
         `;
     } else {
-        // Fallback for old structure
         content = `
             <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
             <div class="grid grid-cols-2 gap-4 text-sm mb-4">
@@ -87,49 +85,95 @@ function showHerbDetails(season, herbName) {
             <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
             <div>
                 <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
-                <ul class="list-disc list-inside text-gray-300 space-y-1">
-                    ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
-                </ul>
-            </div>
-            <div class="mt-4">
-                <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
-                <p class="text-gray-300">${herb.medicinalUses}</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-1">${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}</ul>
             </div>
         `;
     }
-    
     showDetailModal(herb.name, content);
 }
-
 
 function showCrystalDetails(crystal) {
     if (!crystal) return;
 
     const content = `
         <div class="space-y-6 text-sm">
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4>
-                <p class="text-gray-300">${crystal.composition}</p>
-            </div>
-            ${crystal.history ? `
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4>
-                <p class="text-gray-300">${crystal.history}</p>
-            </div>` : ''}
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4>
-                <p class="text-gray-300">${crystal.properties}</p>
-            </div>
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4>
-                <div class="text-gray-300">${crystal.uses}</div>
-            </div>
-            <div class="pt-4 border-t border-gray-600">
-                 <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p>
-            </div>
-        </div>
-    `;
+            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4><p class="text-gray-300">${crystal.composition}</p></div>
+            ${crystal.history ? `<div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4><p class="text-gray-300">${crystal.history}</p></div>` : ''}
+            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4><p class="text-gray-300">${crystal.properties}</p></div>
+            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4><div class="text-gray-300">${crystal.uses}</div></div>
+            <div class="pt-4 border-t border-gray-600"><p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p></div>
+        </div>`;
     showDetailModal(`${crystal.icon} ${crystal.name}`, content);
+}
+
+function showPlanetarySealDetails(seal) {
+    if (!seal) return;
+
+    let specialContent = '';
+    if (seal.name === "Júpiter") {
+        specialContent = `
+            <div class="mt-6 pt-4 border-t border-gray-600">
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-4">Inscrição da Intenção</h4>
+                <p class="text-gray-400 text-sm mb-4">Este é o espaço para selar sua principal intenção para este grande ciclo. Qual é a grande obra que você deseja manifestar sob a égide benevolente de Júpiter?</p>
+                <form id="intention-form" class="space-y-4">
+                    <textarea name="intention" placeholder="Minha intenção para este ciclo de Chesed é..." class="form-input" required></textarea>
+                    <button type="submit" class="btn-primary w-full py-2 rounded-lg">Selar Intenção no Tomo de Poder</button>
+                </form>
+                 <p class="font-bold text-lg text-center my-4 font-cinzel text-amber-300">${seal.lema}</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-600">
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-4">Os Pantáculos de Júpiter: Gatilhos para o Seu Ciclo Anual</h4>
+                <p class="text-gray-400 text-sm mb-4">As Clavículas de Salomão nos oferecem sete pantáculos sagrados. Cada um é um 'selo', um gatilho vibracional para focar sua intenção em um aspecto específico do florescimento a cada ano do seu ciclo.</p>
+                ${seal.pantacles.map(p => `
+                     <div class="card rounded-lg mb-2 overflow-hidden no-hover">
+                        <div class="accordion-header p-3 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
+                            <h5 class="font-cinzel text-md font-bold text-[#c8a44d]">${p.name}</h5>
+                            <i class="fas fa-chevron-down transition-transform text-sm"></i>
+                        </div>
+                        <div class="accordion-content bg-[#222] p-4 border-t border-[#444] text-sm">
+                            <p>${p.purpose}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    const content = `
+        <p class="text-gray-300 mb-6">${seal.purpose}</p>
+        ${specialContent}
+    `;
+    showDetailModal(`${seal.icon} Selo de ${seal.name}`, content);
+
+    if (seal.name === "Júpiter") {
+        document.getElementById('intention-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            if (!(form instanceof HTMLFormElement)) return;
+
+            const textarea = form.elements.namedItem('intention');
+            if (!(textarea instanceof HTMLTextAreaElement)) return;
+
+            const intention = textarea.value;
+            if (intention) {
+                const title = `Intenção Selada: Ciclo de Júpiter`;
+                try {
+                    await addDoc(getCollectionRef('grimoire_entries'), {
+                        title: title,
+                        content: intention,
+                        tags: ['intenção', 'júpiter', 'chesed', 'florescer'],
+                        createdAt: serverTimestamp()
+                    });
+                    textarea.value = "Intenção selada com sucesso no Tomo de Poder!";
+                    textarea.disabled = true;
+                    setTimeout(() => hideModal(detailModal), 1500);
+                } catch (error) {
+                    console.error("Error adding intention:", error);
+                    showDiagnosticModal("Erro ao Selar", "Não foi possível salvar sua intenção. Verifique o console.");
+                }
+            }
+        });
+    }
 }
 
 // --- RENDER FUNCTIONS ---
@@ -171,10 +215,7 @@ function renderJornadaSection() {
     const jornadaHtml = jornadaFlorescerData.map(etapa => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div>
-                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3>
-                    <p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p>
-                </div>
+                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -184,17 +225,14 @@ function renderJornadaSection() {
                         <div><h4 class="font-bold text-[#a37e2c] mb-2">Arquétipos Guia:</h4><p class="text-gray-400">${etapa.arquétipos}</p></div>
                         <div><h4 class="font-bold text-[#a37e2c] mb-2">Pilares Focais:</h4><p class="text-gray-400">${etapa.pilares}</p></div>
                     </div>
-                    <div>
-                        <h4 class="font-bold text-[#a37e2c] mb-2">Práticas Sugeridas:</h4>
-                        <div class="text-gray-400">${etapa.praticas}</div>
-                    </div>
+                    <div><h4 class="font-bold text-[#a37e2c] mb-2">Práticas Sugeridas:</h4><div class="text-gray-400">${etapa.praticas}</div></div>
                 </div>
             </div>
         </div>
     `).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8">
+        <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Jornada do Florescer: As Sete Etapas</h2>
             <p class="text-gray-400 mt-2 max-w-3xl mx-auto">Um caminho guiado para a autotransformação, inspirado na sua transição para o ciclo de Chesed (Júpiter). Cada etapa é um portal que integra sabedoria e prática, guiado por arquétipos poderosos e alinhado aos Pilares da Rota Pagã.</p>
         </div>
@@ -202,24 +240,28 @@ function renderJornadaSection() {
     `;
 }
 
-function renderCosmogramaSection() {
+function renderAltarDeManifestacaoSection() {
     const container = document.getElementById('cosmograma-section');
     if (!container) return;
 
-    const astrologyHtml = astrologyData.map(transit => `
-        <div class="card p-6 mb-4 flex items-start space-x-4 no-hover">
-            <i class="${transit.icon} text-3xl text-[#a37e2c] w-8 text-center"></i>
-            <div>
-                <p class="text-sm font-bold text-gray-400">${transit.year}</p>
-                <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${transit.title}</h3>
-                <p class="text-gray-300 mt-1">${transit.description}</p>
-            </div>
+    const sealsHtml = altarData.seals.map(seal => `
+        <div class="planetary-seal ${seal.active ? 'active' : ''}" data-seal-name="${seal.name}">
+            <div class="seal-icon">${seal.icon}</div>
+            <p class="font-cinzel font-bold text-sm">${seal.name}</p>
         </div>
     `).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Altar de Manifestação: Trânsitos Astrológicos</h2><p class="text-gray-400 mt-2">Uma visão cósmica da sua jornada pessoal.</p></div>
-        <div>${astrologyHtml}</div>
+        <div class="altar-container">
+            <div class="section-intro">
+                <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${altarData.title}</h2>
+                <p class="text-gray-400 mt-2">${altarData.intro}</p>
+            </div>
+            <div class="sigil-central" title="${altarData.sigil.name}">
+                ${altarData.sigil.icon}
+            </div>
+            <div class="planetary-seals">${sealsHtml}</div>
+        </div>
     `;
 }
 
@@ -227,7 +269,7 @@ function renderTomoDePoderSection() {
     const container = document.getElementById('tomo-de-poder-section');
     if (!container) return;
     container.innerHTML = `
-        <div class="text-center mb-8">
+        <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Tomo de Poder</h2>
             <p class="text-gray-400 mt-2">Seu grimório pessoal para anotações mágicas e insights.</p>
         </div>
@@ -259,7 +301,7 @@ function renderHerbCards(season) {
             <div class="p-4">
                 <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
                 <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
-                <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : herb.magicalUses[0]).substring(0, 70)}...</p>
+                <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
             </div>
         </div>
     `).join('');
@@ -271,20 +313,14 @@ function renderHerbarioFlorestaSection() {
     const seasons = ['Primavera', 'Verão', 'Outono', 'Inverno'];
     const currentSeason = getCurrentSeason();
 
-    const tabsHtml = seasons.map(season => `
-        <button class="herb-tab ${season === currentSeason ? 'active' : ''}" data-season="${season}">${season}</button>
-    `).join('');
+    const tabsHtml = seasons.map(season => `<button class="herb-tab ${season === currentSeason ? 'active' : ''}" data-season="${season}">${season}</button>`).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8">
+        <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta Sazonal</h2>
         </div>
-        <div class="herbarium-intro">
-             <p class="text-gray-300">${seasonalHerbData.intro}</p>
-        </div>
-        <div class="card p-2 rounded-lg mb-6">
-            <div class="herb-tabs flex justify-center">${tabsHtml}</div>
-        </div>
+        <div class="card p-4 rounded-lg mb-6 text-center text-gray-300">${seasonalHerbData.intro}</div>
+        <div class="card p-2 rounded-lg mb-6"><div class="herb-tabs flex justify-center">${tabsHtml}</div></div>
         <div id="herb-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     `;
     renderHerbCards(currentSeason);
@@ -294,69 +330,42 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const sunHtml = `
-        <div class="cosmogram-sun">
-            <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
-                <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
-                <div>
-                    <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
-                    <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
-                </div>
-            </div>
-        </div>
-    `;
+    const sunHtml = `<div class="cosmogram-sun"><div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}"><div class="crystal-orb-icon">${cosmogramData.sun.icon}</div><div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div></div></div>`;
+    const orbitsHtml = cosmogramData.orbits.map(orbit => `<div class="orbit"><h3 class="orbit-title">${orbit.name}</h3><div class="flex flex-wrap justify-center items-center gap-8">${orbit.crystals.map(crystal => `<div class="crystal-orb" data-crystal-name="${crystal.name}"><div class="crystal-orb-icon">${crystal.icon}</div><div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div></div>`).join('')}</div></div>`).join('');
 
-    const orbitsHtml = cosmogramData.orbits.map(orbit => `
-        <div class="orbit">
-            <h3 class="orbit-title">${orbit.name}</h3>
-            <div class="flex flex-wrap justify-center items-center gap-8">
-                ${orbit.crystals.map(crystal => `
-                    <div class="crystal-orb" data-crystal-name="${crystal.name}">
-                        <div class="crystal-orb-icon">${crystal.icon}</div>
-                        <div>
-                            <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
-                            <p class="text-xs text-gray-400">${crystal.subtitle}</p>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `).join('');
-
-    container.innerHTML = `
-        <div class="cosmogram-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
-            <p class="text-gray-400">${cosmogramData.intro}</p>
-        </div>
-        ${sunHtml}
-        ${orbitsHtml}
-    `;
+    container.innerHTML = `<div class="cosmogram-intro"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2><p class="text-gray-400">${cosmogramData.intro}</p></div>${sunHtml}${orbitsHtml}`;
 }
 
 function renderChakraSection() {
     const container = document.getElementById('chakra-section');
     if (!container) return;
 
-    const chakraHtml = chakraData.map(chakra => `
-        <div class="chakra-card">
-            <div class="chakra-orb ${chakra.color}"></div>
-            <div>
-                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${chakra.name}</h3>
-                <p class="text-md text-gray-400 mb-2">${chakra.translation}</p>
-                <p class="text-sm text-gray-300">${chakra.description}</p>
+    const chakraHtml = chakraData.chakras.map(chakra => `
+        <div class="card rounded-lg mb-2 overflow-hidden no-hover chakra-card">
+            <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
+                <div class="flex items-center gap-4">
+                    <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none"></div>
+                    <div>
+                        <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${chakra.name}</h3>
+                        <p class="text-sm text-gray-400">${chakra.translation}</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down transition-transform"></i>
+            </div>
+            <div class="accordion-content bg-[#222] p-6 border-t border-[#444] text-sm space-y-4">
+                 <div><h4 class="font-bold text-[#a37e2c] mb-2">A Essência:</h4><p class="text-gray-300">${chakra.essencia}</p></div>
+                 <div><h4 class="font-bold text-[#a37e2c] mb-2">Diagnóstico Energético:</h4><p class="text-gray-300">${chakra.diagnostico}</p></div>
+                 <div><h4 class="font-bold text-[#a37e2c] mb-2">Práticas de Harmonização:</h4><div class="text-gray-300">${chakra.praticas}</div></div>
             </div>
         </div>
     `).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Centros de Poder</h2>
-            <p class="text-gray-400 mt-2">Os sete vórtices de energia que governam seu corpo sutil.</p>
+        <div class="section-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${chakraData.introTitle}</h2>
+            <p class="text-gray-400 mt-2">${chakraData.introText}</p>
         </div>
-        <div class="chakra-column">
-            <div class="chakra-line"></div>
-            ${chakraHtml}
-        </div>
+        <div>${chakraHtml}</div>
     `;
 }
 
@@ -364,33 +373,32 @@ function renderPranayamaSection() {
     const container = document.getElementById('pranayama-section');
     if (!container) return;
 
-    const pranayamaHtml = pranayamaData.map(pranayama => `
+    const pranayamaHtml = pranayamaData.techniques.map(pranayama => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover pranayama-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div>
-                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3>
-                    <p class="text-sm text-gray-400">${pranayama.translation}</p>
-                </div>
+                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3><p class="text-sm text-gray-400">${pranayama.translation}</p></div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
-                <p class="mb-4 text-gray-300"><strong>Propósito:</strong> ${pranayama.purpose}</p>
-                <div class="mb-4">
-                    <h4 class="font-bold text-[#a37e2c] mb-2">Como Praticar:</h4>
-                    <ol class="list-decimal list-inside text-gray-400 space-y-2">${pranayama.comoPraticar.map(step => `<li>${step}</li>`).join('')}</ol>
-                </div>
-                 <p class="mb-4 text-gray-300"><strong>Ponto de Foco:</strong> ${pranayama.pontoFoco}</p>
-                 <div class="pt-4 border-t border-gray-600">
-                     <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${pranayama.termosPesquisa}</p>
+                 <div class="pranayama-image-placeholder">${pranayama.imagePlaceholder || ''}</div>
+                <div class="space-y-4 text-sm">
+                    <div><h4 class="font-bold text-[#a37e2c]">Para que serve:</h4><p class="text-gray-300">${pranayama.paraQueServe}</p></div>
+                    <div><h4 class="font-bold text-[#a37e2c]">Ponto de Foco:</h4><p class="text-gray-300">${pranayama.pontoFoco}</p></div>
+                    <div><h4 class="font-bold text-[#a37e2c]">Como Praticar:</h4><ol class="list-decimal list-inside text-gray-400 space-y-1">${pranayama.comoPraticar.map(step => `<li>${step}</li>`).join('')}</ol></div>
+                    <div class="pt-2 border-t border-gray-600 clear-both"><p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${pranayama.termosPesquisa}</p></div>
                 </div>
             </div>
         </div>
     `).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Sopros de Vida: Pranayama</h2>
-            <p class="text-gray-400 mt-2 max-w-3xl mx-auto">Domine a respiração para dominar sua energia vital. Cada técnica é uma chave para um estado de consciência diferente.</p>
+        <div class="section-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${pranayamaData.introTitle}</h2>
+            <p class="text-gray-400 mt-2 italic">${pranayamaData.introMessage}</p>
+            <div class="card p-4 rounded-lg my-6 text-sm">
+                <h4 class="font-bold text-[#a37e2c] mb-2">O Ritual de Três Respirações (Seu Estímulo Inicial)</h4>
+                <p class="text-gray-300">${pranayamaData.initialRitual}</p>
+            </div>
         </div>
         <div>${pranayamaHtml}</div>
     `;
@@ -474,70 +482,60 @@ function renderGrimoireEntries(entries) {
 function setupEventListeners() {
     document.getElementById('close-modal-btn')?.addEventListener('click', () => hideModal(errorModal));
     document.getElementById('close-detail-modal')?.addEventListener('click', () => hideModal(detailModal));
-    detailModal?.addEventListener('click', (e) => {
-        if (e.target === detailModal) hideModal(detailModal);
-    });
+    detailModal?.addEventListener('click', (e) => { if (e.target === detailModal) hideModal(detailModal); });
     
     appContainer?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
+        const target = e.target;
 
-        // Tab Navigation
-        const tab = e.target.closest('.tab');
+        const tab = target.closest('.tab');
         if (tab instanceof HTMLElement && tab.dataset.section) {
-            const sectionId = tab.dataset.section;
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId)?.classList.add('active');
+            document.getElementById(tab.dataset.section)?.classList.add('active');
             document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             return;
         }
 
-        // Accordion Toggles
-        const accordionHeader = e.target.closest('.accordion-header');
+        const accordionHeader = target.closest('.accordion-header');
         if (accordionHeader instanceof HTMLElement) {
             const content = accordionHeader.nextElementSibling;
+            if (!(content instanceof HTMLElement)) return;
             const icon = accordionHeader.querySelector('i');
-            if (content instanceof HTMLElement) {
-                const isTomoAdd = accordionHeader.id === 'add-entry-accordion-header';
-                const rotationClass = isTomoAdd ? 'rotate-45' : 'rotate-180';
-                
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon?.classList.remove(rotationClass);
-                } else {
-                    // Close other accordions in the same section
-                    const parentSection = accordionHeader.closest('.content-section');
-                    parentSection?.querySelectorAll('.accordion-content').forEach(acc => {
-                        if (acc !== content && acc instanceof HTMLElement) {
-                           acc.style.maxHeight = null;
-                           const prevIcon = acc.previousElementSibling?.querySelector('i');
-                           prevIcon?.classList.remove('rotate-180');
-                           prevIcon?.classList.remove('rotate-45');
-                        }
-                    });
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon?.classList.add(rotationClass);
-                }
+            const isTomoAdd = accordionHeader.id === 'add-entry-accordion-header';
+            const rotationClass = isTomoAdd ? 'rotate-45' : 'rotate-180';
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon?.classList.remove(rotationClass);
+            } else {
+                const parentSection = accordionHeader.closest('.content-section, .detail-modal-content');
+                parentSection?.querySelectorAll('.accordion-content').forEach(acc => {
+                    if (acc !== content && acc instanceof HTMLElement) {
+                       acc.style.maxHeight = null;
+                       const prevIcon = acc.previousElementSibling?.querySelector('i');
+                       prevIcon?.classList.remove('rotate-180', 'rotate-45');
+                    }
+                });
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon?.classList.add(rotationClass);
             }
             return;
         }
 
-        // Delete Grimoire Entry
-        const deleteButton = e.target.closest('.delete-btn');
+        const deleteButton = target.closest('.delete-btn');
         if (deleteButton instanceof HTMLElement && deleteButton.dataset.id) {
             handleDeleteItem(deleteButton.dataset.id);
             return;
         }
         
-        // Pillar Details
-        const pillarCard = e.target.closest('.pillar-card');
+        const pillarCard = target.closest('.pillar-card');
         if (pillarCard instanceof HTMLElement && pillarCard.dataset.pillar) {
             showPillarDetails(pillarCard.dataset.pillar);
             return;
         }
 
-        // Back to Main
-        const backButton = e.target.closest('.back-to-main');
+        const backButton = target.closest('.back-to-main');
         if (backButton) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById('main-section')?.classList.add('active');
@@ -546,42 +544,36 @@ function setupEventListeners() {
             return;
         }
 
-        // Herbarium Clicks
-        const herbTab = e.target.closest('.herb-tab');
+        const herbTab = target.closest('.herb-tab');
         if (herbTab instanceof HTMLElement && herbTab.dataset.season) {
             document.querySelectorAll('.herb-tab').forEach(t => t.classList.remove('active'));
             herbTab.classList.add('active');
             renderHerbCards(herbTab.dataset.season);
             return;
         }
-        const herbCard = e.target.closest('.herb-card');
+        const herbCard = target.closest('.herb-card');
         if (herbCard instanceof HTMLElement && herbCard.dataset.season && herbCard.dataset.herbName) {
             showHerbDetails(herbCard.dataset.season, herbCard.dataset.herbName);
             return;
         }
 
-        // Cosmogram Clicks
-        const crystalOrb = e.target.closest('.crystal-orb');
+        const crystalOrb = target.closest('.crystal-orb');
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
-            const crystalName = crystalOrb.dataset.crystalName;
-            let crystal;
-            if (cosmogramData.sun.name === crystalName) {
-                crystal = cosmogramData.sun;
-            } else {
-                for (const orbit of cosmogramData.orbits) {
-                    crystal = orbit.crystals.find(c => c.name === crystalName);
-                    if (crystal) break;
-                }
-            }
+            const name = crystalOrb.dataset.crystalName;
+            let crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
             if (crystal) showCrystalDetails(crystal);
+            return;
+        }
+
+        const planetarySeal = target.closest('.planetary-seal');
+        if (planetarySeal instanceof HTMLElement && planetarySeal.dataset.sealName) {
+            const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
+            if(seal) showPlanetarySealDetails(seal);
             return;
         }
     });
 
-    const grimoireForm = document.getElementById('add-grimoire-form');
-    if (grimoireForm) {
-        grimoireForm.addEventListener('submit', handleAddItem);
-    }
+    document.getElementById('add-grimoire-form')?.addEventListener('submit', handleAddItem);
 }
 
 
@@ -603,18 +595,9 @@ function getCurrentSeason(hemisphere = 'south') {
 function initApp() {
     try {
         if (!import.meta.env) {
-            const guardMessage = `
-                <h4 class="font-cinzel text-lg text-amber-300">O Guardião do Templo se manifesta!</h4>
-                <p class="mt-4">Saudações, Guardião da Centelha.</p>
-                <p class="mt-2">Você tentou abrir um portal para este templo diretamente, mas a magia deste local requer um ritual de ativação para que flua corretamente.</p>
-                <p class="mt-4"><strong>Isto não é um bug, mas sim a proteção do santuário.</strong></p>
-                <ul class="list-disc list-inside mt-4 space-y-2">
-                    <li><strong>Para acessar o templo em seu ambiente local:</strong> Realize o ritual de abertura no seu terminal com o comando sagrado: <code>npm run dev</code>.</li>
-                    <li><strong>Seu templo online:</strong> Permanece consagrado e funcionando perfeitamente no Netlify.</li>
-                </ul>
-                <p class="mt-4">Prossiga com o ritual e a energia fluirá.</p>`;
+            const guardMessage = `<h4 class="font-cinzel text-lg text-amber-300">O Guardião do Templo se manifesta!</h4><p class="mt-4">Saudações, Guardião da Centelha.</p><p class="mt-2">Você tentou abrir um portal para este templo diretamente, mas a magia deste local requer um ritual de ativação para que flua corretamente.</p><p class="mt-4"><strong>Isto não é um bug, mas sim a proteção do santuário.</strong></p><ul class="list-disc list-inside mt-4 space-y-2"><li><strong>Para acessar o templo em seu ambiente local:</strong> Realize o ritual de abertura no seu terminal com o comando sagrado: <code>npm run dev</code>.</li><li><strong>Seu templo online:</strong> Permanece consagrado e funcionando perfeitamente no Netlify.</li></ul><p class="mt-4">Prossiga com o ritual e a energia fluirá.</p>`;
             showDiagnosticModal("Portal Selado", guardMessage);
-            if (loadingMessage) loadingMessage.classList.add('hidden');
+            loadingMessage?.classList.add('hidden');
             return;
         }
 
@@ -638,17 +621,15 @@ function initApp() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 userId = user.uid;
-                if(loadingMessage) loadingMessage.classList.add('hidden');
-                if(appContainer) appContainer.classList.remove('hidden');
+                loadingMessage?.classList.add('hidden');
+                appContainer?.classList.remove('hidden');
                 
                 const userIdDisplay = document.getElementById('user-id-display');
-                if (userIdDisplay) {
-                    userIdDisplay.innerHTML = `<strong>Guardião da Centelha:</strong><br><span class="text-xs text-gray-500">A água, como a magia, sempre encontra seu caminho.</span>`;
-                }
+                if (userIdDisplay) userIdDisplay.innerHTML = `<strong>Guardião da Centelha:</strong><br><span class="text-xs text-gray-500">A água, como a magia, sempre encontra seu caminho.</span>`;
                 
                 renderMainSection();
                 renderJornadaSection();
-                renderCosmogramaSection();
+                renderAltarDeManifestacaoSection();
                 renderTomoDePoderSection();
                 renderHerbarioFlorestaSection();
                 renderCosmogramaCristalinoSection();
@@ -667,12 +648,11 @@ function initApp() {
         });
     } catch (error) {
         console.error("Initialization Error:", error);
-        let checklist;
         const errorMessage = error instanceof Error ? error.message : String(error);
-        
-        checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se suas variáveis de ambiente <code>VITE_...</code> estão corretas no seu ambiente de hospedagem (ex: Netlify) e se o projeto foi reconstruído após a alteração.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${errorMessage || 'Verifique o console para mais detalhes.'}</p>`;
-        
-        if(loadingMessage) loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">Erro crítico de inicialização.</p>`;
+        const checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se suas variáveis de ambiente <code>VITE_...</code> estão corretas no seu ambiente de hospedagem (ex: Netlify) e se o projeto foi reconstruído após a alteração.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${errorMessage || 'Verifique o console para mais detalhes.'}</p>`;
+        if (loadingMessage) {
+            loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">Erro crítico de inicialização.</p>`;
+        }
         showDiagnosticModal("Erro de Inicialização", checklist);
     }
 }
