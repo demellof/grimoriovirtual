@@ -192,9 +192,8 @@ export const cosmogramData = {
         uses: `<ul class="list-disc list-inside space-y-1">
                 <li><strong>Programação:</strong> Segure o quartzo, visualize sua intenção e "sopre" essa intenção para dentro do cristal.</li>
                 <li><strong>Grades de Cristal:</strong> Use-o no centro de qualquer grade para amplificar seu poder.</li>
-                <li><strong>Meditação:</strong> Meditar com ele ajuda a limpar a mente e a receber insights.</li>
                </ul>`,
-        searchTerms: `"como programar um quartzo transparente", "grade de cristal para manifestação", "usos do quartzo mestre"`
+        searchTerms: `"como programar um quartzo transparente", "grade de cristal para manifestação"`
     },
     orbits: [
         {
@@ -205,7 +204,7 @@ export const cosmogramData = {
                     subtitle: "O Escudo Impenetrável",
                     icon: "⚫",
                     composition: "Um borossilicato complexo, piroelétrico e piezoelétrico, o que significa que gera uma carga elétrica quando aquecido ou pressionado – uma assinatura física de sua capacidade de transmutação energética.",
-                    properties: "O cristal de proteção por excelência. Sua principal função é criar um escudo energético impenetrável ao redor do portador, repelindo e transmutando energias densas em vibrações mais leves. Ela não absorve a negatividade, ela a devolve à terra para ser neutralizada. Ligada ao Pilar da Terra e ao Chakra Raiz (Muladhara).",
+                    properties: "O cristal de proteção por excelência. Sua principal função é criar um escudo energético impenetrável, repelindo e transmutando energias densas. Ligada ao Pilar da Terra e ao Chakra Raiz (Muladhara).",
                     uses: `<ul class="list-disc list-inside space-y-1">
                             <li>Coloque-a na entrada de casa como um guardião.</li>
                             <li>Carregue-a no bolso para proteção em ambientes densos.</li>
@@ -216,11 +215,11 @@ export const cosmogramData = {
                     name: "Hematita",
                     subtitle: "A Âncora da Alma",
                     icon: "🕳️",
-                    composition: "Óxido de ferro, com um brilho metálico e denso. Seu nome vem do grego 'haima', que significa sangue, pois sua forma em pó é vermelha.",
-                    properties: "A grande âncora do reino mineral. Aterra as energias e a consciência no corpo físico, promovendo foco, coragem e fortalecendo a vontade. É excelente para momentos de dispersão mental ou para quando nos sentimos 'fora do corpo'. Dissolve a negatividade e impede que energias estranhas entrem no campo áurico.",
+                    composition: "Óxido de ferro, com um brilho metálico e denso. Seu nome vem do grego 'haima', que significa sangue.",
+                    properties: "A grande âncora do reino mineral. Aterra as energias no corpo físico, promovendo foco, coragem e fortalecendo a vontade. Dissolve a negatividade e impede que energias estranhas entrem no campo áurico.",
                     uses: `<ul class="list-disc list-inside space-y-1">
-                            <li>Segure uma em cada mão ou coloque nos pés após um dia estressante para descarregar o excesso de energia.</li>
-                            <li>Use-a em seu local de trabalho para manter o foco e a determinação.</li>
+                            <li>Segure uma em cada mão após um dia estressante para descarregar o excesso de energia.</li>
+                            <li>Use-a em seu local de trabalho para manter o foco.</li>
                            </ul>`,
                     searchTerms: `"benefícios da hematita para foco", "aterramento com hematita"`
                 },
@@ -228,11 +227,10 @@ export const cosmogramData = {
                     name: "Obsidiana Negra",
                     subtitle: "O Espelho da Verdade",
                     icon: "⚫",
-                    composition: "Um vidro vulcânico, formado pelo resfriamento rápido da lava. Não possui uma estrutura cristalina, sendo amorfa – o que lhe confere uma energia rápida e direta.",
-                    properties: "A Obsidiana é o espelho da alma. Ela trabalha sem piedade, trazendo à superfície a verdade, as sombras e os desequilíbrios para que possam ser confrontados e curados. É uma pedra de proteção profunda que corta laços energéticos e limpa resíduos psíquicos do subconsciente. Deve ser usada com respeito e intenção.",
+                    composition: "Um vidro vulcânico, formado pelo resfriamento rápido da lava. Não possui uma estrutura cristalina, sendo amorfa.",
+                    properties: "A Obsidiana é o espelho da alma. Ela trabalha sem piedade, trazendo à superfície a verdade e as sombras para que possam ser confrontadas. É uma pedra de proteção profunda que corta laços energéticos. Deve ser usada com respeito e intenção.",
                     uses: `<ul class="list-disc list-inside space-y-1">
                             <li>Use-a em meditações de <em>shadow work</em> (trabalho com a sombra).</li>
-                            <li>Use-a em rituais de banimento ou para cortar laços com o passado.</li>
                             <li><strong>Atenção:</strong> Não é recomendada para se ter no quarto de dormir, pois sua energia pode ser muito intensa.</li>
                            </ul>`,
                     searchTerms: `"como usar obsidiana negra com segurança", "shadow work com cristais"`
@@ -247,11 +245,10 @@ export const cosmogramData = {
                     subtitle: "O Bálsamo do Coração",
                     icon: "💖",
                     composition: "Uma variedade rosa do quartzo, cuja cor é atribuída a traços de titânio, ferro ou manganês.",
-                    properties: "A vibração do amor incondicional. Ele dissolve suavemente as feridas emocionais, o medo e o ressentimento, abrindo o Chakra Cardíaco (Anahata) para dar e receber amor. Ensina sobre o amor-próprio, a compaixão e o perdão. Sua energia é como um abraço calmante para a alma.",
+                    properties: "A vibração do amor incondicional. Ele dissolve suavemente as feridas emocionais, o medo e o ressentimento, abrindo o Chakra Cardíaco (Anahata) para dar e receber amor. Ensina sobre o amor-próprio, a compaixão e o perdão.",
                     uses: `<ul class="list-disc list-inside space-y-1">
                             <li>Coloque-o sobre o coração durante a meditação.</li>
                             <li>Tenha um em seu quarto para promover um ambiente de amor e paz.</li>
-                            <li>Use-o em banhos rituais para amor-próprio.</li>
                            </ul>`,
                     searchTerms: `"meditação com quartzo rosa para o chakra cardíaco", "banho de amor-próprio com quartzo rosa"`
                 },
@@ -259,13 +256,12 @@ export const cosmogramData = {
                     name: "Ametista",
                     subtitle: "A Transmutadora Violeta",
                     icon: "💜",
-                    composition: "Uma variedade violeta do quartzo. Sua beleza e poder a tornaram uma das gemas mais reverenciadas. É encontrada em abundância no Brasil, especialmente no Rio Grande do Sul.",
+                    composition: "Uma variedade violeta do quartzo. É encontrada em abundância no Brasil, especialmente no Rio Grande do Sul.",
                     history: "Leonardo da Vinci escrevia que a Ametista tinha o poder de dissipar maus pensamentos e aguçar a inteligência.",
-                    properties: "A Ametista é a grande transmutadora. Sua vibração violeta eleva a energia, acalma a mente e o sistema nervoso, e transmuta padrões de pensamento negativos em positivos. É uma ponte para a espiritualidade, abrindo o Chakra Coronário (Sahasrara) e o Frontal (Ajna). É a pedra da sobriedade, da meditação e da paz interior.",
+                    properties: "A Ametista é a grande transmutadora. Sua vibração violeta eleva a energia, acalma a mente e o sistema nervoso, e transmuta padrões de pensamento negativos em positivos. É uma ponte para a espiritualidade, abrindo o Chakra Coronário (Sahasrara) e o Frontal (Ajna).",
                     uses: `<ul class="list-disc list-inside space-y-1">
-                            <li>Coloque uma Ametista na mesa de cabeceira para um sono tranquilo.</li>
+                            <li>Coloque uma na mesa de cabeceira para um sono tranquilo.</li>
                             <li>Medite com ela para aprofundar a prática.</li>
-                            <li>Mantenha uma drusa em seu ambiente para purificar a energia.</li>
                            </ul>`,
                     searchTerms: `"meditação com ametista para o terceiro olho", "elixir de ametista método indireto"`
                 },
@@ -273,14 +269,57 @@ export const cosmogramData = {
                     name: "Quartzo Verde",
                     subtitle: "O Curador do Corpo e da Alma",
                     icon: "💚",
-                    composition: "Quartzo com inclusões de fuchsita (uma variedade de mica), que lhe conferem a cor verde e um brilho sutil.",
-                    properties: "Conhecido como a pedra da saúde e do bem-estar. Sua energia calmante equilibra o corpo físico, emocional e mental. Atua no Chakra Cardíaco (Anahata), promovendo o equilíbrio e a estabilidade emocional. É uma pedra que nos conecta à energia de cura da natureza e do Pilar da Terra.",
+                    composition: "Quartzo com inclusões de fuchsita (uma variedade de mica), que lhe conferem a cor verde.",
+                    properties: "Conhecido como a pedra da saúde e do bem-estar. Sua energia calmante equilibra o corpo físico, emocional e mental. Atua no Chakra Cardíaco (Anahata), promovendo o equilíbrio e a estabilidade emocional.",
                     uses: `<ul class="list-disc list-inside space-y-1">
                             <li>Use-o em contato com a pele na área que necessita de cura.</li>
                             <li>Coloque-o sobre o coração para acalmar a ansiedade.</li>
-                            <li>Tenha um em seu jardim ou perto de suas plantas para promover a vitalidade.</li>
                            </ul>`,
                     searchTerms: `"como usar quartzo verde para cura", "quartzo verde chakra cardíaco"`
+                }
+            ]
+        },
+        {
+            name: "Órbita III: Conexão e Espiritualidade",
+            crystals: [
+                 {
+                    name: "Selenita",
+                    subtitle: "A Luz Líquida",
+                    icon: "⚪",
+                    composition: "Uma variedade cristalina da gipsita. É muito macia e solúvel em água, exigindo cuidado em seu manuseio.",
+                    properties: "A Selenita vibra em uma frequência extremamente elevada. Ela é a manifestação da luz líquida, capaz de limpar e purificar outros cristais, o ambiente e o campo áurico. Promove a clareza mental, expande a consciência e abre os chakras superiores para a comunicação com guias espirituais e o Eu Superior.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Use um bastão de selenita para "varrer" seu campo áurico, limpando energias estagnadas.</li>
+                            <li>Coloque seus outros cristais sobre uma placa de selenita para limpá-los e recarregá-los.</li>
+                            <li><strong>Atenção:</strong> Nunca a coloque na água.</li>
+                           </ul>`,
+                    searchTerms: `"como limpar aura com selenita", "placa de selenita para carregar cristais"`
+                },
+                {
+                    name: "Pedra da Lua",
+                    subtitle: "O Oráculo da Intuição",
+                    icon: "🌙",
+                    composition: "Um feldspato conhecido pelo fenômeno da adularescência, um brilho místico que parece flutuar sob a superfície.",
+                    properties: "Profundamente conectada à energia da Lua e ao arquétipo do feminino divino. Ela acalma as emoções, desperta a intuição e a clarividência, e nos sintoniza com os ciclos naturais. É uma pedra de 'novos começos', que nos ajuda a navegar as marés da vida com graça e confiança.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Durma com ela sob o travesseiro para estimular sonhos proféticos.</li>
+                            <li>Use-a durante a Lua Nova para definir intenções.</li>
+                            <li>É uma pedra excelente para mulheres, ajudando a equilibrar os ciclos hormonais.</li>
+                           </ul>`,
+                    searchTerms: `"pedra da lua e os ciclos lunares", "ativar intuição com pedra da lua"`
+                },
+                {
+                    name: "Cianita Azul",
+                    subtitle: "A Espada do Arcanjo",
+                    icon: "💙",
+                    composition: "Um silicato de alumínio que cristaliza em lâminas. É um dos poucos minerais que não acumula nem retém energia negativa.",
+                    properties: "Conhecida como a 'Espada de São Miguel Arcanjo', a Cianita Azul é uma ferramenta poderosa para o alinhamento e a proteção espiritual. Ela alinha instantaneamente todos os chakras, corta cordões energéticos negativos e abre o Chakra Laríngeo (Vishuddha), facilitando a comunicação clara e a expressão da verdade.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Use-a em meditações para alinhar os chakras.</li>
+                            <li>Coloque-a sobre a garganta para desbloquear a comunicação.</li>
+                            <li>É excelente para se ter em ambientes onde ocorrem discussões, pois promove a calma e a verdade.</li>
+                           </ul>`,
+                    searchTerms: `"alinhamento dos chakras com cianita azul", "cianita azul espada de miguel"`
                 }
             ]
         }

@@ -172,6 +172,57 @@
         }
         .crystal-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 
+        /* --- Chakra Section --- */
+        .chakra-column {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .chakra-line {
+            position: absolute;
+            top: 25px;
+            bottom: 25px;
+            left: 25px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(163, 126, 44, 0), rgba(163, 126, 44, 0.5), rgba(163, 126, 44, 0));
+            z-index: -1;
+        }
+        .chakra-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .chakra-orb {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: chakra-pulse 3s infinite ease-in-out;
+            position: relative;
+        }
+        .chakra-orb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
+        }
+        @keyframes chakra-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* --- Pranayama Section --- */
+        .pranayama-card .accordion-header {
+             border-left: 4px solid #a37e2c;
+        }
+        .pranayama-card .accordion-content {
+            border-left: 4px solid #444;
+        }
+
         /* --- Generic Detail Modal --- */
         .detail-modal {
             position: fixed;

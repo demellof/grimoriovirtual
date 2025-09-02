@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, addDoc, deleteDoc, onSnapshot, collection, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData, seasonalHerbData, cosmogramData } from "./data.js";
+import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData, seasonalHerbData, cosmogramData, chakraData, pranayamaData } from "./data.js";
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
@@ -73,7 +73,9 @@ function renderMainSection() {
     }).join('');
 
     container.innerHTML = `
-        <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
+        </div>
         <div id="pillar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="md:col-span-2 lg:col-span-4">${pZeroCardHtml}</div>
             ${pillarCardsHtml}
@@ -299,6 +301,69 @@ function renderCosmogramaCristalinoSection() {
     `;
 }
 
+function renderChakraSection() {
+    const container = document.getElementById('chakra-section');
+    if (!container) return;
+
+    const chakraHtml = chakraData.map(chakra => `
+        <div class="chakra-card">
+            <div class="chakra-orb ${chakra.color}"></div>
+            <div>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${chakra.name}</h3>
+                <p class="text-md text-gray-400 mb-2">${chakra.translation}</p>
+                <p class="text-sm text-gray-300">${chakra.description}</p>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Centros de Poder</h2>
+            <p class="text-gray-400 mt-2">Os sete vórtices de energia que governam seu corpo sutil.</p>
+        </div>
+        <div class="chakra-column">
+            <div class="chakra-line"></div>
+            ${chakraHtml}
+        </div>
+    `;
+}
+
+function renderPranayamaSection() {
+    const container = document.getElementById('pranayama-section');
+    if (!container) return;
+
+    const pranayamaHtml = pranayamaData.map(pranayama => `
+        <div class="card rounded-lg mb-4 overflow-hidden no-hover pranayama-card">
+            <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
+                <div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3>
+                    <p class="text-sm text-gray-400">${pranayama.translation}</p>
+                </div>
+                <i class="fas fa-chevron-down transition-transform"></i>
+            </div>
+            <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
+                <p class="mb-4 text-gray-300"><strong>Propósito:</strong> ${pranayama.purpose}</p>
+                <div class="mb-4">
+                    <h4 class="font-bold text-[#a37e2c] mb-2">Como Praticar:</h4>
+                    <ol class="list-decimal list-inside text-gray-400 space-y-2">${pranayama.comoPraticar.map(step => `<li>${step}</li>`).join('')}</ol>
+                </div>
+                 <p class="mb-4 text-gray-300"><strong>Ponto de Foco:</strong> ${pranayama.pontoFoco}</p>
+                 <div class="pt-4 border-t border-gray-600">
+                     <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${pranayama.termosPesquisa}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Sopros de Vida: Pranayama</h2>
+            <p class="text-gray-400 mt-2 max-w-3xl mx-auto">Domine a respiração para dominar sua energia vital. Cada técnica é uma chave para um estado de consciência diferente.</p>
+        </div>
+        <div>${pranayamaHtml}</div>
+    `;
+}
+
 // --- FIRESTORE FUNCTIONS ---
 const getCollectionRef = (collectionName) => collection(db, `users/${userId}/${collectionName}`);
 
@@ -411,33 +476,38 @@ function setupEventListeners() {
              document.querySelector('#main-nav .tab[data-section="main-section"]')?.classList.add('active');
         });
     });
-
-    document.getElementById('jornada-section')?.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target instanceof Element) {
-            const header = target.closest('.accordion-header');
-            if (header instanceof HTMLElement) {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('i');
-                if (content instanceof HTMLElement) {
-                    document.querySelectorAll('#jornada-section .accordion-content').forEach(acc => {
-                        if (acc !== content && acc instanceof HTMLElement) {
-                            acc.style.maxHeight = null;
-                            acc.previousElementSibling?.querySelector('i')?.classList.remove('rotate-180');
+    
+    function handleAccordionClick(sectionId) {
+        document.getElementById(sectionId)?.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target instanceof Element) {
+                const header = target.closest('.accordion-header');
+                if (header instanceof HTMLElement) {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('i');
+                    if (content instanceof HTMLElement) {
+                        document.querySelectorAll(`#${sectionId} .accordion-content`).forEach(acc => {
+                            if (acc !== content && acc instanceof HTMLElement) {
+                                acc.style.maxHeight = null;
+                                acc.previousElementSibling?.querySelector('i')?.classList.remove('rotate-180');
+                            }
+                        });
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                            icon?.classList.remove('rotate-180');
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            icon?.classList.add('rotate-180');
                         }
-                    });
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        icon?.classList.remove('rotate-180');
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon?.classList.add('rotate-180');
                     }
                 }
             }
-        }
-    });
-    
+        });
+    }
+
+    handleAccordionClick('jornada-section');
+    handleAccordionClick('pranayama-section');
+
     document.getElementById('tomo-de-poder-section')?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
         const header = e.target.closest('#add-entry-accordion-header');
@@ -553,6 +623,8 @@ function initApp() {
                 renderTomoDePoderSection();
                 renderHerbarioFlorestaSection();
                 renderCosmogramaCristalinoSection();
+                renderChakraSection();
+                renderPranayamaSection();
                 setupEventListeners();
                 setupCollectionListener('grimoire_entries', renderGrimoireEntries);
                 
