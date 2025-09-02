@@ -158,10 +158,24 @@ export const astrologyData = [
 ];
 
 export const seasonalHerbData = {
+    intro: "Bem-vindo ao Herbário da Floresta Sazonal, um portal para a sabedoria viva da flora brasileira. Nossos ancestrais viviam em profunda sintonia com os ritmos da Terra, mas a dança da vida é regida por um parceiro ainda maior: o Sol. Nossa estrela-mãe pulsa em um grande ciclo de aproximadamente 11 anos, entre um Máximo Solar (energia de expansão) e um Mínimo Solar (energia de introspecção). Atualmente, estamos no Máximo Solar do Ciclo 25 (2024-2025), um longo 'verão cósmico' ideal para rituais de crescimento. O próximo Mínimo Solar é previsto para ~2030-2032. Alinhar nossa prática herbal com as estações da Terra e do Sol é a mais pura forma de magia.",
     'Primavera': [
+        { 
+            name: 'Alecrim', 
+            scientificName: 'Salvia rosmarinus',
+            content: {
+                almaDaErva: "Erva solar, regida pelo Fogo. Usada para purificação, clareza mental, coragem e para trazer alegria. Sua fumaça limpa o ambiente e abre a mente para a inspiração.",
+                farmaciaDaFloresta: `
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Chá de Alecrim (O Despertar da Mente):</strong> Uma infusão pela manhã é um ritual para aguçar o foco e a memória, alinhando-se com o Pilar 2 (Planejamento).</li>
+                        <li><strong>Azeite Aromatizado:</strong> Infundir a energia do alecrim em seus alimentos diários é uma forma de magia prática que se conecta ao Pilar 5, usando ervas como uma forma de conexão com a vitalidade da terra.</li>
+                    </ul>
+                `,
+                insightsDoBemViver: "O alecrim é um pilar na dieta mediterrânea, uma das Zonas Azuis. Seus antioxidantes combatem a inflamação, um dos pilares do envelhecimento saudável, mostrando que a escolha de ingredientes poderosos é mais importante que a restrição."
+            }
+        },
         { name: 'Lavanda', scientificName: 'Lavandula angustifolia', planet: 'Mercúrio', element: 'Ar', deities: 'Hécate, Saturno', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio', 'Rituais de novos começos'], medicinalUses: 'Ansiolítico, relaxante muscular, auxilia no sono.' },
-        { name: 'Manjericão', scientificName: 'Ocimum basilicum', planet: 'Marte', element: 'Fogo', deities: 'Vishnu, Erzuli', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia em relacionamentos', 'Coragem'], medicinalUses: 'Anti-inflamatório, digestivo, fortalece o sistema imunológico.' },
-        { name: 'Alecrim', scientificName: 'Rosmarinus officinalis', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Hélio', magicalUses: ['Purificação energética intensa', 'Clareza mental e memória', 'Vitalidade e energia', 'Proteção contra energias densas'], medicinalUses: 'Estimulante da memória e circulação, alivia dores de cabeça.' }
+        { name: 'Manjericão', scientificName: 'Ocimum basilicum', planet: 'Marte', element: 'Fogo', deities: 'Vishnu, Erzuli', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia em relacionamentos', 'Coragem'], medicinalUses: 'Anti-inflamatório, digestivo, fortalece o sistema imunológico.' }
     ],
     'Verão': [
         { name: 'Rosa', scientificName: 'Rosa spp.', planet: 'Vênus', element: 'Água', deities: 'Afrodite, Ísis', magicalUses: ['Amor-próprio e atração', 'Cura emocional e do coração', 'Adivinhação e intuição', 'Harmonização de ambientes'], medicinalUses: 'Calmante, tonificante para a pele, alivia sintomas de TPM.' },
@@ -169,8 +183,35 @@ export const seasonalHerbData = {
         { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', planet: 'Mercúrio', element: 'Ar', deities: 'Hermes, Perséfone', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Despertar da consciência', 'Viagens astrais e sonhos lúcidos'], medicinalUses: 'Alivia náuseas e dores de cabeça, descongestionante.' }
     ],
     'Outono': [
+        { 
+            name: 'Arruda', 
+            scientificName: 'Ruta graveolens',
+            content: {
+                almaDaErva: "Erva de Marte e do Fogo. É a grande protetora do mundo vegetal brasileiro, famosa por 'quebrar demandas' e banir o mau-olhado. Sua energia é assertiva e purificadora, um escudo que corta e devolve energias negativas à terra.",
+                farmaciaDaFloresta: `
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Banho de Descarrego:</strong> Macere folhas frescas em água morna, coe e jogue do pescoço para baixo após o banho, mentalizando a quebra de todas as amarras energéticas. <strong>Atenção:</strong> Uso primariamente externo ou em defumações, pois a ingestão pode ser tóxica.</li>
+                        <li><strong>Amuleto de Proteção:</strong> Carregue um pequeno galho em um saquinho de pano vermelho para proteção pessoal.</li>
+                    </ul>
+                `,
+                insightsDoBemViver: "A energia da Arruda nos ensina sobre a importância de estabelecer limites energéticos saudáveis. Assim como a arruda protege o jardim, nós devemos proteger nosso campo energético. O ato de cuidar da planta fortalece essa conexão e se alinha ao 'Bem Viver' dos povos originários."
+            }
+        },
+        { 
+            name: 'Guiné', 
+            scientificName: 'Petiveria alliacea',
+            content: {
+                almaDaErva: "Erva de alta vibração, profundamente ligada às tradições afro-brasileiras e à força de Ogum. É uma poderosa ferramenta de limpeza energética, capaz de cortar e desmanchar as mais densas larvas astrais e magias negativas.",
+                farmaciaDaFloresta: `
+                    <ul class="list-disc list-inside space-y-2">
+                         <li><strong>Defumação de Banimento:</strong> Queimar suas folhas secas (sozinha ou com outras ervas como casca de alho e incenso) é um ritual poderoso para limpar um ambiente após discussões ou eventos pesados.</li>
+                         <li><strong>Banho de Limpeza Pré-Ritual:</strong> Use um banho de guiné para limpar seu campo áurico antes de rituais de energização ou manifestação. <strong>Atenção:</strong> Erva extremamente forte, não deve ser ingerida.</li>
+                    </ul>
+                `,
+                insightsDoBemViver: "A energia da Guiné nos ensina a importância de 'limpar o terreno' antes de plantar novas intenções. É preciso remover o que é tóxico para que o novo possa florescer com saúde."
+            }
+        },
         { name: 'Sálvia Branca', scientificName: 'Salvia apiana', planet: 'Júpiter', element: 'Ar', deities: 'Zeus, Povos Nativos Americanos', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços e pessoas', 'Consagração de ferramentas mágicas'], medicinalUses: 'Antisséptico, auxilia em problemas respiratórios (uso em defumação).' },
-        { name: 'Arruda', scientificName: 'Ruta graveolens', planet: 'Marte', element: 'Fogo', deities: 'Hécate, Diana', magicalUses: ['Proteção forte contra negatividade e mau-olhado', 'Quebra de feitiços e maldições', 'Banimento de energias intrusas', 'Fortalecimento pessoal'], medicinalUses: 'Usada topicamente para dores reumáticas (com cautela, é tóxica se ingerida).' },
         { name: 'Louro', scientificName: 'Laurus nobilis', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Nike', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Proteção e purificação', 'Realização de desejos (escrever em folhas)'], medicinalUses: 'Digestivo, alivia gases e problemas estomacais.' }
     ],
     'Inverno': [

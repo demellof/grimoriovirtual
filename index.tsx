@@ -55,26 +55,52 @@ function showHerbDetails(season, herbName) {
     const herb = seasonalHerbData[season]?.find(h => h.name === herbName);
     if (!herb) return;
 
-    const content = `
-        <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
-        <div class="grid grid-cols-2 gap-4 text-sm mb-4">
-            <p><strong><i class="fas fa-globe-americas mr-2 text-[#a37e2c]"></i>Planeta:</strong> ${herb.planet}</p>
-            <p><strong><i class="fas fa-fire mr-2 text-[#a37e2c]"></i>Elemento:</strong> ${herb.element}</p>
-        </div>
-        <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
-        <div>
-            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
-            <ul class="list-disc list-inside text-gray-300 space-y-1">
-                ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
-            </ul>
-        </div>
-        <div class="mt-4">
-            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
-            <p class="text-gray-300">${herb.medicinalUses}</p>
-        </div>
-    `;
+    let content;
+
+    // Check if the herb has the new detailed content structure
+    if (herb.content) {
+        content = `
+            <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
+            <div class="space-y-6 text-sm">
+                <div>
+                    <h4 class="herb-detail-heading">A Alma da Erva (Propriedades Mágicas)</h4>
+                    <p class="text-gray-300">${herb.content.almaDaErva}</p>
+                </div>
+                <div>
+                    <h4 class="herb-detail-heading">A Farmácia da Floresta (Rituais e Usos)</h4>
+                    <div class="text-gray-300">${herb.content.farmaciaDaFloresta}</div>
+                </div>
+                <div>
+                    <h4 class="herb-detail-heading">Insights do Bem Viver (Conexão Holística)</h4>
+                    <p class="text-gray-300">${herb.content.insightsDoBemViver}</p>
+                </div>
+            </div>
+        `;
+    } else {
+        // Fallback for old structure
+        content = `
+            <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
+            <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+                <p><strong><i class="fas fa-globe-americas mr-2 text-[#a37e2c]"></i>Planeta:</strong> ${herb.planet}</p>
+                <p><strong><i class="fas fa-fire mr-2 text-[#a37e2c]"></i>Elemento:</strong> ${herb.element}</p>
+            </div>
+            <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
+            <div>
+                <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
+                <ul class="list-disc list-inside text-gray-300 space-y-1">
+                    ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
+                </ul>
+            </div>
+            <div class="mt-4">
+                <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
+                <p class="text-gray-300">${herb.medicinalUses}</p>
+            </div>
+        `;
+    }
+    
     showDetailModal(herb.name, content);
 }
+
 
 function showCrystalDetails(crystal) {
     if (!crystal) return;
@@ -233,7 +259,7 @@ function renderHerbCards(season) {
             <div class="p-4">
                 <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
                 <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
-                <p class="text-xs text-gray-300 mt-2">${herb.magicalUses[0]}</p>
+                <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : herb.magicalUses[0]).substring(0, 70)}...</p>
             </div>
         </div>
     `).join('');
@@ -251,8 +277,10 @@ function renderHerbarioFlorestaSection() {
 
     container.innerHTML = `
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta</h2>
-            <p class="text-gray-400 mt-2">Um guia sazonal para a sabedoria das plantas de poder.</p>
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta Sazonal</h2>
+        </div>
+        <div class="herbarium-intro">
+             <p class="text-gray-300">${seasonalHerbData.intro}</p>
         </div>
         <div class="card p-2 rounded-lg mb-6">
             <div class="herb-tabs flex justify-center">${tabsHtml}</div>
@@ -450,109 +478,92 @@ function setupEventListeners() {
         if (e.target === detailModal) hideModal(detailModal);
     });
     
-    document.querySelectorAll('#main-nav .tab').forEach(tab => {
-        tab.addEventListener('click', (e) => {
-            const currentTarget = e.currentTarget;
-            if (!(currentTarget instanceof HTMLElement)) return;
-            const sectionId = currentTarget.dataset.section;
-            if (!sectionId) return;
+    appContainer?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+
+        // Tab Navigation
+        const tab = e.target.closest('.tab');
+        if (tab instanceof HTMLElement && tab.dataset.section) {
+            const sectionId = tab.dataset.section;
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId)?.classList.add('active');
             document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
-            currentTarget.classList.add('active');
-        });
-    });
-
-    document.getElementById('main-section')?.addEventListener('click', (e) => {
-        if (e.target instanceof Element) {
-            const card = e.target.closest('.pillar-card');
-            if (card instanceof HTMLElement && card.dataset.pillar) {
-                showPillarDetails(card.dataset.pillar);
-            }
+            tab.classList.add('active');
+            return;
         }
-    });
 
-    document.querySelectorAll('.back-to-main').forEach(btn => {
-        btn.addEventListener('click', () => {
-             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-             document.getElementById('main-section')?.classList.add('active');
-             document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
-             document.querySelector('#main-nav .tab[data-section="main-section"]')?.classList.add('active');
-        });
-    });
-    
-    function handleAccordionClick(sectionId) {
-        document.getElementById(sectionId)?.addEventListener('click', (e) => {
-            const target = e.target;
-            if (target instanceof Element) {
-                const header = target.closest('.accordion-header');
-                if (header instanceof HTMLElement) {
-                    const content = header.nextElementSibling;
-                    const icon = header.querySelector('i');
-                    if (content instanceof HTMLElement) {
-                        document.querySelectorAll(`#${sectionId} .accordion-content`).forEach(acc => {
-                            if (acc !== content && acc instanceof HTMLElement) {
-                                acc.style.maxHeight = null;
-                                acc.previousElementSibling?.querySelector('i')?.classList.remove('rotate-180');
-                            }
-                        });
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                            icon?.classList.remove('rotate-180');
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                            icon?.classList.add('rotate-180');
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    handleAccordionClick('jornada-section');
-    handleAccordionClick('pranayama-section');
-
-    document.getElementById('tomo-de-poder-section')?.addEventListener('click', (e) => {
-        if (!(e.target instanceof Element)) return;
-        const header = e.target.closest('#add-entry-accordion-header');
-        if (header) {
-            const content = document.getElementById('add-entry-accordion-content');
-            const icon = header.querySelector('i');
+        // Accordion Toggles
+        const accordionHeader = e.target.closest('.accordion-header');
+        if (accordionHeader instanceof HTMLElement) {
+            const content = accordionHeader.nextElementSibling;
+            const icon = accordionHeader.querySelector('i');
             if (content instanceof HTMLElement) {
+                const isTomoAdd = accordionHeader.id === 'add-entry-accordion-header';
+                const rotationClass = isTomoAdd ? 'rotate-45' : 'rotate-180';
+                
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
-                    icon?.classList.remove('rotate-45');
+                    icon?.classList.remove(rotationClass);
                 } else {
+                    // Close other accordions in the same section
+                    const parentSection = accordionHeader.closest('.content-section');
+                    parentSection?.querySelectorAll('.accordion-content').forEach(acc => {
+                        if (acc !== content && acc instanceof HTMLElement) {
+                           acc.style.maxHeight = null;
+                           const prevIcon = acc.previousElementSibling?.querySelector('i');
+                           prevIcon?.classList.remove('rotate-180');
+                           prevIcon?.classList.remove('rotate-45');
+                        }
+                    });
                     content.style.maxHeight = content.scrollHeight + "px";
-                    icon?.classList.add('rotate-45');
+                    icon?.classList.add(rotationClass);
                 }
             }
+            return;
         }
+
+        // Delete Grimoire Entry
         const deleteButton = e.target.closest('.delete-btn');
         if (deleteButton instanceof HTMLElement && deleteButton.dataset.id) {
             handleDeleteItem(deleteButton.dataset.id);
+            return;
         }
-    });
+        
+        // Pillar Details
+        const pillarCard = e.target.closest('.pillar-card');
+        if (pillarCard instanceof HTMLElement && pillarCard.dataset.pillar) {
+            showPillarDetails(pillarCard.dataset.pillar);
+            return;
+        }
 
-    document.getElementById('herbario-floresta-section')?.addEventListener('click', (e) => {
-        if (!(e.target instanceof Element)) return;
-        const tab = e.target.closest('.herb-tab');
-        if (tab instanceof HTMLElement && tab.dataset.season) {
+        // Back to Main
+        const backButton = e.target.closest('.back-to-main');
+        if (backButton) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('main-section')?.classList.add('active');
+            document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('#main-nav .tab[data-section="main-section"]')?.classList.add('active');
+            return;
+        }
+
+        // Herbarium Clicks
+        const herbTab = e.target.closest('.herb-tab');
+        if (herbTab instanceof HTMLElement && herbTab.dataset.season) {
             document.querySelectorAll('.herb-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            renderHerbCards(tab.dataset.season);
+            herbTab.classList.add('active');
+            renderHerbCards(herbTab.dataset.season);
+            return;
         }
-        const card = e.target.closest('.herb-card');
-        if (card instanceof HTMLElement && card.dataset.season && card.dataset.herbName) {
-            showHerbDetails(card.dataset.season, card.dataset.herbName);
+        const herbCard = e.target.closest('.herb-card');
+        if (herbCard instanceof HTMLElement && herbCard.dataset.season && herbCard.dataset.herbName) {
+            showHerbDetails(herbCard.dataset.season, herbCard.dataset.herbName);
+            return;
         }
-    });
 
-    document.getElementById('cosmograma-cristalino-section')?.addEventListener('click', (e) => {
-        if (!(e.target instanceof Element)) return;
-        const card = e.target.closest('.crystal-orb');
-        if (card instanceof HTMLElement && card.dataset.crystalName) {
-            const crystalName = card.dataset.crystalName;
+        // Cosmogram Clicks
+        const crystalOrb = e.target.closest('.crystal-orb');
+        if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
+            const crystalName = crystalOrb.dataset.crystalName;
             let crystal;
             if (cosmogramData.sun.name === crystalName) {
                 crystal = cosmogramData.sun;
@@ -563,6 +574,7 @@ function setupEventListeners() {
                 }
             }
             if (crystal) showCrystalDetails(crystal);
+            return;
         }
     });
 
@@ -571,6 +583,7 @@ function setupEventListeners() {
         grimoireForm.addEventListener('submit', handleAddItem);
     }
 }
+
 
 function getCurrentSeason(hemisphere = 'south') {
     const now = new Date();
@@ -590,7 +603,19 @@ function getCurrentSeason(hemisphere = 'south') {
 function initApp() {
     try {
         if (!import.meta.env) {
-            throw new Error("O objeto de ambiente (import.meta.env) não está definido. Este erro ocorre quando o arquivo é aberto diretamente no navegador. Para rodar localmente, use o comando `npm run dev` (ou `vite`) no seu terminal. Para produção, garanta que seu provedor de hospedagem (ex: Netlify) está construindo o projeto com Vite.");
+            const guardMessage = `
+                <h4 class="font-cinzel text-lg text-amber-300">O Guardião do Templo se manifesta!</h4>
+                <p class="mt-4">Saudações, Guardião da Centelha.</p>
+                <p class="mt-2">Você tentou abrir um portal para este templo diretamente, mas a magia deste local requer um ritual de ativação para que flua corretamente.</p>
+                <p class="mt-4"><strong>Isto não é um bug, mas sim a proteção do santuário.</strong></p>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                    <li><strong>Para acessar o templo em seu ambiente local:</strong> Realize o ritual de abertura no seu terminal com o comando sagrado: <code>npm run dev</code>.</li>
+                    <li><strong>Seu templo online:</strong> Permanece consagrado e funcionando perfeitamente no Netlify.</li>
+                </ul>
+                <p class="mt-4">Prossiga com o ritual e a energia fluirá.</p>`;
+            showDiagnosticModal("Portal Selado", guardMessage);
+            if (loadingMessage) loadingMessage.classList.add('hidden');
+            return;
         }
 
         const firebaseConfig = {
@@ -644,18 +669,8 @@ function initApp() {
         console.error("Initialization Error:", error);
         let checklist;
         const errorMessage = error instanceof Error ? error.message : String(error);
-
-        if (errorMessage.includes("import.meta.env")) {
-            checklist = `<p><strong>A aplicação não está sendo executada no ambiente correto.</strong></p>
-                         <p class="mt-2">Este erro ocorre quando o arquivo é aberto diretamente no navegador, em vez de através do servidor de desenvolvimento Vite.</p>
-                         <ul class="list-disc list-inside mt-4 space-y-2">
-                            <li><strong>Solução Local:</strong> Certifique-se de que você está rodando o comando <code>npm run dev</code> (ou <code>vite</code>) no terminal, na pasta do projeto.</li>
-                            <li><strong>Solução Online:</strong> Verifique se suas variáveis de ambiente (<code>VITE_...</code>) estão corretamente configuradas no seu provedor de hospedagem (ex: Netlify) e se o projeto foi reconstruído.</li>
-                         </ul>
-                         <p class="mt-4 text-xs text-gray-500"><strong>Erro Técnico:</strong> ${errorMessage}</p>`;
-        } else {
-             checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se suas variáveis de ambiente <code>VITE_...</code> estão corretas no seu ambiente de hospedagem (ex: Netlify) e se o projeto foi reconstruído após a alteração.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${errorMessage || 'Verifique o console para mais detalhes.'}</p>`;
-        }
+        
+        checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se suas variáveis de ambiente <code>VITE_...</code> estão corretas no seu ambiente de hospedagem (ex: Netlify) e se o projeto foi reconstruído após a alteração.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${errorMessage || 'Verifique o console para mais detalhes.'}</p>`;
         
         if(loadingMessage) loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">Erro crítico de inicialização.</p>`;
         showDiagnosticModal("Erro de Inicialização", checklist);
