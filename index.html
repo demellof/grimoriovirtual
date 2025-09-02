@@ -16,7 +16,7 @@
         .card:hover:not(.no-hover) { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); border-color: #a37e2c; }
         .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
         .btn-primary:hover { background-color: #c8a44d; }
-        .btn-primary:disabled { background-color: #5f4a1a; cursor: not-allowed; }
+        .btn-primary:disabled { background-color: #5f4a1a; cursor: not-allowed; color: #a1a1a1; }
         .btn-secondary { background-color: #444; color: #e0e0e0; font-weight: bold; transition: background-color 0.3s ease; }
         .btn-secondary:hover { background-color: #555; }
         .form-input { background-color: #333; border: 1px solid #555; color: #e0e0e0; border-radius: 0.5rem; padding: 0.75rem; width: 100%; }
@@ -28,6 +28,10 @@
         .accordion-header { cursor: pointer; transition: background-color 0.2s ease; }
         .accordion-header:hover { background-color: #3a3a3a; }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+        .grimoire-entry-card { position: relative; }
+        .grimoire-tag { background-color: #444; color: #c8a44d; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .delete-btn { position: absolute; top: 1rem; right: 1rem; color: #888; cursor: pointer; transition: color 0.2s; }
+        .delete-btn:hover { color: #ef4444; }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
