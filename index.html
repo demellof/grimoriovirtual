@@ -13,11 +13,11 @@
         /* --- Base & Fonts --- */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #111; 
+            background-color: #1a132b; /* Deep cosmic purple */
             color: #e0e0e0; 
             overflow-x: hidden;
         }
-        .font-cinzel { font-family: 'Cinzel', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.3); }
+        .font-cinzel { font-family: 'Cinzel', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); }
 
         /* --- Cosmic Background --- */
         body::before {
@@ -25,7 +25,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><g fill-opacity="0.1" fill="%23a37e2c"><circle cx="100" cy="100" r="1"/><circle cx="200" cy="300" r="1.5"/><circle cx="400" cy="500" r="1"/><circle cx="600" cy="200" r="1.2"/><circle cx="750" cy="650" r="1"/><circle cx="50" cy="700" r="0.8"/><circle cx="300" cy="50" r="1.1"/><circle cx="550"cy="450" r="1.3"/><circle cx="250" cy="550" r="1"/><circle cx="650" cy="750" r="1.5"/></g></svg>');
+            background: radial-gradient(ellipse at center, rgba(46, 31, 71, 0.9) 0%, rgba(26, 19, 43, 1) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><g fill-opacity="0.2" fill="%23a37e2c"><circle cx="100" cy="100" r="1"/><circle cx="200" cy="300" r="1.5"/><circle cx="400" cy="500" r="1"/><circle cx="600" cy="200" r="1.2"/><circle cx="750" cy="650" r="1"/><circle cx="50" cy="700" r="0.8"/><circle cx="300" cy="50" r="1.1"/><circle cx="550"cy="450" r="1.3"/><circle cx="250" cy="550" r="1"/><circle cx="650" cy="750" r="1.5"/></g></svg>');
             animation: stars 120s linear infinite;
             z-index: -2;
         }
@@ -37,16 +37,16 @@
 
         /* --- Components & Layout --- */
         .card { 
-            background-color: rgba(44, 44, 44, 0.85);
-            backdrop-filter: blur(5px);
-            border: 1px solid #444; 
+            background-color: rgba(20, 15, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #4a3a69; 
             transition: all 0.3s ease; 
         }
         .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
         .btn-primary:hover { background-color: #c8a44d; }
-        .btn-secondary { background-color: #444; color: #e0e0e0; font-weight: bold; transition: background-color 0.3s ease; }
-        .btn-secondary:hover { background-color: #555; }
-        .form-input { background-color: #333; border: 1px solid #555; color: #e0e0e0; border-radius: 0.5rem; padding: 0.75rem; width: 100%; }
+        .btn-secondary { background-color: #4a3a69; color: #e0e0e0; font-weight: bold; transition: background-color 0.3s ease; }
+        .btn-secondary:hover { background-color: #5c4887; }
+        .form-input { background-color: #2a2042; border: 1px solid #4a3a69; color: #e0e0e0; border-radius: 0.5rem; padding: 0.75rem; width: 100%; }
         
         /* --- Navigation --- */
         .tab { position: relative; }
@@ -67,8 +67,8 @@
         /* --- Pillar Cards & Magic Glow --- */
         .pillar-card {
             position: relative;
-            background-color: rgba(44, 44, 44, 0.8);
-            border: 1px solid #444;
+            background-color: rgba(20, 15, 30, 0.75);
+            border: 1px solid #4a3a69;
             transition: all 0.3s ease;
             cursor: pointer;
             overflow: hidden;
@@ -103,17 +103,17 @@
 
         /* --- Accordion --- */
         .accordion-header { cursor: pointer; transition: background-color 0.2s ease; }
-        .accordion-header:hover { background-color: #3a3a3a; }
+        .accordion-header:hover { background-color: #3a2c5a; }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
 
         /* --- Grimoire --- */
         .grimoire-entry-card { position: relative; }
-        .grimoire-tag { background-color: #444; color: #c8a44d; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .grimoire-tag { background-color: #4a3a69; color: #c8a44d; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
         .delete-btn { position: absolute; top: 1rem; right: 1rem; color: #888; cursor: pointer; transition: color 0.2s; }
         .delete-btn:hover { color: #ef4444; }
 
         /* --- Herbarium Section --- */
-        .herb-tabs { border-bottom: 1px solid #444; }
+        .herb-tabs { border-bottom: 1px solid #4a3a69; }
         .herb-tab {
             background-color: transparent;
             border: none;
@@ -121,19 +121,20 @@
             color: #aaa;
             font-weight: 600;
             cursor: pointer;
-            transition: color 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
         }
         .herb-tab:hover { color: #c8a44d; }
         .herb-tab.active {
             color: #c8a44d;
+            background-color: rgba(200, 164, 77, 0.1);
             border-bottom: 2px solid #a37e2c;
         }
         .herb-card { cursor: pointer; }
         .herb-image-placeholder {
             width: 100%;
             height: 150px;
-            background: linear-gradient(135deg, #4a4a4a, #2c2c2c);
+            background: linear-gradient(135deg, #4a3a69, #2a2042);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -141,115 +142,79 @@
             font-size: 4rem;
             color: #a37e2c;
             text-shadow: 0 0 10px #000;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid #4a3a69;
         }
 
         /* --- Cosmogram Section --- */
         .cosmogram-intro { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
         .cosmogram-sun { text-align: center; margin-bottom: 3rem; }
-        .crystal-card.sun-card {
-            display: inline-block;
+        .orbit { margin-bottom: 3rem; text-align: center; }
+        .orbit-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #a37e2c; margin-bottom: 1.5rem; }
+        
+        .crystal-orb {
+            background-color: rgba(20, 15, 30, 0.9);
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #4a3a69;
+            transition: all 0.3s ease;
+        }
+        .crystal-orb:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: #c8a44d;
+            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
+        }
+        .crystal-orb-icon { font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1; }
+
+        .sun-orb {
+            width: 220px;
+            height: 220px;
             border-color: #c8a44d;
             box-shadow: 0 0 30px rgba(200, 164, 77, 0.6);
             animation: pulse 4s infinite;
         }
         @keyframes pulse { 0%, 100% { box-shadow: 0 0 30px rgba(200, 164, 77, 0.6); } 50% { box-shadow: 0 0 45px rgba(255, 223, 135, 0.8); } }
-        .orbit { margin-bottom: 3rem; border-left: 2px dashed rgba(163, 126, 44, 0.3); padding-left: 2rem; }
-        .orbit-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #a37e2c; margin-bottom: 1.5rem; }
-        .crystal-card {
-            background-color: rgba(44, 44, 44, 0.9);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #444;
-            transition: all 0.3s ease;
-        }
-        .crystal-card:hover {
-            transform: translateY(-5px);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
-        }
-        .crystal-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-
+        
         /* --- Chakra Section --- */
-        .chakra-column {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .chakra-column { position: relative; max-width: 600px; margin: 0 auto; }
         .chakra-line {
-            position: absolute;
-            top: 25px;
-            bottom: 25px;
-            left: 25px;
-            width: 2px;
+            position: absolute; top: 25px; bottom: 25px; left: 25px; width: 2px;
             background: linear-gradient(to bottom, rgba(163, 126, 44, 0), rgba(163, 126, 44, 0.5), rgba(163, 126, 44, 0));
             z-index: -1;
         }
-        .chakra-card {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
+        .chakra-card { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; position: relative; }
         .chakra-orb {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            animation: chakra-pulse 3s infinite ease-in-out;
-            position: relative;
+            width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: chakra-pulse 3s infinite ease-in-out; position: relative;
         }
         .chakra-orb::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
             box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
         }
-        @keyframes chakra-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
+        @keyframes chakra-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } }
 
         /* --- Pranayama Section --- */
-        .pranayama-card .accordion-header {
-             border-left: 4px solid #a37e2c;
-        }
-        .pranayama-card .accordion-content {
-            border-left: 4px solid #444;
-        }
+        .pranayama-card .accordion-header { border-left: 4px solid #a37e2c; }
+        .pranayama-card .accordion-content { border-left: 4px solid #4a3a69; }
 
         /* --- Generic Detail Modal --- */
         .detail-modal {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: fixed; inset: 0; background-color: rgba(10, 5, 20, 0.8); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center; z-index: 100;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .detail-modal.visible { opacity: 1; visibility: visible; }
         .detail-modal-content {
-            background-color: #2c2c2c;
-            border: 1px solid #a37e2c;
-            border-radius: 0.5rem;
-            padding: 2rem;
-            width: 90%;
-            max-width: 650px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
+            background-color: #1a132b; border: 1px solid #a37e2c; border-radius: 0.5rem;
+            padding: 2rem; width: 90%; max-width: 650px; max-height: 90vh; overflow-y: auto; position: relative;
+            transform: scale(0.95); transition: transform 0.3s ease;
         }
         .detail-modal.visible .detail-modal-content { transform: scale(1); }
         .close-modal-icon { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; color: #888; transition: color 0.2s; }
@@ -257,14 +222,14 @@
 
         /* --- Custom Scrollbar --- */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #1a132b; }
+        ::-webkit-scrollbar-thumb { background: #4a3a69; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #a37e2c; }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
 
-    <div id="loading-message" class="fixed inset-0 flex items-center justify-center bg-[#111] z-50">
+    <div id="loading-message" class="fixed inset-0 flex items-center justify-center bg-[#1a132b] z-50">
         <div class="text-center p-8 rounded-lg">
             <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#a37e2c] mx-auto mb-4"></div>
             <p class="text-lg font-semibold font-cinzel text-[#a37e2c]">Despertando a Rota Pagã...</p>
@@ -272,7 +237,7 @@
     </div>
 
     <div id="error-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div class="bg-[#2c2c2c] rounded-lg p-8 shadow-xl max-w-lg mx-auto border border-[#a37e2c]">
+        <div class="bg-[#1a132b] rounded-lg p-8 shadow-xl max-w-lg mx-auto border border-[#a37e2c]">
             <h3 id="modal-title" class="text-xl font-bold font-cinzel text-red-500 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i><span>Erro</span></h3>
             <div id="modal-message" class="text-[#e0e0e0] mb-6 text-sm space-y-2"></div>
             <button id="close-modal-btn" class="w-full btn-primary py-2 px-4 rounded-lg">Compreendido</button>
@@ -292,7 +257,7 @@
             <div id="user-id-display" class="text-sm mt-2 text-gray-400"></div>
         </header>
         
-        <nav id="main-nav" class="bg-[#222]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
+        <nav id="main-nav" class="bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
             <button class="tab active py-4 px-6 font-semibold transition-colors text-sm" data-section="main-section"><i class="fas fa-home mr-2"></i>Santuário</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="jornada-section"><i class="fas fa-map-signs mr-2"></i>Jornada Florescer</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-section"><i class="fas fa-star mr-2"></i>Altar de Manifestação</button>

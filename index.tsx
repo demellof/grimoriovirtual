@@ -51,6 +51,61 @@ function showPillarDetails(pillarId) {
     document.getElementById('pillar-detail-section')?.classList.add('active');
 }
 
+function showHerbDetails(season, herbName) {
+    const herb = seasonalHerbData[season]?.find(h => h.name === herbName);
+    if (!herb) return;
+
+    const content = `
+        <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
+        <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+            <p><strong><i class="fas fa-globe-americas mr-2 text-[#a37e2c]"></i>Planeta:</strong> ${herb.planet}</p>
+            <p><strong><i class="fas fa-fire mr-2 text-[#a37e2c]"></i>Elemento:</strong> ${herb.element}</p>
+        </div>
+        <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
+        <div>
+            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
+            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
+            </ul>
+        </div>
+        <div class="mt-4">
+            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
+            <p class="text-gray-300">${herb.medicinalUses}</p>
+        </div>
+    `;
+    showDetailModal(herb.name, content);
+}
+
+function showCrystalDetails(crystal) {
+    if (!crystal) return;
+
+    const content = `
+        <div class="space-y-6 text-sm">
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4>
+                <p class="text-gray-300">${crystal.composition}</p>
+            </div>
+            ${crystal.history ? `
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4>
+                <p class="text-gray-300">${crystal.history}</p>
+            </div>` : ''}
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4>
+                <p class="text-gray-300">${crystal.properties}</p>
+            </div>
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4>
+                <div class="text-gray-300">${crystal.uses}</div>
+            </div>
+            <div class="pt-4 border-t border-gray-600">
+                 <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p>
+            </div>
+        </div>
+    `;
+    showDetailModal(`${crystal.icon} ${crystal.name}`, content);
+}
+
 // --- RENDER FUNCTIONS ---
 function renderMainSection() {
     const container = document.getElementById('main-section');
@@ -184,31 +239,6 @@ function renderHerbCards(season) {
     `).join('');
 }
 
-function showHerbDetails(season, herbName) {
-    const herb = seasonalHerbData[season]?.find(h => h.name === herbName);
-    if (!herb) return;
-
-    const content = `
-        <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
-        <div class="grid grid-cols-2 gap-4 text-sm mb-4">
-            <p><strong><i class="fas fa-globe-americas mr-2 text-[#a37e2c]"></i>Planeta:</strong> ${herb.planet}</p>
-            <p><strong><i class="fas fa-fire mr-2 text-[#a37e2c]"></i>Elemento:</strong> ${herb.element}</p>
-        </div>
-        <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
-        <div>
-            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
-            <ul class="list-disc list-inside text-gray-300 space-y-1">
-                ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
-            </ul>
-        </div>
-        <div class="mt-4">
-            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
-            <p class="text-gray-300">${herb.medicinalUses}</p>
-        </div>
-    `;
-    showDetailModal(herb.name, content);
-}
-
 function renderHerbarioFlorestaSection() {
     const container = document.getElementById('herbario-floresta-section');
     if (!container) return;
@@ -232,46 +262,18 @@ function renderHerbarioFlorestaSection() {
     renderHerbCards(currentSeason);
 }
 
-function showCrystalDetails(crystal) {
-    if (!crystal) return;
-
-    const content = `
-        <div class="space-y-6 text-sm">
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4>
-                <p class="text-gray-300">${crystal.composition}</p>
-            </div>
-            ${crystal.history ? `
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4>
-                <p class="text-gray-300">${crystal.history}</p>
-            </div>` : ''}
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4>
-                <p class="text-gray-300">${crystal.properties}</p>
-            </div>
-            <div>
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4>
-                <div class="text-gray-300">${crystal.uses}</div>
-            </div>
-            <div class="pt-4 border-t border-gray-600">
-                 <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p>
-            </div>
-        </div>
-    `;
-    showDetailModal(`${crystal.icon} ${crystal.name}`, content);
-}
-
 function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
     const sunHtml = `
         <div class="cosmogram-sun">
-            <div class="crystal-card sun-card" data-crystal-name="${cosmogramData.sun.name}">
-                <div class="crystal-card-icon">${cosmogramData.sun.icon}</div>
-                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
-                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
+                <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
+                <div>
+                    <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                    <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+                </div>
             </div>
         </div>
     `;
@@ -279,12 +281,14 @@ function renderCosmogramaCristalinoSection() {
     const orbitsHtml = cosmogramData.orbits.map(orbit => `
         <div class="orbit">
             <h3 class="orbit-title">${orbit.name}</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="flex flex-wrap justify-center items-center gap-8">
                 ${orbit.crystals.map(crystal => `
-                    <div class="crystal-card" data-crystal-name="${crystal.name}">
-                        <div class="crystal-card-icon">${crystal.icon}</div>
-                        <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
-                        <p class="text-xs text-gray-400">${crystal.subtitle}</p>
+                    <div class="crystal-orb" data-crystal-name="${crystal.name}">
+                        <div class="crystal-orb-icon">${crystal.icon}</div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                            <p class="text-xs text-gray-400">${crystal.subtitle}</p>
+                        </div>
                     </div>
                 `).join('')}
             </div>
@@ -546,7 +550,7 @@ function setupEventListeners() {
 
     document.getElementById('cosmograma-cristalino-section')?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
-        const card = e.target.closest('.crystal-card');
+        const card = e.target.closest('.crystal-orb');
         if (card instanceof HTMLElement && card.dataset.crystalName) {
             const crystalName = card.dataset.crystalName;
             let crystal;
