@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { pillarZeroData, pillarData, jornadaFlorescerData } from "./data.js";
+import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData } from "./data.js";
 
 
 // --- CONFIG ---
@@ -123,6 +123,32 @@ function renderJornadaSection() {
     `;
 }
 
+function renderCosmogramaSection() {
+    const container = document.getElementById('cosmograma-section');
+    if (!container) return;
+
+    const astrologyHtml = astrologyData.map(transit => `
+        <div class="card p-6 mb-4 flex items-start space-x-4 no-hover">
+            <i class="${transit.icon} text-3xl text-[#a37e2c] w-8 text-center"></i>
+            <div>
+                <p class="text-sm font-bold text-gray-400">${transit.year}</p>
+                <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${transit.title}</h3>
+                <p class="text-gray-300 mt-1">${transit.description}</p>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Altar de Manifestação: Trânsitos Astrológicos</h2>
+            <p class="text-gray-400 mt-2">Uma visão cósmica da sua jornada pessoal.</p>
+        </div>
+        <div>
+            ${astrologyHtml}
+        </div>
+    `;
+}
+
 
 // --- EVENT LISTENERS ---
 function setupEventListeners() {
@@ -211,6 +237,7 @@ function initApp() {
                 
                 renderMainSection();
                 renderJornadaSection();
+                renderCosmogramaSection();
                 setupEventListeners();
                 
             } else {
@@ -220,7 +247,7 @@ function initApp() {
                         <p>A autenticação anônima falhou. Verifique no seu Console do Firebase:</p>
                         <ul class="list-disc list-inside mt-2 space-y-1">
                             <li><strong>Autenticação Anônima Ativada:</strong> Vá para 'Authentication' -> 'Sign-in method' e garanta que 'Anônimo' está ativado.</li>
-                            <li><strong>Domínios Autorizados:</strong> Verifique se o domínio da aplicação está na lista de domínios autorizados.</li>
+                            <li><strong>Domínios Autorizados:</strong> Verifique se o domínio da aplicação (<code>${window.location.hostname}</code>) está na lista de domínios autorizados.</li>
                         </ul>
                     `;
                     showDiagnosticModal("Falha na Autenticação", checklist);
@@ -229,11 +256,25 @@ function initApp() {
         });
     } catch (error) {
         console.error("Initialization Error:", error);
-        const errorMessage = "Ocorreu um erro crítico na inicialização. Verifique o console para mais detalhes.";
+        const checklist = `
+            <p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p>
+            <ul class="list-disc list-inside mt-2 space-y-2">
+                <li>
+                    <strong>Configuração Inválida:</strong> Verifique se o objeto <code>firebaseConfig</code> no seu código está 100% correto (apiKey, projectId, etc.).
+                </li>
+                <li>
+                    <strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto com o ID '<code>${firebaseConfig.projectId}</code>' existe e que o aplicativo da web está configurado corretamente.
+                </li>
+                <li>
+                    <strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione o domínio do seu site (ex: <code>${window.location.hostname}</code>).
+                </li>
+            </ul>
+            <p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${error.message || 'Verifique o console para mais detalhes.'}</p>
+        `;
         if(loadingMessage) {
-            loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">${errorMessage}</p>`;
+            loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">Erro crítico de inicialização.</p>`;
         }
-        showDiagnosticModal("Erro Crítico de Inicialização", errorMessage);
+        showDiagnosticModal("Erro de Conexão com Firebase", checklist);
     }
 }
 
