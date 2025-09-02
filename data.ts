@@ -159,39 +159,135 @@ export const astrologyData = [
 
 export const seasonalHerbData = {
     'Primavera': [
-        { name: 'Lavanda', scientificName: 'Lavandula angustifolia', image: 'https://placehold.co/150x150/9370DB/FFFFFF?text=Lavanda', planet: 'Mercúrio', element: 'Ar', deities: 'Hécate, Saturno', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio', 'Rituais de novos começos'], medicinalUses: 'Ansiolítico, relaxante muscular, auxilia no sono.' },
-        { name: 'Manjericão', scientificName: 'Ocimum basilicum', image: 'https://placehold.co/150x150/2E8B57/FFFFFF?text=Manjericão', planet: 'Marte', element: 'Fogo', deities: 'Vishnu, Erzuli', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia em relacionamentos', 'Coragem'], medicinalUses: 'Anti-inflamatório, digestivo, fortalece o sistema imunológico.' },
-        { name: 'Alecrim', scientificName: 'Rosmarinus officinalis', image: 'https://placehold.co/150x150/556B2F/FFFFFF?text=Alecrim', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Hélio', magicalUses: ['Purificação energética intensa', 'Clareza mental e memória', 'Vitalidade e energia', 'Proteção contra energias densas'], medicinalUses: 'Estimulante da memória e circulação, alivia dores de cabeça.' }
+        { name: 'Lavanda', scientificName: 'Lavandula angustifolia', planet: 'Mercúrio', element: 'Ar', deities: 'Hécate, Saturno', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio', 'Rituais de novos começos'], medicinalUses: 'Ansiolítico, relaxante muscular, auxilia no sono.' },
+        { name: 'Manjericão', scientificName: 'Ocimum basilicum', planet: 'Marte', element: 'Fogo', deities: 'Vishnu, Erzuli', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia em relacionamentos', 'Coragem'], medicinalUses: 'Anti-inflamatório, digestivo, fortalece o sistema imunológico.' },
+        { name: 'Alecrim', scientificName: 'Rosmarinus officinalis', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Hélio', magicalUses: ['Purificação energética intensa', 'Clareza mental e memória', 'Vitalidade e energia', 'Proteção contra energias densas'], medicinalUses: 'Estimulante da memória e circulação, alivia dores de cabeça.' }
     ],
     'Verão': [
-        { name: 'Rosa', scientificName: 'Rosa spp.', image: 'https://placehold.co/150x150/FF69B4/FFFFFF?text=Rosa', planet: 'Vênus', element: 'Água', deities: 'Afrodite, Ísis', magicalUses: ['Amor-próprio e atração', 'Cura emocional e do coração', 'Adivinhação e intuição', 'Harmonização de ambientes'], medicinalUses: 'Calmante, tonificante para a pele, alivia sintomas de TPM.' },
-        { name: 'Canela', scientificName: 'Cinnamomum verum', image: 'https://placehold.co/150x150/D2691E/FFFFFF?text=Canela', planet: 'Sol', element: 'Fogo', deities: 'Ra, Apolo', magicalUses: ['Atração de sucesso e prosperidade rápida', 'Aumento da energia vital e paixão', 'Proteção e espiritualidade', 'Aceleração de feitiços'], medicinalUses: 'Termogênico, auxilia no controle de açúcar no sangue, anti-inflamatório.' },
-        { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', image: 'https://placehold.co/150x150/3CB371/FFFFFF?text=Hortelã', planet: 'Mercúrio', element: 'Ar', deities: 'Hermes, Perséfone', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Despertar da consciência', 'Viagens astrais e sonhos lúcidos'], medicinalUses: 'Alivia náuseas e dores de cabeça, descongestionante.' }
+        { name: 'Rosa', scientificName: 'Rosa spp.', planet: 'Vênus', element: 'Água', deities: 'Afrodite, Ísis', magicalUses: ['Amor-próprio e atração', 'Cura emocional e do coração', 'Adivinhação e intuição', 'Harmonização de ambientes'], medicinalUses: 'Calmante, tonificante para a pele, alivia sintomas de TPM.' },
+        { name: 'Canela', scientificName: 'Cinnamomum verum', planet: 'Sol', element: 'Fogo', deities: 'Ra, Apolo', magicalUses: ['Atração de sucesso e prosperidade rápida', 'Aumento da energia vital e paixão', 'Proteção e espiritualidade', 'Aceleração de feitiços'], medicinalUses: 'Termogênico, auxilia no controle de açúcar no sangue, anti-inflamatório.' },
+        { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', planet: 'Mercúrio', element: 'Ar', deities: 'Hermes, Perséfone', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Despertar da consciência', 'Viagens astrais e sonhos lúcidos'], medicinalUses: 'Alivia náuseas e dores de cabeça, descongestionante.' }
     ],
     'Outono': [
-        { name: 'Sálvia Branca', scientificName: 'Salvia apiana', image: 'https://placehold.co/150x150/CAD3C8/000000?text=Sálvia', planet: 'Júpiter', element: 'Ar', deities: 'Zeus, Povos Nativos Americanos', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços e pessoas', 'Consagração de ferramentas mágicas'], medicinalUses: 'Antisséptico, auxilia em problemas respiratórios (uso em defumação).' },
-        { name: 'Arruda', scientificName: 'Ruta graveolens', image: 'https://placehold.co/150x150/006400/FFFFFF?text=Arruda', planet: 'Marte', element: 'Fogo', deities: 'Hécate, Diana', magicalUses: ['Proteção forte contra negatividade e mau-olhado', 'Quebra de feitiços e maldições', 'Banimento de energias intrusas', 'Fortalecimento pessoal'], medicinalUses: 'Usada topicamente para dores reumáticas (com cautela, é tóxica se ingerida).' },
-        { name: 'Louro', scientificName: 'Laurus nobilis', image: 'https://placehold.co/150x150/808000/FFFFFF?text=Louro', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Nike', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Proteção e purificação', 'Realização de desejos (escrever em folhas)'], medicinalUses: 'Digestivo, alivia gases e problemas estomacais.' }
+        { name: 'Sálvia Branca', scientificName: 'Salvia apiana', planet: 'Júpiter', element: 'Ar', deities: 'Zeus, Povos Nativos Americanos', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços e pessoas', 'Consagração de ferramentas mágicas'], medicinalUses: 'Antisséptico, auxilia em problemas respiratórios (uso em defumação).' },
+        { name: 'Arruda', scientificName: 'Ruta graveolens', planet: 'Marte', element: 'Fogo', deities: 'Hécate, Diana', magicalUses: ['Proteção forte contra negatividade e mau-olhado', 'Quebra de feitiços e maldições', 'Banimento de energias intrusas', 'Fortalecimento pessoal'], medicinalUses: 'Usada topicamente para dores reumáticas (com cautela, é tóxica se ingerida).' },
+        { name: 'Louro', scientificName: 'Laurus nobilis', planet: 'Sol', element: 'Fogo', deities: 'Apolo, Nike', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Proteção e purificação', 'Realização de desejos (escrever em folhas)'], medicinalUses: 'Digestivo, alivia gases e problemas estomacais.' }
     ],
     'Inverno': [
-        { name: 'Mirra', scientificName: 'Commiphora myrrha', image: 'https://placehold.co/150x150/B8860B/FFFFFF?text=Mirra', planet: 'Lua', element: 'Água', deities: 'Ísis, Adônis', magicalUses: ['Conexão com o sagrado e cura profunda', 'Meditação e introspecção', 'Rituais de passagem (luto, transformações)', 'Proteção espiritual'], medicinalUses: 'Poderoso antisséptico e cicatrizante (uso em resina).' },
-        { name: 'Olíbano', scientificName: 'Boswellia sacra', image: 'https://placehold.co/150x150/DEB887/000000?text=Olíbano', planet: 'Sol', element: 'Fogo', deities: 'Ra, Baal', magicalUses: ['Elevação espiritual e purificação de alta vibração', 'Consagração de espaços e objetos', 'Conexão com guias e divindades', 'Meditação e oração'], medicinalUses: 'Anti-inflamatório potente, auxilia na saúde das articulações.' },
-        { name: 'Gengibre', scientificName: 'Zingiber officinale', image: 'https://placehold.co/150x150/F4A460/000000?text=Gengibre', planet: 'Marte', element: 'Fogo', deities: 'Agni, Ogum', magicalUses: ['Acelerar e potencializar feitiços', 'Aumentar energia, coragem e paixão', 'Atrair sucesso e dinheiro', 'Proteção e fortalecimento'], medicinalUses: 'Anti-inflamatório, alivia náuseas e dores de garganta, termogênico.' }
+        { name: 'Mirra', scientificName: 'Commiphora myrrha', planet: 'Lua', element: 'Água', deities: 'Ísis, Adônis', magicalUses: ['Conexão com o sagrado e cura profunda', 'Meditação e introspecção', 'Rituais de passagem (luto, transformações)', 'Proteção espiritual'], medicinalUses: 'Poderoso antisséptico e cicatrizante (uso em resina).' },
+        { name: 'Olíbano', scientificName: 'Boswellia sacra', planet: 'Sol', element: 'Fogo', deities: 'Ra, Baal', magicalUses: ['Elevação espiritual e purificação de alta vibração', 'Consagração de espaços e objetos', 'Conexão com guias e divindades', 'Meditação e oração'], medicinalUses: 'Anti-inflamatório potente, auxilia na saúde das articulações.' },
+        { name: 'Gengibre', scientificName: 'Zingiber officinale', planet: 'Marte', element: 'Fogo', deities: 'Agni, Ogum', magicalUses: ['Acelerar e potencializar feitiços', 'Aumentar energia, coragem e paixão', 'Atrair sucesso e dinheiro', 'Proteção e fortalecimento'], medicinalUses: 'Anti-inflamatório, alivia náuseas e dores de garganta, termogênico.' }
     ]
 };
 
-export const crystalData = {
-    'Cristais de Aterramento e Proteção': [
-        { name: 'Turmalina Negra', image: 'https://placehold.co/100x100/000000/FFFFFF?text=Turmalina', description: 'O escudo impenetrável. Repele e transmuta energias negativas, criando um campo de força protetor.' },
-        { name: 'Hematita', image: 'https://placehold.co/100x100/A9A9A9/FFFFFF?text=Hematita', description: 'A âncora da alma. Aterra a energia no corpo físico, promove foco, coragem e fortalece a vontade.' },
-        { name: 'Obsidiana Negra', image: 'https://placehold.co/100x100/1C1C1C/FFFFFF?text=Obsidiana', description: 'O espelho da verdade. Revela o que está oculto, corta laços energéticos e limpa o subconsciente.' },
-    ],
-    'Cristais de Cura e Elevação': [
-         { name: 'Quartzo Rosa', image: 'https://placehold.co/100x100/FFC0CB/000000?text=Quartzo+Rosa', description: 'O bálsamo do coração. Vibra amor incondicional, cura feridas emocionais e promove paz e compaixão.' },
-         { name: 'Ametista', image: 'https://placehold.co/100x100/8A2BE2/FFFFFF?text=Ametista', description: 'A transmutadora violeta. Eleva a vibração, acalma a mente, transmuta energia e abre portais para a espiritualidade.' },
-         { name: 'Quartzo Verde', image: 'https://placehold.co/100x100/2E8B57/FFFFFF?text=Quartzo+Verde', description: 'O curador do corpo e da alma. Traz equilíbrio, saúde e bem-estar, alinhando o corpo físico e emocional.' },
+export const cosmogramData = {
+    intro: "Bem-vindo ao Cosmograma Cristalino. Esta não é uma galeria, mas um sistema solar de energias, um mapa vivo da consciência da Terra. No centro, pulsa o Grande Sol, o Quartzo Transparente, mestre curador e amplificador universal. Orbitando-o, os planetas de cristal dançam em suas esferas de influência, cada um um guardião de uma sabedoria ancestral. Passe o mouse para sentir sua energia, clique para desvendar seus mistérios.",
+    sun: {
+        name: "Quartzo Transparente",
+        subtitle: "O Mestre Curador",
+        icon: "💎",
+        composition: "Dióxido de silício, o mineral mais abundante da Terra. Sua estrutura cristalina hexagonal perfeita o torna um receptor, armazenador e amplificador de energia incomparável.",
+        history: "Visto como 'luz congelada' por gregos e romanos. Usado em bolas de cristal por videntes celtas e como crânios de cristal por civilizações pré-colombianas para canalizar sabedoria.",
+        properties: "É o coringa do reino mineral. Amplifica a energia de outras pedras e a intenção do portador. Promove clareza, alinha todos os chakras e conecta ao Chakra da Coroa (Sahasrara), abrindo um canal para a sabedoria divina.",
+        uses: `<ul class="list-disc list-inside space-y-1">
+                <li><strong>Programação:</strong> Segure o quartzo, visualize sua intenção e "sopre" essa intenção para dentro do cristal.</li>
+                <li><strong>Grades de Cristal:</strong> Use-o no centro de qualquer grade para amplificar seu poder.</li>
+                <li><strong>Meditação:</strong> Meditar com ele ajuda a limpar a mente e a receber insights.</li>
+               </ul>`,
+        searchTerms: `"como programar um quartzo transparente", "grade de cristal para manifestação", "usos do quartzo mestre"`
+    },
+    orbits: [
+        {
+            name: "Órbita I: Aterramento e Proteção",
+            crystals: [
+                {
+                    name: "Turmalina Negra",
+                    subtitle: "O Escudo Impenetrável",
+                    icon: "⚫",
+                    composition: "Um borossilicato complexo, piroelétrico e piezoelétrico, o que significa que gera uma carga elétrica quando aquecido ou pressionado – uma assinatura física de sua capacidade de transmutação energética.",
+                    properties: "O cristal de proteção por excelência. Sua principal função é criar um escudo energético impenetrável ao redor do portador, repelindo e transmutando energias densas em vibrações mais leves. Ela não absorve a negatividade, ela a devolve à terra para ser neutralizada. Ligada ao Pilar da Terra e ao Chakra Raiz (Muladhara).",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Coloque-a na entrada de casa como um guardião.</li>
+                            <li>Carregue-a no bolso para proteção em ambientes densos.</li>
+                           </ul>`,
+                    searchTerms: `"como limpar e energizar turmalina negra", "proteção contra energia negativa"`
+                },
+                {
+                    name: "Hematita",
+                    subtitle: "A Âncora da Alma",
+                    icon: "🕳️",
+                    composition: "Óxido de ferro, com um brilho metálico e denso. Seu nome vem do grego 'haima', que significa sangue, pois sua forma em pó é vermelha.",
+                    properties: "A grande âncora do reino mineral. Aterra as energias e a consciência no corpo físico, promovendo foco, coragem e fortalecendo a vontade. É excelente para momentos de dispersão mental ou para quando nos sentimos 'fora do corpo'. Dissolve a negatividade e impede que energias estranhas entrem no campo áurico.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Segure uma em cada mão ou coloque nos pés após um dia estressante para descarregar o excesso de energia.</li>
+                            <li>Use-a em seu local de trabalho para manter o foco e a determinação.</li>
+                           </ul>`,
+                    searchTerms: `"benefícios da hematita para foco", "aterramento com hematita"`
+                },
+                {
+                    name: "Obsidiana Negra",
+                    subtitle: "O Espelho da Verdade",
+                    icon: "⚫",
+                    composition: "Um vidro vulcânico, formado pelo resfriamento rápido da lava. Não possui uma estrutura cristalina, sendo amorfa – o que lhe confere uma energia rápida e direta.",
+                    properties: "A Obsidiana é o espelho da alma. Ela trabalha sem piedade, trazendo à superfície a verdade, as sombras e os desequilíbrios para que possam ser confrontados e curados. É uma pedra de proteção profunda que corta laços energéticos e limpa resíduos psíquicos do subconsciente. Deve ser usada com respeito e intenção.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Use-a em meditações de <em>shadow work</em> (trabalho com a sombra).</li>
+                            <li>Use-a em rituais de banimento ou para cortar laços com o passado.</li>
+                            <li><strong>Atenção:</strong> Não é recomendada para se ter no quarto de dormir, pois sua energia pode ser muito intensa.</li>
+                           </ul>`,
+                    searchTerms: `"como usar obsidiana negra com segurança", "shadow work com cristais"`
+                }
+            ]
+        },
+        {
+            name: "Órbita II: Cura e Elevação",
+            crystals: [
+                {
+                    name: "Quartzo Rosa",
+                    subtitle: "O Bálsamo do Coração",
+                    icon: "💖",
+                    composition: "Uma variedade rosa do quartzo, cuja cor é atribuída a traços de titânio, ferro ou manganês.",
+                    properties: "A vibração do amor incondicional. Ele dissolve suavemente as feridas emocionais, o medo e o ressentimento, abrindo o Chakra Cardíaco (Anahata) para dar e receber amor. Ensina sobre o amor-próprio, a compaixão e o perdão. Sua energia é como um abraço calmante para a alma.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Coloque-o sobre o coração durante a meditação.</li>
+                            <li>Tenha um em seu quarto para promover um ambiente de amor e paz.</li>
+                            <li>Use-o em banhos rituais para amor-próprio.</li>
+                           </ul>`,
+                    searchTerms: `"meditação com quartzo rosa para o chakra cardíaco", "banho de amor-próprio com quartzo rosa"`
+                },
+                {
+                    name: "Ametista",
+                    subtitle: "A Transmutadora Violeta",
+                    icon: "💜",
+                    composition: "Uma variedade violeta do quartzo. Sua beleza e poder a tornaram uma das gemas mais reverenciadas. É encontrada em abundância no Brasil, especialmente no Rio Grande do Sul.",
+                    history: "Leonardo da Vinci escrevia que a Ametista tinha o poder de dissipar maus pensamentos e aguçar a inteligência.",
+                    properties: "A Ametista é a grande transmutadora. Sua vibração violeta eleva a energia, acalma a mente e o sistema nervoso, e transmuta padrões de pensamento negativos em positivos. É uma ponte para a espiritualidade, abrindo o Chakra Coronário (Sahasrara) e o Frontal (Ajna). É a pedra da sobriedade, da meditação e da paz interior.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Coloque uma Ametista na mesa de cabeceira para um sono tranquilo.</li>
+                            <li>Medite com ela para aprofundar a prática.</li>
+                            <li>Mantenha uma drusa em seu ambiente para purificar a energia.</li>
+                           </ul>`,
+                    searchTerms: `"meditação com ametista para o terceiro olho", "elixir de ametista método indireto"`
+                },
+                {
+                    name: "Quartzo Verde",
+                    subtitle: "O Curador do Corpo e da Alma",
+                    icon: "💚",
+                    composition: "Quartzo com inclusões de fuchsita (uma variedade de mica), que lhe conferem a cor verde e um brilho sutil.",
+                    properties: "Conhecido como a pedra da saúde e do bem-estar. Sua energia calmante equilibra o corpo físico, emocional e mental. Atua no Chakra Cardíaco (Anahata), promovendo o equilíbrio e a estabilidade emocional. É uma pedra que nos conecta à energia de cura da natureza e do Pilar da Terra.",
+                    uses: `<ul class="list-disc list-inside space-y-1">
+                            <li>Use-o em contato com a pele na área que necessita de cura.</li>
+                            <li>Coloque-o sobre o coração para acalmar a ansiedade.</li>
+                            <li>Tenha um em seu jardim ou perto de suas plantas para promover a vitalidade.</li>
+                           </ul>`,
+                    searchTerms: `"como usar quartzo verde para cura", "quartzo verde chakra cardíaco"`
+                }
+            ]
+        }
     ]
 };
+
+
 
 export const chakraData = [
     { name: "Muladhara", translation: "Chakra Raiz", color: "bg-red-700", description: "Sua fundação, sua conexão com a Terra. Governa a sobrevivência, segurança e estabilidade. Um Muladhara forte te aterra na realidade e te dá a base para crescer." },
@@ -214,11 +310,102 @@ export const pranayamaData = [
 
 
 export const jornadaFlorescerData = [
-    { etapa: 1, title: "Etapa 1: Despertar da Consciência (Iniciação)", arquétipos: "Perseu e Medusa, Rá, Atena", pilares: "Terra e Luz", praticas: "Aterramento Diário, Diário de Sincronicidades, Meditação 'Não-Cachimbo' de Magritte." },
-    { etapa: 2, title: "Etapa 2: Definindo o Propósito", arquétipos: "Hércules, Ísis, Thoth", pilares: "Água e Som", praticas: "Criação de um 'Altar de Intenções', Prática do 'Eu Sou' com o Pilar do Som, Escrita Terapêutica para explorar paixões." },
-    { etapa: 3, title: "Etapa 3: A Forja da Vontade", arquétipos: "Teseu e o Minotauro, Sekhmet, Ares", pilares: "Fogo", praticas: "Rituais de Queima de Intenções para liberar o que não serve mais, Prática de Bhastrika Pranayama para gerar energia, Ação Focada em uma meta desafiadora." },
-    { etapa: 4, title: "Etapa 4: A Ponte do Coração", arquétipos: "Inanna, Afrodite, Kuan Yin", pilares: "Ar", praticas: "Meditação Metta Bhavana (Amor-Bondade), Prática da Comunicação Não-Violenta (CNV) em um relacionamento, Atos de generosidade anônima." },
-    { etapa: 5, title: "Etapa 5: A Voz da Alma", arquétipos: "Hermes, Apolo, Bragi", pilares: "Som e Mente", praticas: "Prática de canto de mantras, Exercício de falar sua verdade em uma situação segura, Prática da Escuta Ativa." },
-    { etapa: 6, title: "Etapa 6: A Visão Interior", arquétipos: "Anúbis, Hécate, Odin", pilares: "Luz", praticas: "Diário de Sonhos com foco na interpretação, Meditação no Terceiro Olho (Ajna), Prática de atenção às sincronicidades." },
-    { etapa: 7, title: "Etapa 7: União Divina", arquétipos: "Shiva e Shakti, A Grande Mãe, O Andrógino Divino", pilares: "Mente", praticas: "Meditação Silenciosa para transcender o ego, Contemplação da natureza para sentir a unidade, Estudo do Pilar Zero 'A Teia do Mundo'." }
+    { 
+        etapa: 1, 
+        title: "Etapa 1: Despertar da Consciência (Iniciação)",
+        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro. É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
+        arquétipos: "Perseu e Medusa, Rá, Atena", 
+        pilares: "Terra e Luz", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Aterramento Diário:</strong> Inicie cada dia com o ritual de caminhar descalço na grama, sentindo a estabilidade da Terra para ter a coragem de olhar para dentro. <em class="text-xs text-gray-500">[ref: Pilar da Terra]</em></li>
+                <li><strong>Diário de Sincronicidades:</strong> Mantenha um registro em seu Tomo de Poder das "coincidências significativas", aprendendo a ler a linguagem do universo. <em class="text-xs text-gray-500">[ref: Pilar da Luz]</em></li>
+                <li><strong>Meditação "Não-Cachimbo" (Magritte):</strong> Use a técnica do Pilar da Luz para questionar uma crença limitante. Escreva "Isto não é [sua crença]" e redefina-a.</li>
+            </ol>
+        ` 
+    },
+    { 
+        etapa: 2, 
+        title: "Etapa 2: Definindo o Propósito",
+        foco: "Uma vez que a consciência desperta, a energia precisa de uma direção. Esta etapa é sobre alinhar sua vontade com a voz da sua alma, definindo um propósito claro que irá nutrir e guiar sua jornada de crescimento.",
+        arquétipos: "Hércules, Ísis, Thoth", 
+        pilares: "Água e Som", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Criação de um 'Altar de Intenções':</strong> Dedique um pequeno espaço com objetos que simbolizem seu propósito. Use a fluidez da Água para carregar este espaço com emoção.</li>
+                <li><strong>Prática do "Eu Sou":</strong> Crie e vocalize afirmações poderosas que declarem seu propósito no tempo presente (ex: "Eu sou um canal de cura e sabedoria"). <em class="text-xs text-gray-500">[ref: Pilar do Som]</em></li>
+                <li><strong>Escrita Terapêutica:</strong> Em seu Tomo, explore: "Se não houvesse limitações, o que minha alma desejaria criar?".</li>
+            </ol>
+        `
+    },
+    { 
+        etapa: 3, 
+        title: "Etapa 3: A Forja da Vontade",
+        foco: "O propósito, uma vez definido, precisa ser forjado no fogo da ação e da disciplina. Esta etapa é sobre enfrentar o labirinto interior, confrontar os 'minotauros' da procrastinação e da autossabotagem, e transformar a inércia em momentum.",
+        arquétipos: "Teseu e o Minotauro, Sekhmet, Ares", 
+        pilares: "Fogo", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Rituais de Queima de Intenções:</strong> Utilize o poder do Fogo para liberar o que não serve mais, escrevendo medos e hábitos em um papel e entregando-os à chama. <em class="text-xs text-gray-500">[ref: Pilar do Fogo]</em></li>
+                <li><strong>Prática de Bhastrika Pranayama:</strong> Use a "Respiração do Fole" para gerar energia e despertar a força de vontade do seu plexo solar (Manipura).</li>
+                <li><strong>Ação Focada:</strong> Escolha uma meta desafiadora e dedique um tempo focado e ininterrupto para trabalhar nela, mesmo que por apenas 15 minutos.</li>
+            </ol>
+        ` 
+    },
+    { 
+        etapa: 4, 
+        title: "Etapa 4: A Ponte do Coração",
+        foco: "O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração (Anahata), cultivar a compaixão e construir pontes de conexão. É a aplicação da benevolência de Chesed/Júpiter, entendendo que nosso florescimento se nutre e nutre os outros.",
+        arquétipos: "Inanna, Afrodite, Kuan Yin", 
+        pilares: "Ar", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Meditação Metta Bhavana (Amor-Bondade):</strong> Pratique enviar desejos de bem-estar para si mesmo, para entes queridos e, gradualmente, para todos os seres.</li>
+                <li><strong>Prática da CNV:</strong> Em um relacionamento, pratique expressar uma necessidade usando a estrutura da Comunicação Não-Violenta (observação, sentimento, necessidade, pedido).</li>
+                <li><strong>Atos de Generosidade Anônima:</strong> Realize um pequeno ato de bondade sem buscar reconhecimento, nutrindo a pura alegria de dar.</li>
+            </ol>
+        ` 
+    },
+    { 
+        etapa: 5, 
+        title: "Etapa 5: A Voz da Alma",
+        foco: "Após conectar-se com o coração, é hora de dar voz à sua verdade. Esta etapa é sobre a expressão autêntica, a comunicação clara e o uso da vibração para manifestar sua sabedoria no mundo.",
+        arquétipos: "Hermes, Apolo, Bragi", 
+        pilares: "Som e Mente", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Prática de Canto de Mantras:</strong> Escolha um mantra que ressoe com você (como "OM") e cante-o por 5 minutos, sentindo a vibração em seu corpo e limpando o Chakra Laríngeo.</li>
+                <li><strong>Exercício de Falar Sua Verdade:</strong> Identifique uma situação segura onde você normalmente ficaria em silêncio e prepare-se para expressar sua opinião de forma calma.</li>
+                <li><strong>Prática da Escuta Ativa:</strong> Em uma conversa, dedique-se a ouvir para compreender, sem formular sua resposta enquanto a outra pessoa fala.</li>
+            </ol>
+        ` 
+    },
+    { 
+        etapa: 6, 
+        title: "Etapa 6: A Visão Interior",
+        foco: "Com a voz alinhada, aprofundamos a percepção. Esta etapa é sobre silenciar o ruído externo para ouvir a sabedoria do oráculo interior, navegando pelas sombras e transições com um guia interno.",
+        arquétipos: "Anúbis, Hécate, Odin", 
+        pilares: "Luz", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Diário de Sonhos Junguiano:</strong> Anote o sonho, suas associações pessoais e depois reflita sobre a mensagem arquetípica. <em class="text-xs text-gray-500">[ref: Pilar da Água]</em></li>
+                <li><strong>Meditação no Terceiro Olho (Ajna):</strong> Leve sua atenção para o ponto entre as sobrancelhas, visualizando uma luz índigo pulsante, despertando sua intuição.</li>
+                <li><strong>Prática de Atenção às Sincronicidades:</strong> Esteja aberto para notar as "coincidências significativas" e anote-as, refletindo sobre suas mensagens.</li>
+            </ol>
+        ` 
+    },
+    { 
+        etapa: 7, 
+        title: "Etapa 7: União Divina",
+        foco: "A culminação da jornada. Esta etapa representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
+        arquétipos: "Shiva e Shakti, A Grande Mãe, O Andrógino Divino", 
+        pilares: "Mente", 
+        praticas: `
+            <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Meditação Silenciosa:</strong> Sente-se sem objetivo, mantra ou foco, apenas testemunhando a existência e permitindo que a mente se dissolva na quietude.</li>
+                <li><strong>Contemplação da Natureza:</strong> Vá para um lugar na natureza e pratique ver a si mesmo em tudo: na árvore, na rocha, no rio. Sinta a unidade de toda a vida.</li>
+                <li><strong>Estudo do Pilar Zero "A Teia do Mundo":</strong> Releia e medite sobre o pilar filosófico, sentindo a conexão entre Jung, Gaia, Sagan e Ubuntu.</li>
+            </ol>
+        ` 
+    }
 ];

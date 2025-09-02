@@ -1,28 +1,17 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, addDoc, deleteDoc, onSnapshot, collection, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData } from "./data.js";
-
-
-// --- CONFIG ---
-const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID
-};
+import { pillarZeroData, pillarData, jornadaFlorescerData, astrologyData, seasonalHerbData, cosmogramData } from "./data.js";
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
 
 const errorModal = document.getElementById('error-modal');
-const modalMessage = document.getElementById('modal-message');
 const modalTitle = document.getElementById('modal-title');
+const modalMessage = document.getElementById('modal-message');
 const loadingMessage = document.getElementById('loading-message');
 const appContainer = document.getElementById('app-container');
+const detailModal = document.getElementById('detail-modal');
 
 // --- CORE FUNCTIONS ---
 function showDiagnosticModal(title, checklist) {
@@ -32,9 +21,23 @@ function showDiagnosticModal(title, checklist) {
     errorModal.classList.remove('hidden');
 }
 
-function hideModal() { 
-    if (!errorModal) return;
-    errorModal.classList.add('hidden'); 
+function hideModal(modalElement) { 
+    if (!modalElement) return;
+    modalElement.classList.remove('visible'); 
+}
+
+function showDetailModal(title, content) {
+    if (!detailModal) return;
+    const modalBody = document.getElementById('detail-modal-body');
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <div class="text-center mb-6">
+                <h2 class="font-cinzel text-2xl font-bold text-[#c8a44d]">${title}</h2>
+            </div>
+            <div>${content}</div>
+        `;
+    }
+    detailModal.classList.add('visible');
 }
 
 function showPillarDetails(pillarId) {
@@ -54,7 +57,7 @@ function renderMainSection() {
     if(!container) return;
 
     const pZero = pillarZeroData;
-    const pZeroCardHtml = `<div class="pillar-card rounded-lg p-4 text-center md:col-span-2 lg:col-span-4 cursor-pointer" data-pillar="zero">
+    const pZeroCardHtml = `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="zero">
         <div class="text-3xl mb-2">${pZero.symbol}</div>
         <h3 class="font-cinzel font-bold">${pZero.title}</h3>
         <p class="text-xs text-gray-400">A Cosmovisão Sincrética</p>
@@ -62,7 +65,7 @@ function renderMainSection() {
 
     const pillarCardsHtml = Object.keys(pillarData).map(key => {
         const p = pillarData[key];
-        return `<div class="pillar-card rounded-lg p-4 text-center cursor-pointer" data-pillar="${key}">
+        return `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="${key}">
             <div class="text-3xl mb-2">${p.title.split(' ')[0]}</div>
             <h3 class="font-cinzel font-bold">${p.title.split(' ').slice(2).join(' ')}</h3>
             <p class="text-xs text-gray-400">${p.chakra}</p>
@@ -72,7 +75,7 @@ function renderMainSection() {
     container.innerHTML = `
         <h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
         <div id="pillar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            ${pZeroCardHtml}
+            <div class="md:col-span-2 lg:col-span-4">${pZeroCardHtml}</div>
             ${pillarCardsHtml}
         </div>
     `;
@@ -92,17 +95,26 @@ function renderJornadaSection() {
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-                    <div><h4 class="font-bold text-[#a37e2c] mb-2">Arquétipos Guia:</h4><p class="text-gray-400">${etapa.arquétipos}</p></div>
-                    <div><h4 class="font-bold text-[#a37e2c] mb-2">Pilares Focais:</h4><p class="text-gray-400">${etapa.pilares}</p></div>
-                    <div><h4 class="font-bold text-[#a37e2c] mb-2">Práticas Sugeridas:</h4><p class="text-gray-400">${etapa.praticas}</p></div>
+                <p class="mb-6 italic text-gray-400">"${etapa.foco}"</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                    <div class="space-y-4">
+                        <div><h4 class="font-bold text-[#a37e2c] mb-2">Arquétipos Guia:</h4><p class="text-gray-400">${etapa.arquétipos}</p></div>
+                        <div><h4 class="font-bold text-[#a37e2c] mb-2">Pilares Focais:</h4><p class="text-gray-400">${etapa.pilares}</p></div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[#a37e2c] mb-2">Práticas Sugeridas:</h4>
+                        <div class="text-gray-400">${etapa.praticas}</div>
+                    </div>
                 </div>
             </div>
         </div>
     `).join('');
 
     container.innerHTML = `
-        <div class="text-center mb-8"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Jornada do Florescer: As Sete Etapas</h2><p class="text-gray-400 mt-2">Um caminho guiado para a autotransformação.</p></div>
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Jornada do Florescer: As Sete Etapas</h2>
+            <p class="text-gray-400 mt-2 max-w-3xl mx-auto">Um caminho guiado para a autotransformação, inspirado na sua transição para o ciclo de Chesed (Júpiter). Cada etapa é um portal que integra sabedoria e prática, guiado por arquétipos poderosos e alinhado aos Pilares da Rota Pagã.</p>
+        </div>
         <div>${jornadaHtml}</div>
     `;
 }
@@ -154,6 +166,138 @@ function renderTomoDePoderSection() {
     `;
 }
 
+function renderHerbCards(season) {
+    const container = document.getElementById('herb-cards-container');
+    if (!container) return;
+    const herbs = seasonalHerbData[season] || [];
+    container.innerHTML = herbs.map(herb => `
+        <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
+            <div class="herb-image-placeholder">${herb.name.charAt(0)}</div>
+            <div class="p-4">
+                <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
+                <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
+                <p class="text-xs text-gray-300 mt-2">${herb.magicalUses[0]}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showHerbDetails(season, herbName) {
+    const herb = seasonalHerbData[season]?.find(h => h.name === herbName);
+    if (!herb) return;
+
+    const content = `
+        <p class="italic text-gray-400 text-center mb-6">${herb.scientificName}</p>
+        <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+            <p><strong><i class="fas fa-globe-americas mr-2 text-[#a37e2c]"></i>Planeta:</strong> ${herb.planet}</p>
+            <p><strong><i class="fas fa-fire mr-2 text-[#a37e2c]"></i>Elemento:</strong> ${herb.element}</p>
+        </div>
+        <p class="mb-6"><strong><i class="fas fa-goddess mr-2 text-[#a37e2c]"></i>Divindades:</strong> ${herb.deities}</p>
+        <div>
+            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Mágicos:</h4>
+            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                ${herb.magicalUses.map(use => `<li>${use}</li>`).join('')}
+            </ul>
+        </div>
+        <div class="mt-4">
+            <h4 class="font-bold text-[#a37e2c] mb-2">Usos Medicinais:</h4>
+            <p class="text-gray-300">${herb.medicinalUses}</p>
+        </div>
+    `;
+    showDetailModal(herb.name, content);
+}
+
+function renderHerbarioFlorestaSection() {
+    const container = document.getElementById('herbario-floresta-section');
+    if (!container) return;
+    const seasons = ['Primavera', 'Verão', 'Outono', 'Inverno'];
+    const currentSeason = getCurrentSeason();
+
+    const tabsHtml = seasons.map(season => `
+        <button class="herb-tab ${season === currentSeason ? 'active' : ''}" data-season="${season}">${season}</button>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta</h2>
+            <p class="text-gray-400 mt-2">Um guia sazonal para a sabedoria das plantas de poder.</p>
+        </div>
+        <div class="card p-2 rounded-lg mb-6">
+            <div class="herb-tabs flex justify-center">${tabsHtml}</div>
+        </div>
+        <div id="herb-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    `;
+    renderHerbCards(currentSeason);
+}
+
+function showCrystalDetails(crystal) {
+    if (!crystal) return;
+
+    const content = `
+        <div class="space-y-6 text-sm">
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4>
+                <p class="text-gray-300">${crystal.composition}</p>
+            </div>
+            ${crystal.history ? `
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4>
+                <p class="text-gray-300">${crystal.history}</p>
+            </div>` : ''}
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4>
+                <p class="text-gray-300">${crystal.properties}</p>
+            </div>
+            <div>
+                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4>
+                <div class="text-gray-300">${crystal.uses}</div>
+            </div>
+            <div class="pt-4 border-t border-gray-600">
+                 <p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p>
+            </div>
+        </div>
+    `;
+    showDetailModal(`${crystal.icon} ${crystal.name}`, content);
+}
+
+function renderCosmogramaCristalinoSection() {
+    const container = document.getElementById('cosmograma-cristalino-section');
+    if (!container || !cosmogramData) return;
+
+    const sunHtml = `
+        <div class="cosmogram-sun">
+            <div class="crystal-card sun-card" data-crystal-name="${cosmogramData.sun.name}">
+                <div class="crystal-card-icon">${cosmogramData.sun.icon}</div>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            </div>
+        </div>
+    `;
+
+    const orbitsHtml = cosmogramData.orbits.map(orbit => `
+        <div class="orbit">
+            <h3 class="orbit-title">${orbit.name}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                ${orbit.crystals.map(crystal => `
+                    <div class="crystal-card" data-crystal-name="${crystal.name}">
+                        <div class="crystal-card-icon">${crystal.icon}</div>
+                        <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                        <p class="text-xs text-gray-400">${crystal.subtitle}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="cosmogram-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
+            <p class="text-gray-400">${cosmogramData.intro}</p>
+        </div>
+        ${sunHtml}
+        ${orbitsHtml}
+    `;
+}
 
 // --- FIRESTORE FUNCTIONS ---
 const getCollectionRef = (collectionName) => collection(db, `users/${userId}/${collectionName}`);
@@ -163,9 +307,16 @@ async function handleAddItem(event) {
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
 
-    const title = form.elements.namedItem('title')?.value;
-    const content = form.elements.namedItem('content')?.value;
-    const tags = form.elements.namedItem('tags')?.value.split(',').map(t => t.trim()).filter(Boolean);
+    const titleEl = form.elements.namedItem('title');
+    const contentEl = form.elements.namedItem('content');
+    const tagsEl = form.elements.namedItem('tags');
+
+    const title = titleEl instanceof HTMLInputElement ? titleEl.value : '';
+    const content = contentEl instanceof HTMLTextAreaElement ? contentEl.value : '';
+    const tagsValue = tagsEl instanceof HTMLInputElement ? tagsEl.value : '';
+    const tags = tagsValue ? tagsValue.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+    if (!title || !content) return;
 
     try {
         await addDoc(getCollectionRef('grimoire_entries'), { title, content, tags, createdAt: serverTimestamp() });
@@ -215,7 +366,7 @@ function renderGrimoireEntries(entries) {
              <h4 class="font-cinzel text-xl font-bold text-[#c8a44d] mb-2">${entry.title}</h4>
              <p class="text-gray-300 whitespace-pre-wrap mb-4">${entry.content}</p>
              <div class="flex flex-wrap gap-2">
-                ${entry.tags.map(tag => `<span class="grimoire-tag">${tag}</span>`).join('')}
+                ${entry.tags && entry.tags.map(tag => `<span class="grimoire-tag">${tag}</span>`).join('')}
              </div>
         </div>
     `).join('');
@@ -224,7 +375,11 @@ function renderGrimoireEntries(entries) {
 
 // --- EVENT LISTENERS ---
 function setupEventListeners() {
-    document.getElementById('close-modal-btn')?.addEventListener('click', hideModal);
+    document.getElementById('close-modal-btn')?.addEventListener('click', () => hideModal(errorModal));
+    document.getElementById('close-detail-modal')?.addEventListener('click', () => hideModal(detailModal));
+    detailModal?.addEventListener('click', (e) => {
+        if (e.target === detailModal) hideModal(detailModal);
+    });
     
     document.querySelectorAll('#main-nav .tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
@@ -240,9 +395,11 @@ function setupEventListeners() {
     });
 
     document.getElementById('main-section')?.addEventListener('click', (e) => {
-        if (e.target instanceof Element && e.target.closest('.pillar-card') instanceof HTMLElement) {
+        if (e.target instanceof Element) {
             const card = e.target.closest('.pillar-card');
-            if (card.dataset.pillar) showPillarDetails(card.dataset.pillar);
+            if (card instanceof HTMLElement && card.dataset.pillar) {
+                showPillarDetails(card.dataset.pillar);
+            }
         }
     });
 
@@ -256,28 +413,31 @@ function setupEventListeners() {
     });
 
     document.getElementById('jornada-section')?.addEventListener('click', (e) => {
-        if (e.target instanceof Element && e.target.closest('.accordion-header') instanceof HTMLElement) {
-            const header = e.target.closest('.accordion-header');
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('i');
-            if (content instanceof HTMLElement) {
-                document.querySelectorAll('#jornada-section .accordion-content').forEach(acc => {
-                    if (acc !== content && acc instanceof HTMLElement) {
-                        acc.style.maxHeight = null;
-                        acc.previousElementSibling?.querySelector('i')?.classList.remove('rotate-180');
+        const target = e.target;
+        if (target instanceof Element) {
+            const header = target.closest('.accordion-header');
+            if (header instanceof HTMLElement) {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                if (content instanceof HTMLElement) {
+                    document.querySelectorAll('#jornada-section .accordion-content').forEach(acc => {
+                        if (acc !== content && acc instanceof HTMLElement) {
+                            acc.style.maxHeight = null;
+                            acc.previousElementSibling?.querySelector('i')?.classList.remove('rotate-180');
+                        }
+                    });
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon?.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon?.classList.add('rotate-180');
                     }
-                });
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon?.classList.remove('rotate-180');
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon?.classList.add('rotate-180');
                 }
             }
         }
     });
-
+    
     document.getElementById('tomo-de-poder-section')?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
         const header = e.target.closest('#add-entry-accordion-header');
@@ -288,11 +448,9 @@ function setupEventListeners() {
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                     icon?.classList.remove('rotate-45');
-                    icon?.classList.add('fa-plus');
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                     icon?.classList.add('rotate-45');
-                    icon?.classList.remove('fa-plus');
                 }
             }
         }
@@ -301,16 +459,79 @@ function setupEventListeners() {
             handleDeleteItem(deleteButton.dataset.id);
         }
     });
-    
-    document.getElementById('add-grimoire-form')?.addEventListener('submit', handleAddItem);
+
+    document.getElementById('herbario-floresta-section')?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const tab = e.target.closest('.herb-tab');
+        if (tab instanceof HTMLElement && tab.dataset.season) {
+            document.querySelectorAll('.herb-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            renderHerbCards(tab.dataset.season);
+        }
+        const card = e.target.closest('.herb-card');
+        if (card instanceof HTMLElement && card.dataset.season && card.dataset.herbName) {
+            showHerbDetails(card.dataset.season, card.dataset.herbName);
+        }
+    });
+
+    document.getElementById('cosmograma-cristalino-section')?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const card = e.target.closest('.crystal-card');
+        if (card instanceof HTMLElement && card.dataset.crystalName) {
+            const crystalName = card.dataset.crystalName;
+            let crystal;
+            if (cosmogramData.sun.name === crystalName) {
+                crystal = cosmogramData.sun;
+            } else {
+                for (const orbit of cosmogramData.orbits) {
+                    crystal = orbit.crystals.find(c => c.name === crystalName);
+                    if (crystal) break;
+                }
+            }
+            if (crystal) showCrystalDetails(crystal);
+        }
+    });
+
+    const grimoireForm = document.getElementById('add-grimoire-form');
+    if (grimoireForm) {
+        grimoireForm.addEventListener('submit', handleAddItem);
+    }
 }
+
+function getCurrentSeason(hemisphere = 'south') {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    if (hemisphere === 'south') {
+        if ((month === 9 && day >= 23) || month === 10 || month === 11 || (month === 12 && day < 21)) return 'Primavera';
+        if ((month === 12 && day >= 21) || month === 1 || month === 2 || (month === 3 && day < 20)) return 'Verão';
+        if ((month === 3 && day >= 20) || month === 4 || month === 5 || (month === 6 && day < 21)) return 'Outono';
+        return 'Inverno';
+    }
+    return 'Primavera';
+}
+
 
 // --- INITIALIZATION ---
 function initApp() {
     try {
-        if (!firebaseConfig.apiKey) {
-            throw new Error("A configuração do Firebase está incompleta. Verifique suas variáveis de ambiente.");
+        if (!import.meta.env) {
+            throw new Error("O objeto de ambiente (import.meta.env) não está definido. Este erro ocorre quando o arquivo é aberto diretamente no navegador. Para rodar localmente, use o comando `npm run dev` (ou `vite`) no seu terminal. Para produção, garanta que seu provedor de hospedagem (ex: Netlify) está construindo o projeto com Vite.");
         }
+
+        const firebaseConfig = {
+            apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+            authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+            projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+            storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+            messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+            appId: import.meta.env.VITE_FIREBASE_APP_ID
+        };
+
+        if (!firebaseConfig.apiKey) {
+            throw new Error("A chave de API do Firebase (apiKey) não foi encontrada. Verifique se suas variáveis de ambiente (ex: VITE_FIREBASE_API_KEY) estão configuradas corretamente no seu ambiente de hospedagem (ex: Netlify).");
+        }
+
         app = initializeApp(firebaseConfig);
         auth = getAuth(app);
         db = getFirestore(app);
@@ -330,6 +551,8 @@ function initApp() {
                 renderJornadaSection();
                 renderCosmogramaSection();
                 renderTomoDePoderSection();
+                renderHerbarioFlorestaSection();
+                renderCosmogramaCristalinoSection();
                 setupEventListeners();
                 setupCollectionListener('grimoire_entries', renderGrimoireEntries);
                 
@@ -343,9 +566,23 @@ function initApp() {
         });
     } catch (error) {
         console.error("Initialization Error:", error);
-        const checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se o objeto <code>firebaseConfig</code> (geralmente gerenciado por variáveis de ambiente <code>VITE_...</code>) está 100% correto.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${error.message || 'Verifique o console para mais detalhes.'}</p>`;
+        let checklist;
+        const errorMessage = error instanceof Error ? error.message : String(error);
+
+        if (errorMessage.includes("import.meta.env")) {
+            checklist = `<p><strong>A aplicação não está sendo executada no ambiente correto.</strong></p>
+                         <p class="mt-2">Este erro ocorre quando o arquivo é aberto diretamente no navegador, em vez de através do servidor de desenvolvimento Vite.</p>
+                         <ul class="list-disc list-inside mt-4 space-y-2">
+                            <li><strong>Solução Local:</strong> Certifique-se de que você está rodando o comando <code>npm run dev</code> (ou <code>vite</code>) no terminal, na pasta do projeto.</li>
+                            <li><strong>Solução Online:</strong> Verifique se suas variáveis de ambiente (<code>VITE_...</code>) estão corretamente configuradas no seu provedor de hospedagem (ex: Netlify) e se o projeto foi reconstruído.</li>
+                         </ul>
+                         <p class="mt-4 text-xs text-gray-500"><strong>Erro Técnico:</strong> ${errorMessage}</p>`;
+        } else {
+             checklist = `<p>A aplicação não conseguiu se conectar ao Firebase. Isso geralmente acontece por um destes motivos:</p><ul class="list-disc list-inside mt-2 space-y-2"><li><strong>Configuração Inválida:</strong> Verifique se suas variáveis de ambiente <code>VITE_...</code> estão corretas no seu ambiente de hospedagem (ex: Netlify) e se o projeto foi reconstruído após a alteração.</li><li><strong>Projeto Firebase:</strong> Confirme no <a href="https://console.firebase.google.com/" target="_blank" class="text-[#c8a44d] hover:underline">Console do Firebase</a> que o projeto existe e está ativo.</li><li><strong>Domínio Não Autorizado:</strong> Se estiver online, vá para 'Authentication' -> 'Settings' -> 'Authorized domains' no Firebase e adicione <code>${window.location.hostname}</code>.</li></ul><p class="mt-4 text-xs text-gray-500"><strong>Erro Detalhado:</strong> ${errorMessage || 'Verifique o console para mais detalhes.'}</p>`;
+        }
+        
         if(loadingMessage) loadingMessage.innerHTML = `<p class="text-red-500 font-semibold text-center">Erro crítico de inicialização.</p>`;
-        showDiagnosticModal("Erro de Conexão com Firebase", checklist);
+        showDiagnosticModal("Erro de Inicialização", checklist);
     }
 }
 
