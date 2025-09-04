@@ -44,6 +44,9 @@ export const pillarData = {
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
             <p class="mb-4 text-gray-400">Os sonhos são a linguagem simbólica da alma. Honramos <strong>Freud</strong> como o ancestral que abriu a porta, mas abraçamos a visão de <strong>Carl Jung</strong>, que via os sonhos como revelações do inconsciente coletivo e dos arquétipos. Para <strong>James Hillman</strong>, devemos honrar a imagem do sonho como uma realidade em si, e a <strong>neurociência</strong> nos mostra que o sono REM é uma terapia noturna para processar emoções.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "livro O Homem e seus Símbolos Carl Jung", "psicologia arquetípica James Hillman", "livro Por que nós dormimos Matthew Walker", "como ter sonhos lúcidos".</p>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar IV: Oráculos da Água (Hidromancia)</h4>
+            <p class="mb-4 text-gray-400">A água é o mais antigo espelho da alma. A hidromancia, a arte de adivinhar através da água, é uma prática ancestral. Ao observar as ondulações, reflexos e formas em uma bacia com água, abrimos um canal direto com nosso inconsciente. O vidente <strong>Nostradamus</strong> usava uma bacia de água para receber suas famosas profecias, um método que aquieta a mente consciente e permite que a intuição (regida pelo Pilar da Água) fale.</p>
+            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como praticar hidromancia", "Nostradamus métodos de adivinhação", "scrying com água".</p>
         `
     },
     fogo: { 
@@ -104,8 +107,8 @@ export const pillarData = {
             <p class="mb-4 text-gray-400">O <strong>experimento da dupla fenda</strong> nos ensina que a luz se comporta como partícula (matéria) quando observada e como onda (potencial) quando não observada. Usamos isso como uma metáfora: nossa percepção focada (o "observador") tem o poder de colapsar um campo de infinitas possibilidades em uma realidade manifesta.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "experimento da dupla fenda explicado", "efeito do observador física quântica".</p>
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Chave Surrealista (Dalí e Magritte)</h4>
-            <p class="mb-4 text-gray-400"><strong>Salvador Dalí</strong> nos ensina a capturar as imagens do subconsciente com seu método paranoico-crítico, acessando o estado hipnagógico. <strong>René Magritte</strong> nos desafia a questionar a realidade com sua "Traição das Imagens", mostrando que o mapa não é o território. Juntos, eles nos dão ferramentas para explorar e decifrar nosso mundo interior.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "método paranoico-crítico Salvador Dalí", "René Magritte A Traição das Imagens".</p>
+            <p class="mb-4 text-gray-400">O <strong>Surrealismo</strong>, como movimento artístico, nos deu uma chave. Artistas como <strong>Salvador Dalí</strong> usavam métodos como o paranoico-crítico para acessar e pintar as imagens do subconsciente, transformando sonhos e o irracional em arte. <strong>René Magritte</strong>, por outro lado, nos desafia a questionar a própria realidade com sua "Traição das Imagens", mostrando que o mapa não é o território. Juntos, eles nos dão ferramentas para explorar e decifrar nosso mundo interior.</p>
+            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "método paranoico-crítico Salvador Dalí", "René Magritte A Traição das Imagens", "arte surrealista".</p>
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra da Luz</h4>
             <p class="mb-4 text-gray-400">A Luz desequilibrada manifesta-se como arrogância espiritual, desconexão da realidade ou paranoia. O antídoto é o <strong>aterramento</strong> (Pilar da Terra), que nos força a testar nossas visões na prática e a manter os pés firmes no chão.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é bypass espiritual", "perigos do ego espiritual".</p>
@@ -154,7 +157,7 @@ export const altarData = {
                 { name: "7º Pantáculo de Júpiter", purpose: "Possui grande poder contra a pobreza. É o selo da libertação financeira e da prosperidade contínua. Use-o para quebrar ciclos de escassez e invocar a abundância." },
             ]
         },
-        { name: "Marte", icon: "♂", active: false, purpose: "Marte, o Guerreiro, rege a ação, a coragem e a disciplina. Na Cabala, sua energia corresponde à Sefirah Geburah (Força), o poder que define limites e corta o que não serve mais. Foi o ciclo que você concluiu, onde sua força foi forjada. Invoque este selo quando precisar de coragem, disciplina e da força para agir." },
+        { name: "Marte", icon: "♂", active: false, purpose: "Marte, o Guerreiro, rege a ação, a coragem e a disciplina. Na Cabala, sua energia corresponde à Sefirah Geburah (Força), o poder que define limites e corta o que não serve mais. Foi o ciclo que você concluiu, onde sua força foi forjada. Invoque este selo quando precisar de coragem, disciplina e da força para agir.<br><br><strong class='font-cinzel text-amber-300'>Invocação Rápida:</strong> Em um momento de hesitação, visualize o selo de Marte em vermelho vivo em seu plexo solar. Toque o local e diga: 'Pela força de Geburah, eu chamo a coragem. Que a hesitação se quebre. Que a ação seja pura. Que minha vontade seja minha lança e meu escudo.'" },
         { name: "Saturno", icon: "♄", active: false, purpose: "Saturno, o Grande Mestre, rege o tempo, a estrutura e a responsabilidade. Na Cabala, sua energia corresponde à Sefirah Binah (Entendimento). O trânsito de Saturno em Áries (2026-2028) testará sua iniciativa, pedindo que você construa com paciência e solidez as novas fundações da sua identidade." },
         { name: "Sol", icon: "☉", active: false, purpose: "O Sol rege a essência, a vitalidade e o propósito. Corresponde a Tiferet (Beleza), o centro do ser. Invoque este selo para clareza de propósito e para irradiar sua luz autêntica." },
         { name: "Vênus", icon: "♀", active: false, purpose: "Vênus rege o amor, a beleza e a harmonia. Corresponde a Netzach (Vitória). Invoque para cultivar o amor-próprio, a criatividade e a harmonia nos relacionamentos." },
@@ -169,24 +172,85 @@ export const seasonalHerbData = {
         { 
             name: 'Alecrim', 
             scientificName: 'Salvia rosmarinus',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Apolo, Hélios',
             content: {
                 almaDaErva: "Erva solar, regida pelo Fogo. Usada para purificação, clareza mental, coragem e para trazer alegria. Sua fumaça limpa o ambiente e abre a mente para a inspiração.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá de Alecrim (O Despertar da Mente):</strong> Uma infusão pela manhã é um ritual para aguçar o foco e a memória.</li><li><strong>Azeite Aromatizado:</strong> Infundir a energia do alecrim em seus alimentos é uma forma de magia prática.</li></ul>`,
                 insightsDoBemViver: "O alecrim é um pilar na dieta mediterrânea (Zona Azul). Seus antioxidantes combatem a inflamação, um dos pilares do envelhecimento saudável."
             }
         },
-        { name: 'Lavanda', scientificName: 'Lavandula angustifolia', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio'] },
-        { name: 'Manjericão', scientificName: 'Ocimum basilicum', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia'] }
+        {
+            name: 'Lavanda',
+            scientificName: 'Lavandula angustifolia',
+            planet: 'Mercúrio',
+            element: 'Ar',
+            deities: 'Hermes, Mercúrio',
+            content: {
+                almaDaErva: "Erva de Mercúrio e do Ar. A Lavanda é a grande pacificadora do reino vegetal. Sua energia acalma a mente, equilibra as emoções e abre o Chakra Frontal (Ajna) para a intuição. É a fragrância da clareza e da paz interior.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Sachê para Sonhos:</strong> Coloque flores secas em um saquinho de tecido e ponha sob o travesseiro para um sono reparador e sonhos lúcidos.</li><li><strong>Banho Calmante:</strong> Adicione um punhado de flores a um banho morno para aliviar o estresse do dia.</li></ul>`,
+                insightsDoBemViver: "O aroma da lavanda tem um efeito comprovado na redução dos níveis de cortisol (o hormônio do estresse). Ter um pequeno vaso de lavanda no ambiente de trabalho ou em casa é uma forma de 'aromaterapia passiva' para manter a serenidade."
+            }
+        },
+        {
+            name: 'Manjericão',
+            scientificName: 'Ocimum basilicum',
+            planet: 'Vênus',
+            element: 'Fogo',
+            deities: 'Vrinda Devi, Vênus, Afrodite',
+            content: {
+                almaDaErva: "Erva de Vênus, regida pelo Fogo. Sagrada na Índia como a deusa Tulsi, é uma ponte entre o amor e a proteção. Seu aroma doce harmoniza ambientes, atrai prosperidade e fortalece os laços afetivos.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Amuleto de Prosperidade:</strong> Carregue folhas secas na carteira para atrair dinheiro.</li><li><strong>Chá para Harmonia:</strong> Uma infusão de manjericão ajuda a acalmar os ânimos e promover a paz interior e familiar.</li></ul>`,
+                insightsDoBemViver: "O Manjericão nos ensina que a verdadeira prosperidade nasce de um coração em paz. Cuidar de um pé de manjericão é um ato de cultivar a harmonia em sua vida."
+            }
+        }
     ],
     'Verão': [
-        { name: 'Rosa', scientificName: 'Rosa spp.', magicalUses: ['Amor-próprio e atração', 'Cura emocional', 'Adivinhação e intuição'] },
-        { name: 'Canela', scientificName: 'Cinnamomum verum', magicalUses: ['Atração de sucesso e prosperidade rápida', 'Aumento da energia vital e paixão', 'Proteção e espiritualidade'] },
-        { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Viagens astrais e sonhos lúcidos'] }
+        {
+            name: 'Rosa',
+            scientificName: 'Rosa spp.',
+            planet: 'Vênus',
+            element: 'Água',
+            deities: 'Afrodite, Vênus, Ísis',
+            content: {
+                almaDaErva: "Erva de Vênus e da Água. A Rosa é o símbolo supremo do amor incondicional, tanto o amor-próprio quanto o romântico. Sua energia abre e cura o Chakra Cardíaco (Anahata), ensinando a beleza da vulnerabilidade e da compaixão.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Água de Rosas para o Amor-Próprio:</strong> Borrife água de rosas em sua aura pela manhã como um ato de autocarinho.</li><li><strong>Chá de Pétalas de Rosa:</strong> Uma infusão suave para acalmar o coração e aliviar a tristeza.</li></ul>`,
+                insightsDoBemViver: "A rosa nos ensina o equilíbrio entre a beleza e a proteção (os espinhos). Ela nos lembra que para amar plenamente, precisamos também ter limites saudáveis. Cuidar de uma roseira é uma meditação sobre este equilíbrio."
+            }
+        },
+        {
+            name: 'Canela',
+            scientificName: 'Cinnamomum zeylanicum',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Afrodite, Lakshmi',
+            content: {
+                almaDaErva: "Especiaria do Sol e do Fogo. A Canela é um catalisador de energia, usada para acelerar a manifestação de prosperidade, sucesso e paixão. Seu aroma quente e picante aquece a alma e atrai boa sorte.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Pó de Prosperidade:</strong> No primeiro dia do mês, sopre canela em pó da porta para dentro de casa para atrair abundância.</li><li><strong>Incenso para Paixão:</strong> Queimar um pau de canela ajuda a criar um ambiente de sedução e energia sexual.</li></ul>`,
+                insightsDoBemViver: "A Canela nos lembra do nosso poder de atração e manifestação. Usá-la conscientemente é um ato de direcionar nossa energia para nossos objetivos mais ardentes."
+            }
+        },
+        {
+            name: 'Hortelã-pimenta',
+            scientificName: 'Mentha piperita',
+            planet: 'Mercúrio',
+            element: 'Ar',
+            deities: 'Mercúrio, Hermes',
+            content: {
+                almaDaErva: "Erva de Mercúrio e do Ar. A Hortelã-pimenta é um tônico mental, limpando a mente e aguçando o foco. Sua energia refrescante remove bloqueios mentais, alivia a raiva e abre caminhos para a clareza.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Óleo para Foco:</strong> Uma gota de óleo essencial nas têmporas (diluído) ajuda a aliviar dores de cabeça e a melhorar a concentração.</li><li><strong>Chá para Cura:</strong> Uma infusão após as refeições ajuda na digestão e acalma o sistema nervoso.</li></ul>`,
+                insightsDoBemViver: "A Hortelã-pimenta ensina que uma mente clara é o primeiro passo para a cura. Seu frescor é um lembrete para respirar fundo e encontrar a calma em meio ao caos."
+            }
+        }
     ],
     'Outono': [
         { 
             name: 'Arruda', 
             scientificName: 'Ruta graveolens',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Marte, Hécate',
             content: {
                 almaDaErva: "Erva de Marte e do Fogo. É a grande protetora do mundo vegetal brasileiro, famosa por 'quebrar demandas' e banir o mau-olhado. Sua energia é assertiva e purificadora.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Banho de Descarrego:</strong> Macere folhas frescas em água morna, coe e jogue do pescoço para baixo. <strong>Atenção:</strong> Uso primariamente externo.</li><li><strong>Amuleto de Proteção:</strong> Carregue um pequeno galho em um saquinho de pano vermelho.</li></ul>`,
@@ -196,19 +260,77 @@ export const seasonalHerbData = {
         { 
             name: 'Guiné', 
             scientificName: 'Petiveria alliacea',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Ogum',
             content: {
                 almaDaErva: "Erva de alta vibração, ligada à força de Ogum. É uma poderosa ferramenta de limpeza energética, capaz de cortar e desmanchar as mais densas larvas astrais.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Banimento:</strong> Queimar suas folhas secas é um ritual poderoso para limpar um ambiente.</li><li><strong>Banho de Limpeza Pré-Ritual:</strong> Use um banho de guiné para limpar seu campo áurico. <strong>Atenção:</strong> Erva extremamente forte, não deve ser ingerida.</li></ul>`,
                 insightsDoBemViver: "A energia da Guiné nos ensina a importância de 'limpar o terreno' antes de plantar novas intenções. É preciso remover o que é tóxico para que o novo possa florescer."
             }
         },
-        { name: 'Sálvia Branca', scientificName: 'Salvia apiana', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços'] },
-        { name: 'Louro', scientificName: 'Laurus nobilis', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Realização de desejos'] }
+        {
+            name: 'Sálvia Branca',
+            scientificName: 'Salvia apiana',
+            planet: 'Júpiter',
+            element: 'Ar',
+            deities: 'Júpiter, Zeus',
+            content: {
+                almaDaErva: "Erva de Júpiter e do Ar. Considerada sagrada por muitos povos nativos norte-americanos, a Sálvia Branca é uma das mais potentes purificadoras energéticas. Sua fumaça (smudge) não apenas limpa energias negativas, mas eleva a vibração do espaço, convidando a sabedoria e a clareza espiritual.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Smudging (Defumação):</strong> Queime um bastão de sálvia para limpar sua casa, seus cristais ou seu campo áurico antes de rituais. Abra uma janela para que a energia negativa possa sair.</li><li><strong>Spray de Limpeza Energética:</strong> Se não pode queimar, ferva as folhas em água e use o líquido (coado e resfriado) em um borrifador.</li></ul>`,
+                insightsDoBemViver: "O uso da Sálvia Branca nos conecta a uma linhagem ancestral de cura e nos ensina sobre a importância do uso respeitoso e consciente das plantas sagradas. É um convite para aprender sobre a sustentabilidade e a honra às tradições que nos presenteiam com esta ferramenta."
+            }
+        },
+        {
+            name: 'Louro',
+            scientificName: 'Laurus nobilis',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Apolo',
+            content: {
+                almaDaErva: "Erva do Sol e do Fogo. Coroando heróis e poetas na antiguidade, o Louro é a personificação da vitória e do reconhecimento. Usado para atrair sucesso, inspirar a sabedoria e fortalecer a intuição profética.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Feitiço de Desejo:</strong> Escreva um desejo em uma folha de louro e queime-a para enviar seu pedido ao universo.</li><li><strong>Amuleto da Sorte:</strong> Carregue uma folha de louro na carteira para atrair boa sorte e sucesso em empreendimentos.</li></ul>`,
+                insightsDoBemViver: "O Louro nos ensina a reconhecer e celebrar nossas próprias vitórias, não importa quão pequenas. Ele nos convida a ter orgulho de nossa jornada e a confiar em nossa sabedoria interior."
+            }
+        }
     ],
     'Inverno': [
-        { name: 'Mirra', scientificName: 'Commiphora myrrha', magicalUses: ['Conexão com o sagrado e cura profunda', 'Meditação e introspecção', 'Rituais de passagem'] },
-        { name: 'Olíbano', scientificName: 'Boswellia sacra', magicalUses: ['Elevação espiritual e purificação de alta vibração', 'Consagração de espaços e objetos', 'Meditação e oração'] },
-        { name: 'Gengibre', scientificName: 'Zingiber officinale', magicalUses: ['Acelerar e potencializar feitiços', 'Aumentar energia, coragem e paixão', 'Atrair sucesso e dinheiro'] }
+        {
+            name: 'Mirra',
+            scientificName: 'Commiphora myrrha',
+            planet: 'Lua',
+            element: 'Água',
+            deities: 'Ísis, Anúbis, Saturno',
+            content: {
+                almaDaErva: "Resina da Lua e da Água, com um toque de Saturno. A Mirra está profundamente ligada aos mistérios da vida e da morte. É usada para cura profunda, meditação, purificação de espaços sagrados e rituais de passagem.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Incenso de Meditação:</strong> Queime a resina em um carvão para aprofundar a meditação e conectar-se com o sagrado feminino.</li><li><strong>Óleo de Unção:</strong> Misturado a um óleo carreador, pode ser usado para consagrar ferramentas mágicas ou para rituais de cura.</li></ul>`,
+                insightsDoBemViver: "A Mirra nos convida a olhar para nossas sombras e feridas com compaixão, entendendo que a verdadeira cura muitas vezes vem de processos de introspecção e aceitação da finitude."
+            }
+        },
+        {
+            name: 'Olíbano',
+            scientificName: 'Boswellia sacra',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Ra, Apolo, Sol Invictus',
+            content: {
+                almaDaErva: "Resina do Sol e do Fogo. O Olíbano é um dos mais potentes purificadores e elevadores de vibração. Sua fumaça sagrada limpa o ambiente de toda negatividade e abre um canal direto com o divino, sendo ideal para oração, consagração e meditação.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Consagração:</strong> Queime a resina para consagrar um novo altar, casa ou amuleto, selando-o com energia solar e divina.</li><li><strong>Spray de Limpeza e Proteção:</strong> Dissolva a resina em álcool para criar um spray de limpeza energética para ambientes.</li></ul>`,
+                insightsDoBemViver: "O Olíbano nos ensina a aspirar ao mais elevado em nós mesmos. Seu aroma nos conecta com a centelha divina interior, promovendo um senso de paz e propósito."
+            }
+        },
+        {
+            name: 'Gengibre',
+            scientificName: 'Zingiber officinale',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Marte, Ares',
+            content: {
+                almaDaErva: "Raiz de Marte e do Fogo. O Gengibre é um catalisador mágico, usado para acelerar resultados e adicionar uma explosão de energia a qualquer feitiço ou ritual. Ele aumenta a força pessoal, a coragem e a paixão.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá Energizante:</strong> Beba um chá de gengibre antes de um ritual para aumentar sua energia pessoal e poder mágico.</li><li><strong>Amuleto de Sucesso:</strong> Carregue um pedaço da raiz para atrair sucesso em empreendimentos e proteger contra o fracasso.</li></ul>`,
+                insightsDoBemViver: "O Gengibre nos lembra que temos o poder de acelerar as mudanças em nossa vida. Ele nos dá o 'empurrão' energético necessário para sair da inércia e agir com determinação."
+            }
+        }
     ]
 };
 
