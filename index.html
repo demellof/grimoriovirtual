@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* --- Base & Fonts --- */
@@ -17,7 +17,7 @@
             color: #e0e0e0; 
             overflow-x: hidden;
         }
-        .font-cinzel { font-family: 'Cinzel', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); }
+        .font-fell { font-family: 'IM Fell English', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); }
 
         /* --- Cosmic Background --- */
         body::before {
@@ -37,10 +37,12 @@
 
         /* --- Components & Layout --- */
         .card { 
-            background-color: rgba(20, 15, 30, 0.8);
+            background-color: rgba(20, 15, 30, 0.9); /* More opaque */
+            background-image: url('http://www.transparenttextures.com/patterns/textured-paper.png');
             backdrop-filter: blur(8px);
             border: 1px solid #4a3a69; 
             transition: all 0.3s ease; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Add depth */
         }
         .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
         .btn-primary:hover { background-color: #c8a44d; }
@@ -189,17 +191,36 @@
         .planetary-seal.active .seal-icon { border-color: #c8a44d; background-color: rgba(200, 164, 77, 0.2); animation: pulse 4s infinite; }
         #intention-form textarea { min-height: 100px; }
 
-        /* --- Cosmogram Section --- */
+        /* --- Cosmogram Section (Galaxy Redesign) --- */
         .cosmogram-intro { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .cosmogram-sun { text-align: center; margin-bottom: 3rem; }
-        .orbit { margin-bottom: 3rem; text-align: center; }
-        .orbit-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #a37e2c; margin-bottom: 1.5rem; }
+
+        .galaxy-container {
+            position: relative;
+            width: 100%;
+            min-height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: galaxy-rotate 240s linear infinite;
+            margin-top: 4rem; /* Add some space */
+        }
+
+        @keyframes galaxy-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cosmogram-sun {
+            position: relative; /* Let it be part of the flow for centering */
+            z-index: 10;
+        }
         
         .crystal-orb {
+            position: absolute;
             background-color: rgba(20, 15, 30, 0.9);
             border-radius: 50%;
-            width: 180px;
-            height: 180px;
+            width: 120px;
+            height: 120px;
             display: inline-flex;
             flex-direction: column;
             justify-content: center;
@@ -209,16 +230,19 @@
             cursor: pointer;
             border: 1px solid #4a3a69;
             transition: all 0.3s ease;
+            animation: pulse 8s infinite ease-in-out;
         }
         .crystal-orb:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: scale(1.1);
             border-color: #c8a44d;
             box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
+            z-index: 20;
         }
-        .crystal-orb-icon { font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1; }
+        .crystal-orb-icon { font-size: 2rem; margin-bottom: 0.5rem; line-height: 1; }
         .sun-orb {
-            width: 220px;
-            height: 220px;
+            position: absolute; /* Center it */
+            width: 180px;
+            height: 180px;
             border-color: #c8a44d;
             box-shadow: 0 0 30px rgba(200, 164, 77, 0.6);
             animation: pulse 4s infinite;

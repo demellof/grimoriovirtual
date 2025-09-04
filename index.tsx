@@ -33,7 +33,7 @@ function showDetailModal(title, content) {
     if (modalBody) {
         modalBody.innerHTML = `
             <div class="text-center mb-6">
-                <h2 class="font-cinzel text-2xl font-bold text-[#c8a44d]">${title}</h2>
+                <h2 class="font-fell text-2xl font-bold text-[#c8a44d]">${title}</h2>
             </div>
             <div>${content}</div>
         `;
@@ -46,7 +46,7 @@ function showPillarDetails(pillarId) {
     if (!data) return;
     const contentDiv = document.getElementById('pillar-content');
     if (!contentDiv) return;
-    contentDiv.innerHTML = `<h2 class="text-2xl font-bold font-cinzel text-center text-[#c8a44d] mb-6">${data.title}</h2><div class="text-left">${data.content}</div>`;
+    contentDiv.innerHTML = `<h2 class="text-2xl font-bold font-fell text-center text-[#c8a44d] mb-6">${data.title}</h2><div class="text-left">${data.content}</div>`;
     
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
     document.getElementById('pillar-detail-section')?.classList.add('active');
@@ -97,10 +97,10 @@ function showCrystalDetails(crystal) {
 
     const content = `
         <div class="space-y-6 text-sm">
-            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4><p class="text-gray-300">${crystal.composition}</p></div>
-            ${crystal.history ? `<div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4><p class="text-gray-300">${crystal.history}</p></div>` : ''}
-            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4><p class="text-gray-300">${crystal.properties}</p></div>
-            <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4><div class="text-gray-300">${crystal.uses}</div></div>
+            <div><h4 class="font-bold font-fell text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4><p class="text-gray-300">${crystal.composition}</p></div>
+            ${crystal.history ? `<div><h4 class="font-bold font-fell text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4><p class="text-gray-300">${crystal.history}</p></div>` : ''}
+            <div><h4 class="font-bold font-fell text-[#a37e2c] mb-2">O Sopro do Espírito (Propriedades Metafísicas):</h4><p class="text-gray-300">${crystal.properties}</p></div>
+            <div><h4 class="font-bold font-fell text-[#a37e2c] mb-2">A Mão do Mago (Usos Práticos):</h4><div class="text-gray-300">${crystal.uses}</div></div>
             <div class="pt-4 border-t border-gray-600"><p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${crystal.searchTerms}</p></div>
         </div>`;
     showDetailModal(`${crystal.icon} ${crystal.name}`, content);
@@ -113,21 +113,21 @@ function showPlanetarySealDetails(seal) {
     if (seal.name === "Júpiter") {
         specialContent = `
             <div class="mt-6 pt-4 border-t border-gray-600">
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-4">Inscrição da Intenção</h4>
+                <h4 class="font-bold font-fell text-[#a37e2c] mb-4">Inscrição da Intenção</h4>
                 <p class="text-gray-400 text-sm mb-4">Este é o espaço para selar sua principal intenção para este grande ciclo. Qual é a grande obra que você deseja manifestar sob a égide benevolente de Júpiter?</p>
                 <form id="intention-form" class="space-y-4">
                     <textarea name="intention" placeholder="Minha intenção para este ciclo de Chesed é..." class="form-input" required></textarea>
                     <button type="submit" class="btn-primary w-full py-2 rounded-lg">Selar Intenção no Tomo de Poder</button>
                 </form>
-                 <p class="font-bold text-lg text-center my-4 font-cinzel text-amber-300">${seal.lema}</p>
+                 <p class="font-bold text-lg text-center my-4 font-fell text-amber-300">${seal.lema}</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-600">
-                <h4 class="font-bold font-cinzel text-[#a37e2c] mb-4">Os Pantáculos de Júpiter: Gatilhos para o Seu Ciclo Anual</h4>
+                <h4 class="font-bold font-fell text-[#a37e2c] mb-4">Os Pantáculos de Júpiter: Gatilhos para o Seu Ciclo Anual</h4>
                 <p class="text-gray-400 text-sm mb-4">As Clavículas de Salomão nos oferecem sete pantáculos sagrados. Cada um é um 'selo', um gatilho vibracional para focar sua intenção em um aspecto específico do florescimento a cada ano do seu ciclo.</p>
                 ${seal.pantacles.map(p => `
                      <div class="card rounded-lg mb-2 overflow-hidden no-hover">
                         <div class="accordion-header p-3 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                            <h5 class="font-cinzel text-md font-bold text-[#c8a44d]">${p.name}</h5>
+                            <h5 class="font-fell text-md font-bold text-[#c8a44d]">${p.name}</h5>
                             <i class="fas fa-chevron-down transition-transform text-sm"></i>
                         </div>
                         <div class="accordion-content bg-[#222] p-4 border-t border-[#444] text-sm">
@@ -184,7 +184,7 @@ function renderMainSection() {
     const pZero = pillarZeroData;
     const pZeroCardHtml = `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="zero">
         <div class="text-3xl mb-2">${pZero.symbol}</div>
-        <h3 class="font-cinzel font-bold">${pZero.title}</h3>
+        <h3 class="font-fell font-bold">${pZero.title}</h3>
         <p class="text-xs text-gray-400">A Cosmovisão Sincrética</p>
     </div>`;
 
@@ -192,14 +192,14 @@ function renderMainSection() {
         const p = pillarData[key];
         return `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="${key}">
             <div class="text-3xl mb-2">${p.title.split(' ')[0]}</div>
-            <h3 class="font-cinzel font-bold">${p.title.split(' ').slice(2).join(' ')}</h3>
+            <h3 class="font-fell font-bold">${p.title.split(' ').slice(2).join(' ')}</h3>
             <p class="text-xs text-gray-400">${p.chakra}</p>
         </div>`;
     }).join('');
 
     container.innerHTML = `
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d] mb-6">Os Sete Pilares da Ascensão</h2>
         </div>
         <div id="pillar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="md:col-span-2 lg:col-span-4">${pZeroCardHtml}</div>
@@ -215,7 +215,7 @@ function renderJornadaSection() {
     const jornadaHtml = jornadaFlorescerData.map(etapa => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
+                <div><h3 class="font-fell text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -233,7 +233,7 @@ function renderJornadaSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Jornada do Florescer: As Sete Etapas</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">Jornada do Florescer: As Sete Etapas</h2>
             <p class="text-gray-400 mt-2 max-w-3xl mx-auto">Um caminho guiado para a autotransformação, inspirado na sua transição para o ciclo de Chesed (Júpiter). Cada etapa é um portal que integra sabedoria e prática, guiado por arquétipos poderosos e alinhado aos Pilares da Rota Pagã.</p>
         </div>
         <div>${jornadaHtml}</div>
@@ -247,14 +247,14 @@ function renderAltarDeManifestacaoSection() {
     const sealsHtml = altarData.seals.map(seal => `
         <div class="planetary-seal ${seal.active ? 'active' : ''}" data-seal-name="${seal.name}">
             <div class="seal-icon">${seal.icon}</div>
-            <p class="font-cinzel font-bold text-sm">${seal.name}</p>
+            <p class="font-fell font-bold text-sm">${seal.name}</p>
         </div>
     `).join('');
 
     container.innerHTML = `
         <div class="altar-container">
             <div class="section-intro">
-                <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${altarData.title}</h2>
+                <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">${altarData.title}</h2>
                 <p class="text-gray-400 mt-2">${altarData.intro}</p>
             </div>
             <div class="sigil-central" title="${altarData.sigil.name}">
@@ -270,12 +270,12 @@ function renderTomoDePoderSection() {
     if (!container) return;
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Tomo de Poder</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">Tomo de Poder</h2>
             <p class="text-gray-400 mt-2">Seu grimório pessoal para anotações mágicas e insights.</p>
         </div>
         <div class="card rounded-lg mb-6 overflow-hidden no-hover">
             <div id="add-entry-accordion-header" class="accordion-header p-4 flex justify-between items-center cursor-pointer bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">Adicionar Nova Inscrição</h3>
+                <h3 class="font-fell text-lg font-bold text-[#c8a44d]">Adicionar Nova Inscrição</h3>
                 <i class="fas fa-plus transition-transform"></i>
             </div>
             <div id="add-entry-accordion-content" class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -299,7 +299,7 @@ function renderHerbCards(season) {
         <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
             <div class="herb-image-placeholder">${herb.name.charAt(0)}</div>
             <div class="p-4">
-                <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
+                <h4 class="font-fell font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
                 <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
                 <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
             </div>
@@ -317,7 +317,7 @@ function renderHerbarioFlorestaSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta Sazonal</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">Herbário da Floresta Sazonal</h2>
         </div>
         <div class="card p-4 rounded-lg mb-6 text-center text-gray-300">${seasonalHerbData.intro}</div>
         <div class="card p-2 rounded-lg mb-6"><div class="herb-tabs flex justify-center">${tabsHtml}</div></div>
@@ -330,10 +330,41 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const sunHtml = `<div class="cosmogram-sun"><div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}"><div class="crystal-orb-icon">${cosmogramData.sun.icon}</div><div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div></div></div>`;
-    const orbitsHtml = cosmogramData.orbits.map(orbit => `<div class="orbit"><h3 class="orbit-title">${orbit.name}</h3><div class="flex flex-wrap justify-center items-center gap-8">${orbit.crystals.map(crystal => `<div class="crystal-orb" data-crystal-name="${crystal.name}"><div class="crystal-orb-icon">${crystal.icon}</div><div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div></div>`).join('')}</div></div>`).join('');
+    const sunHtml = `
+        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
+            <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
+            <div>
+                <h3 class="font-fell text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            </div>
+        </div>`;
 
-    container.innerHTML = `<div class="cosmogram-intro"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2><p class="text-gray-400">${cosmogramData.intro}</p></div>${sunHtml}${orbitsHtml}`;
+    const otherCrystals = cosmogramData.orbits.flatMap(o => o.crystals);
+    const galaxyHtml = otherCrystals.map((crystal, i) => {
+        const angle = i * 2.5; // Golden angle approximation for spirals
+        const radius = 150 + (i * 20); // Radius increases for each orb
+        const x = Math.round(radius * Math.cos(angle));
+        const y = Math.round(radius * Math.sin(angle));
+
+        return `
+            <div class="crystal-orb" data-crystal-name="${crystal.name}" style="transform: translate(${x}px, ${y}px);">
+                <div class="crystal-orb-icon">${crystal.icon}</div>
+                <div>
+                    <h4 class="font-fell text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                    <p class="text-xs text-gray-400">${crystal.subtitle}</p>
+                </div>
+            </div>`;
+    }).join('');
+
+    container.innerHTML = `
+        <div class="cosmogram-intro">
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
+            <p class="text-gray-400">${cosmogramData.intro}</p>
+        </div>
+        <div class="galaxy-container">
+            ${sunHtml}
+            ${galaxyHtml}
+        </div>`;
 }
 
 function renderChakraSection() {
@@ -346,7 +377,7 @@ function renderChakraSection() {
                 <div class="flex items-center gap-4">
                     <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none"></div>
                     <div>
-                        <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${chakra.name}</h3>
+                        <h3 class="font-fell text-lg font-bold text-[#c8a44d]">${chakra.name}</h3>
                         <p class="text-sm text-gray-400">${chakra.translation}</p>
                     </div>
                 </div>
@@ -362,7 +393,7 @@ function renderChakraSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${chakraData.introTitle}</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">${chakraData.introTitle}</h2>
             <p class="text-gray-400 mt-2">${chakraData.introText}</p>
         </div>
         <div>${chakraHtml}</div>
@@ -376,7 +407,7 @@ function renderPranayamaSection() {
     const pranayamaHtml = pranayamaData.techniques.map(pranayama => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover pranayama-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3><p class="text-sm text-gray-400">${pranayama.translation}</p></div>
+                <div><h3 class="font-fell text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3><p class="text-sm text-gray-400">${pranayama.translation}</p></div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -393,7 +424,7 @@ function renderPranayamaSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${pranayamaData.introTitle}</h2>
+            <h2 class="text-2xl font-bold font-fell text-[#c8a44d]">${pranayamaData.introTitle}</h2>
             <p class="text-gray-400 mt-2 italic">${pranayamaData.introMessage}</p>
             <div class="card p-4 rounded-lg my-6 text-sm">
                 <h4 class="font-bold text-[#a37e2c] mb-2">O Ritual de Três Respirações (Seu Estímulo Inicial)</h4>
@@ -468,7 +499,7 @@ function renderGrimoireEntries(entries) {
     listContainer.innerHTML = entries.map(entry => `
         <div class="card p-6 rounded-lg grimoire-entry-card no-hover">
              <i class="fas fa-trash delete-btn" data-id="${entry.id}"></i>
-             <h4 class="font-cinzel text-xl font-bold text-[#c8a44d] mb-2">${entry.title}</h4>
+             <h4 class="font-fell text-xl font-bold text-[#c8a44d] mb-2">${entry.title}</h4>
              <p class="text-gray-300 whitespace-pre-wrap mb-4">${entry.content}</p>
              <div class="flex flex-wrap gap-2">
                 ${entry.tags && entry.tags.map(tag => `<span class="grimoire-tag">${tag}</span>`).join('')}
