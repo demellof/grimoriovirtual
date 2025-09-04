@@ -44,6 +44,9 @@ export const pillarData = {
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
             <p class="mb-4 text-gray-400">Os sonhos são a linguagem simbólica da alma. Honramos <strong>Freud</strong> como o ancestral que abriu a porta, mas abraçamos a visão de <strong>Carl Jung</strong>, que via os sonhos como revelações do inconsciente coletivo e dos arquétipos. Para <strong>James Hillman</strong>, devemos honrar a imagem do sonho como uma realidade em si, e a <strong>neurociência</strong> nos mostra que o sono REM é uma terapia noturna para processar emoções.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "livro O Homem e seus Símbolos Carl Jung", "psicologia arquetípica James Hillman", "livro Por que nós dormimos Matthew Walker", "como ter sonhos lúcidos".</p>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar IV: Oráculos da Água (Hidromancia)</h4>
+            <p class="mb-4 text-gray-400">A água é o mais antigo espelho da alma. A hidromancia, a arte de adivinhar através da água, é uma prática ancestral. Ao observar as ondulações, reflexos e formas em uma bacia com água, abrimos um canal direto com nosso inconsciente. O vidente <strong>Nostradamus</strong> usava uma bacia de água para receber suas famosas profecias, um método que aquieta a mente consciente e permite que a intuição (regida pelo Pilar da Água) fale.</p>
+            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como praticar hidromancia", "Nostradamus métodos de adivinhação", "scrying com água".</p>
         `
     },
     fogo: { 
@@ -154,7 +157,7 @@ export const altarData = {
                 { name: "7º Pantáculo de Júpiter", purpose: "Possui grande poder contra a pobreza. É o selo da libertação financeira e da prosperidade contínua. Use-o para quebrar ciclos de escassez e invocar a abundância." },
             ]
         },
-        { name: "Marte", icon: "♂", active: false, purpose: "Marte, o Guerreiro, rege a ação, a coragem e a disciplina. Na Cabala, sua energia corresponde à Sefirah Geburah (Força), o poder que define limites e corta o que não serve mais. Foi o ciclo que você concluiu, onde sua força foi forjada. Invoque este selo quando precisar de coragem, disciplina e da força para agir." },
+        { name: "Marte", icon: "♂", active: false, purpose: "Marte, o Guerreiro, rege a ação, a coragem e a disciplina. Na Cabala, sua energia corresponde à Sefirah Geburah (Força), o poder que define limites e corta o que não serve mais. Foi o ciclo que você concluiu, onde sua força foi forjada. Invoque este selo quando precisar de coragem, disciplina e da força para agir.<br><br><strong class='font-cinzel text-amber-300'>Invocação Rápida:</strong> Em um momento de hesitação, visualize o selo de Marte em vermelho vivo em seu plexo solar. Toque o local e diga: 'Pela força de Geburah, eu chamo a coragem. Que a hesitação se quebre. Que a ação seja pura. Que minha vontade seja minha lança e meu escudo.'" },
         { name: "Saturno", icon: "♄", active: false, purpose: "Saturno, o Grande Mestre, rege o tempo, a estrutura e a responsabilidade. Na Cabala, sua energia corresponde à Sefirah Binah (Entendimento). O trânsito de Saturno em Áries (2026-2028) testará sua iniciativa, pedindo que você construa com paciência e solidez as novas fundações da sua identidade." },
         { name: "Sol", icon: "☉", active: false, purpose: "O Sol rege a essência, a vitalidade e o propósito. Corresponde a Tiferet (Beleza), o centro do ser. Invoque este selo para clareza de propósito e para irradiar sua luz autêntica." },
         { name: "Vênus", icon: "♀", active: false, purpose: "Vênus rege o amor, a beleza e a harmonia. Corresponde a Netzach (Vitória). Invoque para cultivar o amor-próprio, a criatividade e a harmonia nos relacionamentos." },
@@ -175,11 +178,27 @@ export const seasonalHerbData = {
                 insightsDoBemViver: "O alecrim é um pilar na dieta mediterrânea (Zona Azul). Seus antioxidantes combatem a inflamação, um dos pilares do envelhecimento saudável."
             }
         },
-        { name: 'Lavanda', scientificName: 'Lavandula angustifolia', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio'] },
+        {
+            name: 'Lavanda',
+            scientificName: 'Lavandula angustifolia',
+            content: {
+                almaDaErva: "Erva de Mercúrio e do Ar. A Lavanda é a grande pacificadora do reino vegetal. Sua energia acalma a mente, equilibra as emoções e abre o Chakra Frontal (Ajna) para a intuição. É a fragrância da clareza e da paz interior.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Sachê para Sonhos:</strong> Coloque flores secas em um saquinho de tecido e ponha sob o travesseiro para um sono reparador e sonhos lúcidos.</li><li><strong>Banho Calmante:</strong> Adicione um punhado de flores a um banho morno para aliviar o estresse do dia.</li></ul>`,
+                insightsDoBemViver: "O aroma da lavanda tem um efeito comprovado na redução dos níveis de cortisol (o hormônio do estresse). Ter um pequeno vaso de lavanda no ambiente de trabalho ou em casa é uma forma de 'aromaterapia passiva' para manter a serenidade."
+            }
+        },
         { name: 'Manjericão', scientificName: 'Ocimum basilicum', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia'] }
     ],
     'Verão': [
-        { name: 'Rosa', scientificName: 'Rosa spp.', magicalUses: ['Amor-próprio e atração', 'Cura emocional', 'Adivinhação e intuição'] },
+        {
+            name: 'Rosa',
+            scientificName: 'Rosa spp.',
+            content: {
+                almaDaErva: "Erva de Vênus e da Água. A Rosa é o símbolo supremo do amor incondicional, tanto o amor-próprio quanto o romântico. Sua energia abre e cura o Chakra Cardíaco (Anahata), ensinando a beleza da vulnerabilidade e da compaixão.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Água de Rosas para o Amor-Próprio:</strong> Borrife água de rosas em sua aura pela manhã como um ato de autocarinho.</li><li><strong>Chá de Pétalas de Rosa:</strong> Uma infusão suave para acalmar o coração e aliviar a tristeza.</li></ul>`,
+                insightsDoBemViver: "A rosa nos ensina o equilíbrio entre a beleza e a proteção (os espinhos). Ela nos lembra que para amar plenamente, precisamos também ter limites saudáveis. Cuidar de uma roseira é uma meditação sobre este equilíbrio."
+            }
+        },
         { name: 'Canela', scientificName: 'Cinnamomum verum', magicalUses: ['Atração de sucesso e prosperidade rápida', 'Aumento da energia vital e paixão', 'Proteção e espiritualidade'] },
         { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Viagens astrais e sonhos lúcidos'] }
     ],
@@ -202,7 +221,15 @@ export const seasonalHerbData = {
                 insightsDoBemViver: "A energia da Guiné nos ensina a importância de 'limpar o terreno' antes de plantar novas intenções. É preciso remover o que é tóxico para que o novo possa florescer."
             }
         },
-        { name: 'Sálvia Branca', scientificName: 'Salvia apiana', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços'] },
+        {
+            name: 'Sálvia Branca',
+            scientificName: 'Salvia apiana',
+            content: {
+                almaDaErva: "Erva de Júpiter e do Ar. Considerada sagrada por muitos povos nativos norte-americanos, a Sálvia Branca é uma das mais potentes purificadoras energéticas. Sua fumaça (smudge) não apenas limpa energias negativas, mas eleva a vibração do espaço, convidando a sabedoria e a clareza espiritual.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Smudging (Defumação):</strong> Queime um bastão de sálvia para limpar sua casa, seus cristais ou seu campo áurico antes de rituais. Abra uma janela para que a energia negativa possa sair.</li><li><strong>Spray de Limpeza Energética:</strong> Se não pode queimar, ferva as folhas em água e use o líquido (coado e resfriado) em um borrifador.</li></ul>`,
+                insightsDoBemViver: "O uso da Sálvia Branca nos conecta a uma linhagem ancestral de cura e nos ensina sobre a importância do uso respeitoso e consciente das plantas sagradas. É um convite para aprender sobre a sustentabilidade e a honra às tradições que nos presenteiam com esta ferramenta."
+            }
+        },
         { name: 'Louro', scientificName: 'Laurus nobilis', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Realização de desejos'] }
     ],
     'Inverno': [
