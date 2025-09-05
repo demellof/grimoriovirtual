@@ -335,10 +335,10 @@ function renderCosmogramaCristalinoSection() {
     const centerX = galaxyContainerWidth / 2;
     const centerY = 400;
     const a = 20;
-    const b = 18;
+    const b = 22;
 
     const crystalsHtml = allCrystals.map((crystal, index) => {
-        const angle = 0.8 * index;
+        const angle = 0.9 * index;
         const radius = a + b * angle;
 
         const x = centerX + radius * Math.cos(angle) - 90;
@@ -617,7 +617,13 @@ function setupEventListeners() {
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
             triggerTouchAnimation(crystalOrb);
             const name = crystalOrb.dataset.crystalName;
-            let crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+
+            if (crystal?.color) {
+                crystalOrb.classList.add('light-up');
+                setTimeout(() => crystalOrb.classList.remove('light-up'), 1000);
+            }
+
             if (crystal) showCrystalDetails(crystal);
             return;
         }
@@ -628,6 +634,18 @@ function setupEventListeners() {
             const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
             if(seal) showPlanetarySealDetails(seal);
             return;
+        }
+    });
+
+    appContainer?.addEventListener('mouseover', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const crystalOrb = e.target.closest('.crystal-orb');
+        if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
+            const name = crystalOrb.dataset.crystalName;
+            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            if (crystal?.color) {
+                crystalOrb.style.setProperty('--crystal-light-color', crystal.color);
+            }
         }
     });
 
