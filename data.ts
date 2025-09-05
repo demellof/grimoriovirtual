@@ -423,102 +423,457 @@ export const pranayamaData = {
 };
 
 export const jornadaFlorescerData = [
-    { 
-        etapa: 1, 
-        title: "Etapa 1: Despertar da Consciência (Iniciação)",
-        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro. É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
-        arquétipos: "Perseu e Medusa, Rá, Atena", 
-        pilares: "Terra e Luz", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Aterramento Diário:</strong> Inicie cada dia com o ritual de caminhar descalço na grama, sentindo a estabilidade da Terra para ter a coragem de olhar para dentro. <em class="text-xs text-gray-500">[ref: Pilar da Terra]</em></li>
-                <li><strong>Diário de Sincronicidades:</strong> Mantenha um registro em seu Tomo de Poder das "coincidências significativas", aprendendo a ler a linguagem do universo. <em class="text-xs text-gray-500">[ref: Pilar da Luz]</em></li>
-                <li><strong>Meditação "Não-Cachimbo" (Magritte):</strong> Use a técnica do Pilar da Luz para questionar uma crença limitante. Escreva "Isto não é [sua crença]" e redefina-a.</li>
-            </ol>
-        ` 
+  {
+    etapa: 1,
+    title: "Despertar da Consciência (Iniciação - O Chamado para Florescer)",
+    corPrincipal: "Verde Esmeralda",
+    chakra: "Muladhara (Raiz) & Ajna (Frontal)",
+    pilar: "Pilar da Terra - Corpo & Pilar da Luz (Início)",
+    arvore: {
+        nome: "Bambu",
+        cor: "Verde",
+        simbolismo: "Resiliência e crescimento inicial."
     },
-    { 
-        etapa: 2, 
-        title: "Etapa 2: Definindo o Propósito",
-        foco: "Uma vez que a consciência desperta, a energia precisa de uma direção. Esta etapa é sobre alinhar sua vontade com a voz da sua alma, definindo um propósito claro que irá nutrir e guiar sua jornada de crescimento.",
-        arquétipos: "Hércules, Ísis, Thoth", 
-        pilares: "Água e Som", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Criação de um 'Altar de Intenções':</strong> Dedique um pequeno espaço com objetos que simbolizem seu propósito. Use a fluidez da Água para carregar este espaço com emoção.</li>
-                <li><strong>Prática do "Eu Sou":</strong> Crie e vocalize afirmações poderosas que declarem seu propósito no tempo presente (ex: "Eu sou um canal de cura e sabedoria"). <em class="text-xs text-gray-500">[ref: Pilar do Som]</em></li>
-                <li><strong>Escrita Terapêutica:</strong> Em seu Tomo, explore: "Se não houvesse limitações, o que minha alma desejaria criar?".</li>
-            </ol>
-        `
+    cicloLunar: {
+        fase: "Lua Nova",
+        cor: "Branco",
+        proposito: "Plantar intenções de florescimento."
     },
-    { 
-        etapa: 3, 
-        title: "Etapa 3: A Forja da Vontade",
-        foco: "O propósito, uma vez definido, precisa ser forjado no fogo da ação e da disciplina. Esta etapa é sobre enfrentar o labirinto interior, confrontar os 'minotauros' da procrastinação e da autossabotagem, e transformar a inércia em momentum.",
-        arquétipos: "Teseu e o Minotauro, Sekhmet, Ares", 
-        pilares: "Fogo", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Rituais de Queima de Intenções:</strong> Utilize o poder do Fogo para liberar o que não serve mais, escrevendo medos e hábitos em um papel e entregando-os à chama. <em class="text-xs text-gray-500">[ref: Pilar do Fogo]</em></li>
-                <li><strong>Prática de Bhastrika Pranayama:</strong> Use a "Respiração do Fole" para gerar energia e despertar a força de vontade do seu plexo solar (Manipura).</li>
-                <li><strong>Ação Focada:</strong> Escolha uma meta desafiadora e dedique um tempo focado e ininterrupto para trabalhar nela, mesmo que por apenas 15 minutos.</li>
-            </ol>
-        ` 
+    cicloSazonal: {
+        sabbath: "Imbolc",
+        proposito: "Renovação e primeira luz (Data Aprox: 1/2 de agosto)."
     },
-    { 
-        etapa: 4, 
-        title: "Etapa 4: A Ponte do Coração",
-        foco: "O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração (Anahata), cultivar a compaixão e construir pontes de conexão. É a aplicação da benevolência de Chesed/Júpiter, entendendo que nosso florescimento se nutre e nutre os outros.",
-        arquétipos: "Inanna, Afrodite, Kuan Yin", 
-        pilares: "Ar", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Meditação Metta Bhavana (Amor-Bondade):</strong> Pratique enviar desejos de bem-estar para si mesmo, para entes queridos e, gradualmente, para todos os seres.</li>
-                <li><strong>Prática da CNV:</strong> Em um relacionamento, pratique expressar uma necessidade usando a estrutura da Comunicação Não-Violenta (observação, sentimento, necessidade, pedido).</li>
-                <li><strong>Atos de Generosidade Anônima:</strong> Realize um pequeno ato de bondade sem buscar reconhecimento, nutrindo a pura alegria de dar.</li>
-            </ol>
-        ` 
+    orixa: {
+        nome: "Exu",
+        cor: "Branco",
+        proposito: "Abrir caminhos para o novo ciclo."
     },
-    { 
-        etapa: 5, 
-        title: "Etapa 5: A Voz da Alma",
-        foco: "Após conectar-se com o coração, é hora de dar voz à sua verdade. Esta etapa é sobre a expressão autêntica, a comunicação clara e o uso da vibração para manifestar sua sabedoria no mundo.",
-        arquétipos: "Hermes, Apolo, Bragi", 
-        pilares: "Som e Mente", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Prática de Canto de Mantras:</strong> Escolha um mantra que ressoe com você (como "OM") e cante-o por 5 minutos, sentindo a vibração em seu corpo e limpando o Chakra Laríngeo.</li>
-                <li><strong>Exercício de Falar Sua Verdade:</strong> Identifique uma situação segura onde você normalmente ficaria em silêncio e prepare-se para expressar sua opinião de forma calma.</li>
-                <li><strong>Prática da Escuta Ativa:</strong> Em uma conversa, dedique-se a ouvir para compreender, sem formular sua resposta enquanto a outra pessoa fala.</li>
-            </ol>
-        ` 
+    integracao: {
+        cor: "Branco",
+        titulo: "Oferenda a Exu",
+        comoFazer: "Preparar itens (Velas, Bebida, Frutas). Realizar ritual pedindo clareza e abertura para florescer."
     },
-    { 
-        etapa: 6, 
-        title: "Etapa 6: A Visão Interior",
-        foco: "Com a voz alinhada, aprofundamos a percepção. Esta etapa é sobre silenciar o ruído externo para ouvir a sabedoria do oráculo interior, navegando pelas sombras e transições com um guia interno.",
-        arquétipos: "Anúbis, Hécate, Odin", 
-        pilares: "Luz", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Diário de Sonhos Junguiano:</strong> Anote o sonho, suas associações pessoais e depois reflita sobre a mensagem arquetípica. <em class="text-xs text-gray-500">[ref: Pilar da Água]</em></li>
-                <li><strong>Meditação no Terceiro Olho (Ajna):</strong> Leve sua atenção para o ponto entre as sobrancelhas, visualizando uma luz índigo pulsante, despertando sua intuição.</li>
-                <li><strong>Prática de Atenção às Sincronicidades:</strong> Esteja aberto para notar as "coincidências significativas" e anote-as, refletindo sobre suas mensagens.</li>
-            </ol>
-        ` 
+    mitologia: [
+        { cultura: "Grego", historia: "Perseu e Medusa - Coragem para olhar a \"fera\" e iniciar a jornada." },
+        { cultura: "Egípcio", historia: "Despertar de Rá - Renovação diária da consciência para crescer." }
+    ],
+    pnl: {
+        cor: "Verde Claro",
+        tecnicas: [
+            { nome: "Auto-Observação", desc: "Diário de hábitos (Foco na vibração e energia)." },
+            { nome: "Metáfora da Fera", desc: "Visualizar \"fera\" (Resistências ao florescimento)." },
+            { nome: "Ancoragem", desc: "Âncora vibracional de presença e clareza." }
+        ]
     },
-    { 
-        etapa: 7, 
-        title: "Etapa 7: União Divina",
-        foco: "A culminação da jornada. Esta etapa representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
-        arquétipos: "Shiva e Shakti, A Grande Mãe, O Andrógino Divino", 
-        pilares: "Mente", 
-        praticas: `
-            <ol class="list-decimal list-inside space-y-2">
-                <li><strong>Meditação Silenciosa:</strong> Sente-se sem objetivo, mantra ou foco, apenas testemunhando a existência e permitindo que a mente se dissolva na quietude.</li>
-                <li><strong>Contemplação da Natureza:</strong> Vá para um lugar na natureza e pratique ver a si mesmo em tudo: na árvore, na rocha, no rio. Sinta a unidade de toda a vida.</li>
-                <li><strong>Estudo do Pilar Zero "A Teia do Mundo":</strong> Releia e medite sobre o pilar filosófico, sentindo a conexão entre Jung, Gaia, Sagan e Ubuntu.</li>
-            </ol>
-        ` 
+    acao: {
+        cor: "Verde Esmeralda",
+        titulo: "Prática diária: Diário, Visualização, Âncora",
+        qualidade: "Discernimento, Clareza, Autoconsciência Vibracional"
+    },
+    deusDeusa: {
+        cor: "Branco",
+        culturas: [
+            { cultura: "Grega", nome: "Atena (Sabedoria Estratégica)" },
+            { cultura: "Egípcia", nome: "Ma'at (Verdade Interior)" }
+        ],
+        momento: "Início da jornada de florescimento."
+    },
+    elementosSensoriais: {
+        cor: "Verde",
+        elementos: [
+            { tipo: "Erva", nome: "Sálvia", proposito: "Purificação para novos começos." },
+            { tipo: "Incenso", nome: "Olíbano", proposito: "Conexão espiritual inicial." },
+            { tipo: "Chá", nome: "Hortelã-pimenta", proposito: "Clareza mental e energia para despertar." }
+        ],
+        comoUsar: "Sálvia: Queimar meditando - Clareza mental. Olíbano: Usar com âncora - Conexão espiritual. Chá: Beber para foco no diário - Energia mental."
     }
+  },
+  {
+    etapa: 2,
+    title: "Semeando com Propósito - Nutrindo a Essência do Florescer",
+    corPrincipal: "Amarelo Dourado",
+    chakra: "Svadhisthana (Sacral) & Anahata (Cardíaco)",
+    pilar: "Pilar da Água - Emoções & Pilar do Ar (Início)",
+    arvore: {
+        nome: "Baobá",
+        cor: "Amarelo/Dourado",
+        simbolismo: "Sabedoria ancestral para guiar o propósito."
+    },
+    cicloLunar: {
+        fase: "Lua Crescente",
+        cor: "Laranja",
+        proposito: "Nutrir e expandir o propósito."
+    },
+    cicloSazonal: {
+        sabbath: "Ostara",
+        proposito: "Equilíbrio na semeadura do propósito."
+    },
+    orixa: {
+        nome: "Oxalá",
+        cor: "Branco",
+        proposito: "Paz e sabedoria divina no propósito."
+    },
+    integracao: {
+        cor: "Amarelo Claro",
+        titulo: "Oferenda a Oxalá",
+        comoFazer: "Vestir branco, orar por paz/sabedoria, usar imagem/objeto, visualizar metas florescendo."
+    },
+    mitologia: [
+        { cultura: "Grego", historia: "12 trabalhos de Hércules - Determinação na jornada do propósito." },
+        { cultura: "Egípcio", historia: "Busca de Ísis por Osíris - Perseverança na missão de florescer." }
+    ],
+    pnl: {
+        cor: "Laranja",
+        tecnicas: [
+            { nome: "Metas S.M.A.R.T.", desc: "Alinhadas com o \"Florescer\" e a conexão com a fonte." },
+            { nome: "Visualização Criativa", desc: "Sentir a vibração do propósito realizado." },
+            { nome: "Alinhamento de Valores", desc: "Conectar metas à sua essência e ao ciclo de Júpiter/Chesed." }
+        ]
+    },
+    acao: {
+        cor: "Amarelo Dourado",
+        titulo: "Mural dos Deuses Vibracional",
+        qualidade: "Determinação, Foco, Visão Clara do Propósito de Florescer"
+    },
+    deusDeusa: {
+        cor: "Dourado",
+        culturas: [
+            { cultura: "Grega", nome: "Apolo (Clareza Profética)" },
+            { cultura: "Egípcia", nome: "Rá (Energia Vital para o Propósito)" }
+        ],
+        momento: "Ao definir metas, visualizar, alinhar valores."
+    },
+    elementosSensoriais: {
+        cor: "Amarelo",
+        elementos: [
+            { tipo: "Erva", nome: "Louro", proposito: "Sucesso e clareza na direção do florescimento." },
+            { tipo: "Incenso", nome: "Sândalo", proposito: "Foco na meditação do propósito." },
+            { tipo: "Chá", nome: "Gengibre com Limão", proposito: "Energia e clareza para definir o caminho do florescimento." }
+        ],
+        comoUsar: "Louro: Amuleto de propósito. Sândalo: Usar na visualização. Gengibre c/ Limão: Beber para energia das metas."
+    }
+  },
+  {
+    etapa: 3,
+    title: "Transformação Resiliente - Domando as Resistências ao Florescimento",
+    corPrincipal: "Vermelho Fogo",
+    chakra: "Manipura (Plexo Solar)",
+    pilar: "Pilar do Fogo - Energia/Ação (Foco: Cultivar poder pessoal, vontade, transformar obstáculos em combustível)",
+    arvore: {
+        nome: "Carvalho",
+        cor: "Vermelho Fogo",
+        simbolismo: "Força e resistência para superar obstáculos."
+    },
+    cicloLunar: {
+        fase: "Lua Cheia",
+        cor: "N/A",
+        proposito: "Pico de energia para transmutar a \"fera\"."
+    },
+    cicloSazonal: {
+        sabbath: "Beltane",
+        proposito: "Vitalidade e paixão para impulsionar a transformação."
+    },
+    orixa: {
+        nome: "Ogum",
+        cor: "Vermelho Fogo",
+        proposito: "Coragem para cortar padrões limitantes."
+    },
+    integracao: {
+        cor: "Cinza Chumbo",
+        titulo: "Conexão com a Força Interior",
+        comoFazer: "Visualizar força (Ogum/Carvalho), afirmações de disciplina, rituais de transmutação."
+    },
+    mitologia: [
+        { cultura: "Grego", historia: "Teseu e Minotauro - Navegar o labirinto interior e domar a sombra." },
+        { cultura: "Egípcio", historia: "Hórus combatendo Set - Integrar o caos para alcançar a ordem." }
+    ],
+    pnl: {
+        cor: "Vermelho",
+        tecnicas: [
+            { nome: "Reestruturação Cognitiva", desc: "Transformar pensamentos que impedem o florescimento." },
+            { nome: "Modelagem", desc: "Inspirar-se em exemplos de disciplina e superação." },
+            { nome: "Técnica do Swish", desc: "Substituir imagem da \"fera\" pela do \"eu florescendo\"." }
+        ]
+    },
+    acao: {
+        cor: "Vermelho Fogo",
+        titulo: "Plano de ação detalhado",
+        qualidade: "Força de Vontade, Coragem, Resiliência - Ativando o Fogo do Manipura Chakra"
+    },
+    deusDeusa: {
+        cor: "Preto",
+        culturas: [
+            { cultura: "Grega", nome: "Hércules (Força para Superar)" },
+            { cultura: "Egípcia", nome: "Sekhmet (Poder de Transformação)" }
+        ],
+        momento: "Ao enfrentar resistências e aplicar PNL."
+    },
+    elementosSensoriais: {
+        cor: "Vermelho",
+        elementos: [
+            { tipo: "Erva", nome: "Alecrim", proposito: "Coragem e impulso para ação." },
+            { tipo: "Incenso", nome: "Mirra e Olíbano", proposito: "Proteção e força interior." },
+            { tipo: "Chá", nome: "Canela com Pimenta Caiena", proposito: "Vitalidade e fogo interior." }
+        ],
+        comoUsar: "Alecrim: Usar em momentos de desafio. Mirra/Olíbano: Usar na reestruturação. Canela/Pimenta: Beber para resistir."
+    }
+  },
+  {
+    etapa: 4,
+    title: "Colheita Consciente - Integrando a Disciplina no Florescer",
+    corPrincipal: "Rosa Quente",
+    chakra: "Anahata (Coração)",
+    pilar: "Pilar do Ar - Respiração/Relacionamentos (Foco: Amor, Compaixão, Gratidão, Equilíbrio Emocional)",
+    arvore: {
+        nome: "Girassol",
+        cor: "Rosa",
+        simbolismo: "Celebrar alegria e abundância."
+    },
+    cicloLunar: {
+        fase: "Lua Minguante",
+        cor: "Verde Musgo",
+        proposito: "Gratidão pela colheita."
+    },
+    cicloSazonal: {
+        sabbath: "Lughnasadh",
+        proposito: "Celebrar os frutos da disciplina."
+    },
+    orixa: {
+        nome: "Oxum",
+        cor: "Rosa",
+        proposito: "Reconhecer beleza e prosperidade."
+    },
+    integracao: {
+        cor: "Verde Musgo",
+        titulo: "Oferenda a Oxum",
+        comoFazer: "Oferenda com gratidão, vestir cores alegres, usar espelho, plantar girassóis."
+    },
+    mitologia: [
+        { cultura: "Grego", historia: "Retorno da Era de Ouro - Harmonia interior alcançada." },
+        { cultura: "Egípcio", historia: "Ascensão de Osíris - Elevação da consciência." }
+    ],
+    pnl: {
+        cor: "Rosa",
+        tecnicas: [
+            { nome: "Análise de Resultados", desc: "Avaliar florescimento, ajustar planos." },
+            { nome: "Celebração", desc: "Reconhecer esforço e transformação." },
+            { nome: "Compromisso Contínuo", desc: "Manter hábitos que nutrem." }
+        ]
+    },
+    acao: {
+        cor: "Rosa Quente",
+        titulo: "Ritual Diário",
+        qualidade: "Gratidão, Contentamento, Celebração - Colhendo os Frutos"
+    },
+    deusDeusa: {
+        cor: "Rosa",
+        culturas: [
+            { cultura: "Grega", nome: "Dionísio (Alegria da Colheita)" },
+            { cultura: "Egípcia", nome: "Bastet (Contentamento e Prazer)" }
+        ],
+        momento: "Ao analisar, celebrar, reforçar compromisso."
+    },
+    elementosSensoriais: {
+        cor: "Rosa",
+        elementos: [
+            { tipo: "Erva", nome: "Manjericão", proposito: "Símbolo de alegria e prosperidade." },
+            { tipo: "Incenso", nome: "Benjoim e Olíbano", proposito: "Celebrar abundância e elevação." },
+            { tipo: "Chá", nome: "Camomila e Erva-Cidreira", proposito: "Calma e bem-estar no ritual diário." }
+        ],
+        comoUsar: "Manjericão: Cultivar como símbolo. Benjoim/Olíbano: Usar na celebração. Camomila/Erva-Cidreira: Beber no ritual diário."
+    }
+  },
+  {
+    etapa: 5,
+    title: "Irradiando o Legado - Compartilhando a Luz do Florescimento",
+    corPrincipal: "Azul Royal",
+    chakra: "Vishuddha (Garganta)",
+    pilar: "Pilar do Som - Comunicação/Expressão (Foco: Expressão autêntica, compartilhar sabedoria, inspirar outros)",
+    arvore: {
+        nome: "Gameleira",
+        cor: "Azul Royal",
+        simbolismo: "Conectar com sabedoria ancestral."
+    },
+    cicloLunar: {
+        fase: "Lua Nova",
+        cor: "Prata",
+        proposito: "Plantar sementes de novos projetos."
+    },
+    cicloSazonal: {
+        sabbath: "Mabon",
+        proposito: "Equilíbrio e sabedoria para compartilhar."
+    },
+    orixa: {
+        nome: "Iemanjá",
+        cor: "Azul Royal",
+        proposito: "Sabedoria maternal para guiar o legado."
+    },
+    integracao: {
+        cor: "Prata",
+        titulo: "Oferenda a Iemanjá",
+        comoFazer: "Oferenda pedindo sabedoria, conectar com natureza (água), usar imagem/objeto, plantar gameleira, compartilhar conhecimento."
+    },
+    mitologia: [
+        { cultura: "Grego", historia: "O Legado de Prometeu - Compartilhar a \"chama\" do conhecimento." },
+        { cultura: "Egípcio", historia: "O Legado de Ptah - Criar legado duradouro pela maestria." }
+    ],
+    pnl: {
+        cor: "Azul Royal",
+        tecnicas: [
+            { nome: "Mentoria", desc: "Inspirar outros com sua jornada." },
+            { nome: "Novas Metas", desc: "Definir desafios que expandam o legado." },
+            { nome: "Gratidão", desc: "Agradecer apoio e oportunidades de compartilhar." }
+        ]
+    },
+    acao: {
+        cor: "Azul Royal",
+        titulo: "Compartilhar a Jornada",
+        qualidade: "Inspiração, Generosidade, Visão de Futuro - Espalhando as Sementes"
+    },
+    deusDeusa: {
+        cor: "Prata",
+        culturas: [
+            { cultura: "Grega", nome: "Prometeu (Altruísmo do Conhecimento)" },
+            { cultura: "Egípcia", nome: "Tot (Sabedoria como Legado)" }
+        ],
+        momento: "Ao compartilhar, definir novas metas, expressar gratidão."
+    },
+    elementosSensoriais: {
+        cor: "Azul Royal",
+        elementos: [
+            { tipo: "Erva", nome: "Hortelã e Louro", proposito: "Inspiração para comunicar, clareza no propósito." },
+            { tipo: "Incenso", nome: "Alecrim e Sândalo", proposito: "Clareza mental para novas metas, conexão ancestral." },
+            { tipo: "Chá", nome: "Jasmim e Erva-Doce", proposito: "Otimismo e doçura ao compartilhar." }
+        ],
+        comoUsar: "Hortelã/Louro: Inspiração e comunicação. Alecrim/Sândalo: Reflexão e novas metas. Jasmim/Erva-Doce: Otimismo para compartilhar."
+    }
+  },
+  {
+    etapa: 6,
+    title: "Introspecção Curativa - Florescendo na Jornada Contínua",
+    corPrincipal: "Roxo/Violeta",
+    chakra: "Ajna (Frontal)",
+    pilar: "Pilar da Luz - Intuição/Visão (Foco: Intuição, percepção sutil, clareza mental, sabedoria interior)",
+    arvore: {
+        nome: "Cipreste (Simbólico)",
+        cor: "Roxo",
+        simbolismo: "Resistência e profundidade."
+    },
+    cicloLunar: {
+        fase: "N/A",
+        cor: "N/A",
+        proposito: ""
+    },
+    cicloSazonal: {
+        sabbath: "N/A",
+        proposito: ""
+    },
+    orixa: {
+        nome: "N/A",
+        cor: "N/A",
+        proposito: ""
+    },
+    integracao: {
+        cor: "Roxo",
+        titulo: "Jornada de Introspecção e Reflexão",
+        comoFazer: "Meditação silenciosa, Journaling terapêutico, Visualização guiada (cura/superação)."
+    },
+    mitologia: [
+        { cultura: "", historia: "A jornada individual de ressignificar desafios." }
+    ],
+    pnl: {
+        cor: "Roxo",
+        tecnicas: [
+            { nome: "Identificação de Padrões Limitantes", desc: "Análise profunda." },
+            { nome: "Reenquadramento Transformador", desc: "Ver desafios como portais." },
+            { nome: "Recursos Internos e Apoio Externo", desc: "Identificar forças, buscar ajuda." }
+        ]
+    },
+    acao: {
+        cor: "Roxo Escuro",
+        titulo: "Plano de Ação Estratégico e Terapêutico",
+        qualidade: "Superação, Introspecção, Clareza - Transformando Sombras em Luz"
+    },
+    deusDeusa: {
+        cor: "Sem cor definida",
+        culturas: [
+            { cultura: "Grego", nome: "Hades (Profundidade)" },
+            { cultura: "Egípcio", nome: "Anúbis (Ressignificação)" }
+        ],
+        momento: "Ao trabalhar padrões profundos, buscar autoconhecimento radical."
+    },
+    elementosSensoriais: {
+        cor: "Roxo",
+        elementos: [
+            { tipo: "Erva", nome: "Lavanda e Camomila", proposito: "Relaxamento e clareza emocional." },
+            { tipo: "Incenso", nome: "Sândalo e Mirra", proposito: "Introspecção profunda e purificação." },
+            { tipo: "Chá", nome: "Jasmim e Erva-Cidreira", proposito: "Sono reparador e bem-estar emocional." }
+        ],
+        comoUsar: "Lavanda/Camomila: Relaxamento e clareza. Sândalo/Mirra: Introspecção e purificação. Jasmim/Erva-Cidreira: Sono e equilíbrio."
+    }
+  },
+  {
+    etapa: 7,
+    title: "União Transcendental - A Iluminação do Florescimento Pleno",
+    corPrincipal: "Branco/Dourado Luminoso",
+    chakra: "Sahasrara (Coroa)",
+    pilar: "Pilar da Mente - Consciência Pura (Foco: Conexão espiritual, unidade, transcendência, propósito maior)",
+    arvore: {
+        nome: "Cristal de Quartzo",
+        cor: "Branco/Translúcido",
+        simbolismo: "Amplificar luz e conexão."
+    },
+    cicloLunar: {
+        fase: "Lua Cheia Radiante",
+        cor: "Branco Luminoso",
+        proposito: "Culminação, iluminação."
+    },
+    cicloSazonal: {
+        sabbath: "Samhain",
+        proposito: "Portal para transcendência."
+    },
+    orixa: {
+        nome: "Oxalá (Forma Suprema)",
+        cor: "Branco Luminoso",
+        proposito: "Paz absoluta, luz da criação."
+    },
+    integracao: {
+        cor: "Branco/Dourado Luminoso",
+        titulo: "Conexão com a Fonte",
+        comoFazer: "Vestir branco/prata, Meditação silenciosa, Visualização Luz Divina, Cristal como canal, Oração de entrega."
+    },
+    mitologia: [
+        { cultura: "Indiano", historia: "Encontro de Shiva e Shakti - União consciência/energia, totalidade." },
+        { cultura: "Egípcio", historia: "A União com Rá - Iluminação e união com a fonte primordial." }
+    ],
+    pnl: {
+        cor: "Branco/Dourado Luminoso",
+        tecnicas: [
+            { nome: "Estado de Flow Contínuo", desc: "Viver o florescimento no presente." },
+            { nome: "Mindfulness Absoluto", desc: "Presença total e testemunho consciente." },
+            { nome: "Entrega e Confiança Divina", desc: "Confiar no fluxo e sabedoria superior." }
+        ]
+    },
+    acao: {
+        cor: "Branco/Dourado Luminoso",
+        titulo: "Prática Contemplativa Diária",
+        qualidade: "Iluminação, Paz Profunda, Unidade com a \"Fonte\" - Realização do Florescimento Divino"
+    },
+    deusDeusa: {
+        cor: "Branco/Dourado Luminoso",
+        culturas: [
+            { cultura: "Indiano", nome: "Shiva (Consciência Transcendental)" }
+        ],
+        momento: "Busca pela união, contemplação, prática devocional."
+    },
+    elementosSensoriais: {
+        cor: "Branco/Dourado Luminoso",
+        elementos: [
+            { tipo: "Flor/Essência", nome: "Lótus Branco", proposito: "Pureza, transcendência, despertar." },
+            { tipo: "Incenso", nome: "Âmbar Branco e Sândalo", proposito: "Elevação, conexão divina, paz." },
+            { tipo: "Chá/Água", nome: "Chá Branco e Água de Rosas", proposito: "Pureza, iluminação, amor divino." }
+        ],
+        comoUsar: "Lótus Branco: Símbolo e essência. Âmbar Branco/Sândalo: Meditação devocional. Chá Branco/Água Rosas: Práticas contemplativas."
+    }
+  }
 ];
