@@ -169,24 +169,85 @@ export const seasonalHerbData = {
         { 
             name: 'Alecrim', 
             scientificName: 'Salvia rosmarinus',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Apolo, Hélios',
             content: {
                 almaDaErva: "Erva solar, regida pelo Fogo. Usada para purificação, clareza mental, coragem e para trazer alegria. Sua fumaça limpa o ambiente e abre a mente para a inspiração.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá de Alecrim (O Despertar da Mente):</strong> Uma infusão pela manhã é um ritual para aguçar o foco e a memória.</li><li><strong>Azeite Aromatizado:</strong> Infundir a energia do alecrim em seus alimentos é uma forma de magia prática.</li></ul>`,
                 insightsDoBemViver: "O alecrim é um pilar na dieta mediterrânea (Zona Azul). Seus antioxidantes combatem a inflamação, um dos pilares do envelhecimento saudável."
             }
         },
-        { name: 'Lavanda', scientificName: 'Lavandula angustifolia', magicalUses: ['Calma e clareza mental', 'Sono tranquilo e sonhos proféticos', 'Purificação e equilíbrio'] },
-        { name: 'Manjericão', scientificName: 'Ocimum basilicum', magicalUses: ['Atração de prosperidade e sorte', 'Proteção e banimento', 'Amor e harmonia'] }
+        {
+            name: 'Lavanda',
+            scientificName: 'Lavandula angustifolia',
+            planet: 'Mercúrio',
+            element: 'Ar',
+            deities: 'Hermes, Mercúrio',
+            content: {
+                almaDaErva: "Erva de Mercúrio e do Ar. A Lavanda é a grande pacificadora do reino vegetal. Sua energia acalma a mente, equilibra as emoções e abre o Chakra Frontal (Ajna) para a intuição. É a fragrância da clareza e da paz interior.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Sachê para Sonhos:</strong> Coloque flores secas em um saquinho de tecido e ponha sob o travesseiro para um sono reparador e sonhos lúcidos.</li><li><strong>Banho Calmante:</strong> Adicione um punhado de flores a um banho morno para aliviar o estresse do dia.</li></ul>`,
+                insightsDoBemViver: "O aroma da lavanda tem um efeito comprovado na redução dos níveis de cortisol (o hormônio do estresse). Ter um pequeno vaso de lavanda no ambiente de trabalho ou em casa é uma forma de 'aromaterapia passiva' para manter a serenidade."
+            }
+        },
+        {
+            name: 'Manjericão',
+            scientificName: 'Ocimum basilicum',
+            planet: 'Vênus',
+            element: 'Fogo',
+            deities: 'Vrinda Devi, Vênus, Afrodite',
+            content: {
+                almaDaErva: "Erva de Vênus, regida pelo Fogo. Sagrada na Índia como a deusa Tulsi, é uma ponte entre o amor e a proteção. Seu aroma doce harmoniza ambientes, atrai prosperidade e fortalece os laços afetivos.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Amuleto de Prosperidade:</strong> Carregue folhas secas na carteira para atrair dinheiro.</li><li><strong>Chá para Harmonia:</strong> Uma infusão de manjericão ajuda a acalmar os ânimos e promover a paz interior e familiar.</li></ul>`,
+                insightsDoBemViver: "O Manjericão nos ensina que a verdadeira prosperidade nasce de um coração em paz. Cuidar de um pé de manjericão é um ato de cultivar a harmonia em sua vida."
+            }
+        }
     ],
     'Verão': [
-        { name: 'Rosa', scientificName: 'Rosa spp.', magicalUses: ['Amor-próprio e atração', 'Cura emocional', 'Adivinhação e intuição'] },
-        { name: 'Canela', scientificName: 'Cinnamomum verum', magicalUses: ['Atração de sucesso e prosperidade rápida', 'Aumento da energia vital e paixão', 'Proteção e espiritualidade'] },
-        { name: 'Hortelã-pimenta', scientificName: 'Mentha piperita', magicalUses: ['Clareza mental e foco', 'Purificação e cura', 'Viagens astrais e sonhos lúcidos'] }
+        {
+            name: 'Rosa',
+            scientificName: 'Rosa spp.',
+            planet: 'Vênus',
+            element: 'Água',
+            deities: 'Afrodite, Vênus, Ísis',
+            content: {
+                almaDaErva: "Erva de Vênus e da Água. A Rosa é o símbolo supremo do amor incondicional, tanto o amor-próprio quanto o romântico. Sua energia abre e cura o Chakra Cardíaco (Anahata), ensinando a beleza da vulnerabilidade e da compaixão.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Água de Rosas para o Amor-Próprio:</strong> Borrife água de rosas em sua aura pela manhã como um ato de autocarinho.</li><li><strong>Chá de Pétalas de Rosa:</strong> Uma infusão suave para acalmar o coração e aliviar a tristeza.</li></ul>`,
+                insightsDoBemViver: "A rosa nos ensina o equilíbrio entre a beleza e a proteção (os espinhos). Ela nos lembra que para amar plenamente, precisamos também ter limites saudáveis. Cuidar de uma roseira é uma meditação sobre este equilíbrio."
+            }
+        },
+        {
+            name: 'Canela',
+            scientificName: 'Cinnamomum zeylanicum',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Afrodite, Lakshmi',
+            content: {
+                almaDaErva: "Especiaria do Sol e do Fogo. A Canela é um catalisador de energia, usada para acelerar a manifestação de prosperidade, sucesso e paixão. Seu aroma quente e picante aquece a alma e atrai boa sorte.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Pó de Prosperidade:</strong> No primeiro dia do mês, sopre canela em pó da porta para dentro de casa para atrair abundância.</li><li><strong>Incenso para Paixão:</strong> Queimar um pau de canela ajuda a criar um ambiente de sedução e energia sexual.</li></ul>`,
+                insightsDoBemViver: "A Canela nos lembra do nosso poder de atração e manifestação. Usá-la conscientemente é um ato de direcionar nossa energia para nossos objetivos mais ardentes."
+            }
+        },
+        {
+            name: 'Hortelã-pimenta',
+            scientificName: 'Mentha piperita',
+            planet: 'Mercúrio',
+            element: 'Ar',
+            deities: 'Mercúrio, Hermes',
+            content: {
+                almaDaErva: "Erva de Mercúrio e do Ar. A Hortelã-pimenta é um tônico mental, limpando a mente e aguçando o foco. Sua energia refrescante remove bloqueios mentais, alivia a raiva e abre caminhos para a clareza.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Óleo para Foco:</strong> Uma gota de óleo essencial nas têmporas (diluído) ajuda a aliviar dores de cabeça e a melhorar a concentração.</li><li><strong>Chá para Cura:</strong> Uma infusão após as refeições ajuda na digestão e acalma o sistema nervoso.</li></ul>`,
+                insightsDoBemViver: "A Hortelã-pimenta ensina que uma mente clara é o primeiro passo para a cura. Seu frescor é um lembrete para respirar fundo e encontrar a calma em meio ao caos."
+            }
+        }
     ],
     'Outono': [
         { 
             name: 'Arruda', 
             scientificName: 'Ruta graveolens',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Marte, Hécate',
             content: {
                 almaDaErva: "Erva de Marte e do Fogo. É a grande protetora do mundo vegetal brasileiro, famosa por 'quebrar demandas' e banir o mau-olhado. Sua energia é assertiva e purificadora.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Banho de Descarrego:</strong> Macere folhas frescas em água morna, coe e jogue do pescoço para baixo. <strong>Atenção:</strong> Uso primariamente externo.</li><li><strong>Amuleto de Proteção:</strong> Carregue um pequeno galho em um saquinho de pano vermelho.</li></ul>`,
@@ -196,19 +257,77 @@ export const seasonalHerbData = {
         { 
             name: 'Guiné', 
             scientificName: 'Petiveria alliacea',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Ogum',
             content: {
                 almaDaErva: "Erva de alta vibração, ligada à força de Ogum. É uma poderosa ferramenta de limpeza energética, capaz de cortar e desmanchar as mais densas larvas astrais.",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Banimento:</strong> Queimar suas folhas secas é um ritual poderoso para limpar um ambiente.</li><li><strong>Banho de Limpeza Pré-Ritual:</strong> Use um banho de guiné para limpar seu campo áurico. <strong>Atenção:</strong> Erva extremamente forte, não deve ser ingerida.</li></ul>`,
                 insightsDoBemViver: "A energia da Guiné nos ensina a importância de 'limpar o terreno' antes de plantar novas intenções. É preciso remover o que é tóxico para que o novo possa florescer."
             }
         },
-        { name: 'Sálvia Branca', scientificName: 'Salvia apiana', magicalUses: ['Limpeza energética profunda (banimento)', 'Sabedoria e clareza espiritual', 'Proteção de espaços'] },
-        { name: 'Louro', scientificName: 'Laurus nobilis', magicalUses: ['Atração de sucesso, vitória e reconhecimento', 'Clareza em visões e profecias', 'Realização de desejos'] }
+        {
+            name: 'Sálvia Branca',
+            scientificName: 'Salvia apiana',
+            planet: 'Júpiter',
+            element: 'Ar',
+            deities: 'Júpiter, Zeus',
+            content: {
+                almaDaErva: "Erva de Júpiter e do Ar. Considerada sagrada por muitos povos nativos norte-americanos, a Sálvia Branca é uma das mais potentes purificadoras energéticas. Sua fumaça (smudge) não apenas limpa energias negativas, mas eleva a vibração do espaço, convidando a sabedoria e a clareza espiritual.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Smudging (Defumação):</strong> Queime um bastão de sálvia para limpar sua casa, seus cristais ou seu campo áurico antes de rituais. Abra uma janela para que a energia negativa possa sair.</li><li><strong>Spray de Limpeza Energética:</strong> Se não pode queimar, ferva as folhas em água e use o líquido (coado e resfriado) em um borrifador.</li></ul>`,
+                insightsDoBemViver: "O uso da Sálvia Branca nos conecta a uma linhagem ancestral de cura e nos ensina sobre a importância do uso respeitoso e consciente das plantas sagradas. É um convite para aprender sobre a sustentabilidade e a honra às tradições que nos presenteiam com esta ferramenta."
+            }
+        },
+        {
+            name: 'Louro',
+            scientificName: 'Laurus nobilis',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Apolo',
+            content: {
+                almaDaErva: "Erva do Sol e do Fogo. Coroando heróis e poetas na antiguidade, o Louro é a personificação da vitória e do reconhecimento. Usado para atrair sucesso, inspirar a sabedoria e fortalecer a intuição profética.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Feitiço de Desejo:</strong> Escreva um desejo em uma folha de louro e queime-a para enviar seu pedido ao universo.</li><li><strong>Amuleto da Sorte:</strong> Carregue uma folha de louro na carteira para atrair boa sorte e sucesso em empreendimentos.</li></ul>`,
+                insightsDoBemViver: "O Louro nos ensina a reconhecer e celebrar nossas próprias vitórias, não importa quão pequenas. Ele nos convida a ter orgulho de nossa jornada e a confiar em nossa sabedoria interior."
+            }
+        }
     ],
     'Inverno': [
-        { name: 'Mirra', scientificName: 'Commiphora myrrha', magicalUses: ['Conexão com o sagrado e cura profunda', 'Meditação e introspecção', 'Rituais de passagem'] },
-        { name: 'Olíbano', scientificName: 'Boswellia sacra', magicalUses: ['Elevação espiritual e purificação de alta vibração', 'Consagração de espaços e objetos', 'Meditação e oração'] },
-        { name: 'Gengibre', scientificName: 'Zingiber officinale', magicalUses: ['Acelerar e potencializar feitiços', 'Aumentar energia, coragem e paixão', 'Atrair sucesso e dinheiro'] }
+        {
+            name: 'Mirra',
+            scientificName: 'Commiphora myrrha',
+            planet: 'Lua',
+            element: 'Água',
+            deities: 'Ísis, Anúbis, Saturno',
+            content: {
+                almaDaErva: "Resina da Lua e da Água, com um toque de Saturno. A Mirra está profundamente ligada aos mistérios da vida e da morte. É usada para cura profunda, meditação, purificação de espaços sagrados e rituais de passagem.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Incenso de Meditação:</strong> Queime a resina em um carvão para aprofundar a meditação e conectar-se com o sagrado feminino.</li><li><strong>Óleo de Unção:</strong> Misturado a um óleo carreador, pode ser usado para consagrar ferramentas mágicas ou para rituais de cura.</li></ul>`,
+                insightsDoBemViver: "A Mirra nos convida a olhar para nossas sombras e feridas com compaixão, entendendo que a verdadeira cura muitas vezes vem de processos de introspecção e aceitação da finitude."
+            }
+        },
+        {
+            name: 'Olíbano',
+            scientificName: 'Boswellia sacra',
+            planet: 'Sol',
+            element: 'Fogo',
+            deities: 'Ra, Apolo, Sol Invictus',
+            content: {
+                almaDaErva: "Resina do Sol e do Fogo. O Olíbano é um dos mais potentes purificadores e elevadores de vibração. Sua fumaça sagrada limpa o ambiente de toda negatividade e abre um canal direto com o divino, sendo ideal para oração, consagração e meditação.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Consagração:</strong> Queime a resina para consagrar um novo altar, casa ou amuleto, selando-o com energia solar e divina.</li><li><strong>Spray de Limpeza e Proteção:</strong> Dissolva a resina em álcool para criar um spray de limpeza energética para ambientes.</li></ul>`,
+                insightsDoBemViver: "O Olíbano nos ensina a aspirar ao mais elevado em nós mesmos. Seu aroma nos conecta com a centelha divina interior, promovendo um senso de paz e propósito."
+            }
+        },
+        {
+            name: 'Gengibre',
+            scientificName: 'Zingiber officinale',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Marte, Ares',
+            content: {
+                almaDaErva: "Raiz de Marte e do Fogo. O Gengibre é um catalisador mágico, usado para acelerar resultados e adicionar uma explosão de energia a qualquer feitiço ou ritual. Ele aumenta a força pessoal, a coragem e a paixão.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá Energizante:</strong> Beba um chá de gengibre antes de um ritual para aumentar sua energia pessoal e poder mágico.</li><li><strong>Amuleto de Sucesso:</strong> Carregue um pedaço da raiz para atrair sucesso em empreendimentos e proteger contra o fracasso.</li></ul>`,
+                insightsDoBemViver: "O Gengibre nos lembra que temos o poder de acelerar as mudanças em nossa vida. Ele nos dá o 'empurrão' energético necessário para sair da inércia e agir com determinação."
+            }
+        }
     ]
 };
 
@@ -293,12 +412,12 @@ export const pranayamaData = {
     introMessage: "Se você, como muitos de nós, sente que a respiração consciente é uma 'deficiência', saiba que esta é a porta mais convidativa da Rota Pagã. Não há nada a 'conquistar', apenas a redescobrir. A respiração é sua âncora mais antiga. Este pilar não é sobre técnicas complexas, é sobre reacender a amizade com seu próprio sopro.",
     initialRitual: "A qualquer hora do dia, pause. Inspire profundamente, sinta sua barriga expandir. Segure por um instante. Expire lentamente, com um suspiro. Faça isso três vezes. Pronto. Você acabou de praticar a magia mais poderosa que existe: você trouxe sua mente de volta para casa, para o seu corpo.",
     techniques: [
-        { name: "Nadi Shodhana", translation: "Respiração das Narinas Alternadas", imagePlaceholder: "☯️", paraQueServe: "Para harmonizar os hemisférios cerebrais, acalmar o sistema nervoso e equilibrar as energias masculina (Pingala, solar, lógica) e feminina (Ida, lunar, intuição) dentro de você.", pontoFoco: "Sinta que, ao inspirar pela narina esquerda, você está nutrindo seu lado intuitivo. Ao inspirar pela direita, você alimenta sua ação no mundo. Você é o tecelão que une as duas energias.", comoPraticar: ["Sente-se confortavelmente com a coluna ereta.", "Use o polegar direito para fechar a narina direita. Inspire lenta e profundamente pela narina esquerda.", "Feche a narina esquerda com o dedo anelar direito, libere o polegar e expire completamente pela narina direita.", "Inspire pela narina direita.", "Feche a narina direita com o polegar, libere o anelar e expire pela narina esquerda. Este é um ciclo. Continue por 3-5 minutos."], termosPesquisa: "tutorial Nadi Shodhana para iniciantes, equilibrar Ida e Pingala nadis" },
-        { name: "Ujjayi Pranayama", translation: "Respiração Vitoriosa", imagePlaceholder: "🌊", paraQueServe: "Para aquecer o corpo, aumentar o foco e criar um ritmo meditativo que ancora a mente no presente. O som do oceano interior.", pontoFoco: "O som é a própria ferramenta. Concentre-se na vibração suave na sua garganta. Deixe que o som rítmico, como as ondas do mar, lave seus pensamentos ansiosos.", comoPraticar: ["Sente-se ou fique em uma postura confortável.", "Contraia suavemente a parte de trás da sua garganta (glote), como se estivesse sussurrando.", "Inspire e expire pelo nariz, mantendo a contração. A respiração produzirá um som suave, sibilante.", "Mantenha a inspiração e a expiração com a mesma duração."], termosPesquisa: "como fazer a respiração Ujjayi, benefícios do som na meditação" },
-        { name: "Bhastrika", translation: "Respiração do Fole", imagePlaceholder: "🔥", paraQueServe: "Para energizar o corpo e a mente, aumentar a vitalidade e transmutar a inércia. É uma explosão de Prana que purifica e desperta o fogo interior.", pontoFoco: "Visualize que você é um fole de ferreiro atiçando as brasas do seu Chakra do Plexo Solar (Manipura).", comoPraticar: ["Sente-se com a coluna ereta.", "Inspire e expire de forma forçada e rápida pelo nariz. O movimento deve vir do seu diafragma.", "Faça um ciclo de 10 respirações, depois respire normalmente. Comece com um ciclo e aumente para 3. (Cuidado: pode causar tontura)."], termosPesquisa: "Bhastrika pranayama tutorial, contraindicações Bhastrika" },
-        { name: "Sama Vritti", translation: "Respiração Quadrada", imagePlaceholder: "🔲", paraQueServe: "Para acalmar a mente, reduzir a ansiedade e criar um estado de equilíbrio e estabilidade. É uma âncora de serenidade em meio ao caos.", pontoFoco: "Visualize a construção de um quadrado perfeito com sua respiração, dando à sua mente uma estrutura sagrada para habitar.", comoPraticar: ["Sente-se ou deite-se confortavelmente.", "Expire todo o ar.", "Inspire contando até 4.", "Segure o ar, contando até 4.", "Expire contando até 4.", "Segure sem ar, contando até 4. Este é um ciclo."], termosPesquisa: "box breathing navy seals, respiração quadrada para ansiedade" },
-        { name: "Sheetali Pranayama", translation: "Respiração Refrescante", imagePlaceholder: "❄️", paraQueServe: "Para resfriar o corpo, acalmar a mente e aliviar a frustração ou o excesso de 'fogo' (raiva).", pontoFoco: "Sinta o ar frio entrando e refrescando todo o seu sistema, como uma brisa suave em um dia quente.", comoPraticar: ["Sente-se confortavelmente.", "Enrole a língua em formato de 'U', colocando-a para fora da boca.", "Inspire lentamente pela língua enrolada, como se estivesse bebendo o ar por um canudo.", "Recolha a língua, feche a boca e expire lentamente pelo nariz.", "Repita por 5 a 10 ciclos."], termosPesquisa: "Sheetali pranayama tutorial, pranayama para resfriar o corpo" },
-        { name: "Bhramari Pranayama", translation: "Respiração da Abelha", imagePlaceholder: "🐝", paraQueServe: "Para acalmar a mente de forma quase instantânea, aliviar a ansiedade e a raiva. A vibração do som tem um efeito calmante profundo no sistema nervoso.", pontoFoco: "Concentre-se na vibração que o som produz em todo o seu crânio, permitindo que ela dissolva os pensamentos agitados.", comoPraticar: ["Sente-se em um lugar tranquilo e feche os olhos.", "Use os polegares para tapar suavemente os ouvidos.", "Inspire profundamente pelo nariz.", "Ao expirar, mantenha a boca fechada e produza um som de 'Mmmmm', como o zumbido de uma abelha.", "Continue pelo tempo que for confortável."], termosPesquisa: "Bhramari pranayama benefícios, respiração da abelha para ansiedade" }
+        { name: "Nadi Shodhana", translation: "Respiração das Narinas Alternadas", imagePlaceholder: "☯️", paraQueServe: "Para harmonizar os hemisférios cerebrais, acalmar o sistema nervoso e equilibrar as energias masculina (Pingala, solar, lógica) e feminina (Ida, lunar, intuição) dentro de você.", pontoFoco: "Sinta que, ao inspirar pela narina esquerda, você está nutrindo seu lado intuitivo. Ao inspirar pela direita, você alimenta sua ação no mundo. Você é o tecelão que une as duas energias.", comoPraticar: ["Sente-se confortavelmente com a coluna ereta.", "Use o polegar direito para fechar a narina direita. Inspire lenta e profundamente pela narina esquerda.", "Feche a narina esquerda com o dedo anelar direito, libere o polegar e expire completamente pela narina direita.", "Inspire pela narina direita.", "Feche a narina direita com o polegar, libere o anelar e expire pela narina esquerda. Este é um ciclo. Continue por 3-5 minutos."], termosPesquisa: "tutorial Nadi Shodhana para iniciantes, equilibrar Ida e Pingala nadis", precautions: "Prática segura para a maioria das pessoas. Evite forçar a respiração.", associatedPillar: "Pilar do Ar", associatedChakra: "Ajna (Terceiro Olho)" },
+        { name: "Ujjayi Pranayama", translation: "Respiração Vitoriosa", imagePlaceholder: "🌊", paraQueServe: "Para aquecer o corpo, aumentar o foco e criar um ritmo meditativo que ancora a mente no presente. O som do oceano interior.", pontoFoco: "O som é a própria ferramenta. Concentre-se na vibração suave na sua garganta. Deixe que o som rítmico, como as ondas do mar, lave seus pensamentos ansiosos.", comoPraticar: ["Sente-se ou fique em uma postura confortável.", "Contraia suavemente a parte de trás da sua garganta (glote), como se estivesse sussurrando.", "Inspire e expire pelo nariz, mantendo a contração. A respiração produzirá um som suave, sibilante.", "Mantenha a inspiração e a expiração com a mesma duração."], termosPesquisa: "como fazer a respiração Ujjayi, benefícios do som na meditação", precautions: "Se sentir tontura, retorne à respiração normal. A contração da garganta deve ser suave.", associatedPillar: "Pilar do Som", associatedChakra: "Vishuddha (Laríngeo)" },
+        { name: "Bhastrika", translation: "Respiração do Fole", imagePlaceholder: "🔥", paraQueServe: "Para energizar o corpo e a mente, aumentar a vitalidade e transmutar a inércia. É uma explosão de Prana que purifica e desperta o fogo interior.", pontoFoco: "Visualize que você é um fole de ferreiro atiçando as brasas do seu Chakra do Plexo Solar (Manipura).", comoPraticar: ["Sente-se com a coluna ereta.", "Inspire e expire de forma forçada e rápida pelo nariz. O movimento deve vir do seu diafragma.", "Faça um ciclo de 10 respirações, depois respire normalmente. Comece com um ciclo e aumente para 3. (Cuidado: pode causar tontura)."], termosPesquisa: "Bhastrika pranayama tutorial, contraindicações Bhastrika", precautions: "Pode causar tontura. Não recomendado para grávidas, pessoas com pressão alta ou problemas cardíacos.", associatedPillar: "Pilar do Fogo", associatedChakra: "Manipura (Plexo Solar)" },
+        { name: "Sama Vritti", translation: "Respiração Quadrada", imagePlaceholder: "🔲", paraQueServe: "Para acalmar a mente, reduzir a ansiedade e criar um estado de equilíbrio e estabilidade. É uma âncora de serenidade em meio ao caos.", pontoFoco: "Visualize a construção de um quadrado perfeito com sua respiração, dando à sua mente uma estrutura sagrada para habitar.", comoPraticar: ["Sente-se ou deite-se confortavelmente.", "Expire todo o ar.", "Inspire contando até 4.", "Segure o ar, contando até 4.", "Expire contando até 4.", "Segure sem ar, contando até 4. Este é um ciclo."], termosPesquisa: "box breathing navy seals, respiração quadrada para ansiedade", precautions: "Prática segura. Se a retenção de ar for desconfortável, reduza o tempo.", associatedPillar: "Pilar da Terra", associatedChakra: "Muladhara (Raiz)" },
+        { name: "Sheetali Pranayama", translation: "Respiração Refrescante", imagePlaceholder: "❄️", paraQueServe: "Para resfriar o corpo, acalmar a mente e aliviar a frustração ou o excesso de 'fogo' (raiva).", pontoFoco: "Sinta o ar frio entrando e refrescando todo o seu sistema, como uma brisa suave em um dia quente.", comoPraticar: ["Sente-se confortavelmente.", "Enrole a língua em formato de 'U', colocando-a para fora da boca.", "Inspire lentamente pela língua enrolada, como se estivesse bebendo o ar por um canudo.", "Recolha a língua, feche a boca e expire lentamente pelo nariz.", "Repita por 5 a 10 ciclos."], termosPesquisa: "Sheetali pranayama tutorial, pranayama para resfriar o corpo", precautions: "Evite em ambientes muito poluídos ou se tiver pressão baixa. Não recomendado para quem tem asma ou bronquite.", associatedPillar: "Pilar da Água", associatedChakra: "Svadhisthana (Sacral)" },
+        { name: "Bhramari Pranayama", translation: "Respiração da Abelha", imagePlaceholder: "🐝", paraQueServe: "Para acalmar a mente de forma quase instantânea, aliviar a ansiedade e a raiva. A vibração do som tem um efeito calmante profundo no sistema nervoso.", pontoFoco: "Concentre-se na vibração que o som produz em todo o seu crânio, permitindo que ela dissolva os pensamentos agitados.", comoPraticar: ["Sente-se em um lugar tranquilo e feche os olhos.", "Use os polegares para tapar suavemente os ouvidos.", "Inspire profundamente pelo nariz.", "Ao expirar, mantenha a boca fechada e produza um som de 'Mmmmm', como o zumbido de uma abelha.", "Continue pelo tempo que for confortável."], termosPesquisa: "Bhramari pranayama benefícios, respiração da abelha para ansiedade", precautions: "Prática segura. Apenas evite se tiver uma infecção ativa no ouvido.", associatedPillar: "Pilar do Som", associatedChakra: "Ajna (Terceiro Olho) e Sahasrara (Coronário)" }
     ]
 };
 
