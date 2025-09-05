@@ -304,6 +304,25 @@
              float: left; margin-right: 1.5rem; margin-bottom: 0.5rem;
         }
 
+        /* --- Jornada Section --- */
+        .jornada-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .info-block {
+            background-color: rgba(0,0,0,0.2);
+            border-left: 3px solid #a37e2c;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+        .info-block h5 {
+            font-family: 'IM Fell English', serif;
+            font-weight: bold;
+            color: #c8a44d;
+            margin-bottom: 0.5rem;
+        }
+
         /* --- Generic Detail Modal --- */
         .detail-modal {
             position: fixed; inset: 0; background-color: rgba(10, 5, 20, 0.8); backdrop-filter: blur(8px);
