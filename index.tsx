@@ -330,10 +330,53 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const sunHtml = `<div class="cosmogram-sun"><div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}"><div class="crystal-orb-icon">${cosmogramData.sun.icon}</div><div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div></div></div>`;
-    const orbitsHtml = cosmogramData.orbits.map(orbit => `<div class="orbit"><h3 class="orbit-title">${orbit.name}</h3><div class="flex flex-wrap justify-center items-center gap-8">${orbit.crystals.map(crystal => `<div class="crystal-orb" data-crystal-name="${crystal.name}"><div class="crystal-orb-icon">${crystal.icon}</div><div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div></div>`).join('')}</div></div>`).join('');
+    const allCrystals = cosmogramData.orbits.flatMap(o => o.crystals);
+    const galaxyContainerWidth = container.offsetWidth > 0 ? container.offsetWidth : 800;
+    const centerX = galaxyContainerWidth / 2;
+    const centerY = 400;
+    const a = 20;
+    const b = 18;
 
-    container.innerHTML = `<div class="cosmogram-intro"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2><p class="text-gray-400">${cosmogramData.intro}</p></div>${sunHtml}${orbitsHtml}`;
+    const crystalsHtml = allCrystals.map((crystal, index) => {
+        const angle = 0.8 * index;
+        const radius = a + b * angle;
+
+        const x = centerX + radius * Math.cos(angle) - 90;
+        const y = centerY + radius * Math.sin(angle) - 90;
+
+        return `
+            <div class="crystal-orb" data-crystal-name="${crystal.name}" style="left: ${x}px; top: ${y}px;">
+                <div class="crystal-orb-icon">${crystal.icon}</div>
+                <div>
+                    <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                    <p class="text-xs text-gray-400">${crystal.subtitle}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    const sunX = centerX - 110;
+    const sunY = centerY - 110;
+    const sunHtml = `
+        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}" style="left: ${sunX}px; top: ${sunY}px; z-index: 10;">
+            <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
+            <div>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = `
+        <div class="cosmogram-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
+            <p class="text-gray-400">${cosmogramData.intro}</p>
+        </div>
+        <div class="cosmogram-container">
+            ${sunHtml}
+            ${crystalsHtml}
+        </div>
+    `;
 }
 
 function renderChakraSection() {
