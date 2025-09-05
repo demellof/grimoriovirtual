@@ -92,6 +92,29 @@
             width: 300px;
             height: 300px;
         }
+
+        /* --- Touch-based Animation Trigger --- */
+        .pillar-card.touch-hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #c8a44d;
+            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
+        }
+        .pillar-card.touch-hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .planetary-seal.touch-hover {
+             transform: scale(1.1);
+        }
+        .planetary-seal.touch-hover .seal-icon {
+            border-color: #c8a44d;
+            box-shadow: 0 0 15px rgba(200, 164, 77, 0.4);
+        }
+        .crystal-orb.touch-hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: #c8a44d;
+            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
+        }
         
         /* --- Content Sections & Animations --- */
         .content-section { display: none; animation: fadeIn 0.8s ease-out; }
