@@ -479,6 +479,17 @@ function renderGrimoireEntries(entries) {
 
 
 // --- EVENT LISTENERS ---
+function triggerTouchAnimation(element) {
+    if (!element) return;
+    // Prevent re-triggering if animation is in progress
+    if (element.classList.contains('touch-hover')) return;
+
+    element.classList.add('touch-hover');
+    setTimeout(() => {
+        element.classList.remove('touch-hover');
+    }, 1000);
+}
+
 function setupEventListeners() {
     document.getElementById('close-modal-btn')?.addEventListener('click', () => hideModal(errorModal));
     document.getElementById('close-detail-modal')?.addEventListener('click', () => hideModal(detailModal));
@@ -531,7 +542,9 @@ function setupEventListeners() {
         
         const pillarCard = target.closest('.pillar-card');
         if (pillarCard instanceof HTMLElement && pillarCard.dataset.pillar) {
-            showPillarDetails(pillarCard.dataset.pillar);
+            triggerTouchAnimation(pillarCard);
+            const pillarId = pillarCard.dataset.pillar;
+            setTimeout(() => showPillarDetails(pillarId), 300);
             return;
         }
 
@@ -559,6 +572,7 @@ function setupEventListeners() {
 
         const crystalOrb = target.closest('.crystal-orb');
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
+            triggerTouchAnimation(crystalOrb);
             const name = crystalOrb.dataset.crystalName;
             let crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
             if (crystal) showCrystalDetails(crystal);
@@ -567,6 +581,7 @@ function setupEventListeners() {
 
         const planetarySeal = target.closest('.planetary-seal');
         if (planetarySeal instanceof HTMLElement && planetarySeal.dataset.sealName) {
+            triggerTouchAnimation(planetarySeal);
             const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
             if(seal) showPlanetarySealDetails(seal);
             return;
