@@ -212,56 +212,24 @@ function renderJornadaSection() {
     const container = document.getElementById('jornada-section');
     if (!container) return;
 
-    const jornadaHtml = jornadaFlorescerData.map(etapa => {
-        // Helper to render mythology and PNL techniques
-        const mitologiaHtml = etapa.mitologia.map(m => `<li><strong>${m.cultura}:</strong> ${m.historia}</li>`).join('');
-        const pnlHtml = etapa.pnl.tecnicas.map(t => `<li><strong>${t.nome}:</strong> ${t.desc}</li>`).join('');
-        const deusesHtml = etapa.deusDeusa.culturas.map(d => `<li><strong>${d.cultura}:</strong> ${d.nome}</li>`).join('');
-        const sensoriaisHtml = etapa.elementosSensoriais.elementos.map(e => `<li><strong>${e.tipo}:</strong> ${e.nome} - <em>${e.proposito}</em></li>`).join('');
-
-        return `
-        <div class="card rounded-lg mb-4 overflow-hidden no-hover" style="--etapa-color: ${etapa.corPrincipal.split('/')[0].toLowerCase()};">
+    const jornadaHtml = jornadaFlorescerData.map(etapa => `
+        <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div>
-                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.etapa}. ${etapa.title}</h3>
-                    <p class="text-sm text-gray-400" style="color: ${etapa.corPrincipal.split('/')[0].toLowerCase()};">${etapa.corPrincipal}</p>
-                </div>
+                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
-            <div class="accordion-content bg-[#222] p-6 border-t border-[#444] text-sm">
-                <div class="jornada-grid">
-                    <!-- Coluna 1: Conceitos -->
+            <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
+                <p class="mb-6 italic text-gray-400">"${etapa.foco}"</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
                     <div class="space-y-4">
-                        <div class="info-block"><h5><i class="fas fa-crosshairs mr-2"></i>Foco da Etapa</h5><p>${etapa.pilar}</p></div>
-                        <div class="info-block"><h5><i class="fas fa-atom mr-2"></i>Chakra e Pilar</h5><p><strong>Chakra:</strong> ${etapa.chakra}<br><strong>Pilar:</strong> ${etapa.pilar}</p></div>
-                        <div class="info-block"><h5><i class="fas fa-mask mr-2"></i>Mitologia</h5><ul class="list-none space-y-1">${mitologiaHtml}</ul></div>
-                        <div class="info-block"><h5><i class="fas fa-brain mr-2"></i>PNL</h5><ul class="list-none space-y-1">${pnlHtml}</ul></div>
+                        <div><h4 class="font-bold text-[#a37e2c] mb-2">Arquétipos Guia:</h4><p class="text-gray-400">${etapa.arquétipos}</p></div>
+                        <div><h4 class="font-bold text-[#a37e2c] mb-2">Pilares Focais:</h4><p class="text-gray-400">${etapa.pilares}</p></div>
                     </div>
-                    <!-- Coluna 2: Práticas e Associações -->
-                    <div class="space-y-4">
-                        <div class="info-block"><h5><i class="fas fa-tree mr-2"></i>Símbolo Natural</h5><p>${etapa.arvore.nome} (${etapa.arvore.cor}) - ${etapa.arvore.simbolismo}</p></div>
-                        <div class="info-block"><h5><i class="fas fa-sync-alt mr-2"></i>Ciclos</h5>
-                            <p><strong>Lunar:</strong> ${etapa.cicloLunar.fase} (${etapa.cicloLunar.cor}) - ${etapa.cicloLunar.proposito}</p>
-                            <p><strong>Sazonal:</strong> ${etapa.cicloSazonal.sabbath} - ${etapa.cicloSazonal.proposito}</p>
-                        </div>
-                        <div class="info-block"><h5><i class="fas fa-users mr-2"></i>Arquétipos Divinos</h5>
-                            <p><strong>Orixá:</strong> ${etapa.orixa.nome} (${etapa.orixa.cor}) - ${etapa.orixa.proposito}</p>
-                            <p><strong>Deuses:</strong></p> <ul class="list-none ml-4">${deusesHtml}</ul>
-                        </div>
-                        <div class="info-block"><h5><i class="fas fa-tools mr-2"></i>Ação e Qualidade</h5>
-                            <p><strong>Ação:</strong> ${etapa.acao.titulo} (${etapa.acao.cor})</p>
-                            <p><strong>Qualidade:</strong> ${etapa.acao.qualidade}</p>
-                        </div>
-                        <div class="info-block"><h5><i class="fas fa-mortar-pestle mr-2"></i>Elementos Sensoriais</h5>
-                            <ul class="list-none space-y-1">${sensoriaisHtml}</ul>
-                            <p class="mt-2 text-xs text-gray-400"><strong>Como Usar:</strong> ${etapa.elementosSensoriais.comoUsar}</p>
-                        </div>
-                    </div>
+                    <div><h4 class="font-bold text-[#a37e2c] mb-2">Práticas Sugeridas:</h4><div class="text-gray-400">${etapa.praticas}</div></div>
                 </div>
             </div>
         </div>
-    `;
-    }).join('');
+    `).join('');
 
     container.innerHTML = `
         <div class="section-intro">
@@ -362,53 +330,10 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const allCrystals = cosmogramData.orbits.flatMap(o => o.crystals);
-    const galaxyContainerWidth = container.offsetWidth > 0 ? container.offsetWidth : 800;
-    const centerX = galaxyContainerWidth / 2;
-    const centerY = 400;
-    const a = 20;
-    const b = 22;
+    const sunHtml = `<div class="cosmogram-sun"><div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}"><div class="crystal-orb-icon">${cosmogramData.sun.icon}</div><div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div></div></div>`;
+    const orbitsHtml = cosmogramData.orbits.map(orbit => `<div class="orbit"><h3 class="orbit-title">${orbit.name}</h3><div class="flex flex-wrap justify-center items-center gap-8">${orbit.crystals.map(crystal => `<div class="crystal-orb" data-crystal-name="${crystal.name}"><div class="crystal-orb-icon">${crystal.icon}</div><div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div></div>`).join('')}</div></div>`).join('');
 
-    const crystalsHtml = allCrystals.map((crystal, index) => {
-        const angle = 0.9 * index;
-        const radius = a + b * angle;
-
-        const x = centerX + radius * Math.cos(angle) - 90;
-        const y = centerY + radius * Math.sin(angle) - 90;
-
-        return `
-            <div class="crystal-orb" data-crystal-name="${crystal.name}" style="left: ${x}px; top: ${y}px;">
-                <div class="crystal-orb-icon">${crystal.icon}</div>
-                <div>
-                    <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
-                    <p class="text-xs text-gray-400">${crystal.subtitle}</p>
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    const sunX = centerX - 110;
-    const sunY = centerY - 110;
-    const sunHtml = `
-        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}" style="left: ${sunX}px; top: ${sunY}px; z-index: 10;">
-            <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
-            <div>
-                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
-                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
-            </div>
-        </div>
-    `;
-
-    container.innerHTML = `
-        <div class="cosmogram-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
-            <p class="text-gray-400">${cosmogramData.intro}</p>
-        </div>
-        <div class="cosmogram-container">
-            ${sunHtml}
-            ${crystalsHtml}
-        </div>
-    `;
+    container.innerHTML = `<div class="cosmogram-intro"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2><p class="text-gray-400">${cosmogramData.intro}</p></div>${sunHtml}${orbitsHtml}`;
 }
 
 function renderChakraSection() {
@@ -554,17 +479,6 @@ function renderGrimoireEntries(entries) {
 
 
 // --- EVENT LISTENERS ---
-function triggerTouchAnimation(element) {
-    if (!element) return;
-    // Prevent re-triggering if animation is in progress
-    if (element.classList.contains('touch-hover')) return;
-
-    element.classList.add('touch-hover');
-    setTimeout(() => {
-        element.classList.remove('touch-hover');
-    }, 1000);
-}
-
 function setupEventListeners() {
     document.getElementById('close-modal-btn')?.addEventListener('click', () => hideModal(errorModal));
     document.getElementById('close-detail-modal')?.addEventListener('click', () => hideModal(detailModal));
@@ -617,9 +531,7 @@ function setupEventListeners() {
         
         const pillarCard = target.closest('.pillar-card');
         if (pillarCard instanceof HTMLElement && pillarCard.dataset.pillar) {
-            triggerTouchAnimation(pillarCard);
-            const pillarId = pillarCard.dataset.pillar;
-            setTimeout(() => showPillarDetails(pillarId), 300);
+            showPillarDetails(pillarCard.dataset.pillar);
             return;
         }
 
@@ -647,37 +559,17 @@ function setupEventListeners() {
 
         const crystalOrb = target.closest('.crystal-orb');
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
-            triggerTouchAnimation(crystalOrb);
             const name = crystalOrb.dataset.crystalName;
-            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
-
-            if (crystal?.color) {
-                crystalOrb.classList.add('light-up');
-                setTimeout(() => crystalOrb.classList.remove('light-up'), 1000);
-            }
-
+            let crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
             if (crystal) showCrystalDetails(crystal);
             return;
         }
 
         const planetarySeal = target.closest('.planetary-seal');
         if (planetarySeal instanceof HTMLElement && planetarySeal.dataset.sealName) {
-            triggerTouchAnimation(planetarySeal);
             const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
             if(seal) showPlanetarySealDetails(seal);
             return;
-        }
-    });
-
-    appContainer?.addEventListener('mouseover', (e) => {
-        if (!(e.target instanceof Element)) return;
-        const crystalOrb = e.target.closest('.crystal-orb');
-        if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
-            const name = crystalOrb.dataset.crystalName;
-            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
-            if (crystal?.color) {
-                crystalOrb.style.setProperty('--crystal-light-color', crystal.color);
-            }
         }
     });
 
