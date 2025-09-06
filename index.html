@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grimório Virtual</title>
+    <title>Rota Pagã: Guia Holístico Pessoal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* --- Base & Fonts --- */
@@ -17,7 +17,7 @@
             color: #e0e0e0; 
             overflow-x: hidden;
         }
-        .font-cinzel { font-family: 'IM Fell English', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); letter-spacing: 0.05em; }
+        .font-cinzel { font-family: 'Cinzel', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); }
 
         /* --- Cosmic Background --- */
         body::before {
@@ -37,26 +37,10 @@
 
         /* --- Components & Layout --- */
         .card {
-            position: relative;
             background-color: rgba(20, 15, 30, 0.8);
             backdrop-filter: blur(8px);
             border: 1px solid #4a3a69;
             transition: all 0.3s ease;
-            z-index: 0;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.rawpixel.com/image_png_social_landscape/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcHg3NzAwMDEtaW1hZ2Utam9iNjMwLWEtbDBnMGE5M2cucG5n.png');
-            background-size: cover;
-            opacity: 0.05;
-            mix-blend-mode: screen;
-            z-index: -1;
-            pointer-events: none;
         }
         .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
         .btn-primary:hover { background-color: #c8a44d; }
@@ -108,46 +92,6 @@
             width: 300px;
             height: 300px;
         }
-
-        /* --- Touch-based Animation Trigger --- */
-        .pillar-card.touch-hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
-        }
-        .pillar-card.touch-hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        .planetary-seal.touch-hover {
-             transform: scale(1.1);
-        }
-        .planetary-seal.touch-hover .seal-icon {
-            border-color: #c8a44d;
-            box-shadow: 0 0 15px rgba(200, 164, 77, 0.4);
-        }
-        .crystal-orb.touch-hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
-        }
-        .crystal-orb::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse, var(--crystal-light-color, transparent) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .crystal-orb:hover::after, .crystal-orb.light-up::after {
-            opacity: 0.7;
-        }
         
         /* --- Content Sections & Animations --- */
         .content-section { display: none; animation: fadeIn 0.8s ease-out; }
@@ -195,14 +139,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'IM Fell English', serif;
+            font-family: 'Cinzel', serif;
             font-size: 4rem;
             color: #a37e2c;
             text-shadow: 0 0 10px #000;
             border-bottom: 1px solid #4a3a69;
         }
         .herb-detail-heading {
-            font-family: 'IM Fell English', serif;
+            font-family: 'Cinzel', serif;
             font-weight: bold;
             color: #a37e2c;
             margin-bottom: 0.5rem;
@@ -246,23 +190,12 @@
         #intention-form textarea { min-height: 100px; }
 
         /* --- Cosmogram Section --- */
-        .cosmogram-intro { text-align: center; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cosmogram-intro { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cosmogram-sun { text-align: center; margin-bottom: 3rem; }
+        .orbit { margin-bottom: 3rem; text-align: center; }
+        .orbit-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #a37e2c; margin-bottom: 1.5rem; }
         
-        .cosmogram-container {
-            position: relative;
-            width: 100%;
-            height: 800px; /* Adjust as needed */
-            margin: 2rem auto;
-            animation: galaxy-spin 180s linear infinite;
-        }
-
-        @keyframes galaxy-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .crystal-orb {
-            position: absolute;
             background-color: rgba(20, 15, 30, 0.9);
             border-radius: 50%;
             width: 180px;
@@ -275,7 +208,7 @@
             text-align: center;
             cursor: pointer;
             border: 1px solid #4a3a69;
-            transition: all 0.5s ease, top 1.5s ease, left 1.5s ease;
+            transition: all 0.3s ease;
         }
         .crystal-orb:hover {
             transform: translateY(-5px) scale(1.05);
@@ -302,25 +235,6 @@
              display: flex; align-items: center; justify-content: center;
              font-size: 3rem; color: #a37e2c;
              float: left; margin-right: 1.5rem; margin-bottom: 0.5rem;
-        }
-
-        /* --- Jornada Section --- */
-        .jornada-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .info-block {
-            background-color: rgba(0,0,0,0.2);
-            border-left: 3px solid #a37e2c;
-            padding: 1rem;
-            border-radius: 0.25rem;
-        }
-        .info-block h5 {
-            font-family: 'IM Fell English', serif;
-            font-weight: bold;
-            color: #c8a44d;
-            margin-bottom: 0.5rem;
         }
 
         /* --- Generic Detail Modal --- */
@@ -372,7 +286,7 @@
 
     <div id="app-container" class="hidden">
         <header class="bg-black/50 backdrop-blur-sm text-white p-6 text-center shadow-lg border-b-2 border-[#a37e2c]">
-            <h1 class="text-3xl font-bold font-cinzel tracking-wider">Grimório Virtual</h1>
+            <h1 class="text-3xl font-bold font-cinzel tracking-wider">Rota Pagã</h1>
             <div id="user-id-display" class="text-sm mt-2 text-gray-400"></div>
         </header>
         
