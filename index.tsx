@@ -330,10 +330,50 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const sunHtml = `<div class="cosmogram-sun"><div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}"><div class="crystal-orb-icon">${cosmogramData.sun.icon}</div><div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div></div></div>`;
-    const orbitsHtml = cosmogramData.orbits.map(orbit => `<div class="orbit"><h3 class="orbit-title">${orbit.name}</h3><div class="flex flex-wrap justify-center items-center gap-8">${orbit.crystals.map(crystal => `<div class="crystal-orb" data-crystal-name="${crystal.name}"><div class="crystal-orb-icon">${crystal.icon}</div><div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div></div>`).join('')}</div></div>`).join('');
+    const galaxyContainerWidth = container.offsetWidth > 0 ? container.offsetWidth : 800;
+    const centerX = galaxyContainerWidth / 2;
+    const centerY = 450; // Center of the container
 
-    container.innerHTML = `<div class="cosmogram-intro"><h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2><p class="text-gray-400">${cosmogramData.intro}</p></div>${sunHtml}${orbitsHtml}`;
+    const orbitsHtml = cosmogramData.orbits.map((orbit, orbitIndex) => {
+        const radius = 150 + (orbitIndex * 100);
+        const numCrystals = orbit.crystals.length;
+        const angleStep = (2 * Math.PI) / numCrystals;
+
+        const crystalsHtml = orbit.crystals.map((crystal, crystalIndex) => {
+            const angle = angleStep * crystalIndex;
+            const x = centerX + radius * Math.cos(angle) - 90; // offset for orb width
+            const y = centerY + radius * Math.sin(angle) - 90; // offset for orb height
+            return `
+                <div class="crystal-orb" data-crystal-name="${crystal.name}" style="left: ${x}px; top: ${y}px;">
+                    <div class="crystal-orb-icon">${crystal.icon}</div>
+                    <div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div>
+                </div>
+            `;
+        }).join('');
+
+        const animationDuration = 60 + (orbitIndex * 30); // Orbits rotate at different speeds
+        return `<div class="orbit-path" style="animation-duration: ${animationDuration}s;">${crystalsHtml}</div>`;
+    }).join('');
+
+    const sunX = centerX - 110;
+    const sunY = centerY - 110;
+    const sunHtml = `
+        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}" style="left: ${sunX}px; top: ${sunY}px; z-index: 10;">
+            <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
+            <div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div>
+        </div>
+    `;
+
+    container.innerHTML = `
+        <div class="cosmogram-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
+            <p class="text-gray-400">${cosmogramData.intro}</p>
+        </div>
+        <div class="cosmogram-container">
+            ${orbitsHtml}
+            ${sunHtml}
+        </div>
+    `;
 }
 
 function renderChakraSection() {
@@ -479,6 +519,15 @@ function renderGrimoireEntries(entries) {
 
 
 // --- EVENT LISTENERS ---
+function triggerTouchAnimation(element) {
+    if (!element) return;
+    if (element.classList.contains('touch-hover')) return;
+    element.classList.add('touch-hover');
+    setTimeout(() => {
+        element.classList.remove('touch-hover');
+    }, 1000);
+}
+
 function setupEventListeners() {
     document.getElementById('close-modal-btn')?.addEventListener('click', () => hideModal(errorModal));
     document.getElementById('close-detail-modal')?.addEventListener('click', () => hideModal(detailModal));
@@ -531,7 +580,9 @@ function setupEventListeners() {
         
         const pillarCard = target.closest('.pillar-card');
         if (pillarCard instanceof HTMLElement && pillarCard.dataset.pillar) {
-            showPillarDetails(pillarCard.dataset.pillar);
+            triggerTouchAnimation(pillarCard);
+            const pillarId = pillarCard.dataset.pillar;
+            setTimeout(() => showPillarDetails(pillarId), 300);
             return;
         }
 
@@ -559,17 +610,37 @@ function setupEventListeners() {
 
         const crystalOrb = target.closest('.crystal-orb');
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
+            triggerTouchAnimation(crystalOrb);
             const name = crystalOrb.dataset.crystalName;
-            let crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+
+            if (crystal?.color) {
+                crystalOrb.classList.add('light-up');
+                setTimeout(() => crystalOrb.classList.remove('light-up'), 1000);
+            }
+
             if (crystal) showCrystalDetails(crystal);
             return;
         }
 
         const planetarySeal = target.closest('.planetary-seal');
         if (planetarySeal instanceof HTMLElement && planetarySeal.dataset.sealName) {
+            triggerTouchAnimation(planetarySeal);
             const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
             if(seal) showPlanetarySealDetails(seal);
             return;
+        }
+    });
+
+    appContainer?.addEventListener('mouseover', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const crystalOrb = e.target.closest('.crystal-orb');
+        if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
+            const name = crystalOrb.dataset.crystalName;
+            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            if (crystal?.color) {
+                crystalOrb.style.setProperty('--crystal-light-color', crystal.color);
+            }
         }
     });
 
