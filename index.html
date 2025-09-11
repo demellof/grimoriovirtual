@@ -266,6 +266,32 @@
             animation: galaxy-spin 180s linear infinite;
         }
 
+        .cosmogram-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 780px; /* Adjust size to encompass the outermost orbit */
+            height: 780px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(200, 164, 77, 0.3),
+                        inset 0 0 40px rgba(200, 164, 77, 0.2);
+            pointer-events: none;
+            animation: pulse-heliosphere 10s infinite alternate;
+        }
+
+        @keyframes pulse-heliosphere {
+            from {
+                box-shadow: 0 0 40px rgba(200, 164, 77, 0.3),
+                            inset 0 0 40px rgba(200, 164, 77, 0.2);
+            }
+            to {
+                box-shadow: 0 0 60px rgba(200, 164, 77, 0.5),
+                            inset 0 0 60px rgba(200, 164, 77, 0.3);
+            }
+        }
+
         @keyframes galaxy-spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -459,15 +485,44 @@
         #pranayama-guide.active {
             display: flex;
         }
-        #breathing-dot {
-            transition: transform 4s ease-in-out; /* Default transition for smooth scaling */
+        #pranayama-anim-container .anim-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 4s ease-in-out;
+        }
+        #pranayama-anim-container .anim-circle {
+            background-color: #a37e2c;
+            border-radius: 50%;
         }
         .breathing-inhale {
-            transform: scale(1.5);
+            transform: scale(1.2);
         }
         .breathing-exhale {
-            transform: scale(0.8);
+            transform: scale(1);
         }
+
+        /* Square Breathing Animation */
+        #pranayama-anim-container .anim-square {
+            stroke: #a37e2c;
+            stroke-width: 10;
+            fill: transparent;
+            stroke-dasharray: 680; /* Perimeter of 170x170 square */
+            stroke-dashoffset: 680;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+        .draw-side-1 { animation-name: draw-one-side; }
+        .draw-side-2 { animation-name: draw-two-sides; }
+        .draw-side-3 { animation-name: draw-three-sides; }
+        .draw-side-4 { animation-name: draw-four-sides; }
+
+        @keyframes draw-one-side { to { stroke-dashoffset: 510; } } /* 680 - 170 */
+        @keyframes draw-two-sides { from { stroke-dashoffset: 510; } to { stroke-dashoffset: 340; } }
+        @keyframes draw-three-sides { from { stroke-dashoffset: 340; } to { stroke-dashoffset: 170; } }
+        @keyframes draw-four-sides { from { stroke-dashoffset: 170; } to { stroke-dashoffset: 0; } }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
@@ -495,7 +550,9 @@
     </div>
 
     <div id="pranayama-guide" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex-col items-center justify-center z-40 hidden">
-        <div id="breathing-dot" class="w-48 h-48 bg-gradient-to-br from-[#a37e2c] to-[#4a3a69] rounded-full shadow-lg"></div>
+        <div id="pranayama-anim-container" class="w-48 h-48 relative">
+            <!-- Animation shapes will be injected here by JS -->
+        </div>
         <p id="pranayama-instruction" class="text-2xl font-cinzel text-white mt-8"></p>
         <button id="stop-pranayama-btn" class="btn-secondary py-2 px-6 rounded-lg mt-8">Parar</button>
     </div>
