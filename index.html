@@ -523,6 +523,66 @@
         @keyframes draw-two-sides { from { stroke-dashoffset: 510; } to { stroke-dashoffset: 340; } }
         @keyframes draw-three-sides { from { stroke-dashoffset: 340; } to { stroke-dashoffset: 170; } }
         @keyframes draw-four-sides { from { stroke-dashoffset: 170; } to { stroke-dashoffset: 0; } }
+
+        /* --- Mind Map Section --- */
+        .mind-map-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            position: relative;
+            padding: 2rem;
+        }
+        .mind-map-center {
+            position: relative;
+        }
+        .mind-map-node {
+            background-color: rgba(20, 15, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #4a3a69;
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            z-index: 1;
+        }
+        .mind-map-node:hover {
+            border-color: #c8a44d;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
+        }
+        .mind-map-node.center-node {
+            width: 170px;
+            height: 170px;
+            border-color: #a37e2c;
+        }
+        .mind-map-node .node-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .mind-map-node .node-title {
+            font-family: 'IM Fell English', serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            line-height: 1.1;
+        }
+        .pillar-node {
+            position: absolute;
+        }
+        .mind-map-line {
+            position: absolute;
+            background-color: rgba(163, 126, 44, 0.3);
+            height: 2px;
+            transform-origin: left center;
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
@@ -565,9 +625,9 @@
         
         <nav id="main-nav" class="bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
             <button class="tab active py-4 px-6 font-semibold transition-colors text-sm" data-section="main-section"><i class="fas fa-home mr-2"></i>Santuário</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="mapa-mental-section"><i class="fas fa-project-diagram mr-2"></i>Mapa Mental</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="jornada-section"><i class="fas fa-map-signs mr-2"></i>Jornada Florescer</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-section"><i class="fas fa-star mr-2"></i>Altar de Manifestação</button>
-            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="tomo-de-poder-section"><i class="fas fa-book-dead mr-2"></i>Tomo de Poder</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="herbario-floresta-section"><i class="fas fa-leaf mr-2"></i>Herbário da Floresta</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-cristalino-section"><i class="fas fa-gem mr-2"></i>Cosmograma Cristalino</button>
             <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="chakra-section"><i class="fas fa-atom mr-2"></i>Centros de Poder</button>
@@ -583,9 +643,9 @@
                  <div id="pillar-content" class="card rounded-lg p-6 no-hover"></div>
             </section>
 
+            <section id="mapa-mental-section" class="content-section"></section>
             <section id="jornada-section" class="content-section"></section>
             <section id="cosmograma-section" class="content-section"></section>
-            <section id="tomo-de-poder-section" class="content-section"></section>
             <section id="herbario-floresta-section" class="content-section"></section>
             <section id="cosmograma-cristalino-section" class="content-section"></section>
             <section id="chakra-section" class="content-section"></section>

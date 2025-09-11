@@ -351,6 +351,69 @@ function renderJornadaSection() {
     `;
 }
 
+function renderMapaMentalSection() {
+    const container = document.getElementById('mapa-mental-section');
+    if (!container) return;
+
+    const centerNodeHtml = `
+        <div class="mind-map-node center-node" data-pillar="zero">
+            <div class="node-icon">${pillarZeroData.symbol}</div>
+            <div class="node-title">${pillarZeroData.title}</div>
+        </div>
+    `;
+
+    const mindMapHtml = `
+        <div class="section-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Mapa Mental dos Pilares</h2>
+            <p class="text-gray-400 mt-2">Uma visualização da Teia do Mundo e os Sete Pilares da Ascensão que a sustentam. Clique em um pilar para explorar seus mistérios.</p>
+        </div>
+        <div class="mind-map-container">
+            <div class="mind-map-center">
+                ${centerNodeHtml}
+            </div>
+        </div>
+    `;
+    container.innerHTML = mindMapHtml;
+
+    const centerEl = container.querySelector('.mind-map-center');
+    const pillars = Object.keys(pillarData);
+    const angleStep = (2 * Math.PI) / pillars.length;
+    const radius = 280;
+
+    pillars.forEach((key, index) => {
+        const p = pillarData[key];
+        const angle = angleStep * index - (Math.PI / 2); // Start from top
+
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        const node = document.createElement('div');
+        node.className = 'mind-map-node pillar-node';
+        node.dataset.pillar = key;
+        node.style.transform = `translate(${x}px, ${y}px)`;
+        node.innerHTML = `
+            <div class="node-icon">${p.title.split(' ')[0]}</div>
+            <div class="node-title">${p.title.split(' ').slice(2).join(' ')}</div>
+        `;
+
+        const line = document.createElement('div');
+        line.className = 'mind-map-line';
+        const lineangle = angle * (180 / Math.PI); // Convert to degrees
+        line.style.width = `${radius}px`;
+        line.style.transform = `rotate(${lineangle}deg)`;
+
+        centerEl.appendChild(line);
+        centerEl.appendChild(node);
+    });
+
+    centerEl.addEventListener('click', (e) => {
+        const node = e.target.closest('.mind-map-node');
+        if (node && node.dataset.pillar) {
+            showPillarDetails(node.dataset.pillar);
+        }
+    });
+}
+
 function renderAltarDeManifestacaoSection() {
     const container = document.getElementById('cosmograma-section');
     if (!container) return;
@@ -407,16 +470,22 @@ function renderHerbCards(season) {
     const container = document.getElementById('herb-cards-container');
     if (!container) return;
     const herbs = seasonalHerbData[season] || [];
-    container.innerHTML = herbs.map(herb => `
-        <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
-            <div class="herb-image-placeholder">${herb.name.charAt(0)}</div>
-            <div class="p-4">
-                <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
-                <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
-                <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
+    container.innerHTML = herbs.map(herb => {
+        const imageHtml = herb.image
+            ? `<img src="${herb.image}" alt="${herb.name}" class="w-full h-48 object-cover">`
+            : `<div class="herb-image-placeholder">${herb.name.charAt(0)}</div>`;
+
+        return `
+            <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
+                ${imageHtml}
+                <div class="p-4">
+                    <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
+                    <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
+                    <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderHerbarioFlorestaSection() {
@@ -867,9 +936,9 @@ function initApp() {
                 if (userIdDisplay) userIdDisplay.innerHTML = `<strong>Guardião da Centelha:</strong><br><span class="text-xs text-gray-500">A água, como a magia, sempre encontra seu caminho.</span>`;
                 
                 renderMainSection();
+                renderMapaMentalSection();
                 renderJornadaSection();
                 renderAltarDeManifestacaoSection();
-                renderTomoDePoderSection();
                 renderHerbarioFlorestaSection();
                 renderCosmogramaCristalinoSection();
                 renderChakraSection();

@@ -118,7 +118,17 @@ export const pillarData = {
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Consciência Cósmica e a União com a Fonte</h3>
             <p class="mb-4 text-gray-400">Este é o pilar mestre, a ponte entre o finito e o infinito, regido pelo Chakra Coronário (Sahasrara). Ele é a <strong>"Sala do Arquiteto"</strong>, onde o Guardião da Centelha aprende a se tornar o construtor consciente da sua própria realidade.</p>
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Arquitetura da Realidade (Neurociência e Hermetismo)</h4>
-            <p class="mb-4 text-gray-400">O princípio hermético "O Universo é Mental" encontra seu espelho na ciência da <strong>neuroplasticidade</strong>. Nossos pensamentos e hábitos repetidos esculpem as vias neurais do nosso cérebro, literalmente construindo a mente que experimenta a realidade. A mudança duradoura ocorre ao entendermos o <strong>Circuito do Hábito</strong> (Deixa -> Rotina -> Recompensa) e usarmos nossa vontade para forjar novos caminhos neurais.</p>
+            <p class="mb-4 text-gray-400">O princípio hermético "O Universo é Mental" encontra seu espelho na ciência da <strong>neuroplasticidade</strong>. Nossos pensamentos e hábitos repetidos esculpem as vias neurais do nosso cérebro, literalmente construindo a mente que experimenta a realidade. A mudança duradoura não é um ato de magia, mas de engenharia mental.</p>
+            <div class="card p-4 rounded-lg my-4 bg-black/20 border border-amber-600/20">
+                <h5 class="font-bold text-[#a37e2c] mb-2">Ritual Prático: Hackeando o Circuito do Hábito</h5>
+                <p class="text-sm text-gray-400 mb-2">Use o modelo de Charles Duhigg para reescrever um hábito indesejado:</p>
+                <ol class="list-decimal list-inside text-sm text-gray-300 space-y-1">
+                    <li><strong>Identifique a Rotina:</strong> Qual é o comportamento que você quer mudar? (Ex: Procrastinar navegando em redes sociais).</li>
+                    <li><strong>Isole a Recompensa:</strong> O que você realmente busca com essa rotina? É um alívio do tédio? Uma distração da ansiedade? Um momento de descanso? Teste diferentes recompensas para descobrir o anseio real.</li>
+                    <li><strong>Encontre a Deixa (Gatillho):</strong> Qual evento dispara a rotina? É um horário específico? Um estado emocional (cansaço, estresse)? Um local? Anote o gatilho assim que ele ocorrer.</li>
+                    <li><strong>Crie um Novo Plano:</strong> Agora, crie uma nova rotina que responda à mesma deixa e entregue a mesma recompensa. (Ex: Deixa: sentir-se estressado. Nova Rotina: praticar 3 minutos de respiração profunda. Recompensa: alívio da ansiedade).</li>
+                </ol>
+            </div>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "O Caibalion princípio do mentalismo", "neuroplasticidade como mudar hábitos", "livro O Poder do Hábito".</p>
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: As Ferramentas do Arquiteto (PNL na Prática)</h4>
             <p class="mb-4 text-gray-400">A Programação Neurolinguística (PNL) nos oferece uma caixa de ferramentas para a "Química Mental": <strong>Ancoragem</strong> para criar gatilhos de poder, <strong>Reestruturação Cognitiva</strong> para mudar a moldura de uma situação e o <strong>Padrão "Swish"</strong> para substituir neurologicamente um gatilho indesejado.</p>
@@ -185,6 +195,7 @@ export const seasonalHerbData = {
         { 
             name: 'Alecrim', 
             scientificName: 'Salvia rosmarinus',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Rosmarinus_officinalis_-_Köhler–s_Medizinal-Pflanzen-258.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Apolo, Hélios',
@@ -197,6 +208,7 @@ export const seasonalHerbData = {
         {
             name: 'Lavanda',
             scientificName: 'Lavandula angustifolia',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Lavandula_angustifolia_-_Köhler–s_Medizinal-Pflanzen-085.jpg',
             planet: 'Mercúrio',
             element: 'Ar',
             deities: 'Hermes, Mercúrio',
@@ -209,6 +221,7 @@ export const seasonalHerbData = {
         {
             name: 'Manjericão',
             scientificName: 'Ocimum basilicum',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Ocimum_basilicum_-_Köhler–s_Medizinal-Pflanzen-105.jpg',
             planet: 'Vênus',
             element: 'Fogo',
             deities: 'Vrinda Devi, Vênus, Afrodite',
@@ -223,6 +236,7 @@ export const seasonalHerbData = {
         {
             name: 'Rosa',
             scientificName: 'Rosa spp.',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Rosa_gallica_officinalis_-_Köhler–s_Medizinal-Pflanzen-127.jpg/800px-Rosa_gallica_officinalis_-_Köhler–s_Medizinal-Pflanzen-127.jpg',
             planet: 'Vênus',
             element: 'Água',
             deities: 'Afrodite, Vênus, Ísis',
@@ -235,6 +249,7 @@ export const seasonalHerbData = {
         {
             name: 'Canela',
             scientificName: 'Cinnamomum zeylanicum',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Cinnamomum_verum_-_Köhler–s_Medizinal-Pflanzen-187.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Afrodite, Lakshmi',
@@ -247,6 +262,7 @@ export const seasonalHerbData = {
         {
             name: 'Hortelã-pimenta',
             scientificName: 'Mentha piperita',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Mentha_piperita_-_Köhler–s_Medizinal-Pflanzen-095.jpg',
             planet: 'Mercúrio',
             element: 'Ar',
             deities: 'Mercúrio, Hermes',
@@ -261,6 +277,7 @@ export const seasonalHerbData = {
         { 
             name: 'Arruda', 
             scientificName: 'Ruta graveolens',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Ruta_graveolens_-_Köhler–s_Medizinal-Pflanzen-129.jpg/800px-Ruta_graveolens_-_Köhler–s_Medizinal-Pflanzen-129.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Marte, Hécate',
@@ -273,6 +290,7 @@ export const seasonalHerbData = {
         { 
             name: 'Guiné', 
             scientificName: 'Petiveria alliacea',
+            image: 'https://live.staticflickr.com/65535/48252251317_2628404555_b.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Ogum',
@@ -285,6 +303,7 @@ export const seasonalHerbData = {
         {
             name: 'Sálvia Branca',
             scientificName: 'Salvia apiana',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Salvia_apiana_-_sagesmudge.jpg/800px-Salvia_apiana_-_sagesmudge.jpg',
             planet: 'Júpiter',
             element: 'Ar',
             deities: 'Júpiter, Zeus',
@@ -297,6 +316,7 @@ export const seasonalHerbData = {
         {
             name: 'Louro',
             scientificName: 'Laurus nobilis',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Laurus_nobilis_-_Köhler–s_Medizinal-Pflanzen-086.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Apolo',
@@ -309,6 +329,7 @@ export const seasonalHerbData = {
         {
             name: 'Espinheira-Santa',
             scientificName: 'Maytenus ilicifolia',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Maytenus_ilicifolia_-_espinheira-santa.jpg/800px-Maytenus_ilicifolia_-_espinheira-santa.jpg',
             planet: 'Saturno',
             element: 'Terra',
             deities: 'Povos Indígenas, Curandeiros',
@@ -321,6 +342,7 @@ export const seasonalHerbData = {
         {
             name: 'Aroeira-Vermelha',
             scientificName: 'Schinus terebinthifolius',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Schinus_terebinthifolia_-_fruits.jpg/800px-Schinus_terebinthifolia_-_fruits.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Exu, Ogum, Iansã',
@@ -335,6 +357,7 @@ export const seasonalHerbData = {
         {
             name: 'Mirra',
             scientificName: 'Commiphora myrrha',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Commiphora_myrrha_-_Köhler–s_Medizinal-Pflanzen-042.jpg',
             planet: 'Lua',
             element: 'Água',
             deities: 'Ísis, Anúbis, Saturno',
@@ -347,6 +370,7 @@ export const seasonalHerbData = {
         {
             name: 'Olíbano',
             scientificName: 'Boswellia sacra',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Boswellia_sacra_resin_2.jpg/1024px-Boswellia_sacra_resin_2.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Ra, Apolo, Sol Invictus',
@@ -359,6 +383,7 @@ export const seasonalHerbData = {
         {
             name: 'Gengibre',
             scientificName: 'Zingiber officinale',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Zingiber_officinale_-_Köhler–s_Medizinal-Pflanzen-141.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Marte, Ares',
@@ -371,6 +396,7 @@ export const seasonalHerbData = {
         {
             name: 'Andiroba',
             scientificName: 'Carapa guianensis',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Andiroba_sementes.jpg/1024px-Andiroba_sementes.jpg',
             planet: 'Saturno',
             element: 'Terra',
             deities: 'Espíritos da Floresta, Povos da Amazônia',
@@ -383,6 +409,7 @@ export const seasonalHerbData = {
         {
             name: 'Palo Santo',
             scientificName: 'Bursera graveolens',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Palo_Santo_Holy_Wood.jpg/1024px-Palo_Santo_Holy_Wood.jpg',
             planet: 'Sol',
             element: 'Ar',
             deities: 'Xamãs, Curandeiros',
