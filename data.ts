@@ -160,7 +160,23 @@ export const altarData = {
         { name: "Vênus", icon: "♀", active: false, purpose: "Vênus rege o amor, a beleza e a harmonia. Corresponde a Netzach (Vitória). Invoque para cultivar o amor-próprio, a criatividade e a harmonia nos relacionamentos." },
         { name: "Mercúrio", icon: "☿", active: false, purpose: "Mercúrio rege a comunicação, o intelecto e a magia. Corresponde a Hod (Glória). Invoque para clareza mental, aprendizado e para manifestar sua vontade através da palavra." },
         { name: "Lua", icon: "☽", active: false, purpose: "A Lua rege as emoções, a intuição e o inconsciente. Corresponde a Yesod (Fundação). Invoque para navegar seu mundo interior, trabalhar com sonhos e fortalecer sua intuição." }
-    ]
+    ],
+    sigilGuide: `
+        <div class="card p-6 rounded-lg my-8 bg-black/20 border border-amber-600/20">
+            <h4 class="font-cinzel text-xl font-bold text-[#c8a44d] mb-4">A Arte da Sigilização: Forjando sua Vontade</h4>
+            <p class="text-gray-400 mb-4">O Altar de Manifestação é mais do que um mapa cósmico; é uma tela em branco para a sua Vontade. Os símbolos que você vê—os selos planetários—são chaves antigas. A sigilização, popularizada pela Magia do Caos, é uma técnica para criar suas próprias chaves. Um sigilo é a sua intenção destilada em sua forma mais pura, um glifo que fala diretamente ao seu subconsciente.</p>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Criar seu Sigilo:</h5>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                <li><strong>A Intenção:</strong> Escreva seu desejo em uma frase clara, positiva e no tempo presente. Ex: <span class="italic text-amber-300">"MINHA CRIATIVIDADE FLUI LIVREMENTE"</span>.</li>
+                <li><strong>A Condensação:</strong> Remova todas as vogais e as letras que se repetem. <br/>M<del>I</del>NH<del>A</del> CR<del>I</del><del>A</del>T<del>I</del>V<del>I</del>D<del>A</del>D<del>E</del> FL<del>U</del><del>I</del> L<del>I</del>VR<del>E</del>M<del>E</del>NT<del>E</del> → <span class="italic text-amber-300">MNHCRTVDFL</span>.</li>
+                <li><strong>A Criação:</strong> Combine as letras restantes em um único símbolo abstrato. Não pense demais. Desenhe, apague, sobreponha. O resultado deve ser esteticamente agradável para você, mas irreconhecível em sua origem. Este é o seu sigilo.</li>
+            </ol>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Ativar seu Sigilo:</h5>
+            <p class="text-gray-400">A ativação, ou 'carga', do sigilo é o ato de projetar sua energia nele. Isso é feito em um estado de 'gnose', ou consciência alterada. Você pode alcançar este estado através de meditação profunda, dança, exercício intenso, ou no pico de uma emoção forte. Olhe fixamente para o seu sigilo neste momento, projetando sua Vontade nele até que a imagem pareça 'piscar' ou desaparecer da sua visão periférica.</p>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">O Esquecimento:</h5>
+            <p class="text-gray-400">Este é o passo mais crucial. Após carregar o sigilo, você deve esquecê-lo conscientemente. Destrua o desenho físico (queime-o, rasgue-o) e não pense mais no desejo. A semente foi plantada no subconsciente; ficar cavando para ver se ela brotou só irá matar a planta. Confie no processo.</p>
+        </div>
+    `
 };
 
 export const seasonalHerbData = {
@@ -351,6 +367,30 @@ export const seasonalHerbData = {
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá Energizante:</strong> Beba um chá de gengibre antes de um ritual para aumentar sua energia pessoal e poder mágico.</li><li><strong>Pó Acelerador:</strong> Adicione gengibre em pó a sachês ou feitiços para acelerar seus efeitos.</li><li><strong>Amuleto de Sucesso:</strong> Carregue um pedaço da raiz para atrair sucesso e proteger contra o fracasso.</li></ul>`,
                 insightsDoBemViver: "As propriedades do gengibre de aquecer o corpo e aumentar a circulação são um paralelo físico de sua função energética: melhorar o 'fluxo' de dinheiro, amor e oportunidades em nossa vida. Ele nos lembra que para manifestar, precisamos de ação e circulação de energia."
             }
+        },
+        {
+            name: 'Andiroba',
+            scientificName: 'Carapa guianensis',
+            planet: 'Saturno',
+            element: 'Terra',
+            deities: 'Espíritos da Floresta, Povos da Amazônia',
+            content: {
+                almaDaErva: "O nome vem do tupi e significa 'gosto amargo'. A Andiroba é uma árvore-mestra da Amazônia, e seu poder reside em seu óleo amargo. Na espiritualidade da floresta, o amargo não é ruim; é um remédio poderoso. A Andiroba limpa, protege e regenera. Sua energia é de uma cura profunda e resiliente, que ensina a encontrar força nas dificuldades.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Óleo de Proteção Corporal:</strong> Usar o óleo de Andiroba no corpo cria um escudo energético que repele influências 'parasitárias' e fortalece a aura.</li><li><strong>Limpeza de Objetos:</strong> Um pano umedecido com seu óleo pode ser usado para limpar fisicamente e energeticamente ferramentas mágicas, especialmente as de madeira.</li><li><strong>Cura de Feridas Emocionais:</strong> Medite com o aroma do óleo, pedindo à energia da Andiroba que ajude a cicatrizar velhas feridas emocionais, assim como ela cicatriza a pele.</li></ul>`,
+                insightsDoBemViver: "A Andiroba nos ensina que a cura nem sempre é doce. O 'amargo' de seu óleo, que repele insetos e cura inflamações, é uma metáfora para a necessidade de enfrentar verdades desconfortáveis para alcançar a cura verdadeira. Ela nos conecta com a resiliência e a sabedoria ancestral da floresta."
+            }
+        },
+        {
+            name: 'Palo Santo',
+            scientificName: 'Bursera graveolens',
+            planet: 'Sol',
+            element: 'Ar',
+            deities: 'Xamãs, Curandeiros',
+            content: {
+                almaDaErva: "A 'Madeira Sagrada' da América do Sul. Seu aroma doce e resinoso é liberado quando a madeira é queimada, e acredita-se que eleva a vibração de um espaço, limpando energias negativas e atraindo positividade. É uma ferramenta de purificação que acalma a mente e o espírito, preparando o ambiente para a meditação e o ritual.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Limpeza Rápida:</strong> Acenda um pedaço de madeira de Palo Santo, deixe queimar por alguns segundos, apague a chama e espalhe a fumaça pelo ambiente, por sua aura ou por cristais.</li><li><strong>Chamado à Criatividade:</strong> Queime Palo Santo antes de iniciar um trabalho criativo para limpar bloqueios mentais e convidar a inspiração.</li><li><strong>Ancoragem de Paz:</strong> O simples ato de cheirar a madeira (sem queimar) pode ser uma âncora olfativa para um estado de calma e centramento.</li></ul>`,
+                insightsDoBemViver: "O Palo Santo só libera seu aroma característico anos após a morte natural da árvore. Ele nos ensina sobre o tempo, a paciência e a transformação. A verdadeira sabedoria e o poder de cura (o 'aroma') muitas vezes só se manifestam após um ciclo de vida, morte e renascimento ter sido completado."
+            }
         }
     ]
 };
@@ -452,8 +492,9 @@ export const pranayamaData = {
 export const jornadaFlorescerData = [
     {
         etapa: 1,
-        title: "Etapa 1: Despertar da Consciência (Iniciação)",
-        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro. É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
+        title: "Etapa 1: Despertar da Consciência (Malkuth)",
+        sephirot: "Malkuth (O Reino)",
+        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro, no nosso reino físico e material (Malkuth). É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
         arquétipos: "Perseu e Medusa, Rá, Atena",
         pilares: "Terra e Luz",
         praticas: `
@@ -466,8 +507,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 2,
-        title: "Etapa 2: Definindo o Propósito",
-        foco: "Uma vez que a consciência desperta, a energia precisa de uma direção. Esta etapa é sobre alinhar sua vontade com a voz da sua alma, definindo um propósito claro que irá nutrir e guiar sua jornada de crescimento.",
+        title: "Etapa 2: Definindo o Propósito (Yesod)",
+        sephirot: "Yesod (O Fundamento)",
+        foco: "Uma vez que a consciência desperta em Malkuth, ela busca um alicerce. Em Yesod, o Fundamento, construímos a base de nossa jornada. É sobre alinhar a vontade com a voz da alma, definindo um propósito claro que irá nutrir e guiar o crescimento.",
         arquétipos: "Hércules, Ísis, Thoth",
         pilares: "Água e Som",
         praticas: `
@@ -480,8 +522,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 3,
-        title: "Etapa 3: A Forja da Vontade",
-        foco: "O propósito, uma vez definido, precisa ser forjado no fogo da ação e da disciplina. Esta etapa é sobre enfrentar o labirinto interior, confrontar os 'minotauros' da procrastinação e da autossabotagem, e transformar a inércia em momentum.",
+        title: "Etapa 3: A Forja da Vontade (Hod & Netzach)",
+        sephirot: "Hod (Esplendor) & Netzach (Vitória)",
+        foco: "O propósito precisa ser forjado na ação. Esta etapa é o equilíbrio entre Hod (o intelecto, a estrutura) e Netzach (a emoção, a paixão). É onde confrontamos a procrastinação, transformando a inércia em momentum e a paixão em vitória duradoura.",
         arquétipos: "Teseu e o Minotauro, Sekhmet, Ares",
         pilares: "Fogo",
         praticas: `
@@ -494,8 +537,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 4,
-        title: "Etapa 4: A Ponte do Coração",
-        foco: "O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração (Anahata), cultivar a compaixão e construir pontes de conexão. É a aplicação da benevolência de Chesed/Júpiter, entendendo que nosso florescimento se nutre e nutre os outros.",
+        title: "Etapa 4: A Ponte do Coração (Tiphareth)",
+        sephirot: "Tiphareth (Beleza)",
+        foco: "No centro da Árvore da Vida, encontramos Tiphareth, a Beleza e a Harmonia. O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração, cultivar a compaixão e construir pontes de conexão, entendendo que nosso florescimento se nutre e nutre os outros.",
         arquétipos: "Inanna, Afrodite, Kuan Yin",
         pilares: "Ar",
         praticas: `
@@ -508,8 +552,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 5,
-        title: "Etapa 5: A Voz da Alma",
-        foco: "Após conectar-se com o coração, é hora de dar voz à sua verdade. Esta etapa é sobre a expressão autêntica, a comunicação clara e o uso da vibração para manifestar sua sabedoria no mundo.",
+        title: "Etapa 5: A Voz da Alma (Geburah & Chesed)",
+        sephirot: "Geburah (Julgamento) & Chesed (Misericórdia)",
+        foco: "Após conectar-se com o coração, é hora de dar voz à verdade. Esta etapa é o equilíbrio entre Geburah (a força e o discernimento para saber *o que* falar) e Chesed (a misericórdia e a gentileza de saber *como* falar). É a expressão autêntica e compassiva.",
         arquétipos: "Hermes, Apolo, Bragi",
         pilares: "Som e Mente",
         praticas: `
@@ -522,8 +567,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 6,
-        title: "Etapa 6: A Visão Interior",
-        foco: "Com a voz alinhada, aprofundamos a percepção. Esta etapa é sobre silenciar o ruído externo para ouvir a sabedoria do oráculo interior, navegando pelas sombras e transições com um guia interno.",
+        title: "Etapa 6: A Visão Interior (Binah & Chokmah)",
+        sephirot: "Binah (Entendimento) & Chokmah (Sabedoria)",
+        foco: "Com a voz alinhada, aprofundamos a percepção, atravessando o Abismo para a Tríade Superna. Esta etapa é sobre silenciar o ruído externo para acessar Binah (o entendimento intuitivo) e Chokmah (a sabedoria pura), navegando pelas sombras com um guia interno.",
         arquétipos: "Anúbis, Hécate, Odin",
         pilares: "Luz",
         praticas: `
@@ -536,8 +582,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 7,
-        title: "Etapa 7: União Divina",
-        foco: "A culminação da jornada. Esta etapa representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
+        title: "Etapa 7: União Divina (Kether)",
+        sephirot: "Kether (A Coroa)",
+        foco: "A culminação da jornada. Kether, a Coroa, representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
         arquétipos: "Shiva e Shakti, A Grande Mãe, O Andrógino Divino",
         pilares: "Mente",
         praticas: `
