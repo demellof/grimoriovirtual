@@ -289,6 +289,30 @@ export const seasonalHerbData = {
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Feitiço de Desejo:</strong> Escreva um desejo em uma folha de louro e queime-a para enviar seu pedido ao universo.</li><li><strong>Banho de Vitória:</strong> Adicione folhas de louro a um banho quente antes de um evento importante (entrevista, prova) para atrair sucesso.</li><li><strong>Amuleto da Sorte:</strong> Carregue uma folha de louro na carteira para atrair boa sorte.</li></ul>`,
                 insightsDoBemViver: "O Louro nos ensina a reconhecer e celebrar nossas próprias vitórias. Seu uso lento na culinária, liberando sabor ao longo do tempo, é uma metáfora para como o sucesso duradouro é infundido com paciência e consistência em nossos projetos."
             }
+        },
+        {
+            name: 'Espinheira-Santa',
+            scientificName: 'Maytenus ilicifolia',
+            planet: 'Saturno',
+            element: 'Terra',
+            deities: 'Povos Indígenas, Curandeiros',
+            content: {
+                almaDaErva: "Planta nativa do sul do Brasil, seu nome revela sua magia: 'Espinheira' por sua aparência espinhosa que simboliza proteção, e 'Santa' por seu imenso poder de cura. É um amuleto verde, uma guardiã que ensina que a verdadeira cura vem da proteção e do estabelecimento de limites saudáveis.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá de Proteção Gástrica:</strong> Seu uso mais conhecido é para o sistema digestivo, mas a nível mágico, este chá cria um 'escudo' no plexo solar, protegendo contra energias densas que 'engolimos'.</li><li><strong>Amuleto de Proteção:</strong> Carregue folhas secas em um saquinho para criar um escudo pessoal contra energias negativas e inveja.</li><li><strong>Ritual de Limpeza:</strong> Use uma infusão de suas folhas para limpar objetos rituais ou o ambiente, consagrando um espaço seguro.</li></ul>`,
+                insightsDoBemViver: "A Espinheira-Santa nos mostra a conexão direta entre o corpo e o espírito. Ao proteger fisicamente a mucosa do estômago, ela nos lembra da importância de proteger nosso campo energético. Ela pergunta: 'O que você está engolindo que te faz mal?'. Sua sabedoria está em criar barreiras para que possamos nos curar por dentro."
+            }
+        },
+        {
+            name: 'Aroeira-Vermelha',
+            scientificName: 'Schinus terebinthifolius',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Exu, Ogum, Iansã',
+            content: {
+                almaDaErva: "Também conhecida como Pimenta-Rosa, a Aroeira é uma guerreira espiritual. Sua energia é de ação rápida, ligada ao poder de Orixás do fogo e do ferro. É a força que quebra demandas, abre caminhos e desintegra energias estagnadas. É uma das ervas mais poderosas para limpeza e proteção nas tradições afro-brasileiras.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Banho de Descarrego:</strong> Um banho com suas folhas é um dos mais potentes rituais de limpeza, ideal para quando se sente um peso espiritual ou após conflitos. Jogue do pescoço para baixo.</li><li><strong>Defumação de Abertura de Caminhos:</strong> Queime suas folhas secas para limpar o ambiente de obstáculos e atrair a energia de ação e coragem de Ogum.</li><li><strong>Pó de Proteção:</strong> Triture as folhas secas e assopre nos cantos da casa para criar uma barreira contra energias negativas.</li></ul>`,
+                insightsDoBemViver: "A Aroeira ensina sobre a necessidade da 'destruição criativa'. Às vezes, é preciso quebrar e dissolver o velho para que o novo possa surgir. Sua energia de fogo nos dá a coragem para tomar decisões difíceis e cortar laços que não nos servem mais, abrindo caminho para o nosso verdadeiro propósito."
+            }
         }
     ],
     'Inverno': [
