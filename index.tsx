@@ -323,7 +323,10 @@ function renderJornadaSection() {
     const jornadaHtml = jornadaFlorescerData.map(etapa => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
+                <div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3>
+                    <p class="text-sm text-amber-400/60 font-semibold">${etapa.sephirot}</p>
+                </div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -369,6 +372,7 @@ function renderAltarDeManifestacaoSection() {
                 ${altarData.sigil.icon}
             </div>
             <div class="planetary-seals">${sealsHtml}</div>
+            ${altarData.sigilGuide || ''}
         </div>
     `;
 }
