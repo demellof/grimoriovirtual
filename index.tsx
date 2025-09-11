@@ -52,38 +52,75 @@ function startPranayamaPractice(techniqueName) {
     if (!pattern) return;
 
     const guide = document.getElementById('pranayama-guide');
-    const dot = document.getElementById('breathing-dot');
-    const instruction = document.getElementById('pranayama-instruction');
-    if (!guide || !dot || !instruction) return;
+    const container = document.getElementById('pranayama-anim-container');
+    const instructionEl = document.getElementById('pranayama-instruction');
+    if (!guide || !container || !instructionEl) return;
 
+    // Clear previous animation
+    stopPranayamaPractice();
+    container.innerHTML = '';
     guide.classList.add('active');
-    let currentStep = 0;
 
-    function runStep() {
-        const step = pattern[currentStep];
-        instruction.textContent = step.instruction;
-        dot.style.transitionDuration = `${step.duration}ms`;
+    let timeouts = [];
+    let totalTime = 0;
+    const cycleDuration = pattern.reduce((sum, step) => sum + step.duration, 0);
 
-        dot.classList.remove('breathing-inhale', 'breathing-exhale');
-        void dot.offsetWidth; // Trigger reflow to restart animation
-        if(step.action === 'inhale') {
-            dot.classList.add('breathing-inhale');
-        } else if (step.action === 'exhale') {
-            dot.classList.add('breathing-exhale');
+    const runCycle = () => {
+        let cumulativeTime = 0;
+
+        if (techniqueName === "Sama Vritti") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 180");
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("class", "anim-square");
+            rect.setAttribute("x", "5");
+            rect.setAttribute("y", "5");
+            rect.setAttribute("width", "170");
+            rect.setAttribute("height", "170");
+            svg.appendChild(rect);
+            container.appendChild(svg);
+
+            pattern.forEach((step, index) => {
+                timeouts.push(setTimeout(() => {
+                    instructionEl.textContent = step.instruction;
+                    rect.setAttribute("class", `anim-square draw-side-${index + 1}`);
+                    rect.style.animationDuration = `${step.duration}ms`;
+                }, cumulativeTime));
+                cumulativeTime += step.duration;
+            });
+
+        } else { // Default circle animation
+            const circle = document.createElement('div');
+            circle.className = 'anim-shape anim-circle';
+            container.appendChild(circle);
+
+            pattern.forEach(step => {
+                timeouts.push(setTimeout(() => {
+                    instructionEl.textContent = step.instruction;
+                    circle.style.transitionDuration = `${step.duration}ms`;
+                    circle.classList.remove('breathing-inhale', 'breathing-exhale');
+                    if(step.action === 'inhale') {
+                        circle.classList.add('breathing-inhale');
+                    } else if (step.action === 'exhale') {
+                        circle.classList.add('breathing-exhale');
+                    }
+                }, cumulativeTime));
+                cumulativeTime += step.duration;
+            });
         }
 
-        currentStep = (currentStep + 1) % pattern.length;
-    }
+        pranayamaInterval = setTimeout(runCycle, cycleDuration);
+    };
 
-    clearInterval(pranayamaInterval);
-    pranayamaInterval = setInterval(runStep, pattern[currentStep].duration);
-    runStep(); // Run the first step immediately
+    runCycle();
 }
 
 function stopPranayamaPractice() {
     const guide = document.getElementById('pranayama-guide');
+    const container = document.getElementById('pranayama-anim-container');
     if (guide) guide.classList.remove('active');
-    clearInterval(pranayamaInterval);
+    if (container) container.innerHTML = ''; // Clear the animation
+    clearTimeout(pranayamaInterval);
 }
 
 function showDiagnosticModal(title, checklist) {
@@ -406,7 +443,7 @@ function renderCosmogramaCristalinoSection() {
     const centerY = 450; // Center of the container
 
     const orbitsHtml = cosmogramData.orbits.map((orbit, orbitIndex) => {
-        const radius = 150 + (orbitIndex * 100);
+        const radius = 120 + (orbitIndex * 80); // Reduced radius for a tighter layout
         const numCrystals = orbit.crystals.length;
         const angleStep = (2 * Math.PI) / numCrystals;
 
@@ -455,10 +492,12 @@ function renderChakraSection() {
         <div class="card rounded-lg mb-2 overflow-hidden no-hover chakra-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
                 <div class="flex items-center gap-4">
-                    <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none"></div>
+                    <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none flex items-center justify-center font-bold text-lg">
+                        ${chakra.mantra.charAt(0)}
+                    </div>
                     <div>
                         <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${chakra.name}</h3>
-                        <p class="text-sm text-gray-400">${chakra.translation}</p>
+                        <p class="text-sm text-gray-400">${chakra.translation} - Mantra: ${chakra.mantra}</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down transition-transform"></i>
@@ -475,6 +514,10 @@ function renderChakraSection() {
         <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${chakraData.introTitle}</h2>
             <p class="text-gray-400 mt-2">${chakraData.introText}</p>
+            <div class="card p-4 rounded-lg my-6 text-sm bg-black/20 border border-amber-600/20">
+                <h4 class="font-bold text-[#a37e2c] mb-2">O Pilar do Som e os Bija Mantras</h4>
+                <p class="text-gray-300">${chakraData.soundPillarIntro}</p>
+            </div>
         </div>
         <div>${chakraHtml}</div>
     `;
