@@ -6,6 +6,38 @@ import { pillarZeroData, pillarData, jornadaFlorescerData, seasonalHerbData, cos
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
+let pranayamaInterval;
+
+const pranayamaPatterns = {
+    "Nadi Shodhana": [
+        { instruction: "Inspire (Esquerda)", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Direita)", duration: 4000, action: 'exhale' },
+        { instruction: "Inspire (Direita)", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Esquerda)", duration: 4000, action: 'exhale' }
+    ],
+    "Ujjayi Pranayama": [
+        { instruction: "Inspire (com som)", duration: 5000, action: 'inhale' },
+        { instruction: "Expire (com som)", duration: 5000, action: 'exhale' }
+    ],
+    "Bhastrika": [
+        { instruction: "Inspire (Forçado)", duration: 500, action: 'inhale' },
+        { instruction: "Expire (Forçado)", duration: 500, action: 'exhale' }
+    ],
+    "Sama Vritti": [
+        { instruction: "Inspire", duration: 4000, action: 'inhale' },
+        { instruction: "Segure", duration: 4000, action: 'hold' },
+        { instruction: "Expire", duration: 4000, action: 'exhale' },
+        { instruction: "Segure", duration: 4000, action: 'hold' }
+    ],
+    "Sheetali Pranayama": [
+        { instruction: "Inspire (pela boca)", duration: 5000, action: 'inhale' },
+        { instruction: "Expire (pelo nariz)", duration: 5000, action: 'exhale' }
+    ],
+    "Bhramari Pranayama": [
+        { instruction: "Inspire", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Zumbido)", duration: 6000, action: 'exhale' }
+    ]
+};
 
 const errorModal = document.getElementById('error-modal');
 const modalTitle = document.getElementById('modal-title');
@@ -15,6 +47,45 @@ const appContainer = document.getElementById('app-container');
 const detailModal = document.getElementById('detail-modal');
 
 // --- CORE FUNCTIONS ---
+function startPranayamaPractice(techniqueName) {
+    const pattern = pranayamaPatterns[techniqueName];
+    if (!pattern) return;
+
+    const guide = document.getElementById('pranayama-guide');
+    const dot = document.getElementById('breathing-dot');
+    const instruction = document.getElementById('pranayama-instruction');
+    if (!guide || !dot || !instruction) return;
+
+    guide.classList.add('active');
+    let currentStep = 0;
+
+    function runStep() {
+        const step = pattern[currentStep];
+        instruction.textContent = step.instruction;
+        dot.style.transitionDuration = `${step.duration}ms`;
+
+        dot.classList.remove('breathing-inhale', 'breathing-exhale');
+        void dot.offsetWidth; // Trigger reflow to restart animation
+        if(step.action === 'inhale') {
+            dot.classList.add('breathing-inhale');
+        } else if (step.action === 'exhale') {
+            dot.classList.add('breathing-exhale');
+        }
+
+        currentStep = (currentStep + 1) % pattern.length;
+    }
+
+    clearInterval(pranayamaInterval);
+    pranayamaInterval = setInterval(runStep, pattern[currentStep].duration);
+    runStep(); // Run the first step immediately
+}
+
+function stopPranayamaPractice() {
+    const guide = document.getElementById('pranayama-guide');
+    if (guide) guide.classList.remove('active');
+    clearInterval(pranayamaInterval);
+}
+
 function showDiagnosticModal(title, checklist) {
     if (!modalTitle || !modalMessage || !errorModal) return;
     modalTitle.innerHTML = `<i class="fas fa-exclamation-triangle mr-3"></i><span>${title}</span>`;
@@ -425,7 +496,11 @@ function renderPranayamaSection() {
                     <div><h4 class="font-bold text-[#a37e2c]">Para que serve:</h4><p class="text-gray-300">${pranayama.paraQueServe}</p></div>
                     <div><h4 class="font-bold text-[#a37e2c]">Ponto de Foco:</h4><p class="text-gray-300">${pranayama.pontoFoco}</p></div>
                     <div><h4 class="font-bold text-[#a37e2c]">Como Praticar:</h4><ol class="list-decimal list-inside text-gray-400 space-y-1">${pranayama.comoPraticar.map(step => `<li>${step}</li>`).join('')}</ol></div>
-                    <div class="pt-2 border-t border-gray-600 clear-both"><p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${pranayama.termosPesquisa}</p></div>
+                    <div class="pt-4 mt-4 border-t border-gray-600 clear-both">
+                        <button class="btn-primary w-full py-2 rounded-lg pranayama-practice-btn" data-pranayama="${pranayama.name}">
+                            <i class="fas fa-play-circle mr-2"></i>Praticar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -641,7 +716,15 @@ function setupEventListeners() {
             if(seal) showPlanetarySealDetails(seal);
             return;
         }
+
+        const pranayamaBtn = target.closest('.pranayama-practice-btn');
+        if (pranayamaBtn instanceof HTMLElement && pranayamaBtn.dataset.pranayama) {
+            startPranayamaPractice(pranayamaBtn.dataset.pranayama);
+            return;
+        }
     });
+
+    document.getElementById('stop-pranayama-btn')?.addEventListener('click', stopPranayamaPractice);
 
     appContainer?.addEventListener('mouseover', (e) => {
         if (!(e.target instanceof Element)) return;

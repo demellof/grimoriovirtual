@@ -255,6 +255,7 @@
             height: 100%;
             animation: galaxy-spin linear infinite;
             transform-origin: center;
+            pointer-events: none;
         }
 
         .cosmogram-container {
@@ -285,6 +286,7 @@
             cursor: pointer;
             border: 1px solid #4a3a69;
             transition: all 0.5s ease, top 1.5s ease, left 1.5s ease;
+            pointer-events: auto;
         }
         .crystal-orb:hover {
             transform: translateY(-5px) scale(1.05);
@@ -452,6 +454,20 @@
                 background-position: 15% -10%, 25% -10%, 35% -10%, 45% -10%, 65% -10%, 80% -10%, 95% -10%;
             }
         }
+
+        /* --- Pranayama Interactive Guide --- */
+        #pranayama-guide.active {
+            display: flex;
+        }
+        #breathing-dot {
+            transition: transform 4s ease-in-out; /* Default transition for smooth scaling */
+        }
+        .breathing-inhale {
+            transform: scale(1.5);
+        }
+        .breathing-exhale {
+            transform: scale(0.8);
+        }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
@@ -476,6 +492,12 @@
             <i class="fas fa-times close-modal-icon" id="close-detail-modal"></i>
             <div id="detail-modal-body"></div>
         </div>
+    </div>
+
+    <div id="pranayama-guide" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex-col items-center justify-center z-40 hidden">
+        <div id="breathing-dot" class="w-48 h-48 bg-gradient-to-br from-[#a37e2c] to-[#4a3a69] rounded-full shadow-lg"></div>
+        <p id="pranayama-instruction" class="text-2xl font-cinzel text-white mt-8"></p>
+        <button id="stop-pranayama-btn" class="btn-secondary py-2 px-6 rounded-lg mt-8">Parar</button>
     </div>
 
     <div id="app-container" class="hidden">
