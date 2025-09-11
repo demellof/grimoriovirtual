@@ -18,13 +18,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Templo do Corpo e a Abundância da Alma</h3>
             <p class="mb-4 text-gray-400">O Pilar da Terra é o fundamento de nossa existência, o arquétipo da estabilidade, nutrição e manifestação no plano material. Regido pelo Chakra Raiz (Muladhara), ele governa nosso corpo físico como um "altar sagrado", nossa saúde, segurança e a capacidade de materializar a abundância. Trabalhar este pilar é honrar o templo do corpo e fincar raízes fortes para que a alma possa florescer sem medo.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: Nutrição como Magia Prática</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Nutrição como Magia Prática</h4>
             <p class="mb-4 text-gray-400">A alimentação é nossa alquimia diária. A prática de <strong>Mindful Eating</strong> (Alimentação Consciente) transforma a refeição em um ritual de presença, melhorando a digestão e a conexão com os sinais de fome e saciedade do corpo. Uma dieta baseada em plantas, como ensinam as Zonas Azuis, garante que o fogo digestivo não seja sobrecarregado, promovendo a longevidade.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "benefícios mindful eating", "receitas de aterramento (grounding foods)", "dieta das Zonas Azuis".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: Rituais de Aterramento e Manifestação</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Aterramento e Manifestação</h4>
             <p class="mb-4 text-gray-400">Práticas de aterramento, como caminhar descalço na natureza, nos permitem descarregar o excesso de energia. O plantio consciente de uma semente ou o enterro de um cristal como o <strong>Citrino</strong> ou a <strong>Pirita</strong> com uma intenção clara é um poderoso ritual de manifestação para ancorar a abundância no plano físico.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como praticar grounding ou earthing", "ritual para manifestar abundância", "cristais para prosperidade".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra da Terra</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Terra</h4>
             <p class="mb-4 text-gray-400">O desequilíbrio da Terra manifesta-se como inércia, teimosia, apego excessivo ao material e medo da mudança. Reconhecer essa sombra é o primeiro passo para usar a energia do Fogo (Pilar 3) para quebrar a estagnação e cultivar a generosidade como antídoto ao apego.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "arquétipo do Amante", "como lidar com a procrastinação", "desapego material filosofia".</p>
         ` 
@@ -35,13 +35,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Fluxo das Emoções e a Alquimia Criativa</h3>
             <p class="mb-4 text-gray-400">Este pilar explora o mundo fluido de nossas emoções, alinhado ao Chakra Sacral (Svadhisthana). A água simboliza o inconsciente, a intuição e a purificação. Como a água, nossas emoções precisam fluir para nos nutrir; quando estagnadas, tornam-se turvas.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Rio da Consciência (Regulação Emocional)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Rio da Consciência (Regulação Emocional)</h4>
             <p class="mb-4 text-gray-400">Regular emoções não é suprimir, mas influenciar conscientemente como as vivenciamos. Ferramentas práticas incluem <strong>Mindfulness</strong> para fortalecer o córtex pré-frontal, <strong>Reavaliação Cognitiva</strong> para reinterpretar gatilhos e a <strong>Técnica 5-4-3-2-1</strong> para ancorar no presente.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "técnica 5-4-3-2-1 para ansiedade", "reavaliação cognitiva TCC", "como praticar mindfulness".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Gota e o Oceano (A Visão Budista)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Gota e o Oceano (A Visão Budista)</h4>
             <p class="mb-4 text-gray-400">A sabedoria budista nos ensina que somos uma gota, e o universo, o oceano. Nosso sofrimento vem da crença na separação. Ao meditar sobre uma emoção, observe-a como uma onda passando no seu oceano interior. A gota, ao se reconhecer como oceano, encontra a paz.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "conceito de não-dualidade budismo", "metáfora gota no oceano", "Thich Nhat Hanh ensinamentos".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
             <p class="mb-4 text-gray-400">Os sonhos são a linguagem simbólica da alma. Honramos <strong>Freud</strong> como o ancestral que abriu a porta, mas abraçamos a visão de <strong>Carl Jung</strong>, que via os sonhos como revelações do inconsciente coletivo e dos arquétipos. Para <strong>James Hillman</strong>, devemos honrar a imagem do sonho como uma realidade em si, e a <strong>neurociência</strong> nos mostra que o sono REM é uma terapia noturna para processar emoções.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "livro O Homem e seus Símbolos Carl Jung", "psicologia arquetípica James Hillman", "livro Por que nós dormimos Matthew Walker", "como ter sonhos lúcidos".</p>
         `
@@ -52,13 +52,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Centelha da Vontade e a Forja da Transformação</h3>
             <p class="mb-4 text-gray-400">O Pilar do Fogo é a centelha divina, a força da transformação e da paixão. Alinhado ao Chakra do Plexo Solar (Manipura), ele é nosso centro de poder pessoal, o motor que nos impulsiona para a ação e a luz da consciência que dissipa a inércia.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Chama Interior (Manipura e Agni)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chama Interior (Manipura e Agni)</h4>
             <p class="mb-4 text-gray-400">Na Ayurveda, <strong>Agni</strong> é o fogo digestivo, chave para a saúde. No corpo sutil, o Manipura governa nosso poder pessoal e autoestima. Práticas como a <strong>Respiração do Fogo (Bhastrika)</strong> e a meditação na chama de uma vela (<em>Trataka</em>) são usadas para gerar calor interno (<em>tapas</em>) e fortalecer a força de vontade.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é Agni Ayurveda", "benefícios do Trataka", "como fortalecer o chakra Manipura".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: Rituais de Transformação e Vontade</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Transformação e Vontade</h4>
             <p class="mb-4 text-gray-400">O fogo é o grande transmutador. Rituais como a <strong>Queima de Intenções</strong> (escrever o que se deseja liberar ou manifestar e entregar à chama) e a <strong>Ceromancia</strong> (adivinhação pelas formas da cera) são atos psicomágicos poderosos de transformação.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como fazer um ritual de queima de intenções", "ceromancia significados", "magia com velas cores".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra do Fogo</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Fogo</h4>
             <p class="mb-4 text-gray-400">O fogo desequilibrado manifesta-se como raiva, arrogância, ou, no outro extremo, como procrastinação. O trabalho é <strong>canalizar a energia da raiva</strong>, reconhecendo-a como um sinal de um limite ultrapassado, e transmutá-la em combustível para a ação assertiva.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como lidar com a raiva de forma saudável", "arquétipo do Guerreiro Carl Jung", "aumentar a força de vontade".</p>
         `
@@ -69,13 +69,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Sopro da Conexão e a Sabedoria do Coração</h3>
             <p class="mb-4 text-gray-400">O Pilar do Ar é o sopro da vida, o elemento invisível que conecta tudo. Alinhado ao Chakra Cardíaco (Anahata), ele governa o intelecto, a comunicação, os relacionamentos e a capacidade de amar. A respiração é a ponte sagrada entre o corpo e a mente.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Sopro como Ferramenta (Pranayama)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Sopro como Ferramenta (Pranayama)</h4>
             <p class="mb-4 text-gray-400">Dominar a respiração é dominar nossa energia. A <strong>Respiração Diafragmática</strong> ativa o nervo vago e acalma. A <strong>Respiração das Narinas Alternadas (Nadi Shodhana)</strong> equilibra os hemisférios cerebrais, unindo lógica e intuição.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "tutorial Nadi Shodhana pranayama", "benefícios respiração diafragmática", "Wim Hof Method guiado".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Ponte do Coração (Relacionamentos)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Ponte do Coração (Relacionamentos)</h4>
             <p class="mb-4 text-gray-400">A prática aqui é a <strong>Comunicação Não-Violenta (CNV)</strong>, que nos ensina a expressar nossas necessidades e ouvir as dos outros a partir de um lugar de empatia, fortalecendo os laços.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "introdução Comunicação Não-Violenta", "meditação Metta Bhavana (amor-bondade)".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra do Ar</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Ar</h4>
             <p class="mb-4 text-gray-400">O Ar desequilibrado manifesta-se como excesso de racionalização, distanciamento emocional ou superficialidade. O antídoto é o <strong>aterramento</strong> (Pilar da Terra) e a conexão com o <strong>Pilar da Água</strong> para dar sentimento às palavras.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "exercícios de grounding para ansiedade", "como equilibrar razão e emoção".</p>
         `
@@ -86,10 +86,10 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Vibração da Verdade e a Expressão da Alma</h3>
             <p class="mb-4 text-gray-400">O Pilar do Som explora a vibração como a força primordial do universo. Alinhado ao Chakra Laríngeo (Vishuddha), ele governa não apenas o som que emitimos, mas nossa sintonia com a vasta orquestra de frequências que compõem a realidade.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Coração Pulsante da Terra (Ressonância Schumann)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Coração Pulsante da Terra (Ressonância Schumann)</h4>
             <p class="mb-4 text-gray-400">A <strong>ionosfera</strong> age como uma "pele de tambor" ao redor do planeta. Os raios "batucam" nela, criando uma onda de baixíssima frequência (7.83 Hz), a <strong>Ressonância Schumann</strong>. Essa frequência corresponde às ondas cerebrais Alfa/Theta, associadas a estados de calma e meditação. Ao nos aterrarmos, sintonizamos nosso cérebro com o "coração" do planeta.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é a Ressonância Schumann", "benefícios da frequência 7.83 Hz".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: As Tempestades Solares e a Higiene Vibracional</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Tempestades Solares e a Higiene Vibracional</h4>
             <p class="mb-4 text-gray-400"><strong>Explosões solares</strong> e a poluição eletromagnética moderna (EMF, 5G) introduzem "ruído" em nossa orquestra. A prática da <strong>higiene vibracional</strong> se torna essencial: passar tempo na natureza, praticar o aterramento para descarregar o excesso de "carga" e usar o som (taças, mantras) para "reafinar" nosso corpo.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "efeitos das explosões solares no corpo humano", "poluição eletromagnética e saúde", "técnicas de earthing".</p>
         `
@@ -100,13 +100,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Olho da Intuição e a Clareza da Percepção</h3>
             <p class="mb-4 text-gray-400">O Pilar da Luz é a sabedoria que transcende a lógica, o reino da intuição e da visão interior. Regido pelo Chakra Frontal (Ajna), é nosso oráculo interno, a capacidade de ver além do véu das ilusões.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Natureza da Percepção (Física Quântica como Metáfora)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Natureza da Percepção (Física Quântica como Metáfora)</h4>
             <p class="mb-4 text-gray-400">O <strong>experimento da dupla fenda</strong> nos ensina que a luz se comporta como partícula (matéria) quando observada e como onda (potencial) quando não observada. Usamos isso como uma metáfora: nossa percepção focada (o "observador") tem o poder de colapsar um campo de infinitas possibilidades em uma realidade manifesta.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "experimento da dupla fenda explicado", "efeito do observador física quântica".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Chave Surrealista (Dalí e Magritte)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chave Surrealista (Dalí e Magritte)</h4>
             <p class="mb-4 text-gray-400"><strong>Salvador Dalí</strong> nos ensina a capturar as imagens do subconsciente com seu método paranoico-crítico, acessando o estado hipnagógico. <strong>René Magritte</strong> nos desafia a questionar a realidade com sua "Traição das Imagens", mostrando que o mapa não é o território. Juntos, eles nos dão ferramentas para explorar e decifrar nosso mundo interior.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "método paranoico-crítico Salvador Dalí", "René Magritte A Traição das Imagens".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra da Luz</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Luz</h4>
             <p class="mb-4 text-gray-400">A Luz desequilibrada manifesta-se como arrogância espiritual, desconexão da realidade ou paranoia. O antídoto é o <strong>aterramento</strong> (Pilar da Terra), que nos força a testar nossas visões na prática e a manter os pés firmes no chão.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é bypass espiritual", "perigos do ego espiritual".</p>
         `
@@ -130,10 +130,10 @@ export const pillarData = {
                 </ol>
             </div>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "O Caibalion princípio do mentalismo", "neuroplasticidade como mudar hábitos", "livro O Poder do Hábito".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: As Ferramentas do Arquiteto (PNL na Prática)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Ferramentas do Arquiteto (PNL na Prática)</h4>
             <p class="mb-4 text-gray-400">A Programação Neurolinguística (PNL) nos oferece uma caixa de ferramentas para a "Química Mental": <strong>Ancoragem</strong> para criar gatilhos de poder, <strong>Reestruturação Cognitiva</strong> para mudar a moldura de uma situação e o <strong>Padrão "Swish"</strong> para substituir neurologicamente um gatilho indesejado.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é ancoragem PNL", "técnica de reframing PNL", "padrão swish passo a passo".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Consciência Unificada (Gaia, Sagan e Ubuntu)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Consciência Unificada (Gaia, Sagan e Ubuntu)</h4>
             <p class="mb-4 text-gray-400">Aqui, transcendemos a mente individual. A <strong>Teoria de Gaia</strong> nos vê como células de um organismo planetário. A perspectiva cósmica de <strong>Carl Sagan</strong> nos lembra que somos "poeira de estrelas". E a filosofia <strong>Ubuntu</strong> ("Eu sou porque nós somos") nos ensina que a maestria da mente é um caminho para uma conexão mais profunda com toda a teia da vida.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "Teoria de Gaia James Lovelock", "Carl Sagan Pálido Ponto Azul", "filosofia Ubuntu explicada".</p>
         `
