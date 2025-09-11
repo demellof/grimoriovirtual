@@ -539,10 +539,21 @@ function setupEventListeners() {
 
         const tab = target.closest('.tab');
         if (tab instanceof HTMLElement && tab.dataset.section) {
+            const sectionId = tab.dataset.section;
+
+            // Update active content section
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(tab.dataset.section)?.classList.add('active');
+            document.getElementById(sectionId)?.classList.add('active');
+
+            // Update active tab style
             document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
+
+            // Update body class for thematic background
+            const sectionClass = `${sectionId.replace('-section', '')}-active`;
+            document.body.className = 'bg-[#1a1a1a] text-[#e0e0e0]'; // Reset to default classes
+            document.body.classList.add(sectionClass);
+
             return;
         }
 
@@ -662,6 +673,33 @@ function getCurrentSeason(hemisphere = 'south') {
 }
 
 
+function createFloatingItems() {
+    const container = document.getElementById('floating-items-container');
+    if (!container) return;
+
+    const items = ['✨', '✦', '⚗️', '🔭', '🧬', '⚛️', '✶', '·', '•', '∘'];
+    const itemCount = 30;
+
+    for (let i = 0; i < itemCount; i++) {
+        const item = document.createElement('span');
+        item.className = 'floating-item';
+        item.textContent = items[Math.floor(Math.random() * items.length)];
+
+        const size = Math.random() * 20 + 10; // 10px to 30px
+        item.style.fontSize = `${size}px`;
+
+        item.style.left = `${Math.random() * 100}vw`;
+
+        const duration = Math.random() * 20 + 15; // 15s to 35s
+        item.style.animationDuration = `${duration}s`;
+
+        const delay = Math.random() * 15; // 0s to 15s
+        item.style.animationDelay = `${delay}s`;
+
+        container.appendChild(item);
+    }
+}
+
 // --- INITIALIZATION ---
 function initApp() {
     try {
@@ -708,6 +746,7 @@ function initApp() {
                 renderPranayamaSection();
                 setupEventListeners();
                 setupCollectionListener('grimoire_entries', renderGrimoireEntries);
+                createFloatingItems();
                 
             } else {
                 signInAnonymously(auth).catch((err) => {
