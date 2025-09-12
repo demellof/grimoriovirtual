@@ -245,60 +245,24 @@
         .planetary-seal.active .seal-icon { border-color: #c8a44d; background-color: rgba(200, 164, 77, 0.2); animation: pulse 4s infinite; }
         #intention-form textarea { min-height: 100px; }
 
-        /* --- Cosmogram Section --- */
+        /* --- Cosmogram Section (Responsive) --- */
         .cosmogram-intro { text-align: center; margin-bottom: 2rem; max-w: 700px; margin-left: auto; margin-right: auto; }
         
-        .orbit-path {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            animation: galaxy-spin linear infinite;
-            transform-origin: center;
-            pointer-events: none;
+        .cosmograma-container-responsive {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
-        .cosmogram-container {
-            position: relative;
-            width: 100%;
-            height: 800px; /* Adjust as needed */
-            margin: 2rem auto;
-            animation: galaxy-spin 180s linear infinite;
-        }
-
-        .cosmogram-container::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 780px; /* Adjust size to encompass the outermost orbit */
-            height: 780px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(200, 164, 77, 0.3),
-                        inset 0 0 40px rgba(200, 164, 77, 0.2);
-            pointer-events: none;
-            animation: pulse-heliosphere 10s infinite alternate;
-        }
-
-        @keyframes pulse-heliosphere {
-            from {
-                box-shadow: 0 0 40px rgba(200, 164, 77, 0.3),
-                            inset 0 0 40px rgba(200, 164, 77, 0.2);
-            }
-            to {
-                box-shadow: 0 0 60px rgba(200, 164, 77, 0.5),
-                            inset 0 0 60px rgba(200, 164, 77, 0.3);
-            }
-        }
-
-        @keyframes galaxy-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes float-orb {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .crystal-orb {
-            position: absolute;
             background-color: rgba(20, 15, 30, 0.9);
             border-radius: 50%;
             width: 180px;
@@ -311,21 +275,26 @@
             text-align: center;
             cursor: pointer;
             border: 1px solid #4a3a69;
-            transition: all 0.5s ease, top 1.5s ease, left 1.5s ease;
+            transition: all 0.5s ease;
             pointer-events: auto;
+            animation: float-orb 6s ease-in-out infinite;
         }
         .crystal-orb:hover {
             transform: translateY(-5px) scale(1.05);
             border-color: #c8a44d;
             box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
+            animation-play-state: paused; /* Pause floating animation on hover */
         }
         .crystal-orb-icon { font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1; }
+
         .sun-orb {
+            order: -1; /* This makes the sun appear first */
             width: 220px;
             height: 220px;
             border-color: #c8a44d;
             box-shadow: 0 0 30px rgba(200, 164, 77, 0.6);
-            animation: pulse 4s infinite;
+            /* Combine the pulse and float animations */
+            animation: pulse 4s infinite, float-orb 6s ease-in-out infinite;
         }
         @keyframes pulse { 0%, 100% { box-shadow: 0 0 30px rgba(200, 164, 77, 0.6); } 50% { box-shadow: 0 0 45px rgba(255, 223, 135, 0.8); } }
         

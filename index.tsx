@@ -560,37 +560,28 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const galaxyContainerWidth = container.offsetWidth > 0 ? container.offsetWidth : 800;
-    const centerX = galaxyContainerWidth / 2;
-    const centerY = 450; // Center of the container
+    // Flatten all crystals into a single array for a responsive layout
+    const allCrystals = cosmogramData.orbits.flatMap(orbit => orbit.crystals);
 
-    const orbitsHtml = cosmogramData.orbits.map((orbit, orbitIndex) => {
-        const radius = 120 + (orbitIndex * 80); // Reduced radius for a tighter layout
-        const numCrystals = orbit.crystals.length;
-        const angleStep = (2 * Math.PI) / numCrystals;
-
-        const crystalsHtml = orbit.crystals.map((crystal, crystalIndex) => {
-            const angle = angleStep * crystalIndex;
-            const x = centerX + radius * Math.cos(angle) - 90; // offset for orb width
-            const y = centerY + radius * Math.sin(angle) - 90; // offset for orb height
-            return `
-                <div class="crystal-orb" data-crystal-name="${crystal.name}" style="left: ${x}px; top: ${y}px;">
-                    <div class="crystal-orb-icon">${crystal.icon}</div>
-                    <div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div>
+    const crystalsHtml = allCrystals.map(crystal => {
+        return `
+            <div class="crystal-orb" data-crystal-name="${crystal.name}">
+                <div class="crystal-orb-icon">${crystal.icon}</div>
+                <div>
+                    <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                    <p class="text-xs text-gray-400">${crystal.subtitle}</p>
                 </div>
-            `;
-        }).join('');
-
-        const animationDuration = 60 + (orbitIndex * 30); // Orbits rotate at different speeds
-        return `<div class="orbit-path" style="animation-duration: ${animationDuration}s;">${crystalsHtml}</div>`;
+            </div>
+        `;
     }).join('');
 
-    const sunX = centerX - 110;
-    const sunY = centerY - 110;
     const sunHtml = `
-        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}" style="left: ${sunX}px; top: ${sunY}px; z-index: 10;">
+        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
             <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
-            <div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div>
+            <div>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            </div>
         </div>
     `;
 
@@ -599,9 +590,9 @@ function renderCosmogramaCristalinoSection() {
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
             <p class="text-gray-400">${cosmogramData.intro}</p>
         </div>
-        <div class="cosmogram-container">
-            ${orbitsHtml}
+        <div class="cosmograma-container-responsive">
             ${sunHtml}
+            ${crystalsHtml}
         </div>
     `;
 }
@@ -887,9 +878,17 @@ function setupEventListeners() {
             startPranayamaPractice(pranayamaBtn.dataset.pranayama);
             return;
         }
+
+        // Handle the stop button via event delegation for robustness
+        const stopPranayamaBtn = target.closest('#stop-pranayama-btn');
+        if (stopPranayamaBtn) {
+            stopPranayamaPractice();
+            return;
+        }
     });
 
-    document.getElementById('stop-pranayama-btn')?.addEventListener('click', stopPranayamaPractice);
+    // The listener below is now delegated to the appContainer, so this direct binding is no longer needed.
+    // document.getElementById('stop-pranayama-btn')?.addEventListener('click', stopPranayamaPractice);
 
     appContainer?.addEventListener('mouseover', (e) => {
         if (!(e.target instanceof Element)) return;
