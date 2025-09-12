@@ -524,6 +524,49 @@
         @keyframes draw-three-sides { from { stroke-dashoffset: 340; } to { stroke-dashoffset: 170; } }
         @keyframes draw-four-sides { from { stroke-dashoffset: 170; } to { stroke-dashoffset: 0; } }
 
+        /* Ocean Breath Animation */
+        #pranayama-anim-container .anim-wave {
+            stroke: #a37e2c;
+            stroke-width: 8;
+            fill: none;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+        .draw-wave-inhale {
+            animation-name: draw-wave;
+        }
+        .draw-wave-exhale {
+            animation-name: undraw-wave;
+        }
+
+        @keyframes draw-wave {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes undraw-wave {
+            from { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: 500; }
+        }
+
+        /* Nadi Shodhana Animation */
+        #pranayama-anim-container .anim-nostril-path {
+            stroke: #a37e2c;
+            stroke-width: 8;
+            fill: none;
+            stroke-dasharray: 250;
+            stroke-dashoffset: 250;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+        .anim-nostril-path.active {
+            animation-name: draw-path;
+        }
+
+        @keyframes draw-path {
+            to { stroke-dashoffset: 0; }
+        }
+
         /* --- Mind Map Section --- */
         .mind-map-container {
             display: flex;
@@ -614,6 +657,7 @@
             <!-- Animation shapes will be injected here by JS -->
         </div>
         <p id="pranayama-instruction" class="text-2xl font-cinzel text-white mt-8"></p>
+        <p id="pranayama-timer" class="text-xl font-mono text-amber-300/70 mt-4"></p>
         <button id="stop-pranayama-btn" class="btn-secondary py-2 px-6 rounded-lg mt-8">Parar</button>
     </div>
 

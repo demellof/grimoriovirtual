@@ -6,7 +6,8 @@ import { pillarZeroData, pillarData, jornadaFlorescerData, seasonalHerbData, cos
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
-let pranayamaInterval;
+let pranayamaCycleTimeout;
+let pranayamaCountdownInterval;
 
 const pranayamaPatterns = {
     "Nadi Shodhana": [
@@ -54,20 +55,19 @@ function startPranayamaPractice(techniqueName) {
     const guide = document.getElementById('pranayama-guide');
     const container = document.getElementById('pranayama-anim-container');
     const instructionEl = document.getElementById('pranayama-instruction');
-    if (!guide || !container || !instructionEl) return;
+    const timerEl = document.getElementById('pranayama-timer');
+    if (!guide || !container || !instructionEl || !timerEl) return;
 
-    // Clear previous animation
     stopPranayamaPractice();
     container.innerHTML = '';
     guide.classList.add('active');
 
-    let timeouts = [];
-    let totalTime = 0;
     const cycleDuration = pattern.reduce((sum, step) => sum + step.duration, 0);
 
     const runCycle = () => {
         let cumulativeTime = 0;
 
+        // Setup animations for the cycle
         if (techniqueName === "Sama Vritti") {
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             svg.setAttribute("viewBox", "0 0 180 180");
@@ -79,37 +79,82 @@ function startPranayamaPractice(techniqueName) {
             rect.setAttribute("height", "170");
             svg.appendChild(rect);
             container.appendChild(svg);
-
-            pattern.forEach((step, index) => {
-                timeouts.push(setTimeout(() => {
-                    instructionEl.textContent = step.instruction;
-                    rect.setAttribute("class", `anim-square draw-side-${index + 1}`);
-                    rect.style.animationDuration = `${step.duration}ms`;
-                }, cumulativeTime));
-                cumulativeTime += step.duration;
-            });
-
-        } else { // Default circle animation
+        } else if (techniqueName === "Ujjayi Pranayama") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 100");
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("class", "anim-wave");
+            path.setAttribute("d", "M 10,50 Q 50,10 90,50 T 170,50");
+            svg.appendChild(path);
+            container.appendChild(svg);
+        } else if (techniqueName === "Nadi Shodhana") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 120");
+            svg.innerHTML = `
+                <path id="path-left" class="anim-nostril-path" d="M 90 110 C 40 110, 40 10, 90 10" />
+                <path id="path-right" class="anim-nostril-path" d="M 90 110 C 140 110, 140 10, 90 10" />
+            `;
+            container.appendChild(svg);
+        } else {
             const circle = document.createElement('div');
             circle.className = 'anim-shape anim-circle';
             container.appendChild(circle);
-
-            pattern.forEach(step => {
-                timeouts.push(setTimeout(() => {
-                    instructionEl.textContent = step.instruction;
-                    circle.style.transitionDuration = `${step.duration}ms`;
-                    circle.classList.remove('breathing-inhale', 'breathing-exhale');
-                    if(step.action === 'inhale') {
-                        circle.classList.add('breathing-inhale');
-                    } else if (step.action === 'exhale') {
-                        circle.classList.add('breathing-exhale');
-                    }
-                }, cumulativeTime));
-                cumulativeTime += step.duration;
-            });
         }
 
-        pranayamaInterval = setTimeout(runCycle, cycleDuration);
+        // Run steps and timers
+        pattern.forEach((step, index) => {
+            setTimeout(() => {
+                instructionEl.textContent = step.instruction;
+                let remainingTime = step.duration / 1000;
+                timerEl.textContent = `${remainingTime}s`;
+
+                clearInterval(pranayamaCountdownInterval);
+                pranayamaCountdownInterval = setInterval(() => {
+                    remainingTime--;
+                    timerEl.textContent = `${remainingTime}s`;
+                    if (remainingTime <= 0) clearInterval(pranayamaCountdownInterval);
+                }, 1000);
+
+                if (techniqueName === "Sama Vritti") {
+                    const rect = container.querySelector('.anim-square');
+                    if(rect) {
+                        rect.setAttribute("class", `anim-square draw-side-${index + 1}`);
+                        rect.style.animationDuration = `${step.duration}ms`;
+                    }
+                } else if (techniqueName === "Ujjayi Pranayama") {
+                    const wave = container.querySelector('.anim-wave');
+                    if(wave) {
+                        wave.style.animationDuration = `${step.duration}ms`;
+                        wave.setAttribute("class", `anim-wave ${step.action === 'inhale' ? 'draw-wave-inhale' : 'draw-wave-exhale'}`);
+                    }
+                } else if (techniqueName === "Nadi Shodhana") {
+                    const leftPath = container.querySelector('#path-left');
+                    const rightPath = container.querySelector('#path-right');
+                    if (leftPath && rightPath) {
+                        leftPath.style.animationDuration = `${step.duration}ms`;
+                        rightPath.style.animationDuration = `${step.duration}ms`;
+                        if (step.instruction.includes("Esquerda")) {
+                            leftPath.classList.add('active');
+                            rightPath.classList.remove('active');
+                        } else {
+                            rightPath.classList.add('active');
+                            leftPath.classList.remove('active');
+                        }
+                    }
+                } else {
+                    const circle = container.querySelector('.anim-circle');
+                    if(circle) {
+                        circle.style.transitionDuration = `${step.duration}ms`;
+                        circle.classList.remove('breathing-inhale', 'breathing-exhale');
+                        if(step.action === 'inhale') circle.classList.add('breathing-inhale');
+                        else if (step.action === 'exhale') circle.classList.add('breathing-exhale');
+                    }
+                }
+            }, cumulativeTime);
+            cumulativeTime += step.duration;
+        });
+
+        pranayamaCycleTimeout = setTimeout(runCycle, cycleDuration);
     };
 
     runCycle();
@@ -119,8 +164,9 @@ function stopPranayamaPractice() {
     const guide = document.getElementById('pranayama-guide');
     const container = document.getElementById('pranayama-anim-container');
     if (guide) guide.classList.remove('active');
-    if (container) container.innerHTML = ''; // Clear the animation
-    clearTimeout(pranayamaInterval);
+    if (container) container.innerHTML = '';
+    clearTimeout(pranayamaCycleTimeout);
+    clearInterval(pranayamaCountdownInterval);
 }
 
 function showDiagnosticModal(title, checklist) {
@@ -203,7 +249,10 @@ function showHerbDetails(season, herbName) {
 function showCrystalDetails(crystal) {
     if (!crystal) return;
 
+    const imageHtml = crystal.image ? `<img src="${crystal.image}" alt="${crystal.name}" class="w-full h-48 object-cover rounded-md mb-6">` : '';
+
     const content = `
+        ${imageHtml}
         <div class="space-y-6 text-sm">
             <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4><p class="text-gray-300">${crystal.composition}</p></div>
             ${crystal.history ? `<div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4><p class="text-gray-300">${crystal.history}</p></div>` : ''}
