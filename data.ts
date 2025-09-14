@@ -18,13 +18,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Templo do Corpo e a Abundância da Alma</h3>
             <p class="mb-4 text-gray-400">O Pilar da Terra é o fundamento de nossa existência, o arquétipo da estabilidade, nutrição e manifestação no plano material. Regido pelo Chakra Raiz (Muladhara), ele governa nosso corpo físico como um "altar sagrado", nossa saúde, segurança e a capacidade de materializar a abundância. Trabalhar este pilar é honrar o templo do corpo e fincar raízes fortes para que a alma possa florescer sem medo.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: Nutrição como Magia Prática</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Nutrição como Magia Prática</h4>
             <p class="mb-4 text-gray-400">A alimentação é nossa alquimia diária. A prática de <strong>Mindful Eating</strong> (Alimentação Consciente) transforma a refeição em um ritual de presença, melhorando a digestão e a conexão com os sinais de fome e saciedade do corpo. Uma dieta baseada em plantas, como ensinam as Zonas Azuis, garante que o fogo digestivo não seja sobrecarregado, promovendo a longevidade.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "benefícios mindful eating", "receitas de aterramento (grounding foods)", "dieta das Zonas Azuis".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: Rituais de Aterramento e Manifestação</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Aterramento e Manifestação</h4>
             <p class="mb-4 text-gray-400">Práticas de aterramento, como caminhar descalço na natureza, nos permitem descarregar o excesso de energia. O plantio consciente de uma semente ou o enterro de um cristal como o <strong>Citrino</strong> ou a <strong>Pirita</strong> com uma intenção clara é um poderoso ritual de manifestação para ancorar a abundância no plano físico.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como praticar grounding ou earthing", "ritual para manifestar abundância", "cristais para prosperidade".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra da Terra</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Terra</h4>
             <p class="mb-4 text-gray-400">O desequilíbrio da Terra manifesta-se como inércia, teimosia, apego excessivo ao material e medo da mudança. Reconhecer essa sombra é o primeiro passo para usar a energia do Fogo (Pilar 3) para quebrar a estagnação e cultivar a generosidade como antídoto ao apego.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "arquétipo do Amante", "como lidar com a procrastinação", "desapego material filosofia".</p>
         ` 
@@ -35,13 +35,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Fluxo das Emoções e a Alquimia Criativa</h3>
             <p class="mb-4 text-gray-400">Este pilar explora o mundo fluido de nossas emoções, alinhado ao Chakra Sacral (Svadhisthana). A água simboliza o inconsciente, a intuição e a purificação. Como a água, nossas emoções precisam fluir para nos nutrir; quando estagnadas, tornam-se turvas.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Rio da Consciência (Regulação Emocional)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Rio da Consciência (Regulação Emocional)</h4>
             <p class="mb-4 text-gray-400">Regular emoções não é suprimir, mas influenciar conscientemente como as vivenciamos. Ferramentas práticas incluem <strong>Mindfulness</strong> para fortalecer o córtex pré-frontal, <strong>Reavaliação Cognitiva</strong> para reinterpretar gatilhos e a <strong>Técnica 5-4-3-2-1</strong> para ancorar no presente.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "técnica 5-4-3-2-1 para ansiedade", "reavaliação cognitiva TCC", "como praticar mindfulness".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Gota e o Oceano (A Visão Budista)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Gota e o Oceano (A Visão Budista)</h4>
             <p class="mb-4 text-gray-400">A sabedoria budista nos ensina que somos uma gota, e o universo, o oceano. Nosso sofrimento vem da crença na separação. Ao meditar sobre uma emoção, observe-a como uma onda passando no seu oceano interior. A gota, ao se reconhecer como oceano, encontra a paz.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "conceito de não-dualidade budismo", "metáfora gota no oceano", "Thich Nhat Hanh ensinamentos".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
             <p class="mb-4 text-gray-400">Os sonhos são a linguagem simbólica da alma. Honramos <strong>Freud</strong> como o ancestral que abriu a porta, mas abraçamos a visão de <strong>Carl Jung</strong>, que via os sonhos como revelações do inconsciente coletivo e dos arquétipos. Para <strong>James Hillman</strong>, devemos honrar a imagem do sonho como uma realidade em si, e a <strong>neurociência</strong> nos mostra que o sono REM é uma terapia noturna para processar emoções.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "livro O Homem e seus Símbolos Carl Jung", "psicologia arquetípica James Hillman", "livro Por que nós dormimos Matthew Walker", "como ter sonhos lúcidos".</p>
         `
@@ -52,13 +52,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Centelha da Vontade e a Forja da Transformação</h3>
             <p class="mb-4 text-gray-400">O Pilar do Fogo é a centelha divina, a força da transformação e da paixão. Alinhado ao Chakra do Plexo Solar (Manipura), ele é nosso centro de poder pessoal, o motor que nos impulsiona para a ação e a luz da consciência que dissipa a inércia.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Chama Interior (Manipura e Agni)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chama Interior (Manipura e Agni)</h4>
             <p class="mb-4 text-gray-400">Na Ayurveda, <strong>Agni</strong> é o fogo digestivo, chave para a saúde. No corpo sutil, o Manipura governa nosso poder pessoal e autoestima. Práticas como a <strong>Respiração do Fogo (Bhastrika)</strong> e a meditação na chama de uma vela (<em>Trataka</em>) são usadas para gerar calor interno (<em>tapas</em>) e fortalecer a força de vontade.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é Agni Ayurveda", "benefícios do Trataka", "como fortalecer o chakra Manipura".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: Rituais de Transformação e Vontade</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Transformação e Vontade</h4>
             <p class="mb-4 text-gray-400">O fogo é o grande transmutador. Rituais como a <strong>Queima de Intenções</strong> (escrever o que se deseja liberar ou manifestar e entregar à chama) e a <strong>Ceromancia</strong> (adivinhação pelas formas da cera) são atos psicomágicos poderosos de transformação.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como fazer um ritual de queima de intenções", "ceromancia significados", "magia com velas cores".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra do Fogo</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Fogo</h4>
             <p class="mb-4 text-gray-400">O fogo desequilibrado manifesta-se como raiva, arrogância, ou, no outro extremo, como procrastinação. O trabalho é <strong>canalizar a energia da raiva</strong>, reconhecendo-a como um sinal de um limite ultrapassado, e transmutá-la em combustível para a ação assertiva.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como lidar com a raiva de forma saudável", "arquétipo do Guerreiro Carl Jung", "aumentar a força de vontade".</p>
         `
@@ -69,13 +69,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Sopro da Conexão e a Sabedoria do Coração</h3>
             <p class="mb-4 text-gray-400">O Pilar do Ar é o sopro da vida, o elemento invisível que conecta tudo. Alinhado ao Chakra Cardíaco (Anahata), ele governa o intelecto, a comunicação, os relacionamentos e a capacidade de amar. A respiração é a ponte sagrada entre o corpo e a mente.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Sopro como Ferramenta (Pranayama)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Sopro como Ferramenta (Pranayama)</h4>
             <p class="mb-4 text-gray-400">Dominar a respiração é dominar nossa energia. A <strong>Respiração Diafragmática</strong> ativa o nervo vago e acalma. A <strong>Respiração das Narinas Alternadas (Nadi Shodhana)</strong> equilibra os hemisférios cerebrais, unindo lógica e intuição.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "tutorial Nadi Shodhana pranayama", "benefícios respiração diafragmática", "Wim Hof Method guiado".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Ponte do Coração (Relacionamentos)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Ponte do Coração (Relacionamentos)</h4>
             <p class="mb-4 text-gray-400">A prática aqui é a <strong>Comunicação Não-Violenta (CNV)</strong>, que nos ensina a expressar nossas necessidades e ouvir as dos outros a partir de um lugar de empatia, fortalecendo os laços.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "introdução Comunicação Não-Violenta", "meditação Metta Bhavana (amor-bondade)".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra do Ar</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Ar</h4>
             <p class="mb-4 text-gray-400">O Ar desequilibrado manifesta-se como excesso de racionalização, distanciamento emocional ou superficialidade. O antídoto é o <strong>aterramento</strong> (Pilar da Terra) e a conexão com o <strong>Pilar da Água</strong> para dar sentimento às palavras.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "exercícios de grounding para ansiedade", "como equilibrar razão e emoção".</p>
         `
@@ -86,10 +86,10 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Vibração da Verdade e a Expressão da Alma</h3>
             <p class="mb-4 text-gray-400">O Pilar do Som explora a vibração como a força primordial do universo. Alinhado ao Chakra Laríngeo (Vishuddha), ele governa não apenas o som que emitimos, mas nossa sintonia com a vasta orquestra de frequências que compõem a realidade.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: O Coração Pulsante da Terra (Ressonância Schumann)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Coração Pulsante da Terra (Ressonância Schumann)</h4>
             <p class="mb-4 text-gray-400">A <strong>ionosfera</strong> age como uma "pele de tambor" ao redor do planeta. Os raios "batucam" nela, criando uma onda de baixíssima frequência (7.83 Hz), a <strong>Ressonância Schumann</strong>. Essa frequência corresponde às ondas cerebrais Alfa/Theta, associadas a estados de calma e meditação. Ao nos aterrarmos, sintonizamos nosso cérebro com o "coração" do planeta.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é a Ressonância Schumann", "benefícios da frequência 7.83 Hz".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: As Tempestades Solares e a Higiene Vibracional</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Tempestades Solares e a Higiene Vibracional</h4>
             <p class="mb-4 text-gray-400"><strong>Explosões solares</strong> e a poluição eletromagnética moderna (EMF, 5G) introduzem "ruído" em nossa orquestra. A prática da <strong>higiene vibracional</strong> se torna essencial: passar tempo na natureza, praticar o aterramento para descarregar o excesso de "carga" e usar o som (taças, mantras) para "reafinar" nosso corpo.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "efeitos das explosões solares no corpo humano", "poluição eletromagnética e saúde", "técnicas de earthing".</p>
         `
@@ -100,13 +100,13 @@ export const pillarData = {
         content: `
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Olho da Intuição e a Clareza da Percepção</h3>
             <p class="mb-4 text-gray-400">O Pilar da Luz é a sabedoria que transcende a lógica, o reino da intuição e da visão interior. Regido pelo Chakra Frontal (Ajna), é nosso oráculo interno, a capacidade de ver além do véu das ilusões.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Natureza da Percepção (Física Quântica como Metáfora)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Natureza da Percepção (Física Quântica como Metáfora)</h4>
             <p class="mb-4 text-gray-400">O <strong>experimento da dupla fenda</strong> nos ensina que a luz se comporta como partícula (matéria) quando observada e como onda (potencial) quando não observada. Usamos isso como uma metáfora: nossa percepção focada (o "observador") tem o poder de colapsar um campo de infinitas possibilidades em uma realidade manifesta.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "experimento da dupla fenda explicado", "efeito do observador física quântica".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: A Chave Surrealista (Dalí e Magritte)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chave Surrealista (Dalí e Magritte)</h4>
             <p class="mb-4 text-gray-400"><strong>Salvador Dalí</strong> nos ensina a capturar as imagens do subconsciente com seu método paranoico-crítico, acessando o estado hipnagógico. <strong>René Magritte</strong> nos desafia a questionar a realidade com sua "Traição das Imagens", mostrando que o mapa não é o território. Juntos, eles nos dão ferramentas para explorar e decifrar nosso mundo interior.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "método paranoico-crítico Salvador Dalí", "René Magritte A Traição das Imagens".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Sombra da Luz</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Luz</h4>
             <p class="mb-4 text-gray-400">A Luz desequilibrada manifesta-se como arrogância espiritual, desconexão da realidade ou paranoia. O antídoto é o <strong>aterramento</strong> (Pilar da Terra), que nos força a testar nossas visões na prática e a manter os pés firmes no chão.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é bypass espiritual", "perigos do ego espiritual".</p>
         `
@@ -118,12 +118,22 @@ export const pillarData = {
             <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Consciência Cósmica e a União com a Fonte</h3>
             <p class="mb-4 text-gray-400">Este é o pilar mestre, a ponte entre o finito e o infinito, regido pelo Chakra Coronário (Sahasrara). Ele é a <strong>"Sala do Arquiteto"</strong>, onde o Guardião da Centelha aprende a se tornar o construtor consciente da sua própria realidade.</p>
             <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Arquitetura da Realidade (Neurociência e Hermetismo)</h4>
-            <p class="mb-4 text-gray-400">O princípio hermético "O Universo é Mental" encontra seu espelho na ciência da <strong>neuroplasticidade</strong>. Nossos pensamentos e hábitos repetidos esculpem as vias neurais do nosso cérebro, literalmente construindo a mente que experimenta a realidade. A mudança duradoura ocorre ao entendermos o <strong>Circuito do Hábito</strong> (Deixa -> Rotina -> Recompensa) e usarmos nossa vontade para forjar novos caminhos neurais.</p>
+            <p class="mb-4 text-gray-400">O princípio hermético "O Universo é Mental" encontra seu espelho na ciência da <strong>neuroplasticidade</strong>. Nossos pensamentos e hábitos repetidos esculpem as vias neurais do nosso cérebro, literalmente construindo a mente que experimenta a realidade. A mudança duradoura não é um ato de magia, mas de engenharia mental.</p>
+            <div class="card p-4 rounded-lg my-4 bg-black/20 border border-amber-600/20">
+                <h5 class="font-bold text-[#a37e2c] mb-2">Ritual Prático: Hackeando o Circuito do Hábito</h5>
+                <p class="text-sm text-gray-400 mb-2">Use o modelo de Charles Duhigg para reescrever um hábito indesejado:</p>
+                <ol class="list-decimal list-inside text-sm text-gray-300 space-y-1">
+                    <li><strong>Identifique a Rotina:</strong> Qual é o comportamento que você quer mudar? (Ex: Procrastinar navegando em redes sociais).</li>
+                    <li><strong>Isole a Recompensa:</strong> O que você realmente busca com essa rotina? É um alívio do tédio? Uma distração da ansiedade? Um momento de descanso? Teste diferentes recompensas para descobrir o anseio real.</li>
+                    <li><strong>Encontre a Deixa (Gatillho):</strong> Qual evento dispara a rotina? É um horário específico? Um estado emocional (cansaço, estresse)? Um local? Anote o gatilho assim que ele ocorrer.</li>
+                    <li><strong>Crie um Novo Plano:</strong> Agora, crie uma nova rotina que responda à mesma deixa e entregue a mesma recompensa. (Ex: Deixa: sentir-se estressado. Nova Rotina: praticar 3 minutos de respiração profunda. Recompensa: alívio da ansiedade).</li>
+                </ol>
+            </div>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "O Caibalion princípio do mentalismo", "neuroplasticidade como mudar hábitos", "livro O Poder do Hábito".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar II: As Ferramentas do Arquiteto (PNL na Prática)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Ferramentas do Arquiteto (PNL na Prática)</h4>
             <p class="mb-4 text-gray-400">A Programação Neurolinguística (PNL) nos oferece uma caixa de ferramentas para a "Química Mental": <strong>Ancoragem</strong> para criar gatilhos de poder, <strong>Reestruturação Cognitiva</strong> para mudar a moldura de uma situação e o <strong>Padrão "Swish"</strong> para substituir neurologicamente um gatilho indesejado.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é ancoragem PNL", "técnica de reframing PNL", "padrão swish passo a passo".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar III: A Consciência Unificada (Gaia, Sagan e Ubuntu)</h4>
+            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Consciência Unificada (Gaia, Sagan e Ubuntu)</h4>
             <p class="mb-4 text-gray-400">Aqui, transcendemos a mente individual. A <strong>Teoria de Gaia</strong> nos vê como células de um organismo planetário. A perspectiva cósmica de <strong>Carl Sagan</strong> nos lembra que somos "poeira de estrelas". E a filosofia <strong>Ubuntu</strong> ("Eu sou porque nós somos") nos ensina que a maestria da mente é um caminho para uma conexão mais profunda com toda a teia da vida.</p>
             <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "Teoria de Gaia James Lovelock", "Carl Sagan Pálido Ponto Azul", "filosofia Ubuntu explicada".</p>
         `
@@ -160,7 +170,23 @@ export const altarData = {
         { name: "Vênus", icon: "♀", active: false, purpose: "Vênus rege o amor, a beleza e a harmonia. Corresponde a Netzach (Vitória). Invoque para cultivar o amor-próprio, a criatividade e a harmonia nos relacionamentos." },
         { name: "Mercúrio", icon: "☿", active: false, purpose: "Mercúrio rege a comunicação, o intelecto e a magia. Corresponde a Hod (Glória). Invoque para clareza mental, aprendizado e para manifestar sua vontade através da palavra." },
         { name: "Lua", icon: "☽", active: false, purpose: "A Lua rege as emoções, a intuição e o inconsciente. Corresponde a Yesod (Fundação). Invoque para navegar seu mundo interior, trabalhar com sonhos e fortalecer sua intuição." }
-    ]
+    ],
+    sigilGuide: `
+        <div class="card p-6 rounded-lg my-8 bg-black/20 border border-amber-600/20">
+            <h4 class="font-cinzel text-xl font-bold text-[#c8a44d] mb-4">A Arte da Sigilização: Forjando sua Vontade</h4>
+            <p class="text-gray-400 mb-4">O Altar de Manifestação é mais do que um mapa cósmico; é uma tela em branco para a sua Vontade. Os símbolos que você vê—os selos planetários—são chaves antigas. A sigilização, popularizada pela Magia do Caos, é uma técnica para criar suas próprias chaves. Um sigilo é a sua intenção destilada em sua forma mais pura, um glifo que fala diretamente ao seu subconsciente.</p>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Criar seu Sigilo:</h5>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                <li><strong>A Intenção:</strong> Escreva seu desejo em uma frase clara, positiva e no tempo presente. Ex: <span class="italic text-amber-300">"MINHA CRIATIVIDADE FLUI LIVREMENTE"</span>.</li>
+                <li><strong>A Condensação:</strong> Remova todas as vogais e as letras que se repetem. <br/>M<del>I</del>NH<del>A</del> CR<del>I</del><del>A</del>T<del>I</del>V<del>I</del>D<del>A</del>D<del>E</del> FL<del>U</del><del>I</del> L<del>I</del>VR<del>E</del>M<del>E</del>NT<del>E</del> → <span class="italic text-amber-300">MNHCRTVDFL</span>.</li>
+                <li><strong>A Criação:</strong> Combine as letras restantes em um único símbolo abstrato. Não pense demais. Desenhe, apague, sobreponha. O resultado deve ser esteticamente agradável para você, mas irreconhecível em sua origem. Este é o seu sigilo.</li>
+            </ol>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Ativar seu Sigilo:</h5>
+            <p class="text-gray-400">A ativação, ou 'carga', do sigilo é o ato de projetar sua energia nele. Isso é feito em um estado de 'gnose', ou consciência alterada. Você pode alcançar este estado através de meditação profunda, dança, exercício intenso, ou no pico de uma emoção forte. Olhe fixamente para o seu sigilo neste momento, projetando sua Vontade nele até que a imagem pareça 'piscar' ou desaparecer da sua visão periférica.</p>
+            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">O Esquecimento:</h5>
+            <p class="text-gray-400">Este é o passo mais crucial. Após carregar o sigilo, você deve esquecê-lo conscientemente. Destrua o desenho físico (queime-o, rasgue-o) e não pense mais no desejo. A semente foi plantada no subconsciente; ficar cavando para ver se ela brotou só irá matar a planta. Confie no processo.</p>
+        </div>
+    `
 };
 
 export const seasonalHerbData = {
@@ -169,6 +195,7 @@ export const seasonalHerbData = {
         { 
             name: 'Alecrim', 
             scientificName: 'Salvia rosmarinus',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Rosmarinus_officinalis_-_Köhler–s_Medizinal-Pflanzen-258.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Apolo, Hélios',
@@ -181,6 +208,7 @@ export const seasonalHerbData = {
         {
             name: 'Lavanda',
             scientificName: 'Lavandula angustifolia',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Lavandula_angustifolia_-_Köhler–s_Medizinal-Pflanzen-085.jpg',
             planet: 'Mercúrio',
             element: 'Ar',
             deities: 'Hermes, Mercúrio',
@@ -193,6 +221,7 @@ export const seasonalHerbData = {
         {
             name: 'Manjericão',
             scientificName: 'Ocimum basilicum',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Ocimum_basilicum_-_Köhler–s_Medizinal-Pflanzen-105.jpg',
             planet: 'Vênus',
             element: 'Fogo',
             deities: 'Vrinda Devi, Vênus, Afrodite',
@@ -207,6 +236,7 @@ export const seasonalHerbData = {
         {
             name: 'Rosa',
             scientificName: 'Rosa spp.',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Rosa_gallica_officinalis_-_Köhler–s_Medizinal-Pflanzen-127.jpg/800px-Rosa_gallica_officinalis_-_Köhler–s_Medizinal-Pflanzen-127.jpg',
             planet: 'Vênus',
             element: 'Água',
             deities: 'Afrodite, Vênus, Ísis',
@@ -219,6 +249,7 @@ export const seasonalHerbData = {
         {
             name: 'Canela',
             scientificName: 'Cinnamomum zeylanicum',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Cinnamomum_verum_-_Köhler–s_Medizinal-Pflanzen-187.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Afrodite, Lakshmi',
@@ -231,6 +262,7 @@ export const seasonalHerbData = {
         {
             name: 'Hortelã-pimenta',
             scientificName: 'Mentha piperita',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Mentha_piperita_-_Köhler–s_Medizinal-Pflanzen-095.jpg',
             planet: 'Mercúrio',
             element: 'Ar',
             deities: 'Mercúrio, Hermes',
@@ -245,6 +277,7 @@ export const seasonalHerbData = {
         { 
             name: 'Arruda', 
             scientificName: 'Ruta graveolens',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Ruta_graveolens_-_Köhler–s_Medizinal-Pflanzen-129.jpg/800px-Ruta_graveolens_-_Köhler–s_Medizinal-Pflanzen-129.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Marte, Hécate',
@@ -257,6 +290,7 @@ export const seasonalHerbData = {
         { 
             name: 'Guiné', 
             scientificName: 'Petiveria alliacea',
+            image: 'https://live.staticflickr.com/65535/48252251317_2628404555_b.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Ogum',
@@ -269,6 +303,7 @@ export const seasonalHerbData = {
         {
             name: 'Sálvia Branca',
             scientificName: 'Salvia apiana',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Salvia_apiana_-_sagesmudge.jpg/800px-Salvia_apiana_-_sagesmudge.jpg',
             planet: 'Júpiter',
             element: 'Ar',
             deities: 'Júpiter, Zeus',
@@ -281,6 +316,7 @@ export const seasonalHerbData = {
         {
             name: 'Louro',
             scientificName: 'Laurus nobilis',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Laurus_nobilis_-_Köhler–s_Medizinal-Pflanzen-086.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Apolo',
@@ -289,12 +325,39 @@ export const seasonalHerbData = {
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Feitiço de Desejo:</strong> Escreva um desejo em uma folha de louro e queime-a para enviar seu pedido ao universo.</li><li><strong>Banho de Vitória:</strong> Adicione folhas de louro a um banho quente antes de um evento importante (entrevista, prova) para atrair sucesso.</li><li><strong>Amuleto da Sorte:</strong> Carregue uma folha de louro na carteira para atrair boa sorte.</li></ul>`,
                 insightsDoBemViver: "O Louro nos ensina a reconhecer e celebrar nossas próprias vitórias. Seu uso lento na culinária, liberando sabor ao longo do tempo, é uma metáfora para como o sucesso duradouro é infundido com paciência e consistência em nossos projetos."
             }
+        },
+        {
+            name: 'Espinheira-Santa',
+            scientificName: 'Maytenus ilicifolia',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Maytenus_ilicifolia_-_espinheira-santa.jpg/800px-Maytenus_ilicifolia_-_espinheira-santa.jpg',
+            planet: 'Saturno',
+            element: 'Terra',
+            deities: 'Povos Indígenas, Curandeiros',
+            content: {
+                almaDaErva: "Planta nativa do sul do Brasil, seu nome revela sua magia: 'Espinheira' por sua aparência espinhosa que simboliza proteção, e 'Santa' por seu imenso poder de cura. É um amuleto verde, uma guardiã que ensina que a verdadeira cura vem da proteção e do estabelecimento de limites saudáveis.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá de Proteção Gástrica:</strong> Seu uso mais conhecido é para o sistema digestivo, mas a nível mágico, este chá cria um 'escudo' no plexo solar, protegendo contra energias densas que 'engolimos'.</li><li><strong>Amuleto de Proteção:</strong> Carregue folhas secas em um saquinho para criar um escudo pessoal contra energias negativas e inveja.</li><li><strong>Ritual de Limpeza:</strong> Use uma infusão de suas folhas para limpar objetos rituais ou o ambiente, consagrando um espaço seguro.</li></ul>`,
+                insightsDoBemViver: "A Espinheira-Santa nos mostra a conexão direta entre o corpo e o espírito. Ao proteger fisicamente a mucosa do estômago, ela nos lembra da importância de proteger nosso campo energético. Ela pergunta: 'O que você está engolindo que te faz mal?'. Sua sabedoria está em criar barreiras para que possamos nos curar por dentro."
+            }
+        },
+        {
+            name: 'Aroeira-Vermelha',
+            scientificName: 'Schinus terebinthifolius',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Schinus_terebinthifolia_-_fruits.jpg/800px-Schinus_terebinthifolia_-_fruits.jpg',
+            planet: 'Marte',
+            element: 'Fogo',
+            deities: 'Exu, Ogum, Iansã',
+            content: {
+                almaDaErva: "Também conhecida como Pimenta-Rosa, a Aroeira é uma guerreira espiritual. Sua energia é de ação rápida, ligada ao poder de Orixás do fogo e do ferro. É a força que quebra demandas, abre caminhos e desintegra energias estagnadas. É uma das ervas mais poderosas para limpeza e proteção nas tradições afro-brasileiras.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Banho de Descarrego:</strong> Um banho com suas folhas é um dos mais potentes rituais de limpeza, ideal para quando se sente um peso espiritual ou após conflitos. Jogue do pescoço para baixo.</li><li><strong>Defumação de Abertura de Caminhos:</strong> Queime suas folhas secas para limpar o ambiente de obstáculos e atrair a energia de ação e coragem de Ogum.</li><li><strong>Pó de Proteção:</strong> Triture as folhas secas e assopre nos cantos da casa para criar uma barreira contra energias negativas.</li></ul>`,
+                insightsDoBemViver: "A Aroeira ensina sobre a necessidade da 'destruição criativa'. Às vezes, é preciso quebrar e dissolver o velho para que o novo possa surgir. Sua energia de fogo nos dá a coragem para tomar decisões difíceis e cortar laços que não nos servem mais, abrindo caminho para o nosso verdadeiro propósito."
+            }
         }
     ],
     'Inverno': [
         {
             name: 'Mirra',
             scientificName: 'Commiphora myrrha',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Commiphora_myrrha_-_Köhler–s_Medizinal-Pflanzen-042.jpg',
             planet: 'Lua',
             element: 'Água',
             deities: 'Ísis, Anúbis, Saturno',
@@ -307,6 +370,7 @@ export const seasonalHerbData = {
         {
             name: 'Olíbano',
             scientificName: 'Boswellia sacra',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Boswellia_sacra_resin_2.jpg/1024px-Boswellia_sacra_resin_2.jpg',
             planet: 'Sol',
             element: 'Fogo',
             deities: 'Ra, Apolo, Sol Invictus',
@@ -319,6 +383,7 @@ export const seasonalHerbData = {
         {
             name: 'Gengibre',
             scientificName: 'Zingiber officinale',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Zingiber_officinale_-_Köhler–s_Medizinal-Pflanzen-141.jpg',
             planet: 'Marte',
             element: 'Fogo',
             deities: 'Marte, Ares',
@@ -326,6 +391,32 @@ export const seasonalHerbData = {
                 almaDaErva: "Raiz de Marte e do Fogo. O Gengibre é um catalisador mágico, um 'chute' energético para acelerar resultados e adicionar uma explosão de poder a qualquer feitiço. Ele aumenta a força pessoal, a coragem, a paixão e a confiança, ativando o Chakra do Plexo Solar (Manipura).",
                 farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Chá Energizante:</strong> Beba um chá de gengibre antes de um ritual para aumentar sua energia pessoal e poder mágico.</li><li><strong>Pó Acelerador:</strong> Adicione gengibre em pó a sachês ou feitiços para acelerar seus efeitos.</li><li><strong>Amuleto de Sucesso:</strong> Carregue um pedaço da raiz para atrair sucesso e proteger contra o fracasso.</li></ul>`,
                 insightsDoBemViver: "As propriedades do gengibre de aquecer o corpo e aumentar a circulação são um paralelo físico de sua função energética: melhorar o 'fluxo' de dinheiro, amor e oportunidades em nossa vida. Ele nos lembra que para manifestar, precisamos de ação e circulação de energia."
+            }
+        },
+        {
+            name: 'Andiroba',
+            scientificName: 'Carapa guianensis',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Andiroba_sementes.jpg/1024px-Andiroba_sementes.jpg',
+            planet: 'Saturno',
+            element: 'Terra',
+            deities: 'Espíritos da Floresta, Povos da Amazônia',
+            content: {
+                almaDaErva: "O nome vem do tupi e significa 'gosto amargo'. A Andiroba é uma árvore-mestra da Amazônia, e seu poder reside em seu óleo amargo. Na espiritualidade da floresta, o amargo não é ruim; é um remédio poderoso. A Andiroba limpa, protege e regenera. Sua energia é de uma cura profunda e resiliente, que ensina a encontrar força nas dificuldades.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Óleo de Proteção Corporal:</strong> Usar o óleo de Andiroba no corpo cria um escudo energético que repele influências 'parasitárias' e fortalece a aura.</li><li><strong>Limpeza de Objetos:</strong> Um pano umedecido com seu óleo pode ser usado para limpar fisicamente e energeticamente ferramentas mágicas, especialmente as de madeira.</li><li><strong>Cura de Feridas Emocionais:</strong> Medite com o aroma do óleo, pedindo à energia da Andiroba que ajude a cicatrizar velhas feridas emocionais, assim como ela cicatriza a pele.</li></ul>`,
+                insightsDoBemViver: "A Andiroba nos ensina que a cura nem sempre é doce. O 'amargo' de seu óleo, que repele insetos e cura inflamações, é uma metáfora para a necessidade de enfrentar verdades desconfortáveis para alcançar a cura verdadeira. Ela nos conecta com a resiliência e a sabedoria ancestral da floresta."
+            }
+        },
+        {
+            name: 'Palo Santo',
+            scientificName: 'Bursera graveolens',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Palo_Santo_Holy_Wood.jpg/1024px-Palo_Santo_Holy_Wood.jpg',
+            planet: 'Sol',
+            element: 'Ar',
+            deities: 'Xamãs, Curandeiros',
+            content: {
+                almaDaErva: "A 'Madeira Sagrada' da América do Sul. Seu aroma doce e resinoso é liberado quando a madeira é queimada, e acredita-se que eleva a vibração de um espaço, limpando energias negativas e atraindo positividade. É uma ferramenta de purificação que acalma a mente e o espírito, preparando o ambiente para a meditação e o ritual.",
+                farmaciaDaFloresta: `<ul class="list-disc list-inside space-y-2"><li><strong>Defumação de Limpeza Rápida:</strong> Acenda um pedaço de madeira de Palo Santo, deixe queimar por alguns segundos, apague a chama e espalhe a fumaça pelo ambiente, por sua aura ou por cristais.</li><li><strong>Chamado à Criatividade:</strong> Queime Palo Santo antes de iniciar um trabalho criativo para limpar bloqueios mentais e convidar a inspiração.</li><li><strong>Ancoragem de Paz:</strong> O simples ato de cheirar a madeira (sem queimar) pode ser uma âncora olfativa para um estado de calma e centramento.</li></ul>`,
+                insightsDoBemViver: "O Palo Santo só libera seu aroma característico anos após a morte natural da árvore. Ele nos ensina sobre o tempo, a paciência e a transformação. A verdadeira sabedoria e o poder de cura (o 'aroma') muitas vezes só se manifestam após um ciclo de vida, morte e renascimento ter sido completado."
             }
         }
     ]
@@ -337,6 +428,7 @@ export const cosmogramData = {
         name: "Quartzo Transparente",
         subtitle: "O Mestre Curador",
         icon: "💎",
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/28/Quartz%2C_Tibet.jpg",
         color: "#F0F0F0",
         composition: "Dióxido de silício (SiO₂), o mineral mais abundante da Terra. Sua estrutura cristalina hexagonal perfeita o torna um receptor, armazenador e amplificador de energia incomparável, funcionando como um circuito integrado da natureza.",
         history: "Visto como 'luz congelada' ou 'água eterna' por gregos e romanos. Usado em bolas de cristal por videntes celtas, como crânios de cristal por civilizações pré-colombianas para canalizar sabedoria e, na mitologia moderna, associado à Lemúria e Atlântida como 'bibliotecas de cristal'.",
@@ -348,25 +440,25 @@ export const cosmogramData = {
         {
             name: "Órbita I: Aterramento e Proteção",
             crystals: [
-                { name: "Turmalina Negra", subtitle: "O Escudo Impenetrável", icon: "⚫", color: "#333333", composition: "Um borossilicato complexo com uma estrutura trigonal. Suas estrias verticais canalizam a luz e a energia. É piroelétrica e piezoelétrica, gerando uma carga elétrica quando aquecida ou pressionada.", properties: "O cristal de proteção por excelência. Cria um campo de força que repele e transmuta energias densas, ataques psíquicos e radiação eletromagnética (EMF). Ligada ao Pilar da Terra e ao Chakra Raiz, ela nos ancora firmemente na realidade física.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque na entrada de casa como um guardião.</li><li>Posicione perto de eletrônicos (computador, Wi-Fi) para absorver a poluição eletromagnética.</li><li>Carregue no bolso para proteção pessoal diária.</li></ul>`, searchTerms: `"como limpar turmalina negra", "proteção contra energia negativa"` },
-                { name: "Hematita", subtitle: "A Âncora da Alma", icon: "🕳️", color: "#A9A9A9", composition: "Óxido de ferro (Fe₂O₃) com brilho metálico. Seu nome vem do grego 'haima' (sangue), pois sua forma em pó é vermelha e era usada como pigmento (ocre vermelho).", history: "Usada por guerreiros romanos para invocar coragem e por egípcios em amuletos para acalmar a histeria. É a pedra da 'mente', não do 'coração'.", properties: "A grande âncora do reino mineral. Aterra a energia 'aérea' no corpo físico, promovendo foco, coragem e a força para transformar sonhos em realidade. Dissolve a negatividade e equilibra a conexão corpo-mente.", uses: `<ul class="list-disc list-inside space-y-1"><li>Segure uma em cada mão para descarregar o excesso de energia após um dia estressante.</li><li>Use no local de trabalho para manter o foco e a mente lógica.</li><li>Coloque nos pés para um aterramento rápido e profundo.</li></ul>`, searchTerms: `"benefícios da hematita", "aterramento com hematita"` },
-                { name: "Obsidiana Negra", subtitle: "O Espelho da Verdade", icon: "⚫", color: "#2d2d2d", composition: "Um vidro vulcânico, formado pelo resfriamento ultrarrápido da lava, o que impede a formação de cristais. É amorfa, uma 'sombra' solidificada.", history: "Usada por culturas mesoamericanas para lâminas cirúrgicas e de sacrifício, e para espelhos de escriação (scrying). O Dr. John Dee, astrólogo da Rainha Elizabeth I, usava um espelho de obsidiana para se comunicar com anjos.", properties: "O espelho da alma. Uma pedra sem limites, que expõe impiedosamente a verdade, as sombras e os medos para serem confrontados. Corta laços energéticos e remove bloqueios, mas exige coragem e preparação. Use com respeito.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em meditações de <em>shadow work</em> para revelar verdades ocultas.</li><li>Coloque sobre o umbigo para cortar cordões energéticos.</li><li><strong>Atenção:</strong> Pode ser muito intensa. Use junto com um Quartzo Rosa para suavizar o processo.</li></ul>`, searchTerms: `"como usar obsidiana negra", "shadow work com cristais"` }
+                { name: "Turmalina Negra", subtitle: "O Escudo Impenetrável", icon: "⚫", image: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Schorl-181105.jpg", color: "#333333", composition: "Um borossilicato complexo com uma estrutura trigonal. Suas estrias verticais canalizam a luz e a energia. É piroelétrica e piezoelétrica, gerando uma carga elétrica quando aquecida ou pressionada.", properties: "O cristal de proteção por excelência. Cria um campo de força que repele e transmuta energias densas, ataques psíquicos e radiação eletromagnética (EMF). Ligada ao Pilar da Terra e ao Chakra Raiz, ela nos ancora firmemente na realidade física.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque na entrada de casa como um guardião.</li><li>Posicione perto de eletrônicos (computador, Wi-Fi) para absorver a poluição eletromagnética.</li><li>Carregue no bolso para proteção pessoal diária.</li></ul>`, searchTerms: `"como limpar turmalina negra", "proteção contra energia negativa"` },
+                { name: "Hematita", subtitle: "A Âncora da Alma", icon: "🕳️", image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hematite-207234.jpg", color: "#A9A9A9", composition: "Óxido de ferro (Fe₂O₃) com brilho metálico. Seu nome vem do grego 'haima' (sangue), pois sua forma em pó é vermelha e era usada como pigmento (ocre vermelho).", history: "Usada por guerreiros romanos para invocar coragem e por egípcios em amuletos para acalmar a histeria. É a pedra da 'mente', não do 'coração'.", properties: "A grande âncora do reino mineral. Aterra a energia 'aérea' no corpo físico, promovendo foco, coragem e a força para transformar sonhos em realidade. Dissolve a negatividade e equilibra a conexão corpo-mente.", uses: `<ul class="list-disc list-inside space-y-1"><li>Segure uma em cada mão para descarregar o excesso de energia após um dia estressante.</li><li>Use no local de trabalho para manter o foco e a mente lógica.</li><li>Coloque nos pés para um aterramento rápido e profundo.</li></ul>`, searchTerms: `"benefícios da hematita", "aterramento com hematita"` },
+                { name: "Obsidiana Negra", subtitle: "O Espelho da Verdade", icon: "⚫", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Obsidian_Rainbow_Mexico.jpg/1024px-Obsidian_Rainbow_Mexico.jpg", color: "#2d2d2d", composition: "Um vidro vulcânico, formado pelo resfriamento ultrarrápido da lava, o que impede a formação de cristais. É amorfa, uma 'sombra' solidificada.", history: "Usada por culturas mesoamericanas para lâminas cirúrgicas e de sacrifício, e para espelhos de escriação (scrying). O Dr. John Dee, astrólogo da Rainha Elizabeth I, usava um espelho de obsidiana para se comunicar com anjos.", properties: "O espelho da alma. Uma pedra sem limites, que expõe impiedosamente a verdade, as sombras e os medos para serem confrontados. Corta laços energéticos e remove bloqueios, mas exige coragem e preparação. Use com respeito.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em meditações de <em>shadow work</em> para revelar verdades ocultas.</li><li>Coloque sobre o umbigo para cortar cordões energéticos.</li><li><strong>Atenção:</strong> Pode ser muito intensa. Use junto com um Quartzo Rosa para suavizar o processo.</li></ul>`, searchTerms: `"como usar obsidiana negra", "shadow work com cristais"` }
             ]
         },
         {
             name: "Órbita II: Cura e Elevação",
             crystals: [
-                { name: "Quartzo Rosa", subtitle: "O Bálsamo do Coração", icon: "💖", color: "#FFC0CB", composition: "Uma variedade rosa do quartzo, cuja cor vem de traços de titânio, ferro ou manganês. É a pedra do amor universal.", history: "Contas de quartzo rosa datadas de 7000 a.C. foram encontradas na Mesopotâmia. Egípcios e romanos a usavam como um símbolo de amor e beleza.", properties: "A vibração do amor incondicional e da paz infinita. Dissolve feridas emocionais, medo e ressentimento, abrindo e purificando o Chakra Cardíaco. Ensina sobre amor-próprio, perdão e compaixão. Atrai o amor e fortalece os relacionamentos existentes.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque sobre o coração durante a meditação para curar mágoas.</li><li>Tenha no quarto para promover um ambiente de amor e intimidade.</li><li>Faça um elixir (método indireto) para beber a energia do amor-próprio.</li></ul>`, searchTerms: `"meditação com quartzo rosa", "amor-próprio com quartzo rosa"` },
-                { name: "Ametista", subtitle: "A Transmutadora Violeta", icon: "💜", color: "#9966CC", composition: "Uma variedade violeta do quartzo, cuja cor vem de irradiação e impurezas de ferro. Abundante no Brasil e no Uruguai.", history: "O nome vem do grego 'amethystos' (não ébrio). Acreditava-se que prevenia a embriaguez. Leonardo da Vinci escrevia que a Ametista dissipava maus pensamentos e aguçava a inteligência.", properties: "A grande transmutadora. Sua vibração violeta eleva a energia, acalma a mente e transmuta padrões negativos em sabedoria. É uma ponte para a espiritualidade, abrindo os Chakras Coronário e Frontal (Terceiro Olho), e facilitando a meditação e a intuição.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque na mesa de cabeceira para um sono tranquilo e para afastar pesadelos.</li><li>Medite com ela sobre o Terceiro Olho para aprofundar a prática e despertar a intuição.</li><li>Use para limpar a energia de outros cristais.</li></ul>`, searchTerms: `"meditação com ametista", "elixir de ametista método indireto"` },
-                { name: "Quartzo Verde", subtitle: "O Curador da Alma", icon: "💚", color: "#98FB98", composition: "Quartzo com inclusões de fuchsita (uma variedade de mica verde), que lhe confere a cor e um brilho sutil (aventurescência). Também conhecido como Aventurina Verde.", properties: "A pedra da saúde, vitalidade e do bem-estar. Sua energia calmante equilibra o corpo físico, emocional e mental, atuando como um 'vitamínico' para a alma. Atua diretamente no Chakra Cardíaco, acalmando o sistema nervoso e promovendo a cura e a prosperidade.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em contato com a pele na área que necessita de cura.</li><li>Coloque sobre o coração para acalmar a ansiedade e o pânico.</li><li>Tenha na sua mesa de trabalho ou carteira para atrair oportunidades e sorte.</li></ul>`, searchTerms: `"como usar quartzo verde", "quartzo verde chakra cardíaco"` }
+                { name: "Quartzo Rosa", subtitle: "O Bálsamo do Coração", icon: "💖", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Rose_Quartz_Brazil.jpg/1024px-Rose_Quartz_Brazil.jpg", color: "#FFC0CB", composition: "Uma variedade rosa do quartzo, cuja cor vem de traços de titânio, ferro ou manganês. É a pedra do amor universal.", history: "Contas de quartzo rosa datadas de 7000 a.C. foram encontradas na Mesopotâmia. Egípcios e romanos a usavam como um símbolo de amor e beleza.", properties: "A vibração do amor incondicional e da paz infinita. Dissolve feridas emocionais, medo e ressentimento, abrindo e purificando o Chakra Cardíaco. Ensina sobre amor-próprio, perdão e compaixão. Atrai o amor e fortalece os relacionamentos existentes.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque sobre o coração durante a meditação para curar mágoas.</li><li>Tenha no quarto para promover um ambiente de amor e intimidade.</li><li>Faça um elixir (método indireto) para beber a energia do amor-próprio.</li></ul>`, searchTerms: `"meditação com quartzo rosa", "amor-próprio com quartzo rosa"` },
+                { name: "Ametista", subtitle: "A Transmutadora Violeta", icon: "💜", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Amethyst._Magaliesburg%2C_South_Africa.jpg/800px-Amethyst._Magaliesburg%2C_South_Africa.jpg", color: "#9966CC", composition: "Uma variedade violeta do quartzo, cuja cor vem de irradiação e impurezas de ferro. Abundante no Brasil e no Uruguai.", history: "O nome vem do grego 'amethystos' (não ébrio). Acreditava-se que prevenia a embriaguez. Leonardo da Vinci escrevia que a Ametista dissipava maus pensamentos e aguçava a inteligência.", properties: "A grande transmutadora. Sua vibração violeta eleva a energia, acalma a mente e transmuta padrões negativos em sabedoria. É uma ponte para a espiritualidade, abrindo os Chakras Coronário e Frontal (Terceiro Olho), e facilitando a meditação e a intuição.", uses: `<ul class="list-disc list-inside space-y-1"><li>Coloque na mesa de cabeceira para um sono tranquilo e para afastar pesadelos.</li><li>Medite com ela sobre o Terceiro Olho para aprofundar a prática e despertar a intuição.</li><li>Use para limpar a energia de outros cristais.</li></ul>`, searchTerms: `"meditação com ametista", "elixir de ametista método indireto"` },
+                { name: "Quartzo Verde", subtitle: "O Curador da Alma", icon: "💚", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Aventurine_Brazil.jpg/1024px-Aventurine_Brazil.jpg", color: "#98FB98", composition: "Quartzo com inclusões de fuchsita (uma variedade de mica verde), que lhe confere a cor e um brilho sutil (aventurescência). Também conhecido como Aventurina Verde.", properties: "A pedra da saúde, vitalidade e do bem-estar. Sua energia calmante equilibra o corpo físico, emocional e mental, atuando como um 'vitamínico' para a alma. Atua diretamente no Chakra Cardíaco, acalmando o sistema nervoso e promovendo a cura e a prosperidade.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em contato com a pele na área que necessita de cura.</li><li>Coloque sobre o coração para acalmar a ansiedade e o pânico.</li><li>Tenha na sua mesa de trabalho ou carteira para atrair oportunidades e sorte.</li></ul>`, searchTerms: `"como usar quartzo verde", "quartzo verde chakra cardíaco"` }
             ]
         },
         {
             name: "Órbita III: Conexão e Espiritualidade",
             crystals: [
-                 { name: "Selenita", subtitle: "A Luz Líquida", icon: "⚪", color: "#F0FFF0", composition: "Uma variedade cristalina da gipsita. Seu nome vem de Selene, a deusa grega da Lua. É muito macia (dureza 2 na escala Mohs) e solúvel em água.", properties: "Vibra em uma frequência extremamente elevada, manifestando a luz líquida no plano físico. Capaz de limpar e purificar outros cristais, o ambiente e a aura. Abre os chakras superiores (Coronário e acima), conectando à consciência angélica. É auto-limpante.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use um bastão para 'varrer' seu campo áurico, cortando energias estagnadas.</li><li>Coloque outros cristais sobre uma placa de selenita para limpá-los e recarregá-los.</li><li>Crie uma grade de proteção ao redor da sua cama ou casa.</li><li><strong>Atenção:</strong> Nunca a coloque na água, ela se dissolverá.</li></ul>`, searchTerms: `"como limpar aura com selenita", "placa de selenita"` },
-                { name: "Pedra da Lua", subtitle: "O Oráculo da Intuição", icon: "🌙", color: "#A0D6E8", composition: "Um feldspato conhecido pela adularescência, um brilho místico que parece flutuar sob a superfície, como a luz da lua na água.", history: "Em Roma, acreditava-se que era formada por raios de luar solidificados. Na Índia, é uma pedra sagrada, um presente de casamento tradicional para trazer harmonia.", properties: "Conectada à energia da Lua e ao feminino divino. Acalma as emoções, desperta a intuição, a clarividência e a empatia. É uma pedra de 'novos começos', alinhada com os ciclos da lua e da vida.", uses: `<ul class="list-disc list-inside space-y-1"><li>Durma com ela sob o travesseiro para estimular sonhos proféticos e lúcidos.</li><li>Use durante a Lua Nova para definir intenções e na Lua Cheia para celebrar e liberar.</li><li>Ajuda a equilibrar os ciclos hormonais femininos.</li></ul>`, searchTerms: `"pedra da lua e ciclos lunares", "ativar intuição"` },
-                { name: "Cianita Azul", subtitle: "A Espada do Arcanjo", icon: "💙", color: "#4682B4", composition: "Um silicato de alumínio que cristaliza em lâminas. Possui uma propriedade única de ter dureza variável dependendo do eixo. Não acumula energia negativa.", properties: "A 'Espada de São Miguel Arcanjo'. Alinha instantaneamente todos os chakras e corpos sutis, sem necessidade de esforço consciente. Corta cordões energéticos negativos, confusão e raiva. Abre o Chakra Laríngeo, facilitando a comunicação da verdade com calma e clareza.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em meditações para um alinhamento rápido dos chakras.</li><li>Use sua forma de lâmina para 'cortar' simbolicamente pensamentos negativos ou laços energéticos.</li><li>Coloque sobre a garganta para desbloquear a comunicação antes de uma conversa difícil.</li></ul>`, searchTerms: `"alinhamento chakras cianita azul", "cianita azul espada de miguel"` }
+                 { name: "Selenita", subtitle: "A Luz Líquida", icon: "⚪", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Selenite_-_Naica%2C_Mun._de_Saucillo%2C_Chihuahua%2C_Mexico.jpg/800px-Selenite_-_Naica%2C_Mun._de_Saucillo%2C_Chihuahua%2C_Mexico.jpg", color: "#F0FFF0", composition: "Uma variedade cristalina da gipsita. Seu nome vem de Selene, a deusa grega da Lua. É muito macia (dureza 2 na escala Mohs) e solúvel em água.", properties: "Vibra em uma frequência extremamente elevada, manifestando a luz líquida no plano físico. Capaz de limpar e purificar outros cristais, o ambiente e a aura. Abre os chakras superiores (Coronário e acima), conectando à consciência angélica. É auto-limpante.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use um bastão para 'varrer' seu campo áurico, cortando energias estagnadas.</li><li>Coloque outros cristais sobre uma placa de selenita para limpá-los e recarregá-los.</li><li>Crie uma grade de proteção ao redor da sua cama ou casa.</li><li><strong>Atenção:</strong> Nunca a coloque na água, ela se dissolverá.</li></ul>`, searchTerms: `"como limpar aura com selenita", "placa de selenita"` },
+                { name: "Pedra da Lua", subtitle: "O Oráculo da Intuição", icon: "🌙", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Moonstone_gem.jpg/800px-Moonstone_gem.jpg", color: "#A0D6E8", composition: "Um feldspato conhecido pela adularescência, um brilho místico que parece flutuar sob a superfície, como a luz da lua na água.", history: "Em Roma, acreditava-se que era formada por raios de luar solidificados. Na Índia, é uma pedra sagrada, um presente de casamento tradicional para trazer harmonia.", properties: "Conectada à energia da Lua e ao feminino divino. Acalma as emoções, desperta a intuição, a clarividência e a empatia. É uma pedra de 'novos começos', alinhada com os ciclos da lua e da vida.", uses: `<ul class="list-disc list-inside space-y-1"><li>Durma com ela sob o travesseiro para estimular sonhos proféticos e lúcidos.</li><li>Use durante a Lua Nova para definir intenções e na Lua Cheia para celebrar e liberar.</li><li>Ajuda a equilibrar os ciclos hormonais femininos.</li></ul>`, searchTerms: `"pedra da lua e ciclos lunares", "ativar intuição"` },
+                { name: "Cianita Azul", subtitle: "A Espada do Arcanjo", icon: "💙", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kyanite-2013-01.jpg/800px-Kyanite-2013-01.jpg", color: "#4682B4", composition: "Um silicato de alumínio que cristaliza em lâminas. Possui uma propriedade única de ter dureza variável dependendo do eixo. Não acumula energia negativa.", properties: "A 'Espada de São Miguel Arcanjo'. Alinha instantaneamente todos os chakras e corpos sutis, sem necessidade de esforço consciente. Corta cordões energéticos negativos, confusão e raiva. Abre o Chakra Laríngeo, facilitando a comunicação da verdade com calma e clareza.", uses: `<ul class="list-disc list-inside space-y-1"><li>Use em meditações para um alinhamento rápido dos chakras.</li><li>Use sua forma de lâmina para 'cortar' simbolicamente pensamentos negativos ou laços energéticos.</li><li>Coloque sobre a garganta para desbloquear a comunicação antes de uma conversa difícil.</li></ul>`, searchTerms: `"alinhamento chakras cianita azul", "cianita azul espada de miguel"` }
             ]
         }
     ]
@@ -375,11 +467,13 @@ export const cosmogramData = {
 export const chakraData = {
     introTitle: "Centros de Poder: O Diagnóstico da Alma",
     introText: "Nossos chakras são os sete sóis interiores, os vórtices de energia que governam nosso ser. Eles são um mapa da nossa paisagem interna. Aqui, exploramos não apenas o que cada centro representa, mas como os grandes trânsitos cósmicos podem influenciar seu fluxo, oferecendo um diagnóstico para o seu trabalho de equilíbrio.",
+    soundPillarIntro: "O Pilar do Som nos ensina que toda a existência é vibração. Os Bija Mantras ('sílabas semente') são os sons primordiais de cada centro de poder. Ao entoar um mantra, você sintoniza o chakra com sua frequência natural, ajudando a limpá-lo, equilibrá-lo e ativá-lo. Use o mantra correspondente como um foco para sua meditação ou prática de harmonização.",
     chakras: [
         { 
             name: "Muladhara", 
             translation: "Chakra Raiz", 
-            color: "bg-red-700", 
+            color: "bg-red-700",
+            mantra: "LAM",
             essencia: "Sua fundação, sua conexão com o Pilar da Terra. Governa a sobrevivência, segurança e estabilidade.",
             diagnostico: "Um trânsito desafiador de Saturno pode se manifestar aqui como medos de escassez. A atual passagem de Plutão em Aquário desafia este centro, pedindo uma reestruturação do que significa 'segurança' para você.",
             praticas: `
@@ -391,7 +485,8 @@ export const chakraData = {
         { 
             name: "Svadhisthana", 
             translation: "Chakra Sacral", 
-            color: "bg-orange-600", 
+            color: "bg-orange-600",
+            mantra: "VAM",
             essencia: "O centro do fluxo, da criatividade e das emoções, alinhado ao Pilar da Água. Governa o prazer e a paixão.",
             diagnostico: "Tensões entre a Lua (necessidades emocionais) e Vênus (prazer) em seu mapa podem se manifestar como bloqueios aqui, levando à busca por gratificação externa para preencher um vazio interno.",
             praticas: `
@@ -400,11 +495,11 @@ export const chakraData = {
                     <li><strong>Herbário da Floresta:</strong> Conecte-se com ervas como a Calêndula e a Rosa para estimular a alegria.</li>
                 </ul>`
         },
-        { name: "Manipura", translation: "Chakra do Plexo Solar", color: "bg-yellow-500", essencia: "Sua forja interior, o centro do poder pessoal e da vontade. Governa a autoestima, a disciplina e a ação.", diagnostico: "Marte ou Sol fortes no mapa natal podem superativar este centro, levando à impaciência. Um Saturno desafiador pode enfraquecê-lo, resultando em baixa autoestima.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Fogo:</strong> Use Rituais de Queima para liberar bloqueios e a Respiração do Fole (Bhastrika) para ativá-lo.</li></ul>` },
-        { name: "Anahata", translation: "Chakra Cardíaco", color: "bg-green-600", essencia: "A ponte entre o material e o espiritual. Governa o amor, a compaixão e a conexão.", diagnostico: "Aspectos desafiadores com a Lua ou Vênus podem se manifestar como dificuldade em se abrir para relacionamentos ou em praticar o amor-próprio.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Ar:</strong> Pratique a Meditação Metta Bhavana (Amor-Bondade) e a Comunicação Não-Violenta.</li><li><strong>Cosmograma Cristalino:</strong> Medite com o Quartzo Rosa sobre o peito.</li></ul>` },
-        { name: "Vishuddha", translation: "Chakra Laríngeo", color: "bg-blue-500", essencia: "O centro da expressão e da verdade. Governa a comunicação e a autenticidade.", diagnostico: "Um Mercúrio retrógrado ou desafiado no mapa pode dificultar a expressão clara. O medo de julgamento muitas vezes bloqueia este centro.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Som:</strong> Pratique o canto de mantras para fazer este centro vibrar e se abrir.</li><li><strong>Cosmograma Cristalino:</strong> Use a Cianita Azul para facilitar a expressão da verdade.</li></ul>` },
-        { name: "Ajna", translation: "Chakra do Terceiro Olho", color: "bg-indigo-600", essencia: "O portal da intuição e da sabedoria. Governa a percepção, a clareza e a visão além do véu.", diagnostico: "O excesso de estímulo do mundo moderno (Pilar do Ar em desequilíbrio) pode 'ensurdecer' a voz sutil da intuição. Netuno forte no mapa pode aumentar a sensibilidade psíquica, exigindo mais aterramento.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar da Luz:</strong> Pratique a meditação no Terceiro Olho e mantenha um Diário de Sincronicidades.</li><li><strong>Cosmograma Cristalino:</strong> A Ametista e a Pedra da Lua são aliadas poderosas aqui.</li></ul>` },
-        { name: "Sahasrara", translation: "Chakra Coronário", color: "bg-purple-700", essencia: "Sua conexão com o Divino, a Fonte. Governa a transcendência e a consciência cósmica.", diagnostico: "O maior bloqueio aqui é o ego e a sensação de separação. A jornada de individuação de Jung é o caminho para abrir este centro, integrando todas as partes do ser.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar da Mente:</strong> Estude o Pilar Zero, pratique a meditação silenciosa e contemple a Natureza para sentir a unidade de todas as coisas.</li><li><strong>Cosmograma Cristalino:</strong> A Selenita e o Quartzo Transparente abrem e limpam este canal.</li></ul>` }
+        { name: "Manipura", translation: "Chakra do Plexo Solar", color: "bg-yellow-500", mantra: "RAM", essencia: "Sua forja interior, o centro do poder pessoal e da vontade. Governa a autoestima, a disciplina e a ação.", diagnostico: "Marte ou Sol fortes no mapa natal podem superativar este centro, levando à impaciência. Um Saturno desafiador pode enfraquecê-lo, resultando em baixa autoestima.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Fogo:</strong> Use Rituais de Queima para liberar bloqueios e a Respiração do Fole (Bhastrika) para ativá-lo.</li></ul>` },
+        { name: "Anahata", translation: "Chakra Cardíaco", color: "bg-green-600", mantra: "YAM", essencia: "A ponte entre o material e o espiritual. Governa o amor, a compaixão e a conexão.", diagnostico: "Aspectos desafiadores com a Lua ou Vênus podem se manifestar como dificuldade em se abrir para relacionamentos ou em praticar o amor-próprio.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Ar:</strong> Pratique a Meditação Metta Bhavana (Amor-Bondade) e a Comunicação Não-Violenta.</li><li><strong>Cosmograma Cristalino:</strong> Medite com o Quartzo Rosa sobre o peito.</li></ul>` },
+        { name: "Vishuddha", translation: "Chakra Laríngeo", color: "bg-blue-500", mantra: "HAM", essencia: "O centro da expressão e da verdade. Governa a comunicação e a autenticidade.", diagnostico: "Um Mercúrio retrógrado ou desafiado no mapa pode dificultar a expressão clara. O medo de julgamento muitas vezes bloqueia este centro.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar do Som:</strong> Pratique o canto de mantras para fazer este centro vibrar e se abrir.</li><li><strong>Cosmograma Cristalino:</strong> Use a Cianita Azul para facilitar a expressão da verdade.</li></ul>` },
+        { name: "Ajna", translation: "Chakra do Terceiro Olho", color: "bg-indigo-600", mantra: "OM", essencia: "O portal da intuição e da sabedoria. Governa a percepção, a clareza e a visão além do véu.", diagnostico: "O excesso de estímulo do mundo moderno (Pilar do Ar em desequilíbrio) pode 'ensurdecer' a voz sutil da intuição. Netuno forte no mapa pode aumentar a sensibilidade psíquica, exigindo mais aterramento.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar da Luz:</strong> Pratique a meditação no Terceiro Olho e mantenha um Diário de Sincronicidades.</li><li><strong>Cosmograma Cristalino:</strong> A Ametista e a Pedra da Lua são aliadas poderosas aqui.</li></ul>` },
+        { name: "Sahasrara", translation: "Chakra Coronário", color: "bg-purple-700", mantra: "Silêncio (ou OM)", essencia: "Sua conexão com o Divino, a Fonte. Governa a transcendência e a consciência cósmica.", diagnostico: "O maior bloqueio aqui é o ego e a sensação de separação. A jornada de individuação de Jung é o caminho para abrir este centro, integrando todas as partes do ser.", praticas: `<ul class="list-disc list-inside space-y-1"><li><strong>Pilar da Mente:</strong> Estude o Pilar Zero, pratique a meditação silenciosa e contemple a Natureza para sentir a unidade de todas as coisas.</li><li><strong>Cosmograma Cristalino:</strong> A Selenita e o Quartzo Transparente abrem e limpam este canal.</li></ul>` }
     ]
 };
 
@@ -425,8 +520,9 @@ export const pranayamaData = {
 export const jornadaFlorescerData = [
     {
         etapa: 1,
-        title: "Etapa 1: Despertar da Consciência (Iniciação)",
-        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro. É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
+        title: "Etapa 1: Despertar da Consciência (Malkuth)",
+        sephirot: "Malkuth (O Reino)",
+        foco: "O primeiro passo no caminho do 'Florescer' é a coragem de olhar para dentro, no nosso reino físico e material (Malkuth). É o momento de reconhecer os medos e as crenças limitantes que nos petrificam, e acender a primeira chama da consciência para iluminar o caminho à frente.",
         arquétipos: "Perseu e Medusa, Rá, Atena",
         pilares: "Terra e Luz",
         praticas: `
@@ -439,8 +535,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 2,
-        title: "Etapa 2: Definindo o Propósito",
-        foco: "Uma vez que a consciência desperta, a energia precisa de uma direção. Esta etapa é sobre alinhar sua vontade com a voz da sua alma, definindo um propósito claro que irá nutrir e guiar sua jornada de crescimento.",
+        title: "Etapa 2: Definindo o Propósito (Yesod)",
+        sephirot: "Yesod (O Fundamento)",
+        foco: "Uma vez que a consciência desperta em Malkuth, ela busca um alicerce. Em Yesod, o Fundamento, construímos a base de nossa jornada. É sobre alinhar a vontade com a voz da alma, definindo um propósito claro que irá nutrir e guiar o crescimento.",
         arquétipos: "Hércules, Ísis, Thoth",
         pilares: "Água e Som",
         praticas: `
@@ -453,8 +550,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 3,
-        title: "Etapa 3: A Forja da Vontade",
-        foco: "O propósito, uma vez definido, precisa ser forjado no fogo da ação e da disciplina. Esta etapa é sobre enfrentar o labirinto interior, confrontar os 'minotauros' da procrastinação e da autossabotagem, e transformar a inércia em momentum.",
+        title: "Etapa 3: A Forja da Vontade (Hod & Netzach)",
+        sephirot: "Hod (Esplendor) & Netzach (Vitória)",
+        foco: "O propósito precisa ser forjado na ação. Esta etapa é o equilíbrio entre Hod (o intelecto, a estrutura) e Netzach (a emoção, a paixão). É onde confrontamos a procrastinação, transformando a inércia em momentum e a paixão em vitória duradoura.",
         arquétipos: "Teseu e o Minotauro, Sekhmet, Ares",
         pilares: "Fogo",
         praticas: `
@@ -467,8 +565,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 4,
-        title: "Etapa 4: A Ponte do Coração",
-        foco: "O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração (Anahata), cultivar a compaixão e construir pontes de conexão. É a aplicação da benevolência de Chesed/Júpiter, entendendo que nosso florescimento se nutre e nutre os outros.",
+        title: "Etapa 4: A Ponte do Coração (Tiphareth)",
+        sephirot: "Tiphareth (Beleza)",
+        foco: "No centro da Árvore da Vida, encontramos Tiphareth, a Beleza e a Harmonia. O crescimento verdadeiro não é um ato solitário. Esta etapa é sobre abrir o coração, cultivar a compaixão e construir pontes de conexão, entendendo que nosso florescimento se nutre e nutre os outros.",
         arquétipos: "Inanna, Afrodite, Kuan Yin",
         pilares: "Ar",
         praticas: `
@@ -481,8 +580,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 5,
-        title: "Etapa 5: A Voz da Alma",
-        foco: "Após conectar-se com o coração, é hora de dar voz à sua verdade. Esta etapa é sobre a expressão autêntica, a comunicação clara e o uso da vibração para manifestar sua sabedoria no mundo.",
+        title: "Etapa 5: A Voz da Alma (Geburah & Chesed)",
+        sephirot: "Geburah (Julgamento) & Chesed (Misericórdia)",
+        foco: "Após conectar-se com o coração, é hora de dar voz à verdade. Esta etapa é o equilíbrio entre Geburah (a força e o discernimento para saber *o que* falar) e Chesed (a misericórdia e a gentileza de saber *como* falar). É a expressão autêntica e compassiva.",
         arquétipos: "Hermes, Apolo, Bragi",
         pilares: "Som e Mente",
         praticas: `
@@ -495,8 +595,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 6,
-        title: "Etapa 6: A Visão Interior",
-        foco: "Com a voz alinhada, aprofundamos a percepção. Esta etapa é sobre silenciar o ruído externo para ouvir a sabedoria do oráculo interior, navegando pelas sombras e transições com um guia interno.",
+        title: "Etapa 6: A Visão Interior (Binah & Chokmah)",
+        sephirot: "Binah (Entendimento) & Chokmah (Sabedoria)",
+        foco: "Com a voz alinhada, aprofundamos a percepção, atravessando o Abismo para a Tríade Superna. Esta etapa é sobre silenciar o ruído externo para acessar Binah (o entendimento intuitivo) e Chokmah (a sabedoria pura), navegando pelas sombras com um guia interno.",
         arquétipos: "Anúbis, Hécate, Odin",
         pilares: "Luz",
         praticas: `
@@ -509,8 +610,9 @@ export const jornadaFlorescerData = [
     },
     {
         etapa: 7,
-        title: "Etapa 7: União Divina",
-        foco: "A culminação da jornada. Esta etapa representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
+        title: "Etapa 7: União Divina (Kether)",
+        sephirot: "Kether (A Coroa)",
+        foco: "A culminação da jornada. Kether, a Coroa, representa a integração de todos os pilares, a transcendência do ego e a experiência da união com a Consciência Cósmica, onde o Guardião da Centelha se reconhece como parte inseparável da Grande Teia.",
         arquétipos: "Shiva e Shakti, A Grande Mãe, O Andrógino Divino",
         pilares: "Mente",
         praticas: `

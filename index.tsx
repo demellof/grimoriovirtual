@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, addDoc, deleteDoc, onSnapshot, collection, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -6,6 +5,39 @@ import { pillarZeroData, pillarData, jornadaFlorescerData, seasonalHerbData, cos
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
+let pranayamaCycleTimeout;
+let pranayamaCountdownInterval;
+
+const pranayamaPatterns = {
+    "Nadi Shodhana": [
+        { instruction: "Inspire (Esquerda)", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Direita)", duration: 4000, action: 'exhale' },
+        { instruction: "Inspire (Direita)", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Esquerda)", duration: 4000, action: 'exhale' }
+    ],
+    "Ujjayi Pranayama": [
+        { instruction: "Inspire (com som)", duration: 5000, action: 'inhale' },
+        { instruction: "Expire (com som)", duration: 5000, action: 'exhale' }
+    ],
+    "Bhastrika": [
+        { instruction: "Inspire (Forçado)", duration: 500, action: 'inhale' },
+        { instruction: "Expire (Forçado)", duration: 500, action: 'exhale' }
+    ],
+    "Sama Vritti": [
+        { instruction: "Inspire", duration: 4000, action: 'inhale' },
+        { instruction: "Segure", duration: 4000, action: 'hold' },
+        { instruction: "Expire", duration: 4000, action: 'exhale' },
+        { instruction: "Segure", duration: 4000, action: 'hold' }
+    ],
+    "Sheetali Pranayama": [
+        { instruction: "Inspire (pela boca)", duration: 5000, action: 'inhale' },
+        { instruction: "Expire (pelo nariz)", duration: 5000, action: 'exhale' }
+    ],
+    "Bhramari Pranayama": [
+        { instruction: "Inspire", duration: 4000, action: 'inhale' },
+        { instruction: "Expire (Zumbido)", duration: 6000, action: 'exhale' }
+    ]
+};
 
 const errorModal = document.getElementById('error-modal');
 const modalTitle = document.getElementById('modal-title');
@@ -15,6 +47,127 @@ const appContainer = document.getElementById('app-container');
 const detailModal = document.getElementById('detail-modal');
 
 // --- CORE FUNCTIONS ---
+function startPranayamaPractice(techniqueName) {
+    const pattern = pranayamaPatterns[techniqueName];
+    if (!pattern) return;
+
+    const guide = document.getElementById('pranayama-guide');
+    const container = document.getElementById('pranayama-anim-container');
+    const instructionEl = document.getElementById('pranayama-instruction');
+    const timerEl = document.getElementById('pranayama-timer');
+    if (!guide || !container || !instructionEl || !timerEl) return;
+
+    stopPranayamaPractice();
+    container.innerHTML = '';
+    guide.classList.add('active');
+
+    const cycleDuration = pattern.reduce((sum, step) => sum + step.duration, 0);
+
+    const runCycle = () => {
+        let cumulativeTime = 0;
+
+        // Setup animations for the cycle
+        if (techniqueName === "Sama Vritti") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 180");
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("class", "anim-square");
+            rect.setAttribute("x", "5");
+            rect.setAttribute("y", "5");
+            rect.setAttribute("width", "170");
+            rect.setAttribute("height", "170");
+            svg.appendChild(rect);
+            container.appendChild(svg);
+        } else if (techniqueName === "Ujjayi Pranayama") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 100");
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("class", "anim-wave");
+            path.setAttribute("d", "M 10,50 Q 50,10 90,50 T 170,50");
+            svg.appendChild(path);
+            container.appendChild(svg);
+        } else if (techniqueName === "Nadi Shodhana") {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 180 120");
+            svg.innerHTML = `
+                <path id="path-left" class="anim-nostril-path" d="M 90 110 C 40 110, 40 10, 90 10" />
+                <path id="path-right" class="anim-nostril-path" d="M 90 110 C 140 110, 140 10, 90 10" />
+            `;
+            container.appendChild(svg);
+        } else {
+            const circle = document.createElement('div');
+            circle.className = 'anim-shape anim-circle';
+            container.appendChild(circle);
+        }
+
+        // Run steps and timers
+        pattern.forEach((step, index) => {
+            setTimeout(() => {
+                instructionEl.textContent = step.instruction;
+                let remainingTime = step.duration / 1000;
+                timerEl.textContent = `${remainingTime}s`;
+
+                clearInterval(pranayamaCountdownInterval);
+                pranayamaCountdownInterval = setInterval(() => {
+                    remainingTime--;
+                    timerEl.textContent = `${remainingTime}s`;
+                    if (remainingTime <= 0) clearInterval(pranayamaCountdownInterval);
+                }, 1000);
+
+                if (techniqueName === "Sama Vritti") {
+                    const rect = container.querySelector('.anim-square');
+                    if(rect) {
+                        rect.setAttribute("class", `anim-square draw-side-${index + 1}`);
+                        rect.style.animationDuration = `${step.duration}ms`;
+                    }
+                } else if (techniqueName === "Ujjayi Pranayama") {
+                    const wave = container.querySelector('.anim-wave');
+                    if(wave) {
+                        wave.style.animationDuration = `${step.duration}ms`;
+                        wave.setAttribute("class", `anim-wave ${step.action === 'inhale' ? 'draw-wave-inhale' : 'draw-wave-exhale'}`);
+                    }
+                } else if (techniqueName === "Nadi Shodhana") {
+                    const leftPath = container.querySelector('#path-left');
+                    const rightPath = container.querySelector('#path-right');
+                    if (leftPath && rightPath) {
+                        leftPath.style.animationDuration = `${step.duration}ms`;
+                        rightPath.style.animationDuration = `${step.duration}ms`;
+                        if (step.instruction.includes("Esquerda")) {
+                            leftPath.classList.add('active');
+                            rightPath.classList.remove('active');
+                        } else {
+                            rightPath.classList.add('active');
+                            leftPath.classList.remove('active');
+                        }
+                    }
+                } else {
+                    const circle = container.querySelector('.anim-circle');
+                    if(circle) {
+                        circle.style.transitionDuration = `${step.duration}ms`;
+                        circle.classList.remove('breathing-inhale', 'breathing-exhale');
+                        if(step.action === 'inhale') circle.classList.add('breathing-inhale');
+                        else if (step.action === 'exhale') circle.classList.add('breathing-exhale');
+                    }
+                }
+            }, cumulativeTime);
+            cumulativeTime += step.duration;
+        });
+
+        pranayamaCycleTimeout = setTimeout(runCycle, cycleDuration);
+    };
+
+    runCycle();
+}
+
+function stopPranayamaPractice() {
+    const guide = document.getElementById('pranayama-guide');
+    const container = document.getElementById('pranayama-anim-container');
+    if (guide) guide.classList.remove('active');
+    if (container) container.innerHTML = '';
+    clearTimeout(pranayamaCycleTimeout);
+    clearInterval(pranayamaCountdownInterval);
+}
+
 function showDiagnosticModal(title, checklist) {
     if (!modalTitle || !modalMessage || !errorModal) return;
     modalTitle.innerHTML = `<i class="fas fa-exclamation-triangle mr-3"></i><span>${title}</span>`;
@@ -95,7 +248,10 @@ function showHerbDetails(season, herbName) {
 function showCrystalDetails(crystal) {
     if (!crystal) return;
 
+    const imageHtml = crystal.image ? `<img src="${crystal.image}" alt="${crystal.name}" class="w-full h-48 object-cover rounded-md mb-6">` : '';
+
     const content = `
+        ${imageHtml}
         <div class="space-y-6 text-sm">
             <div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Alma da Terra (Composição):</h4><p class="text-gray-300">${crystal.composition}</p></div>
             ${crystal.history ? `<div><h4 class="font-bold font-cinzel text-[#a37e2c] mb-2">A Memória dos Povos (História):</h4><p class="text-gray-300">${crystal.history}</p></div>` : ''}
@@ -215,7 +371,10 @@ function renderJornadaSection() {
     const jornadaHtml = jornadaFlorescerData.map(etapa => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
-                <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3><p class="text-sm text-gray-400">Etapa ${etapa.etapa}</p></div>
+                <div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${etapa.title}</h3>
+                    <p class="text-sm text-amber-400/60 font-semibold">${etapa.sephirot}</p>
+                </div>
                 <i class="fas fa-chevron-down transition-transform"></i>
             </div>
             <div class="accordion-content bg-[#222] p-6 border-t border-[#444]">
@@ -240,6 +399,69 @@ function renderJornadaSection() {
     `;
 }
 
+function renderMapaMentalSection() {
+    const container = document.getElementById('mapa-mental-section');
+    if (!container) return;
+
+    const centerNodeHtml = `
+        <div class="mind-map-node center-node" data-pillar="zero">
+            <div class="node-icon">${pillarZeroData.symbol}</div>
+            <div class="node-title">${pillarZeroData.title}</div>
+        </div>
+    `;
+
+    const mindMapHtml = `
+        <div class="section-intro">
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Mapa Mental dos Pilares</h2>
+            <p class="text-gray-400 mt-2">Uma visualização da Teia do Mundo e os Sete Pilares da Ascensão que a sustentam. Clique em um pilar para explorar seus mistérios.</p>
+        </div>
+        <div class="mind-map-container">
+            <div class="mind-map-center">
+                ${centerNodeHtml}
+            </div>
+        </div>
+    `;
+    container.innerHTML = mindMapHtml;
+
+    const centerEl = container.querySelector('.mind-map-center');
+    const pillars = Object.keys(pillarData);
+    const angleStep = (2 * Math.PI) / pillars.length;
+    const radius = 280;
+
+    pillars.forEach((key, index) => {
+        const p = pillarData[key];
+        const angle = angleStep * index - (Math.PI / 2); // Start from top
+
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        const node = document.createElement('div');
+        node.className = 'mind-map-node pillar-node';
+        node.dataset.pillar = key;
+        node.style.transform = `translate(${x}px, ${y}px)`;
+        node.innerHTML = `
+            <div class="node-icon">${p.title.split(' ')[0]}</div>
+            <div class="node-title">${p.title.split(' ').slice(2).join(' ')}</div>
+        `;
+
+        const line = document.createElement('div');
+        line.className = 'mind-map-line';
+        const lineangle = angle * (180 / Math.PI); // Convert to degrees
+        line.style.width = `${radius}px`;
+        line.style.transform = `rotate(${lineangle}deg)`;
+
+        centerEl.appendChild(line);
+        centerEl.appendChild(node);
+    });
+
+    centerEl.addEventListener('click', (e) => {
+        const node = e.target.closest('.mind-map-node');
+        if (node && node.dataset.pillar) {
+            showPillarDetails(node.dataset.pillar);
+        }
+    });
+}
+
 function renderAltarDeManifestacaoSection() {
     const container = document.getElementById('cosmograma-section');
     if (!container) return;
@@ -261,6 +483,7 @@ function renderAltarDeManifestacaoSection() {
                 ${altarData.sigil.icon}
             </div>
             <div class="planetary-seals">${sealsHtml}</div>
+            ${altarData.sigilGuide || ''}
         </div>
     `;
 }
@@ -295,16 +518,22 @@ function renderHerbCards(season) {
     const container = document.getElementById('herb-cards-container');
     if (!container) return;
     const herbs = seasonalHerbData[season] || [];
-    container.innerHTML = herbs.map(herb => `
-        <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
-            <div class="herb-image-placeholder">${herb.name.charAt(0)}</div>
-            <div class="p-4">
-                <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
-                <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
-                <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
+    container.innerHTML = herbs.map(herb => {
+        const imageHtml = herb.image
+            ? `<img src="${herb.image}" alt="${herb.name}" class="w-full h-48 object-cover">`
+            : `<div class="herb-image-placeholder">${herb.name.charAt(0)}</div>`;
+
+        return `
+            <div class="card rounded-lg overflow-hidden herb-card" data-season="${season}" data-herb-name="${herb.name}">
+                ${imageHtml}
+                <div class="p-4">
+                    <h4 class="font-cinzel font-bold text-lg text-[#c8a44d]">${herb.name}</h4>
+                    <p class="text-sm italic text-gray-400">${herb.scientificName}</p>
+                    <p class="text-xs text-gray-300 mt-2">${(herb.content ? herb.content.almaDaErva : (herb.magicalUses ? herb.magicalUses[0] : '')).substring(0, 70)}...</p>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderHerbarioFlorestaSection() {
@@ -330,37 +559,28 @@ function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
     if (!container || !cosmogramData) return;
 
-    const galaxyContainerWidth = container.offsetWidth > 0 ? container.offsetWidth : 800;
-    const centerX = galaxyContainerWidth / 2;
-    const centerY = 450; // Center of the container
+    // Flatten all crystals into a single array for a responsive layout
+    const allCrystals = cosmogramData.orbits.flatMap(orbit => orbit.crystals);
 
-    const orbitsHtml = cosmogramData.orbits.map((orbit, orbitIndex) => {
-        const radius = 150 + (orbitIndex * 100);
-        const numCrystals = orbit.crystals.length;
-        const angleStep = (2 * Math.PI) / numCrystals;
-
-        const crystalsHtml = orbit.crystals.map((crystal, crystalIndex) => {
-            const angle = angleStep * crystalIndex;
-            const x = centerX + radius * Math.cos(angle) - 90; // offset for orb width
-            const y = centerY + radius * Math.sin(angle) - 90; // offset for orb height
-            return `
-                <div class="crystal-orb" data-crystal-name="${crystal.name}" style="left: ${x}px; top: ${y}px;">
-                    <div class="crystal-orb-icon">${crystal.icon}</div>
-                    <div><h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4><p class="text-xs text-gray-400">${crystal.subtitle}</p></div>
+    const crystalsHtml = allCrystals.map(crystal => {
+        return `
+            <div class="crystal-orb" data-crystal-name="${crystal.name}">
+                <div class="crystal-orb-icon">${crystal.icon}</div>
+                <div>
+                    <h4 class="font-cinzel text-lg font-bold text-[#c8a44d]">${crystal.name}</h4>
+                    <p class="text-xs text-gray-400">${crystal.subtitle}</p>
                 </div>
-            `;
-        }).join('');
-
-        const animationDuration = 60 + (orbitIndex * 30); // Orbits rotate at different speeds
-        return `<div class="orbit-path" style="animation-duration: ${animationDuration}s;">${crystalsHtml}</div>`;
+            </div>
+        `;
     }).join('');
 
-    const sunX = centerX - 110;
-    const sunY = centerY - 110;
     const sunHtml = `
-        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}" style="left: ${sunX}px; top: ${sunY}px; z-index: 10;">
+        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
             <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
-            <div><h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3><p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p></div>
+            <div>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+            </div>
         </div>
     `;
 
@@ -369,9 +589,9 @@ function renderCosmogramaCristalinoSection() {
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
             <p class="text-gray-400">${cosmogramData.intro}</p>
         </div>
-        <div class="cosmogram-container">
-            ${orbitsHtml}
+        <div class="cosmograma-container-responsive">
             ${sunHtml}
+            ${crystalsHtml}
         </div>
     `;
 }
@@ -384,10 +604,12 @@ function renderChakraSection() {
         <div class="card rounded-lg mb-2 overflow-hidden no-hover chakra-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
                 <div class="flex items-center gap-4">
-                    <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none"></div>
+                    <div class="chakra-orb ${chakra.color} !w-8 !h-8 !static !animate-none flex items-center justify-center font-bold text-lg">
+                        ${chakra.mantra.charAt(0)}
+                    </div>
                     <div>
                         <h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${chakra.name}</h3>
-                        <p class="text-sm text-gray-400">${chakra.translation}</p>
+                        <p class="text-sm text-gray-400">${chakra.translation} - Mantra: ${chakra.mantra}</p>
                     </div>
                 </div>
                 <i class="fas fa-chevron-down transition-transform"></i>
@@ -404,6 +626,10 @@ function renderChakraSection() {
         <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${chakraData.introTitle}</h2>
             <p class="text-gray-400 mt-2">${chakraData.introText}</p>
+            <div class="card p-4 rounded-lg my-6 text-sm bg-black/20 border border-amber-600/20">
+                <h4 class="font-bold text-[#a37e2c] mb-2">O Pilar do Som e os Bija Mantras</h4>
+                <p class="text-gray-300">${chakraData.soundPillarIntro}</p>
+            </div>
         </div>
         <div>${chakraHtml}</div>
     `;
@@ -425,7 +651,11 @@ function renderPranayamaSection() {
                     <div><h4 class="font-bold text-[#a37e2c]">Para que serve:</h4><p class="text-gray-300">${pranayama.paraQueServe}</p></div>
                     <div><h4 class="font-bold text-[#a37e2c]">Ponto de Foco:</h4><p class="text-gray-300">${pranayama.pontoFoco}</p></div>
                     <div><h4 class="font-bold text-[#a37e2c]">Como Praticar:</h4><ol class="list-decimal list-inside text-gray-400 space-y-1">${pranayama.comoPraticar.map(step => `<li>${step}</li>`).join('')}</ol></div>
-                    <div class="pt-2 border-t border-gray-600 clear-both"><p class="text-xs text-gray-500"><strong>Termos de Pesquisa:</strong> ${pranayama.termosPesquisa}</p></div>
+                    <div class="pt-4 mt-4 border-t border-gray-600 clear-both">
+                        <button class="btn-primary w-full py-2 rounded-lg pranayama-practice-btn" data-pranayama="${pranayama.name}">
+                            <i class="fas fa-play-circle mr-2"></i>Praticar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -539,10 +769,21 @@ function setupEventListeners() {
 
         const tab = target.closest('.tab');
         if (tab instanceof HTMLElement && tab.dataset.section) {
+            const sectionId = tab.dataset.section;
+
+            // Update active content section
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(tab.dataset.section)?.classList.add('active');
+            document.getElementById(sectionId)?.classList.add('active');
+
+            // Update active tab style
             document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
+
+            // Update body class for thematic background
+            const sectionClass = `${sectionId.replace('-section', '')}-active`;
+            document.body.className = 'bg-[#1a1a1a] text-[#e0e0e0]'; // Reset to default classes
+            document.body.classList.add(sectionClass);
+
             return;
         }
 
@@ -630,7 +871,23 @@ function setupEventListeners() {
             if(seal) showPlanetarySealDetails(seal);
             return;
         }
+
+        const pranayamaBtn = target.closest('.pranayama-practice-btn');
+        if (pranayamaBtn instanceof HTMLElement && pranayamaBtn.dataset.pranayama) {
+            startPranayamaPractice(pranayamaBtn.dataset.pranayama);
+            return;
+        }
+
+        // Handle the stop button via event delegation for robustness
+        const stopPranayamaBtn = target.closest('#stop-pranayama-btn');
+        if (stopPranayamaBtn) {
+            stopPranayamaPractice();
+            return;
+        }
     });
+
+    // The listener below is now delegated to the appContainer, so this direct binding is no longer needed.
+    // document.getElementById('stop-pranayama-btn')?.addEventListener('click', stopPranayamaPractice);
 
     appContainer?.addEventListener('mouseover', (e) => {
         if (!(e.target instanceof Element)) return;
@@ -645,6 +902,63 @@ function setupEventListeners() {
     });
 
     document.getElementById('add-grimoire-form')?.addEventListener('submit', handleAddItem);
+    document.getElementById('natal-chart-form')?.addEventListener('submit', handleNatalChartSubmit);
+}
+
+async function handleNatalChartSubmit(event) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const resultContainer = document.getElementById('analysis-result-container');
+    const resultContent = document.getElementById('analysis-result-content');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (!resultContainer || !resultContent || !submitButton) return;
+
+    // Show loading state
+    resultContent.innerHTML = '<div class="flex justify-center items-center"><div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#a37e2c]"></div></div>';
+    resultContainer.classList.remove('hidden');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Gerando Análise...';
+
+    try {
+        const formData = new FormData(form);
+        const birthData = Object.fromEntries(formData.entries());
+
+        // Convert form string values to numbers
+        const payload = {
+            year: parseInt(birthData.year as string, 10),
+            month: parseInt(birthData.month as string, 10),
+            date: parseInt(birthData.day as string, 10),
+            hours: parseInt(birthData.hour as string, 10),
+            minutes: parseInt(birthData.minute as string, 10),
+            latitude: parseFloat(birthData.latitude as string),
+            longitude: parseFloat(birthData.longitude as string),
+            timezone: parseFloat(birthData.timezone as string),
+        };
+
+        const response = await fetch('/.netlify/functions/calculate-chart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Falha ao gerar a análise.');
+        }
+
+        const data = await response.json();
+        resultContent.textContent = data.analysis;
+
+    } catch (error) {
+        resultContent.innerHTML = `<p class="text-red-500 text-center">Ocorreu um erro ao gerar sua análise. Por favor, verifique os dados e tente novamente.<br><span class="text-xs text-gray-500 mt-2">${error.message}</span></p>`;
+    } finally {
+        // Restore button state
+        submitButton.disabled = false;
+        submitButton.textContent = 'Gerar Análise';
+    }
 }
 
 
@@ -661,6 +975,33 @@ function getCurrentSeason(hemisphere = 'south') {
     return 'Primavera';
 }
 
+
+function createFloatingItems() {
+    const container = document.getElementById('floating-items-container');
+    if (!container) return;
+
+    const items = ['✨', '✦', '⚗️', '🔭', '🧬', '⚛️', '✶', '·', '•', '∘'];
+    const itemCount = 30;
+
+    for (let i = 0; i < itemCount; i++) {
+        const item = document.createElement('span');
+        item.className = 'floating-item';
+        item.textContent = items[Math.floor(Math.random() * items.length)];
+
+        const size = Math.random() * 20 + 10; // 10px to 30px
+        item.style.fontSize = `${size}px`;
+
+        item.style.left = `${Math.random() * 100}vw`;
+
+        const duration = Math.random() * 20 + 15; // 15s to 35s
+        item.style.animationDuration = `${duration}s`;
+
+        const delay = Math.random() * 15; // 0s to 15s
+        item.style.animationDelay = `${delay}s`;
+
+        container.appendChild(item);
+    }
+}
 
 // --- INITIALIZATION ---
 function initApp() {
@@ -699,15 +1040,16 @@ function initApp() {
                 if (userIdDisplay) userIdDisplay.innerHTML = `<strong>Guardião da Centelha:</strong><br><span class="text-xs text-gray-500">A água, como a magia, sempre encontra seu caminho.</span>`;
                 
                 renderMainSection();
+                renderMapaMentalSection();
                 renderJornadaSection();
                 renderAltarDeManifestacaoSection();
-                renderTomoDePoderSection();
                 renderHerbarioFlorestaSection();
                 renderCosmogramaCristalinoSection();
                 renderChakraSection();
                 renderPranayamaSection();
                 setupEventListeners();
                 setupCollectionListener('grimoire_entries', renderGrimoireEntries);
+                createFloatingItems();
                 
             } else {
                 signInAnonymously(auth).catch((err) => {
