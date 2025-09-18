@@ -595,46 +595,6 @@
             transform-origin: left center;
             z-index: 0;
         }
-        /* --- Portal Selection --- */
-        #portal-selection {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-            gap: 2rem;
-            animation: fadeIn 1s ease-out;
-        }
-        .portal-card {
-            width: 90%;
-            max-width: 400px;
-            padding: 2rem;
-            text-align: center;
-            border: 2px solid #a37e2c;
-            border-radius: 1rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .portal-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 30px rgba(200, 164, 77, 0.5);
-        }
-        .portal-card .portal-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #c8a44d;
-        }
-        .portal-card .portal-title {
-            font-family: 'IM Fell English', serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .portal-card .portal-desc {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-        }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#e0e0e0]">
@@ -676,48 +636,17 @@
             <div id="user-id-display" class="text-sm mt-2 text-gray-400"></div>
         </header>
         
-        <div id="portal-selection" class="container mx-auto p-4 md:p-8">
-            <div class="portal-card" data-portal="rota-paga">
-                <div class="portal-icon">⚔️</div>
-                <h2 class="portal-title">Rota Pagã</h2>
-                <p class="portal-desc">A jornada estruturada de autoconhecimento e magia. Explore os Pilares, a Jornada do Florescer e o Altar de Manifestação.</p>
-            </div>
-            <div class="portal-card" data-portal="grimoire">
-                <div class="portal-icon">📚</div>
-                <h2 class="portal-title">Grimório</h2>
-                <p class="portal-desc">Sua biblioteca de referência mágica. Consulte guias sobre ervas, cristais, chakras e técnicas de respiração.</p>
-            </div>
-        </div>
+        <nav id="main-nav" class="bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
+            <button class="tab active py-4 px-6 font-semibold transition-colors text-sm" data-section="herbario-floresta-section"><i class="fas fa-leaf mr-2"></i>Herbário da Floresta</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-cristalino-section"><i class="fas fa-gem mr-2"></i>Cosmograma Cristalino</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="chakra-section"><i class="fas fa-atom mr-2"></i>Centros de Poder</button>
+            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="pranayama-section"><i class="fas fa-wind mr-2"></i>Sopros de Vida</button>
+            <a href="https://rotapagan.netlify.app/" target="_blank" class="tab py-4 px-6 font-semibold transition-colors text-sm text-amber-300 hover:text-amber-100"><i class="fas fa-external-link-alt mr-2"></i>Acessar Rota Pagã</a>
+        </nav>
 
-        <div id="sub-nav-container" class="hidden">
-            <nav id="rota-paga-nav" class="sub-nav bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="main-section"><i class="fas fa-home mr-2"></i>Santuário</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="mapa-mental-section"><i class="fas fa-project-diagram mr-2"></i>Mapa Mental</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="jornada-section"><i class="fas fa-map-signs mr-2"></i>Jornada Florescer</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-section"><i class="fas fa-star mr-2"></i>Altar de Manifestação</button>
-            </nav>
-            <nav id="grimoire-nav" class="sub-nav bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="herbario-floresta-section"><i class="fas fa-leaf mr-2"></i>Herbário</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-cristalino-section"><i class="fas fa-gem mr-2"></i>Cristais</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="chakra-section"><i class="fas fa-atom mr-2"></i>Chakras</button>
-                <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="pranayama-section"><i class="fas fa-wind mr-2"></i>Pranayamas</button>
-            </nav>
-        </div>
-
-        <main class="container mx-auto p-4 md:p-8 hidden">
-            <button id="back-to-portals" class="btn-secondary py-2 px-4 rounded-lg mb-6"><i class="fas fa-arrow-left mr-2"></i> Voltar à Escolha</button>
+        <main class="container mx-auto p-4 md:p-8">
             
-            <section id="main-section" class="content-section"></section>
-            
-            <section id="pillar-detail-section" class="content-section">
-                 <button class="back-to-main btn-secondary py-2 px-4 rounded-lg mb-6"><i class="fas fa-arrow-left mr-2"></i> Voltar ao Santuário</button>
-                 <div id="pillar-content" class="card rounded-lg p-6 no-hover"></div>
-            </section>
-
-            <section id="mapa-mental-section" class="content-section"></section>
-            <section id="jornada-section" class="content-section"></section>
-            <section id="cosmograma-section" class="content-section"></section>
-            <section id="herbario-floresta-section" class="content-section"></section>
+            <section id="herbario-floresta-section" class="content-section active"></section>
             <section id="cosmograma-cristalino-section" class="content-section"></section>
             <section id="chakra-section" class="content-section"></section>
             <section id="pranayama-section" class="content-section"></section>

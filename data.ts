@@ -1,195 +1,8 @@
 // --- CONFIG & DATA ---
 
-const pillarZeroData = {
-    title: "Pilar Zero: A Teia do Mundo (Cosmovisão)",
-    symbol: "🕸️",
-    content: `
-        <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Ponte entre Mundos: O Caminho do Sincretismo Consciente</h3>
-        <p class="mb-4 text-gray-400">O grande psicanalista Carl Jung, em seu seminário sobre a Ioga Kundalini, nos ofereceu uma chave para entender a jornada da alma moderna. Ele observou que, enquanto na cultura oriental o sistema de Chakras e os mandalas são realidades vividas, a mente ocidental tende a abordá-los como conceitos intelectuais.</p>
-        <p class="mb-4 text-gray-400">Para Jung, o despertar da Kundalini e a jornada através dos Chakras era um mapa perfeito do <strong>processo de individuação</strong> – a jornada para se tornar um "todo" integrado. O mandala, em sua forma circular, é o símbolo máximo dessa totalidade, a representação do <em>Self</em>.</p>
-        <p class="mb-4 text-gray-400">A Rota Pagã abraça essa visão. Ela não busca replicar cegamente as tradições, mas sim construir uma <strong>ponte consciente</strong>. Ao integrarmos arquétipos egípcios, gregos, iorubás, conceitos da Cabala, da PNL, da neurociência, a sabedoria das Zonas Azuis, a filosofia Ubuntu e o Hermetismo, estamos criando nosso próprio mandala. Estamos usando a força do intelecto ocidental não para nos distanciar, mas para construir um caminho seguro e compreensível de volta à experiência direta. Cada Pilar é um raio em nossa própria Roda, um caminho que nos leva de volta ao centro: o nosso florescimento.</p>
-    `
-};
+// --- CONFIG & DATA ---
 
-const pillarData = {
-    terra: { 
-        title: "🌍 Pilar da Terra", 
-        chakra: "Muladhara (Corpo Físico e Abundância)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Templo do Corpo e a Abundância da Alma</h3>
-            <p class="mb-4 text-gray-400">O Pilar da Terra é o fundamento de nossa existência, o arquétipo da estabilidade, nutrição e manifestação no plano material. Regido pelo Chakra Raiz (Muladhara), ele governa nosso corpo físico como um "altar sagrado", nossa saúde, segurança e a capacidade de materializar a abundância. Trabalhar este pilar é honrar o templo do corpo e fincar raízes fortes para que a alma possa florescer sem medo.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Nutrição como Magia Prática</h4>
-            <p class="mb-4 text-gray-400">A alimentação é nossa alquimia diária. A prática de <strong>Mindful Eating</strong> (Alimentação Consciente) transforma a refeição em um ritual de presença, melhorando a digestão e a conexão com os sinais de fome e saciedade do corpo. Uma dieta baseada em plantas, como ensinam as Zonas Azuis, garante que o fogo digestivo não seja sobrecarregado, promovendo a longevidade.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "benefícios mindful eating", "receitas de aterramento (grounding foods)", "dieta das Zonas Azuis".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Aterramento e Manifestação</h4>
-            <p class="mb-4 text-gray-400">Práticas de aterramento, como caminhar descalço na natureza, nos permitem descarregar o excesso de energia. O plantio consciente de uma semente ou o enterro de um cristal como o <strong>Citrino</strong> ou a <strong>Pirita</strong> com uma intenção clara é um poderoso ritual de manifestação para ancorar a abundância no plano físico.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como praticar grounding ou earthing", "ritual para manifestar abundância", "cristais para prosperidade".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Terra</h4>
-            <p class="mb-4 text-gray-400">O desequilíbrio da Terra manifesta-se como inércia, teimosia, apego excessivo ao material e medo da mudança. Reconhecer essa sombra é o primeiro passo para usar a energia do Fogo (Pilar 3) para quebrar a estagnação e cultivar a generosidade como antídoto ao apego.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "arquétipo do Amante", "como lidar com a procrastinação", "desapego material filosofia".</p>
-        ` 
-    },
-    agua: { 
-        title: "🌊 Pilar da Água", 
-        chakra: "Svadhisthana (Emoções e Criatividade)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Fluxo das Emoções e a Alquimia Criativa</h3>
-            <p class="mb-4 text-gray-400">Este pilar explora o mundo fluido de nossas emoções, alinhado ao Chakra Sacral (Svadhisthana). A água simboliza o inconsciente, a intuição e a purificação. Como a água, nossas emoções precisam fluir para nos nutrir; quando estagnadas, tornam-se turvas.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Rio da Consciência (Regulação Emocional)</h4>
-            <p class="mb-4 text-gray-400">Regular emoções não é suprimir, mas influenciar conscientemente como as vivenciamos. Ferramentas práticas incluem <strong>Mindfulness</strong> para fortalecer o córtex pré-frontal, <strong>Reavaliação Cognitiva</strong> para reinterpretar gatilhos e a <strong>Técnica 5-4-3-2-1</strong> para ancorar no presente.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "técnica 5-4-3-2-1 para ansiedade", "reavaliação cognitiva TCC", "como praticar mindfulness".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Gota e o Oceano (A Visão Budista)</h4>
-            <p class="mb-4 text-gray-400">A sabedoria budista nos ensina que somos uma gota, e o universo, o oceano. Nosso sofrimento vem da crença na separação. Ao meditar sobre uma emoção, observe-a como uma onda passando no seu oceano interior. A gota, ao se reconhecer como oceano, encontra a paz.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "conceito de não-dualidade budismo", "metáfora gota no oceano", "Thich Nhat Hanh ensinamentos".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Oráculos do Inconsciente (Trabalho com Sonhos)</h4>
-            <p class="mb-4 text-gray-400">Os sonhos são a linguagem simbólica da alma. Honramos <strong>Freud</strong> como o ancestral que abriu a porta, mas abraçamos a visão de <strong>Carl Jung</strong>, que via os sonhos como revelações do inconsciente coletivo e dos arquétipos. Para <strong>James Hillman</strong>, devemos honrar a imagem do sonho como uma realidade em si, e a <strong>neurociência</strong> nos mostra que o sono REM é uma terapia noturna para processar emoções.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "livro O Homem e seus Símbolos Carl Jung", "psicologia arquetípica James Hillman", "livro Por que nós dormimos Matthew Walker", "como ter sonhos lúcidos".</p>
-        `
-    },
-    fogo: { 
-        title: "🔥 Pilar do Fogo", 
-        chakra: "Manipura (Energia e Ação)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Centelha da Vontade e a Forja da Transformação</h3>
-            <p class="mb-4 text-gray-400">O Pilar do Fogo é a centelha divina, a força da transformação e da paixão. Alinhado ao Chakra do Plexo Solar (Manipura), ele é nosso centro de poder pessoal, o motor que nos impulsiona para a ação e a luz da consciência que dissipa a inércia.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chama Interior (Manipura e Agni)</h4>
-            <p class="mb-4 text-gray-400">Na Ayurveda, <strong>Agni</strong> é o fogo digestivo, chave para a saúde. No corpo sutil, o Manipura governa nosso poder pessoal e autoestima. Práticas como a <strong>Respiração do Fogo (Bhastrika)</strong> e a meditação na chama de uma vela (<em>Trataka</em>) são usadas para gerar calor interno (<em>tapas</em>) e fortalecer a força de vontade.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é Agni Ayurveda", "benefícios do Trataka", "como fortalecer o chakra Manipura".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Rituais de Transformação e Vontade</h4>
-            <p class="mb-4 text-gray-400">O fogo é o grande transmutador. Rituais como a <strong>Queima de Intenções</strong> (escrever o que se deseja liberar ou manifestar e entregar à chama) e a <strong>Ceromancia</strong> (adivinhação pelas formas da cera) são atos psicomágicos poderosos de transformação.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como fazer um ritual de queima de intenções", "ceromancia significados", "magia com velas cores".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Fogo</h4>
-            <p class="mb-4 text-gray-400">O fogo desequilibrado manifesta-se como raiva, arrogância, ou, no outro extremo, como procrastinação. O trabalho é <strong>canalizar a energia da raiva</strong>, reconhecendo-a como um sinal de um limite ultrapassado, e transmutá-la em combustível para a ação assertiva.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "como lidar com a raiva de forma saudável", "arquétipo do Guerreiro Carl Jung", "aumentar a força de vontade".</p>
-        `
-    },
-    ar: { 
-        title: "🌬️ Pilar do Ar", 
-        chakra: "Anahata (Respiração & Coração)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Sopro da Conexão e a Sabedoria do Coração</h3>
-            <p class="mb-4 text-gray-400">O Pilar do Ar é o sopro da vida, o elemento invisível que conecta tudo. Alinhado ao Chakra Cardíaco (Anahata), ele governa o intelecto, a comunicação, os relacionamentos e a capacidade de amar. A respiração é a ponte sagrada entre o corpo e a mente.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Sopro como Ferramenta (Pranayama)</h4>
-            <p class="mb-4 text-gray-400">Dominar a respiração é dominar nossa energia. A <strong>Respiração Diafragmática</strong> ativa o nervo vago e acalma. A <strong>Respiração das Narinas Alternadas (Nadi Shodhana)</strong> equilibra os hemisférios cerebrais, unindo lógica e intuição.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "tutorial Nadi Shodhana pranayama", "benefícios respiração diafragmática", "Wim Hof Method guiado".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Ponte do Coração (Relacionamentos)</h4>
-            <p class="mb-4 text-gray-400">A prática aqui é a <strong>Comunicação Não-Violenta (CNV)</strong>, que nos ensina a expressar nossas necessidades e ouvir as dos outros a partir de um lugar de empatia, fortalecendo os laços.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "introdução Comunicação Não-Violenta", "meditação Metta Bhavana (amor-bondade)".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra do Ar</h4>
-            <p class="mb-4 text-gray-400">O Ar desequilibrado manifesta-se como excesso de racionalização, distanciamento emocional ou superficialidade. O antídoto é o <strong>aterramento</strong> (Pilar da Terra) e a conexão com o <strong>Pilar da Água</strong> para dar sentimento às palavras.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "exercícios de grounding para ansiedade", "como equilibrar razão e emoção".</p>
-        `
-    },
-    som: { 
-        title: "🎶 Pilar do Som", 
-        chakra: "Vishuddha (A Vibração e a Grande Orquestra)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Vibração da Verdade e a Expressão da Alma</h3>
-            <p class="mb-4 text-gray-400">O Pilar do Som explora a vibração como a força primordial do universo. Alinhado ao Chakra Laríngeo (Vishuddha), ele governa não apenas o som que emitimos, mas nossa sintonia com a vasta orquestra de frequências que compõem a realidade.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">O Coração Pulsante da Terra (Ressonância Schumann)</h4>
-            <p class="mb-4 text-gray-400">A <strong>ionosfera</strong> age como uma "pele de tambor" ao redor do planeta. Os raios "batucam" nela, criando uma onda de baixíssima frequência (7.83 Hz), a <strong>Ressonância Schumann</strong>. Essa frequência corresponde às ondas cerebrais Alfa/Theta, associadas a estados de calma e meditação. Ao nos aterrarmos, sintonizamos nosso cérebro com o "coração" do planeta.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é a Ressonância Schumann", "benefícios da frequência 7.83 Hz".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Tempestades Solares e a Higiene Vibracional</h4>
-            <p class="mb-4 text-gray-400"><strong>Explosões solares</strong> e a poluição eletromagnética moderna (EMF, 5G) introduzem "ruído" em nossa orquestra. A prática da <strong>higiene vibracional</strong> se torna essencial: passar tempo na natureza, praticar o aterramento para descarregar o excesso de "carga" e usar o som (taças, mantras) para "reafinar" nosso corpo.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "efeitos das explosões solares no corpo humano", "poluição eletromagnética e saúde", "técnicas de earthing".</p>
-        `
-    },
-    luz: { 
-        title: "💡 Pilar da Luz", 
-        chakra: "Ajna (Percepção e Intuição)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">O Olho da Intuição e a Clareza da Percepção</h3>
-            <p class="mb-4 text-gray-400">O Pilar da Luz é a sabedoria que transcende a lógica, o reino da intuição e da visão interior. Regido pelo Chakra Frontal (Ajna), é nosso oráculo interno, a capacidade de ver além do véu das ilusões.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Natureza da Percepção (Física Quântica como Metáfora)</h4>
-            <p class="mb-4 text-gray-400">O <strong>experimento da dupla fenda</strong> nos ensina que a luz se comporta como partícula (matéria) quando observada e como onda (potencial) quando não observada. Usamos isso como uma metáfora: nossa percepção focada (o "observador") tem o poder de colapsar um campo de infinitas possibilidades em uma realidade manifesta.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "experimento da dupla fenda explicado", "efeito do observador física quântica".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Chave Surrealista (Dalí e Magritte)</h4>
-            <p class="mb-4 text-gray-400"><strong>Salvador Dalí</strong> nos ensina a capturar as imagens do subconsciente com seu método paranoico-crítico, acessando o estado hipnagógico. <strong>René Magritte</strong> nos desafia a questionar a realidade com sua "Traição das Imagens", mostrando que o mapa não é o território. Juntos, eles nos dão ferramentas para explorar e decifrar nosso mundo interior.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "método paranoico-crítico Salvador Dalí", "René Magritte A Traição das Imagens".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Sombra da Luz</h4>
-            <p class="mb-4 text-gray-400">A Luz desequilibrada manifesta-se como arrogância espiritual, desconexão da realidade ou paranoia. O antídoto é o <strong>aterramento</strong> (Pilar da Terra), que nos força a testar nossas visões na prática e a manter os pés firmes no chão.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é bypass espiritual", "perigos do ego espiritual".</p>
-        `
-    },
-    mente: { 
-        title: "🌌 Pilar da Mente", 
-        chakra: "Sahasrara (A Coroa da Consciência)", 
-        content: `
-            <h3 class="text-xl font-bold font-cinzel text-[#c8a44d] mb-4">A Consciência Cósmica e a União com a Fonte</h3>
-            <p class="mb-4 text-gray-400">Este é o pilar mestre, a ponte entre o finito e o infinito, regido pelo Chakra Coronário (Sahasrara). Ele é a <strong>"Sala do Arquiteto"</strong>, onde o Guardião da Centelha aprende a se tornar o construtor consciente da sua própria realidade.</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">Sub-Pilar I: A Arquitetura da Realidade (Neurociência e Hermetismo)</h4>
-            <p class="mb-4 text-gray-400">O princípio hermético "O Universo é Mental" encontra seu espelho na ciência da <strong>neuroplasticidade</strong>. Nossos pensamentos e hábitos repetidos esculpem as vias neurais do nosso cérebro, literalmente construindo a mente que experimenta a realidade. A mudança duradoura não é um ato de magia, mas de engenharia mental.</p>
-            <div class="card p-4 rounded-lg my-4 bg-black/20 border border-amber-600/20">
-                <h5 class="font-bold text-[#a37e2c] mb-2">Ritual Prático: Hackeando o Circuito do Hábito</h5>
-                <p class="text-sm text-gray-400 mb-2">Use o modelo de Charles Duhigg para reescrever um hábito indesejado:</p>
-                <ol class="list-decimal list-inside text-sm text-gray-300 space-y-1">
-                    <li><strong>Identifique a Rotina:</strong> Qual é o comportamento que você quer mudar? (Ex: Procrastinar navegando em redes sociais).</li>
-                    <li><strong>Isole a Recompensa:</strong> O que você realmente busca com essa rotina? É um alívio do tédio? Uma distração da ansiedade? Um momento de descanso? Teste diferentes recompensas para descobrir o anseio real.</li>
-                    <li><strong>Encontre a Deixa (Gatillho):</strong> Qual evento dispara a rotina? É um horário específico? Um estado emocional (cansaço, estresse)? Um local? Anote o gatilho assim que ele ocorrer.</li>
-                    <li><strong>Crie um Novo Plano:</strong> Agora, crie uma nova rotina que responda à mesma deixa e entregue a mesma recompensa. (Ex: Deixa: sentir-se estressado. Nova Rotina: praticar 3 minutos de respiração profunda. Recompensa: alívio da ansiedade).</li>
-                </ol>
-            </div>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "O Caibalion princípio do mentalismo", "neuroplasticidade como mudar hábitos", "livro O Poder do Hábito".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">As Ferramentas do Arquiteto (PNL na Prática)</h4>
-            <p class="mb-4 text-gray-400">A Programação Neurolinguística (PNL) nos oferece uma caixa de ferramentas para a "Química Mental": <strong>Ancoragem</strong> para criar gatilhos de poder, <strong>Reestruturação Cognitiva</strong> para mudar a moldura de uma situação e o <strong>Padrão "Swish"</strong> para substituir neurologicamente um gatilho indesejado.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "o que é ancoragem PNL", "técnica de reframing PNL", "padrão swish passo a passo".</p>
-            <h4 class="text-lg font-bold font-cinzel text-[#a37e2c] mt-6 mb-2">A Consciência Unificada (Gaia, Sagan e Ubuntu)</h4>
-            <p class="mb-4 text-gray-400">Aqui, transcendemos a mente individual. A <strong>Teoria de Gaia</strong> nos vê como células de um organismo planetário. A perspectiva cósmica de <strong>Carl Sagan</strong> nos lembra que somos "poeira de estrelas". E a filosofia <strong>Ubuntu</strong> ("Eu sou porque nós somos") nos ensina que a maestria da mente é um caminho para uma conexão mais profunda com toda a teia da vida.</p>
-            <p class="text-sm text-gray-500"><strong>Termos de Pesquisa:</strong> "Teoria de Gaia James Lovelock", "Carl Sagan Pálido Ponto Azul", "filosofia Ubuntu explicada".</p>
-        `
-    }
-};
-
-const altarData = {
-    title: "Altar de Manifestação: Seu Cosmograma Sagrado",
-    intro: "Bem-vindo ao seu Altar de Manifestação. Esta não é uma mera linha do tempo, mas sim seu Cosmograma Sagrado, um pantáculo vivo onde você, como Guardião da Centelha, alinha sua jornada pessoal com as grandes energias arquetípicas do cosmos. No centro, pulsa o seu sigilo de poder, a espiral do 'Florescer', nascida da numerologia e do quadrado mágico de Júpiter. Ao seu redor, orbitam os Sete Selos Planetários Clássicos, os grandes governantes dos ritmos da vida. Seu ciclo atual está iluminado, mas todos os poderes estão ao seu alcance.",
-    sigil: {
-        name: "Sigilo do Florescer",
-        icon: "♃"
-    },
-    seals: [
-        { 
-            name: "Júpiter", 
-            icon: "♃", 
-            active: true,
-            lema: "Florescer",
-            purpose: "<h4 class='font-bold font-cinzel text-[#a37e2c] mb-2'>Representação Holística de Júpiter em Chesed</h4><p class='mb-4'>Em um contexto cabalístico, Júpiter não é apenas um planeta, mas um portal para a energia da Sephirah Chesed na Árvore da Vida. Chesed, traduzido como \"Misericórdia\", \"Bondade\" ou \"Graça\", representa a primeira emanação dos atributos emocionais de Deus após as três Sephirot intelectuais. É a força da expansão, da generosidade, da autoridade benevolente e da manifestação da vontade divina no universo.</p><h4 class='font-bold font-cinzel text-[#a37e2c] mt-4 mb-2'>Holisticamente, Júpiter/Chesed simboliza:</h4><ul class='list-disc list-inside space-y-2 mb-4'><li><strong>Expansão e Crescimento:</strong> Assim como o planeta Júpiter é o maior do nosso sistema solar, Chesed representa a expansão em todos os níveis - abundância, conhecimento, compreensão e oportunidades.</li><li><strong>Benevolência e Misericórdia:</strong> É a fonte da bondade amorosa, da compaixão e da inclinação para dar e abençoar. Representa a vontade de compartilhar e nutrir.</li><li><strong>Autoridade e Governança:</strong> Chesed também está ligado à ideia de liderança sábia e justa, à ordem e à estabilidade estabelecida através da graça e da compaixão, não apenas pela severidade.</li><li><strong>Manifestação e Prosperidade:</strong> Tem o poder de trazer ideias à fruição e manifestar abundância material e espiritual.</li></ul><h4 class='font-bold font-cinzel text-[#a37e2c] mt-4 mb-2'>Como se Conectar com Chesed:</h4><p class='mb-2'>Conectar-se com a energia de Chesed é um processo que envolve intenção, ação e alinhamento com seus atributos. Algumas formas práticas incluem:</p><ul class='list-disc list-inside space-y-2 mb-4'><li><strong>Praticar a Generosidade:</strong> Realizar atos de bondade e compartilhar seus recursos (tempo, energia, bens materiais) com os outros sem esperar nada em troca.</li><li><strong>Cultivar a Compaixão:</strong> Desenvolver empatia e compreensão pelas dificuldades dos outros, oferecendo apoio e gentileza.</li><li><strong>Buscar o Conhecimento e a Sabedoria:</strong> Júpiter/Chesed também está ligado à busca por aprendizado e pela expansão da sua compreensão do mundo e de si mesmo.</li><li><strong>Exercer a Liderança Benevolente:</strong> Em suas interações, procure guiar e influenciar os outros de forma positiva e com consideração.</li><li><strong>Agradecer e Reconhecer a Abundância:</strong> Cultivar uma atitude de gratidão pelas bênçãos em sua vida ajuda a atrair mais abundância.</li><li><strong>Meditação e Contemplação:</strong> Meditar sobre os atributos de Chesed e visualizar a energia da bondade amorosa fluindo através de você pode fortalecer sua conexão.</li></ul><h4 class='font-bold font-cinzel text-[#a37e2c] mt-4 mb-2'>Influência dos Sendiros (Caminhos) no Trânsito:</h4><p class='mb-2'>Os 22 caminhos que conectam as Sephirot na Árvore da Vida representam diferentes tipos de energia e consciência. Durante o seu trânsito no ciclo de Júpiter (Chesed), os caminhos que se conectam a Chesed influenciarão como essa energia se manifesta em sua vida.</p><ul class='list-disc list-inside space-y-2 mb-4'><li><strong>Caminhos Superiores:</strong> Conexões com as Sephirot intelectuais (Chokmah e Binah) podem trazer sabedoria e entendimento para as suas experiências de expansão e benevolência.</li><li><strong>Caminho para Geburah:</strong> A conexão com Geburah (Severidade) pode equilibrar a expansão de Chesed com discernimento e justiça, evitando o excesso ou o desperdício.</li><li><strong>Caminho para Tiferet:</strong> A ligação com Tiferet (Beleza) pode trazer harmonia e equilíbrio para as suas ações benevolentes, garantindo que sejam realizadas com um propósito elevado.</li><li><strong>Caminho para Netzach:</strong> A conexão com Netzach (Vitória) pode infundir suas iniciativas com paixão e a capacidade de superar obstáculos.</li></ul><p class='mb-4 text-sm text-gray-400'>Uma análise detalhada dos trânsitos planetários em relação à sua Árvore da Vida pessoal (que é um estudo mais aprofundado) poderia revelar influências mais específicas dos caminhos.</p><h4 class='font-bold font-cinzel text-[#a37e2c] mt-4 mb-2'>Visão Geral e Detalhada de Chesed:</h4><p class='mb-2'>Chesed é a quarta Sephirah na Árvore da Vida, localizada abaixo de Chokmah (Sabedoria) e acima de Netzach (Vitória), no Pilar da Misericórdia.</p><ul class='list-disc list-inside space-y-2 mb-4'><li><strong>Nome em Hebraico:</strong> חֶסֶד (Chesed)</li><li><strong>Número:</strong> 4</li><li><strong>Planeta Associado:</strong> Júpiter</li><li><strong>Cor:</strong> Azul</li><li><strong>Símbolos:</strong> Cetro, Orbe, Trono</li><li><strong>Arcanjo:</strong> Tzadkiel</li><li><strong>Qualidade:</strong> Amor, Misericórdia, Generosidade, Expansão, Autoridade, Proteção</li><li><strong>Chakra (Associação):</strong> Anahata (Chakra Cardíaco)</li></ul><h4 class='font-bold font-cinzel text-[#a37e2c] mt-4 mb-2'>Aplicações Práticas de Chesed:</h4><p class='mb-2'>Podemos pensar nas aplicações práticas de Chesed em termos de como essa energia pode ser integrada em sua vida:</p><ul class='list-disc list-inside space-y-2 mb-4'><li><strong>Nos Relacionamentos:</strong> Praticar a empatia, a compreensão e o perdão, oferecendo apoio e generosidade aos entes queridos.</li><li><strong>Na Carreira:</strong> Liderar com integridade, oferecer mentoria e compartilhar seus conhecimentos, criar um ambiente de trabalho positivo e abundante.</li><li><strong>Nas Finanças:</strong> Ser generoso com os outros, usar seus recursos para causas nobres e investir de forma ética e responsável.</li><li><strong>No Desenvolvimento Pessoal:</strong> Cultivar a autocompaixão, buscar o crescimento pessoal e compartilhar seus talentos com o mundo.</li><li><strong>Na Espiritualidade:</strong> Abrir-se à graça divina, praticar a gratidão e buscar a conexão com o amor universal.</li></ul>",
-            pantacles: [
-                { name: "1º Pantáculo de Júpiter", purpose: "Para invocar os espíritos de Júpiter. É um selo de autoridade espiritual e conexão com as forças da expansão. Ideal para o primeiro ano do ciclo, para estabelecer a sua soberania e abrir os canais de comunicação com o divino." },
-                { name: "2º Pantáculo de Júpiter", purpose: "Poderoso contra as adversidades e para a glória, a honra e a riqueza. É um selo de conquista e proteção. Use-o em anos onde o objetivo é superar grandes desafios e proteger suas conquistas." },
-                { name: "3º Pantáculo de Júpiter", purpose: "Defende e protege contra qualquer inimigo e contra espíritos malignos. É um selo de defesa e tranquilidade, ideal para criar um espaço seguro para o florescimento ocorrer sem interferências." },
-                { name: "4º Pantáculo de Júpiter", purpose: "Serve para adquirir riqueza e honra. É um selo de abundância material e reconhecimento social. Medite com este selo em anos focados na construção do seu legado material." },
-                { name: "5º Pantáculo de Júpiter", purpose: "Este tem grande poder para assegurar visões. É o selo da profecia e da visão interior. Use-o em anos de profunda introspecção para receber clareza sobre o futuro." },
-                { name: "6º Pantáculo de Júpiter", purpose: "Protege de todos os perigos terrenos. É o selo da segurança e da providência divina, um gatilho poderoso para anos onde você se sente vulnerável." },
-                { name: "7º Pantáculo de Júpiter", purpose: "Possui grande poder contra a pobreza. É o selo da libertação financeira e da prosperidade contínua. Use-o para quebrar ciclos de escassez e invocar a abundância." },
-            ]
-        },
-        { name: "Marte", icon: "♂", active: false, purpose: "Marte, o Guerreiro, rege a ação, a coragem e a disciplina. Na Cabala, sua energia corresponde à Sefirah Geburah (Força), o poder que define limites e corta o que não serve mais. Foi o ciclo que você concluiu, onde sua força foi forjada. Invoque este selo quando precisar de coragem, disciplina e da força para agir." },
-        { name: "Saturno", icon: "♄", active: false, purpose: "Saturno, o Grande Mestre, rege o tempo, a estrutura e a responsabilidade. Na Cabala, sua energia corresponde à Sefirah Binah (Entendimento). O trânsito de Saturno em Áries (2026-2028) testará sua iniciativa, pedindo que você construa com paciência e solidez as novas fundações da sua identidade." },
-        { name: "Sol", icon: "☉", active: false, purpose: "O Sol rege a essência, a vitalidade e o propósito. Corresponde a Tiferet (Beleza), o centro do ser. Invoque este selo para clareza de propósito e para irradiar sua luz autêntica." },
-        { name: "Vênus", icon: "♀", active: false, purpose: "Vênus rege o amor, a beleza e a harmonia. Corresponde a Netzach (Vitória). Invoque para cultivar o amor-próprio, a criatividade e a harmonia nos relacionamentos." },
-        { name: "Mercúrio", icon: "☿", active: false, purpose: "Mercúrio rege a comunicação, o intelecto e a magia. Corresponde a Hod (Glória). Invoque para clareza mental, aprendizado e para manifestar sua vontade através da palavra." },
-        { name: "Lua", icon: "☽", active: false, purpose: "A Lua rege as emoções, a intuição e o inconsciente. Corresponde a Yesod (Fundação). Invoque para navegar seu mundo interior, trabalhar com sonhos e fortalecer sua intuição." }
-    ],
-    sigilGuide: `
-        <div class="card p-6 rounded-lg my-8 bg-black/20 border border-amber-600/20">
-            <h4 class="font-cinzel text-xl font-bold text-[#c8a44d] mb-4">A Arte da Sigilização: Forjando sua Vontade</h4>
-            <p class="text-gray-400 mb-4">O Altar de Manifestação é mais do que um mapa cósmico; é uma tela em branco para a sua Vontade. Os símbolos que você vê—os selos planetários—são chaves antigas. A sigilização, popularizada pela Magia do Caos, é uma técnica para criar suas próprias chaves. Um sigilo é a sua intenção destilada em sua forma mais pura, um glifo que fala diretamente ao seu subconsciente.</p>
-            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Criar seu Sigilo:</h5>
-            <ol class="list-decimal list-inside text-gray-300 space-y-2">
-                <li><strong>A Intenção:</strong> Escreva seu desejo em uma frase clara, positiva e no tempo presente. Ex: <span class="italic text-amber-300">"MINHA CRIATIVIDADE FLUI LIVREMENTE"</span>.</li>
-                <li><strong>A Condensação:</strong> Remova todas as vogais e as letras que se repetem. <br/>M<del>I</del>NH<del>A</del> CR<del>I</del><del>A</del>T<del>I</del>V<del>I</del>D<del>A</del>D<del>E</del> FL<del>U</del><del>I</del> L<del>I</del>VR<del>E</del>M<del>E</del>NT<del>E</del> → <span class="italic text-amber-300">MNHCRTVDFL</span>.</li>
-                <li><strong>A Criação:</strong> Combine as letras restantes em um único símbolo abstrato. Não pense demais. Desenhe, apague, sobreponha. O resultado deve ser esteticamente agradável para você, mas irreconhecível em sua origem. Este é o seu sigilo.</li>
-            </ol>
-            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">Como Ativar seu Sigilo:</h5>
-            <p class="text-gray-400">A ativação, ou 'carga', do sigilo é o ato de projetar sua energia nele. Isso é feito em um estado de 'gnose', ou consciência alterada. Você pode alcançar este estado através de meditação profunda, dança, exercício intenso, ou no pico de uma emoção forte. Olhe fixamente para o seu sigilo neste momento, projetando sua Vontade nele até que a imagem pareça 'piscar' ou desaparecer da sua visão periférica.</p>
-            <h5 class="font-bold text-[#a37e2c] mt-6 mb-2">O Esquecimento:</h5>
-            <p class="text-gray-400">Este é o passo mais crucial. Após carregar o sigilo, você deve esquecê-lo conscientemente. Destrua o desenho físico (queime-o, rasgue-o) e não pense mais no desejo. A semente foi plantada no subconsciente; ficar cavando para ver se ela brotou só irá matar a planta. Confie no processo.</p>
-        </div>
-    `
-};
-
-const seasonalHerbData = {
+export const seasonalHerbData = {
     intro: "Bem-vindo ao Herbário da Floresta Sazonal, um portal para a sabedoria viva da flora brasileira. Nossos ancestrais viviam em profunda sintonia com os ritmos da Terra, mas a dança da vida é regida por um parceiro ainda maior: o Sol. Nossa estrela-mãe pulsa em um grande ciclo de aproximadamente 11 anos, entre um Máximo Solar (energia de expansão) e um Mínimo Solar (energia de introspecção). Atualmente, estamos no Máximo Solar do Ciclo 25 (2024-2025), um longo 'verão cósmico' ideal para rituais de crescimento. O próximo Mínimo Solar é previsto para ~2030-2032. Alinhar nossa prática herbal com as estações da Terra e do Sol é a mais pura forma de magia.",
     'Primavera': [
         { 
@@ -422,7 +235,7 @@ const seasonalHerbData = {
     ]
 };
 
-const cosmogramData = {
+export const cosmogramData = {
     intro: "Bem-vindo ao Cosmograma Cristalino. Esta não é uma galeria, mas um sistema solar de energias, um mapa vivo da consciência da Terra. No centro, pulsa o Grande Sol, o Quartzo Transparente, mestre curador e amplificador universal. Orbitando-o, os planetas de cristal dançam em suas esferas de influência, cada um um guardião de uma sabedoria ancestral. Passe o mouse para sentir sua energia, clique para desvendar seus mistérios.",
     sun: {
         name: "Quartzo Transparente",
@@ -464,7 +277,7 @@ const cosmogramData = {
     ]
 };
 
-const chakraData = {
+export const chakraData = {
     introTitle: "Centros de Poder: O Diagnóstico da Alma",
     introText: "Nossos chakras são os sete sóis interiores, os vórtices de energia que governam nosso ser. Eles são um mapa da nossa paisagem interna. Aqui, exploramos não apenas o que cada centro representa, mas como os grandes trânsitos cósmicos podem influenciar seu fluxo, oferecendo um diagnóstico para o seu trabalho de equilíbrio.",
     soundPillarIntro: "O Pilar do Som nos ensina que toda a existência é vibração. Os Bija Mantras ('sílabas semente') são os sons primordiais de cada centro de poder. Ao entoar um mantra, você sintoniza o chakra com sua frequência natural, ajudando a limpá-lo, equilibrá-lo e ativá-lo. Use o mantra correspondente como um foco para sua meditação ou prática de harmonização.",
@@ -503,7 +316,7 @@ const chakraData = {
     ]
 };
 
-const pranayamaData = {
+export const pranayamaData = {
     introTitle: "Sopros de Vida: A Amizade com a Respiração",
     introMessage: "Se você, como muitos de nós, sente que a respiração consciente é uma 'deficiência', saiba que esta é a porta mais convidativa da Rota Pagã. Não há nada a 'conquistar', apenas a redescobrir. A respiração é sua âncora mais antiga. Este pilar não é sobre técnicas complexas, é sobre reacender a amizade com seu próprio sopro.",
     initialRitual: "A qualquer hora do dia, pause. Inspire profundamente, sinta sua barriga expandir. Segure por um instante. Expire lentamente, com um suspiro. Faça isso três vezes. Pronto. Você acabou de praticar a magia mais poderosa que existe: você trouxe sua mente de volta para casa, para o seu corpo.",
@@ -517,7 +330,7 @@ const pranayamaData = {
     ]
 };
 
-const jornadaFlorescerData = [
+export const jornadaFlorescerData = [
     {
         etapa: 1,
         title: "Etapa 1: Despertar da Consciência (Malkuth)",
@@ -624,17 +437,3 @@ const jornadaFlorescerData = [
         `
     }
 ];
-
-export const rotaPagaData = {
-    pillarZeroData,
-    pillarData,
-    jornadaFlorescerData,
-    altarData,
-};
-
-export const grimoireData = {
-    seasonalHerbData,
-    cosmogramData,
-    chakraData,
-    pranayamaData,
-};
