@@ -9,43 +9,45 @@
     <!-- Fontes para o tema de livro antigo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Crimson Text', serif;
-            background-color: #FBF5E6; /* Cor de pergaminho */
-            background-image: url(https://www.transparenttextures.com/patterns/textured-paper.png);
-            color: #3C2A1E; /* Cor de tinta sépia */
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Cor de fundo escura base */
+            background-image: url(https://www.transparenttextures.com/patterns/dark-leather.png);
+            color: #e0e0e0; /* Texto principal claro */
         }
+        .font-grimoire-title { font-family: 'IM Fell English SC', serif; }
+
         /* Cor de fundo personalizada para o tema místico */
         html, body {
-            background-color: #FBF5E6; /* Garante que o fundo cubra tudo */
+            background-color: #1a1a1a; /* Cor de fundo escura base */
         }
         /* Estilo para a aba ativa */
         .tab-active {
-            border-bottom: 3px solid #854d0e; /* dark-amber */
-            color: #854d0e;
-            font-weight: 700;
-            background-color: rgba(0,0,0,0.05);
+            color: #FBBF24; /* amber-400 */
+            border-bottom: 2px solid #854d0e; /* dark-gold */
+            background-color: rgba(49, 28, 7, 0.3);
         }
         /* Estilo para abas inativas */
         .tab-inactive {
-            border-bottom: 3px solid transparent;
-            color: #5f4c3b; /* sepia-ink */
+            color: #D1D5DB; /* gray-300 */
+            border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
         }
         .tab-inactive:hover {
-            background-color: rgba(0,0,0,0.03);
-            border-bottom-color: #a16207; /* amber */
+            color: #FBBF24; /* amber-400 */
+            border-bottom-color: #4b321a;
         }
         /* Estilo para os cards */
         .content-card {
-            background-color: rgba(253, 247, 230, 0.7); /* Lighter parchment with transparency */
-            border: 1px solid #D2B48C; /* Tan */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            margin-bottom: 1.5rem; /* mb-6 */
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+            background-color: rgba(12, 5, 24, 0.6); /* Deep purple, semi-transparent */
+            border: 1px solid #4a2c07; /* Dark brown/gold border */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
         }
         .chakra-dot {
             width: 1rem;
@@ -53,7 +55,7 @@
             border-radius: 50%;
             display: inline-block;
             margin-right: 0.5rem;
-            border: 2px solid #3C2A1E; /* Sepia Ink */
+            border: 2px solid #e0e0e0;
         }
         /* Cores dos Chakras */
         .chakra-muladhara { background-color: #EF4444; } /* red-500 */
@@ -63,35 +65,6 @@
         .chakra-vishuddha { background-color: #3B82F6; } /* blue-500 */
         .chakra-ajna { background-color: #6366F1; } /* indigo-500 */
         .chakra-sahasrara { background-color: #A855F7; } /* purple-500 */
-
-        /* --- Elementos Decorativos --- */
-        .content-card::before, .content-card::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            border-color: #a16207; /* amber */
-            opacity: 0.5;
-        }
-        .content-card::before {
-            top: -5px;
-            left: -5px;
-            border-top: 2px solid;
-            border-left: 2px solid;
-        }
-        .content-card::after {
-            bottom: -5px;
-            right: -5px;
-            border-bottom: 2px solid;
-            border-right: 2px solid;
-        }
-        .decorative-divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(to right, transparent, #D2B48C, transparent);
-            margin: 1rem 0;
-            border: 0;
-        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -100,29 +73,28 @@
         
         <!-- Cabeçalho -->
         <header class="text-center mb-8">
-            <h1 class="text-5xl sm:text-6xl font-bold text-[#3C2A1E] mb-2" style="font-family: 'IM Fell English SC', serif;">
+            <h1 class="font-grimoire-title text-5xl sm:text-6xl font-bold text-amber-300 text-shadow-lg shadow-purple-900/50 mb-2">
                 Guia Vibracional
             </h1>
-            <p class="text-xl text-[#854d0e]">Florescer - Domando a Fera Interior</p>
-            <hr class="decorative-divider mt-4">
+            <p class="text-xl text-amber-500">Florescer - Domando a Fera Interior</p>
         </header>
 
         <!-- Navegação por Abas -->
         <nav class="mb-8">
-            <h2 class="text-lg font-semibold text-[#5f4c3b] mb-3 text-center">Navegue pela Jornada:</h2>
+            <h2 class="text-lg font-semibold text-amber-200/80 mb-3 text-center">Navegue pela Jornada:</h2>
             <div class="flex flex-wrap gap-2 justify-center">
                 <!-- Abas para as Etapas -->
-                <button id="tab-btn-etapa1" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa1')">Etapa 1: Despertar</button>
-                <button id="tab-btn-etapa2" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa2')">Etapa 2: Semeando</button>
-                <button id="tab-btn-etapa3" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa3')">Etapa 3: Transformação</button>
-                <button id="tab-btn-etapa4" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa4')">Etapa 4: Colheita</button>
-                <button id="tab-btn-etapa5" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa5')">Etapa 5: Legado</button>
-                <button id="tab-btn-etapa6" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa6')">Etapa 6: Introspecção</button>
-                <button id="tab-btn-etapa7" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa7')">Etapa 7: União</button>
+                <button id="tab-btn-etapa1" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa1')">Etapa 1: Despertar</button>
+                <button id="tab-btn-etapa2" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa2')">Etapa 2: Semeando</button>
+                <button id="tab-btn-etapa3" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa3')">Etapa 3: Transformação</button>
+                <button id="tab-btn-etapa4" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa4')">Etapa 4: Colheita</button>
+                <button id="tab-btn-etapa5" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa5')">Etapa 5: Legado</button>
+                <button id="tab-btn-etapa6" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa6')">Etapa 6: Introspecção</button>
+                <button id="tab-btn-etapa7" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base" onclick="showTab('etapa7')">Etapa 7: União</button>
 
                 <!-- Abas para Guias Práticos -->
-                <button id="tab-btn-pranayamas" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base font-medium border-2 border-transparent border-b-amber-700 text-amber-800" onclick="showTab('pranayamas')">Guia de Pranayamas</button>
-                <button id="tab-btn-matriz" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base font-medium border-2 border-transparent border-b-amber-700 text-amber-800" onclick="showTab('matriz')">Matriz Vibracional</button>
+                <button id="tab-btn-pranayamas" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base font-medium" onclick="showTab('pranayamas')">Guia de Pranayamas</button>
+                <button id="tab-btn-matriz" class="tab-button px-4 py-2 rounded-lg text-sm sm:text-base font-medium" onclick="showTab('matriz')">Matriz Vibracional</button>
             </div>
         </nav>
 
@@ -319,8 +291,8 @@
         function renderEtapa(etapa) {
             let pilaresHtml = etapa.pilares.map(pilar => `
                 <div class="mb-3">
-                    <h4 class="text-lg font-semibold text-amber-700">${pilar.nome}</h4>
-                    <p class="text-sm">${pilar.desc}</p>
+                    <h4 class="text-lg font-semibold text-amber-400">${pilar.nome}</h4>
+                    <p class="text-gray-300 text-sm">${pilar.desc}</p>
                 </div>
             `).join('');
 
@@ -328,40 +300,40 @@
                 <div class="flex items-center mb-2">
                     <span class="chakra-dot ${chakra.cor}"></span>
                     <div>
-                        <h4 class="text-lg font-semibold text-amber-700">${chakra.nome}</h4>
-                        <p class="text-sm">${chakra.desc}</p>
+                        <h4 class="text-lg font-semibold text-purple-300">${chakra.nome}</h4>
+                        <p class="text-gray-300 text-sm">${chakra.desc}</p>
                     </div>
                 </div>
             `).join('');
 
             contentArea.innerHTML = `
                 <div class="content-card animate-fade-in">
-                    <h2 class="text-3xl font-bold mb-4 text-[#854d0e]" style="font-family: 'IM Fell English SC', serif;">${etapa.titulo}</h2>
+                    <h2 class="font-grimoire-title text-3xl font-bold mb-4 text-amber-300">${etapa.titulo}</h2>
 
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Foco Psicoespiritual</h3>
-                        <p>${etapa.foco}</p>
+                        <h3 class="text-xl font-semibold text-amber-200/90 mb-2 border-b border-amber-800/50 pb-1">Foco Psicoespiritual</h3>
+                        <p class="text-gray-300">${etapa.foco}</p>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Pilares Fundamentais</h3>
+                            <h3 class="text-xl font-semibold text-amber-200/90 mb-2 border-b border-amber-800/50 pb-1">Pilares Fundamentais</h3>
                             ${pilaresHtml}
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Centros Energéticos</h3>
+                            <h3 class="text-xl font-semibold text-amber-200/90 mb-2 border-b border-amber-800/50 pb-1">Centros Energéticos</h3>
                             ${chakrasHtml}
                         </div>
                     </div>
 
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Arquétipos</h3>
-                        <p>${etapa.arquétipos}</p>
+                        <h3 class="text-xl font-semibold text-amber-200/90 mb-2 border-b border-amber-800/50 pb-1">Arquétipos</h3>
+                        <p class="text-gray-300">${etapa.arquétipos}</p>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Ferramentas e Rituais</h3>
-                        <p>${etapa.ferramentas}</p>
+                        <h3 class="text-xl font-semibold text-amber-200/90 mb-2 border-b border-amber-800/50 pb-1">Ferramentas e Rituais</h3>
+                        <p class="text-gray-300">${etapa.ferramentas}</p>
                     </div>
                 </div>
             `;
@@ -371,28 +343,28 @@
         function renderPranayamas() {
             let pranayamasHtml = guideData.pranayamas.map(p => `
                 <div class="content-card">
-                    <h3 class="text-2xl font-semibold text-amber-800 mb-3">${p.nome}</h3>
-                    <span class="inline-block bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium mb-3">${p.efeito}</span>
+                    <h3 class="text-2xl font-semibold text-amber-300 mb-3">${p.nome}</h3>
+                    <span class="inline-block bg-purple-900/50 text-purple-200 px-3 py-1 rounded-full text-sm font-medium mb-3">${p.efeito}</span>
 
                     <div class="mb-3">
-                        <h4 class="font-semibold text-[#3C2A1E]">Técnica:</h4>
-                        <p class="text-sm">${p.tecnica}</p>
+                        <h4 class="font-semibold text-amber-200/90">Técnica:</h4>
+                        <p class="text-gray-300 text-sm">${p.tecnica}</p>
                     </div>
 
                     <div class="mb-3">
-                        <h4 class="font-semibold text-[#3C2A1E]">Benefícios:</h4>
-                        <p class="text-sm">${p.beneficios}</p>
+                        <h4 class="font-semibold text-amber-200/90">Benefícios:</h4>
+                        <p class="text-gray-300 text-sm">${p.beneficios}</p>
                     </div>
 
                     <div>
-                        <h4 class="font-semibold text-red-800">Contraindicações:</h4>
-                        <p class="text-red-900 text-sm">${p.contraindicacoes}</p>
+                        <h4 class="font-semibold text-red-400">Contraindicações:</h4>
+                        <p class="text-red-300 text-sm">${p.contraindicacoes}</p>
                     </div>
                 </div>
             `).join('');
 
             contentArea.innerHTML = `
-                <h2 class="text-3xl font-bold text-center text-amber-800 mb-6" style="font-family: 'IM Fell English SC', serif;">Guia Visual de Pranayamas</h2>
+                <h2 class="font-grimoire-title text-3xl font-bold text-center text-amber-300 mb-6">Guia Visual de Pranayamas</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     ${pranayamasHtml}
                 </div>
@@ -403,19 +375,19 @@
         function renderMatriz() {
             let headers = ['Etapa', 'Chakras', 'Pilar(es)', 'Arquétipos', 'Foco PNL', 'Ciclos', 'Qualidade'];
 
-            let headerHtml = headers.map(h => `<th class="p-3 text-left text-sm font-semibold text-amber-800 uppercase tracking-wider">${h}</th>`).join('');
+            let headerHtml = headers.map(h => `<th class="p-3 text-left text-sm font-semibold text-amber-200 uppercase tracking-wider">${h}</th>`).join('');
 
             let bodyHtml = guideData.matriz.map((row, index) => `
-                <tr class="border-b border-amber-800/20 ${index % 2 === 0 ? 'bg-amber-100/30' : 'bg-transparent'}">
-                    ${row.map(cell => `<td class="p-3 text-sm">${cell}</td>`).join('')}
+                <tr class="border-b border-amber-900/50 ${index % 2 === 0 ? 'bg-purple-900/20' : 'bg-transparent'}">
+                    ${row.map(cell => `<td class="p-3 text-sm text-gray-300">${cell}</td>`).join('')}
                 </tr>
             `).join('');
 
             contentArea.innerHTML = `
-                <h2 class="text-3xl font-bold text-center text-amber-800 mb-6" style="font-family: 'IM Fell English SC', serif;">Matriz Vibracional "Florescer"</h2>
+                <h2 class="font-grimoire-title text-3xl font-bold text-center text-amber-300 mb-6">Matriz Vibracional "Florescer"</h2>
                 <div class="content-card overflow-x-auto">
                     <table class="min-w-full">
-                        <thead class="bg-amber-200/50">
+                        <thead class="bg-purple-900/30">
                             <tr>
                                 ${headerHtml}
                             </tr>
