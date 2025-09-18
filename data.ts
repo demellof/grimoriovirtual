@@ -1,6 +1,6 @@
 // --- CONFIG & DATA ---
 
-export const pillarZeroData = {
+const pillarZeroData = {
     title: "Pilar Zero: A Teia do Mundo (Cosmovisão)",
     symbol: "🕸️",
     content: `
@@ -11,7 +11,7 @@ export const pillarZeroData = {
     `
 };
 
-export const pillarData = {
+const pillarData = {
     terra: { 
         title: "🌍 Pilar da Terra", 
         chakra: "Muladhara (Corpo Físico e Abundância)", 
@@ -140,7 +140,7 @@ export const pillarData = {
     }
 };
 
-export const altarData = {
+const altarData = {
     title: "Altar de Manifestação: Seu Cosmograma Sagrado",
     intro: "Bem-vindo ao seu Altar de Manifestação. Esta não é uma mera linha do tempo, mas sim seu Cosmograma Sagrado, um pantáculo vivo onde você, como Guardião da Centelha, alinha sua jornada pessoal com as grandes energias arquetípicas do cosmos. No centro, pulsa o seu sigilo de poder, a espiral do 'Florescer', nascida da numerologia e do quadrado mágico de Júpiter. Ao seu redor, orbitam os Sete Selos Planetários Clássicos, os grandes governantes dos ritmos da vida. Seu ciclo atual está iluminado, mas todos os poderes estão ao seu alcance.",
     sigil: {
@@ -189,7 +189,7 @@ export const altarData = {
     `
 };
 
-export const seasonalHerbData = {
+const seasonalHerbData = {
     intro: "Bem-vindo ao Herbário da Floresta Sazonal, um portal para a sabedoria viva da flora brasileira. Nossos ancestrais viviam em profunda sintonia com os ritmos da Terra, mas a dança da vida é regida por um parceiro ainda maior: o Sol. Nossa estrela-mãe pulsa em um grande ciclo de aproximadamente 11 anos, entre um Máximo Solar (energia de expansão) e um Mínimo Solar (energia de introspecção). Atualmente, estamos no Máximo Solar do Ciclo 25 (2024-2025), um longo 'verão cósmico' ideal para rituais de crescimento. O próximo Mínimo Solar é previsto para ~2030-2032. Alinhar nossa prática herbal com as estações da Terra e do Sol é a mais pura forma de magia.",
     'Primavera': [
         { 
@@ -422,7 +422,7 @@ export const seasonalHerbData = {
     ]
 };
 
-export const cosmogramData = {
+const cosmogramData = {
     intro: "Bem-vindo ao Cosmograma Cristalino. Esta não é uma galeria, mas um sistema solar de energias, um mapa vivo da consciência da Terra. No centro, pulsa o Grande Sol, o Quartzo Transparente, mestre curador e amplificador universal. Orbitando-o, os planetas de cristal dançam em suas esferas de influência, cada um um guardião de uma sabedoria ancestral. Passe o mouse para sentir sua energia, clique para desvendar seus mistérios.",
     sun: {
         name: "Quartzo Transparente",
@@ -464,7 +464,7 @@ export const cosmogramData = {
     ]
 };
 
-export const chakraData = {
+const chakraData = {
     introTitle: "Centros de Poder: O Diagnóstico da Alma",
     introText: "Nossos chakras são os sete sóis interiores, os vórtices de energia que governam nosso ser. Eles são um mapa da nossa paisagem interna. Aqui, exploramos não apenas o que cada centro representa, mas como os grandes trânsitos cósmicos podem influenciar seu fluxo, oferecendo um diagnóstico para o seu trabalho de equilíbrio.",
     soundPillarIntro: "O Pilar do Som nos ensina que toda a existência é vibração. Os Bija Mantras ('sílabas semente') são os sons primordiais de cada centro de poder. Ao entoar um mantra, você sintoniza o chakra com sua frequência natural, ajudando a limpá-lo, equilibrá-lo e ativá-lo. Use o mantra correspondente como um foco para sua meditação ou prática de harmonização.",
@@ -503,7 +503,7 @@ export const chakraData = {
     ]
 };
 
-export const pranayamaData = {
+const pranayamaData = {
     introTitle: "Sopros de Vida: A Amizade com a Respiração",
     introMessage: "Se você, como muitos de nós, sente que a respiração consciente é uma 'deficiência', saiba que esta é a porta mais convidativa da Rota Pagã. Não há nada a 'conquistar', apenas a redescobrir. A respiração é sua âncora mais antiga. Este pilar não é sobre técnicas complexas, é sobre reacender a amizade com seu próprio sopro.",
     initialRitual: "A qualquer hora do dia, pause. Inspire profundamente, sinta sua barriga expandir. Segure por um instante. Expire lentamente, com um suspiro. Faça isso três vezes. Pronto. Você acabou de praticar a magia mais poderosa que existe: você trouxe sua mente de volta para casa, para o seu corpo.",
@@ -517,7 +517,7 @@ export const pranayamaData = {
     ]
 };
 
-export const jornadaFlorescerData = [
+const jornadaFlorescerData = [
     {
         etapa: 1,
         title: "Etapa 1: Despertar da Consciência (Malkuth)",
@@ -624,3 +624,17 @@ export const jornadaFlorescerData = [
         `
     }
 ];
+
+export const rotaPagaData = {
+    pillarZeroData,
+    pillarData,
+    jornadaFlorescerData,
+    altarData,
+};
+
+export const grimoireData = {
+    seasonalHerbData,
+    cosmogramData,
+    chakraData,
+    pranayamaData,
+};

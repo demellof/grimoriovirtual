@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, addDoc, deleteDoc, onSnapshot, collection, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { pillarZeroData, pillarData, jornadaFlorescerData, seasonalHerbData, cosmogramData, chakraData, pranayamaData, altarData } from "./data.js";
+import { rotaPagaData, grimoireData } from "./data.js";
 
 // --- STATE & DOM ELEMENTS ---
 let app, db, auth, userId;
@@ -196,7 +196,7 @@ function showDetailModal(title, content) {
 }
 
 function showPillarDetails(pillarId) {
-    const data = pillarId === 'zero' ? pillarZeroData : pillarData[pillarId];
+    const data = pillarId === 'zero' ? rotaPagaData.pillarZeroData : rotaPagaData.pillarData[pillarId];
     if (!data) return;
     const contentDiv = document.getElementById('pillar-content');
     if (!contentDiv) return;
@@ -207,7 +207,7 @@ function showPillarDetails(pillarId) {
 }
 
 function showHerbDetails(season, herbName) {
-    const herb = seasonalHerbData[season]?.find(h => h.name === herbName);
+    const herb = grimoireData.seasonalHerbData[season]?.find(h => h.name === herbName);
     if (!herb) return;
 
     let content;
@@ -338,15 +338,15 @@ function renderMainSection() {
     const container = document.getElementById('main-section');
     if(!container) return;
 
-    const pZero = pillarZeroData;
+    const pZero = rotaPagaData.pillarZeroData;
     const pZeroCardHtml = `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="zero">
         <div class="text-3xl mb-2">${pZero.symbol}</div>
         <h3 class="font-cinzel font-bold">${pZero.title}</h3>
         <p class="text-xs text-gray-400">A Cosmovisão Sincrética</p>
     </div>`;
 
-    const pillarCardsHtml = Object.keys(pillarData).map(key => {
-        const p = pillarData[key];
+    const pillarCardsHtml = Object.keys(rotaPagaData.pillarData).map(key => {
+        const p = rotaPagaData.pillarData[key];
         return `<div class="pillar-card rounded-lg p-4 text-center" data-pillar="${key}">
             <div class="text-3xl mb-2">${p.title.split(' ')[0]}</div>
             <h3 class="font-cinzel font-bold">${p.title.split(' ').slice(2).join(' ')}</h3>
@@ -369,7 +369,7 @@ function renderJornadaSection() {
     const container = document.getElementById('jornada-section');
     if (!container) return;
 
-    const jornadaHtml = jornadaFlorescerData.map(etapa => `
+    const jornadaHtml = rotaPagaData.jornadaFlorescerData.map(etapa => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
                 <div>
@@ -406,8 +406,8 @@ function renderMapaMentalSection() {
 
     const centerNodeHtml = `
         <div class="mind-map-node center-node" data-pillar="zero">
-            <div class="node-icon">${pillarZeroData.symbol}</div>
-            <div class="node-title">${pillarZeroData.title}</div>
+            <div class="node-icon">${rotaPagaData.pillarZeroData.symbol}</div>
+            <div class="node-title">${rotaPagaData.pillarZeroData.title}</div>
         </div>
     `;
 
@@ -425,12 +425,12 @@ function renderMapaMentalSection() {
     container.innerHTML = mindMapHtml;
 
     const centerEl = container.querySelector('.mind-map-center');
-    const pillars = Object.keys(pillarData);
+    const pillars = Object.keys(rotaPagaData.pillarData);
     const angleStep = (2 * Math.PI) / pillars.length;
     const radius = 280;
 
     pillars.forEach((key, index) => {
-        const p = pillarData[key];
+        const p = rotaPagaData.pillarData[key];
         const angle = angleStep * index - (Math.PI / 2); // Start from top
 
         const x = Math.cos(angle) * radius;
@@ -467,7 +467,7 @@ function renderAltarDeManifestacaoSection() {
     const container = document.getElementById('cosmograma-section');
     if (!container) return;
 
-    const sealsHtml = altarData.seals.map(seal => `
+    const sealsHtml = rotaPagaData.altarData.seals.map(seal => `
         <div class="planetary-seal ${seal.active ? 'active' : ''}" data-seal-name="${seal.name}">
             <div class="seal-icon">${seal.icon}</div>
             <p class="font-cinzel font-bold text-sm">${seal.name}</p>
@@ -477,14 +477,14 @@ function renderAltarDeManifestacaoSection() {
     container.innerHTML = `
         <div class="altar-container">
             <div class="section-intro">
-                <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${altarData.title}</h2>
-                <p class="text-gray-400 mt-2">${altarData.intro}</p>
+                <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${rotaPagaData.altarData.title}</h2>
+                <p class="text-gray-400 mt-2">${rotaPagaData.altarData.intro}</p>
             </div>
-            <div class="sigil-central" title="${altarData.sigil.name}">
-                ${altarData.sigil.icon}
+            <div class="sigil-central" title="${rotaPagaData.altarData.sigil.name}">
+                ${rotaPagaData.altarData.sigil.icon}
             </div>
             <div class="planetary-seals">${sealsHtml}</div>
-            ${altarData.sigilGuide || ''}
+            ${rotaPagaData.altarData.sigilGuide || ''}
         </div>
     `;
 }
@@ -518,7 +518,7 @@ function renderTomoDePoderSection() {
 function renderHerbCards(season) {
     const container = document.getElementById('herb-cards-container');
     if (!container) return;
-    const herbs = seasonalHerbData[season] || [];
+    const herbs = grimoireData.seasonalHerbData[season] || [];
     container.innerHTML = herbs.map(herb => {
         const imageHtml = herb.image
             ? `<img src="${herb.image}" alt="${herb.name}" class="w-full h-48 object-cover">`
@@ -549,7 +549,7 @@ function renderHerbarioFlorestaSection() {
         <div class="section-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">Herbário da Floresta Sazonal</h2>
         </div>
-        <div class="card p-4 rounded-lg mb-6 text-center text-gray-300">${seasonalHerbData.intro}</div>
+        <div class="card p-4 rounded-lg mb-6 text-center text-gray-300">${grimoireData.seasonalHerbData.intro}</div>
         <div class="card p-2 rounded-lg mb-6"><div class="herb-tabs flex justify-center">${tabsHtml}</div></div>
         <div id="herb-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     `;
@@ -558,10 +558,10 @@ function renderHerbarioFlorestaSection() {
 
 function renderCosmogramaCristalinoSection() {
     const container = document.getElementById('cosmograma-cristalino-section');
-    if (!container || !cosmogramData) return;
+    if (!container || !grimoireData.cosmogramData) return;
 
     // Flatten all crystals into a single array for a responsive layout
-    const allCrystals = cosmogramData.orbits.flatMap(orbit => orbit.crystals);
+    const allCrystals = grimoireData.cosmogramData.orbits.flatMap(orbit => orbit.crystals);
 
     const crystalsHtml = allCrystals.map(crystal => {
         return `
@@ -576,11 +576,11 @@ function renderCosmogramaCristalinoSection() {
     }).join('');
 
     const sunHtml = `
-        <div class="crystal-orb sun-orb" data-crystal-name="${cosmogramData.sun.name}">
-            <div class="crystal-orb-icon">${cosmogramData.sun.icon}</div>
+        <div class="crystal-orb sun-orb" data-crystal-name="${grimoireData.cosmogramData.sun.name}">
+            <div class="crystal-orb-icon">${grimoireData.cosmogramData.sun.icon}</div>
             <div>
-                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${cosmogramData.sun.name}</h3>
-                <p class="text-sm text-gray-400">${cosmogramData.sun.subtitle}</p>
+                <h3 class="font-cinzel text-xl font-bold text-[#c8a44d]">${grimoireData.cosmogramData.sun.name}</h3>
+                <p class="text-sm text-gray-400">${grimoireData.cosmogramData.sun.subtitle}</p>
             </div>
         </div>
     `;
@@ -588,7 +588,7 @@ function renderCosmogramaCristalinoSection() {
     container.innerHTML = `
         <div class="cosmogram-intro">
             <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d] mb-4">Cosmograma Cristalino</h2>
-            <p class="text-gray-400">${cosmogramData.intro}</p>
+            <p class="text-gray-400">${grimoireData.cosmogramData.intro}</p>
         </div>
         <div class="cosmograma-container-responsive">
             ${sunHtml}
@@ -601,7 +601,7 @@ function renderChakraSection() {
     const container = document.getElementById('chakra-section');
     if (!container) return;
 
-    const chakraHtml = chakraData.chakras.map(chakra => `
+    const chakraHtml = grimoireData.chakraData.chakras.map(chakra => `
         <div class="card rounded-lg mb-2 overflow-hidden no-hover chakra-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
                 <div class="flex items-center gap-4">
@@ -625,11 +625,11 @@ function renderChakraSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${chakraData.introTitle}</h2>
-            <p class="text-gray-400 mt-2">${chakraData.introText}</p>
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${grimoireData.chakraData.introTitle}</h2>
+            <p class="text-gray-400 mt-2">${grimoireData.chakraData.introText}</p>
             <div class="card p-4 rounded-lg my-6 text-sm bg-black/20 border border-amber-600/20">
                 <h4 class="font-bold text-[#a37e2c] mb-2">O Pilar do Som e os Bija Mantras</h4>
-                <p class="text-gray-300">${chakraData.soundPillarIntro}</p>
+                <p class="text-gray-300">${grimoireData.chakraData.soundPillarIntro}</p>
             </div>
         </div>
         <div>${chakraHtml}</div>
@@ -640,7 +640,7 @@ function renderPranayamaSection() {
     const container = document.getElementById('pranayama-section');
     if (!container) return;
 
-    const pranayamaHtml = pranayamaData.techniques.map(pranayama => `
+    const pranayamaHtml = grimoireData.pranayamaData.techniques.map(pranayama => `
         <div class="card rounded-lg mb-4 overflow-hidden no-hover pranayama-card">
             <div class="accordion-header p-4 flex justify-between items-center bg-[#2c2c2c] hover:bg-[#3a3a3a]">
                 <div><h3 class="font-cinzel text-lg font-bold text-[#c8a44d]">${pranayama.name}</h3><p class="text-sm text-gray-400">${pranayama.translation}</p></div>
@@ -664,11 +664,11 @@ function renderPranayamaSection() {
 
     container.innerHTML = `
         <div class="section-intro">
-            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${pranayamaData.introTitle}</h2>
-            <p class="text-gray-400 mt-2 italic">${pranayamaData.introMessage}</p>
+            <h2 class="text-2xl font-bold font-cinzel text-[#c8a44d]">${grimoireData.pranayamaData.introTitle}</h2>
+            <p class="text-gray-400 mt-2 italic">${grimoireData.pranayamaData.introMessage}</p>
             <div class="card p-4 rounded-lg my-6 text-sm">
                 <h4 class="font-bold text-[#a37e2c] mb-2">O Ritual de Três Respirações (Seu Estímulo Inicial)</h4>
-                <p class="text-gray-300">${pranayamaData.initialRitual}</p>
+                <p class="text-gray-300">${grimoireData.pranayamaData.initialRitual}</p>
             </div>
         </div>
         <div>${pranayamaHtml}</div>
@@ -768,6 +768,36 @@ function setupEventListeners() {
         if (!(e.target instanceof Element)) return;
         const target = e.target;
 
+        const portalCard = target.closest('.portal-card');
+        if (portalCard instanceof HTMLElement && portalCard.dataset.portal) {
+            const portal = portalCard.dataset.portal;
+            document.getElementById('portal-selection')?.classList.add('hidden');
+            document.getElementById('sub-nav-container')?.classList.remove('hidden');
+            document.querySelector('main')?.classList.remove('hidden');
+
+            if (portal === 'rota-paga') {
+                document.getElementById('rota-paga-nav')?.classList.remove('hidden');
+                document.getElementById('grimoire-nav')?.classList.add('hidden');
+                // Activate the first tab and section for this portal
+                document.querySelector('#rota-paga-nav .tab')?.click();
+            } else {
+                document.getElementById('grimoire-nav')?.classList.remove('hidden');
+                document.getElementById('rota-paga-nav')?.classList.add('hidden');
+                 // Activate the first tab and section for this portal
+                document.querySelector('#grimoire-nav .tab')?.click();
+            }
+            return;
+        }
+
+        const backToPortalsBtn = target.closest('#back-to-portals');
+        if (backToPortalsBtn) {
+            document.getElementById('portal-selection')?.classList.remove('hidden');
+            document.getElementById('sub-nav-container')?.classList.add('hidden');
+            document.querySelector('main')?.classList.add('hidden');
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            return;
+        }
+
         const tab = target.closest('.tab');
         if (tab instanceof HTMLElement && tab.dataset.section) {
             const sectionId = tab.dataset.section;
@@ -777,7 +807,8 @@ function setupEventListeners() {
             document.getElementById(sectionId)?.classList.add('active');
 
             // Update active tab style
-            document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
+            const currentNav = tab.closest('.sub-nav');
+            currentNav?.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
             // Update body class for thematic background
@@ -830,10 +861,14 @@ function setupEventListeners() {
 
         const backButton = target.closest('.back-to-main');
         if (backButton) {
+            // This button is inside a content section that is part of the Rota Paga portal.
+            // It should take the user back to the main section of that portal.
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById('main-section')?.classList.add('active');
-            document.querySelectorAll('#main-nav .tab').forEach(t => t.classList.remove('active'));
-            document.querySelector('#main-nav .tab[data-section="main-section"]')?.classList.add('active');
+
+            // Also update the active tab in the correct nav bar
+            document.querySelectorAll('#rota-paga-nav .tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('#rota-paga-nav .tab[data-section="main-section"]')?.classList.add('active');
             return;
         }
 
@@ -854,7 +889,7 @@ function setupEventListeners() {
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
             triggerTouchAnimation(crystalOrb);
             const name = crystalOrb.dataset.crystalName;
-            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            const crystal = (grimoireData.cosmogramData.sun.name === name) ? grimoireData.cosmogramData.sun : grimoireData.cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
 
             if (crystal?.color) {
                 crystalOrb.classList.add('light-up');
@@ -868,7 +903,7 @@ function setupEventListeners() {
         const planetarySeal = target.closest('.planetary-seal');
         if (planetarySeal instanceof HTMLElement && planetarySeal.dataset.sealName) {
             triggerTouchAnimation(planetarySeal);
-            const seal = altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
+            const seal = rotaPagaData.altarData.seals.find(s => s.name === planetarySeal.dataset.sealName);
             if(seal) showPlanetarySealDetails(seal);
             return;
         }
@@ -895,7 +930,7 @@ function setupEventListeners() {
         const crystalOrb = e.target.closest('.crystal-orb');
         if (crystalOrb instanceof HTMLElement && crystalOrb.dataset.crystalName) {
             const name = crystalOrb.dataset.crystalName;
-            const crystal = (cosmogramData.sun.name === name) ? cosmogramData.sun : cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
+            const crystal = (grimoireData.cosmogramData.sun.name === name) ? grimoireData.cosmogramData.sun : grimoireData.cosmogramData.orbits.flatMap(o => o.crystals).find(c => c.name === name);
             if (crystal?.color) {
                 crystalOrb.style.setProperty('--crystal-light-color', crystal.color);
             }
@@ -987,6 +1022,7 @@ function initApp() {
                 renderMapaMentalSection();
                 renderJornadaSection();
                 renderAltarDeManifestacaoSection();
+                renderTomoDePoderSection();
                 renderHerbarioFlorestaSection();
                 renderCosmogramaCristalinoSection();
                 renderChakraSection();
