@@ -1,659 +1,453 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grimório Virtual</title>
+    <title>Guia Vibracional: Florescer Interior</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontes para o tema de livro antigo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
     <style>
-        /* --- Base & Fonts --- */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #1a132b; /* Deep cosmic purple */
-            color: #e0e0e0; 
-            overflow-x: hidden;
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: #FBF5E6; /* Cor de pergaminho */
+            background-image: url(https://www.transparenttextures.com/patterns/textured-paper.png);
+            color: #3C2A1E; /* Cor de tinta sépia */
         }
-        .font-cinzel { font-family: 'IM Fell English', serif; text-shadow: 0 0 8px rgba(200, 164, 77, 0.4); letter-spacing: 0.05em; }
-
-        /* --- Cosmic Background --- */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, rgba(46, 31, 71, 0.9) 0%, rgba(26, 19, 43, 1) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><g fill-opacity="0.2" fill="%23a37e2c"><circle cx="100" cy="100" r="1"/><circle cx="200" cy="300" r="1.5"/><circle cx="400" cy="500" r="1"/><circle cx="600" cy="200" r="1.2"/><circle cx="750" cy="650" r="1"/><circle cx="50" cy="700" r="0.8"/><circle cx="300" cy="50" r="1.1"/><circle cx="550"cy="450" r="1.3"/><circle cx="250" cy="550" r="1"/><circle cx="650" cy="750" r="1.5"/></g></svg>');
-            animation: stars 120s linear infinite;
-            z-index: -2;
+        /* Cor de fundo personalizada para o tema místico */
+        html, body {
+            background-color: #FBF5E6; /* Garante que o fundo cubra tudo */
         }
-
-        @keyframes stars {
-            from { background-position: 0 0; }
-            to { background-position: -1600px 800px; }
+        /* Estilo para a aba ativa */
+        .tab-active {
+            border-bottom: 3px solid #854d0e; /* dark-amber */
+            color: #854d0e;
+            font-weight: 700;
+            background-color: rgba(0,0,0,0.05);
         }
-
-        /* --- Components & Layout --- */
-        .card {
-            position: relative;
-            background-color: rgba(20, 15, 30, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid #4a3a69;
-            transition: all 0.3s ease;
-            z-index: 0;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.rawpixel.com/image_png_social_landscape/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcHg3NzAwMDEtaW1hZ2Utam9iNjMwLWEtbDBnMGE5M2cucG5n.png');
-            background-size: cover;
-            opacity: 0.05;
-            mix-blend-mode: screen;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .btn-primary { background-color: #a37e2c; color: #1a1a1a; font-weight: bold; transition: background-color 0.3s ease; }
-        .btn-primary:hover { background-color: #c8a44d; }
-        .btn-secondary { background-color: #4a3a69; color: #e0e0e0; font-weight: bold; transition: background-color 0.3s ease; }
-        .btn-secondary:hover { background-color: #5c4887; }
-        .form-input { background-color: #2a2042; border: 1px solid #4a3a69; color: #e0e0e0; border-radius: 0.5rem; padding: 0.75rem; width: 100%; }
-        
-        /* --- Navigation --- */
-        .tab { position: relative; }
-        .tab.active { color: #c8a44d; }
-        .tab::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: #a37e2c;
-            transition: width 0.3s ease;
-        }
-        .tab.active::after { width: 60%; }
-
-        /* --- Pillar Cards & Magic Glow --- */
-        .pillar-card {
-            position: relative;
-            background-color: rgba(20, 15, 30, 0.75);
-            border: 1px solid #4a3a69;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .pillar-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
-        }
-        .pillar-card::before {
-            content: "";
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: radial-gradient(circle, rgba(200, 164, 77, 0.3) 0%, rgba(200, 164, 77, 0) 70%);
-            border-radius: 50%;
-            transition: width 0.5s ease, height 0.5s ease;
-            transform: translate(-50%, -50%);
-        }
-        .pillar-card:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* --- Touch-based Animation Trigger --- */
-        .pillar-card.touch-hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
-        }
-        .pillar-card.touch-hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        .planetary-seal.touch-hover {
-             transform: scale(1.1);
-        }
-        .planetary-seal.touch-hover .seal-icon {
-            border-color: #c8a44d;
-            box-shadow: 0 0 15px rgba(200, 164, 77, 0.4);
-        }
-        .crystal-orb.touch-hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
-        }
-        .crystal-orb::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse, var(--crystal-light-color, transparent) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .crystal-orb:hover::after, .crystal-orb.light-up::after {
-            opacity: 0.7;
-        }
-        
-        /* --- Content Sections & Animations --- */
-        .content-section { display: none; animation: fadeIn 0.8s ease-out; }
-        .content-section.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Accordion --- */
-        .accordion-header { cursor: pointer; transition: background-color 0.2s ease; }
-        .accordion-header:hover { background-color: #3a2c5a; }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
-        .section-intro { text-align: center; margin-bottom: 2rem; max-w: 800px; margin-left: auto; margin-right: auto; }
-
-        /* --- Grimoire --- */
-        .grimoire-entry-card { position: relative; }
-        .grimoire-tag { background-color: #4a3a69; color: #c8a44d; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
-        .delete-btn { position: absolute; top: 1rem; right: 1rem; color: #888; cursor: pointer; transition: color 0.2s; }
-        .delete-btn:hover { color: #ef4444; }
-
-        /* --- Herbarium Section --- */
-        .herb-tabs { border-bottom: 1px solid #4a3a69; }
-        .herb-tab {
-            background-color: transparent;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            color: #aaa;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .herb-tab:hover { color: #c8a44d; }
-        .herb-tab.active {
-            color: #c8a44d;
-            background-color: rgba(200, 164, 77, 0.1);
-            border-bottom: 2px solid #a37e2c;
-        }
-        .herb-card { cursor: pointer; }
-        .herb-image-placeholder {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #4a3a69, #2a2042);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'IM Fell English', serif;
-            font-size: 4rem;
-            color: #a37e2c;
-            text-shadow: 0 0 10px #000;
-            border-bottom: 1px solid #4a3a69;
-        }
-        .herb-detail-heading {
-            font-family: 'IM Fell English', serif;
-            font-weight: bold;
-            color: #a37e2c;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 1px solid #4a3a69;
-        }
-
-        /* --- Altar de Manifestação (Cosmograma Sagrado) --- */
-        .altar-container { text-align: center; }
-        .sigil-central {
-            width: 150px; height: 150px;
-            margin: 2rem auto;
-            border: 2px solid #a37e2c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            animation: pulse 4s infinite, spin 60s linear infinite;
-        }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .planetary-seals { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
-        .planetary-seal {
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .planetary-seal:hover { transform: scale(1.1); }
-        .seal-icon {
-            width: 80px; height: 80px;
-            border: 1px solid #4a3a69;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 0.5rem auto;
-            font-size: 2.5rem;
-            background-color: rgba(20, 15, 30, 0.8);
+        /* Estilo para abas inativas */
+        .tab-inactive {
+            border-bottom: 3px solid transparent;
+            color: #5f4c3b; /* sepia-ink */
             transition: all 0.3s ease;
         }
-        .planetary-seal:hover .seal-icon { border-color: #c8a44d; box-shadow: 0 0 15px rgba(200, 164, 77, 0.4); }
-        .planetary-seal.active .seal-icon { border-color: #c8a44d; background-color: rgba(200, 164, 77, 0.2); animation: pulse 4s infinite; }
-        #intention-form textarea { min-height: 100px; }
-
-        /* --- Cosmogram Section (Responsive) --- */
-        .cosmogram-intro { text-align: center; margin-bottom: 2rem; max-w: 700px; margin-left: auto; margin-right: auto; }
-        
-        .cosmograma-container-responsive {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem 0;
+        .tab-inactive:hover {
+            background-color: rgba(0,0,0,0.03);
+            border-bottom-color: #a16207; /* amber */
         }
-
-        @keyframes float-orb {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        /* Estilo para os cards */
+        .content-card {
+            background-color: rgba(253, 247, 230, 0.7); /* Lighter parchment with transparency */
+            border: 1px solid #D2B48C; /* Tan */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
         }
-
-        .crystal-orb {
-            background-color: rgba(20, 15, 30, 0.9);
+        .chakra-dot {
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            display: inline-flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #4a3a69;
-            transition: all 0.5s ease;
-            pointer-events: auto;
-            animation: float-orb 6s ease-in-out infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+            border: 2px solid #3C2A1E; /* Sepia Ink */
         }
-        .crystal-orb:hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: #c8a44d;
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.3);
-            animation-play-state: paused; /* Pause floating animation on hover */
-        }
-        .crystal-orb-icon { font-size: 2.5rem; margin-bottom: 0.5rem; line-height: 1; }
+        /* Cores dos Chakras */
+        .chakra-muladhara { background-color: #EF4444; } /* red-500 */
+        .chakra-svadhisthana { background-color: #F97316; } /* orange-500 */
+        .chakra-manipura { background-color: #EAB308; } /* yellow-500 */
+        .chakra-anahata { background-color: #22C55E; } /* green-500 */
+        .chakra-vishuddha { background-color: #3B82F6; } /* blue-500 */
+        .chakra-ajna { background-color: #6366F1; } /* indigo-500 */
+        .chakra-sahasrara { background-color: #A855F7; } /* purple-500 */
 
-        .sun-orb {
-            order: -1; /* This makes the sun appear first */
-            width: 220px;
-            height: 220px;
-            border-color: #c8a44d;
-            box-shadow: 0 0 30px rgba(200, 164, 77, 0.6);
-            /* Combine the pulse and float animations */
-            animation: pulse 4s infinite, float-orb 6s ease-in-out infinite;
-        }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 30px rgba(200, 164, 77, 0.6); } 50% { box-shadow: 0 0 45px rgba(255, 223, 135, 0.8); } }
-        
-        /* --- Chakra & Pranayama Sections --- */
-        .chakra-card .accordion-header, .pranayama-card .accordion-header { border-left: 4px solid #a37e2c; }
-        .chakra-card .accordion-content, .pranayama-card .accordion-content { border-left: 4px solid #4a3a69; }
-        .pranayama-image-placeholder {
-             width: 120px; height: 120px;
-             background: linear-gradient(135deg, #4a3a69, #2a2042);
-             border-radius: 0.5rem;
-             display: flex; align-items: center; justify-content: center;
-             font-size: 3rem; color: #a37e2c;
-             float: left; margin-right: 1.5rem; margin-bottom: 0.5rem;
-        }
-
-        /* --- Jornada Section --- */
-        .jornada-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .info-block {
-            background-color: rgba(0,0,0,0.2);
-            border-left: 3px solid #a37e2c;
-            padding: 1rem;
-            border-radius: 0.25rem;
-        }
-        .info-block h5 {
-            font-family: 'IM Fell English', serif;
-            font-weight: bold;
-            color: #c8a44d;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Generic Detail Modal --- */
-        .detail-modal {
-            position: fixed; inset: 0; background-color: rgba(10, 5, 20, 0.8); backdrop-filter: blur(8px);
-            display: flex; align-items: center; justify-content: center; z-index: 100;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .detail-modal.visible { opacity: 1; visibility: visible; }
-        .detail-modal-content {
-            background-color: #1a132b; border: 1px solid #a37e2c; border-radius: 0.5rem;
-            padding: 2rem; width: 90%; max-width: 650px; max-height: 90vh; overflow-y: auto; position: relative;
-            transform: scale(0.95); transition: transform 0.3s ease;
-        }
-        .detail-modal.visible .detail-modal-content { transform: scale(1); }
-        .close-modal-icon { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; color: #888; transition: color 0.2s; }
-        .close-modal-icon:hover { color: #fff; }
-
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a132b; }
-        ::-webkit-scrollbar-thumb { background: #4a3a69; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a37e2c; }
-
-        /* --- Floating Items --- */
-        .floating-item {
-            position: absolute;
-            color: rgba(200, 164, 77, 0.3); /* Muted gold color */
-            text-shadow: 0 0 8px rgba(200, 164, 77, 0.5);
-            animation-name: float-up;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        @keyframes float-up {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* --- Thematic Section Backgrounds --- */
-        body::after {
+        /* --- Elementos Decorativos --- */
+        .content-card::before, .content-card::after {
             content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        /* Herbarium Effect */
-        .herbario-floresta-active::after {
-            background-image:
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ctext y='50' x='25' font-size='50'%3E🌿%3C/text%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 100 100'%3E%3Ctext y='50' x='25' font-size='50'%3E🍃%3C/text%3E%3C/svg%3E");
-            background-position: 10% 0, 90% 0;
-            background-repeat: repeat-y;
-            animation: fall 25s linear infinite;
-            opacity: 0.2;
-        }
-
-        @keyframes fall {
-            to {
-                background-position: 10% 100vh, 90% 100vh;
-            }
-        }
-
-        /* Cosmogram Effect */
-        .cosmograma-cristalino-active::after {
-            background: radial-gradient(ellipse at 70% 30%, rgba(100, 80, 200, 0.3), transparent 70%),
-                        radial-gradient(ellipse at 30% 80%, rgba(200, 100, 80, 0.3), transparent 70%);
-            animation: pulse-nebula 15s infinite alternate;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-color: #a16207; /* amber */
             opacity: 0.5;
         }
-
-        @keyframes pulse-nebula {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.2);
-            }
+        .content-card::before {
+            top: -5px;
+            left: -5px;
+            border-top: 2px solid;
+            border-left: 2px solid;
         }
-
-        /* Chakra Effect */
-        .chakra-active::after {
-            background:
-                radial-gradient(10px at 10% 90%, #ff3d3d, transparent),
-                radial-gradient(10px at 20% 10%, #ff9d42, transparent),
-                radial-gradient(10px at 30% 70%, #fff03e, transparent),
-                radial-gradient(10px at 40% 30%, #3eff64, transparent),
-                radial-gradient(10px at 60% 80%, #3eb6ff, transparent),
-                radial-gradient(10px at 75% 20%, #613eff, transparent),
-                radial-gradient(10px at 90% 60%, #c53eff, transparent);
-            background-repeat: no-repeat;
-            animation: float-orbs 30s linear infinite;
-            opacity: 0.6;
+        .content-card::after {
+            bottom: -5px;
+            right: -5px;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
         }
-
-        @keyframes float-orbs {
-            0% {
-                background-position: 10% 110%, 20% 110%, 30% 110%, 40% 110%, 60% 110%, 75% 110%, 90% 110%;
-            }
-            100% {
-                background-position: 15% -10%, 25% -10%, 35% -10%, 45% -10%, 65% -10%, 80% -10%, 95% -10%;
-            }
-        }
-
-        /* --- Pranayama Interactive Guide --- */
-        #pranayama-guide.active {
-            display: flex;
-        }
-        #pranayama-anim-container .anim-shape {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .decorative-divider {
+            height: 1px;
             width: 100%;
-            height: 100%;
-            transition: transform 4s ease-in-out;
-        }
-        #pranayama-anim-container .anim-circle {
-            background-color: #a37e2c;
-            border-radius: 50%;
-        }
-        .breathing-inhale {
-            transform: scale(1.2);
-        }
-        .breathing-exhale {
-            transform: scale(1);
-        }
-
-        /* Square Breathing Animation */
-        #pranayama-anim-container .anim-square {
-            stroke: #a37e2c;
-            stroke-width: 10;
-            fill: transparent;
-            stroke-dasharray: 680; /* Perimeter of 170x170 square */
-            stroke-dashoffset: 680;
-            animation-timing-function: linear;
-            animation-fill-mode: forwards;
-        }
-        .draw-side-1 { animation-name: draw-one-side; }
-        .draw-side-2 { animation-name: draw-two-sides; }
-        .draw-side-3 { animation-name: draw-three-sides; }
-        .draw-side-4 { animation-name: draw-four-sides; }
-
-        @keyframes draw-one-side { to { stroke-dashoffset: 510; } } /* 680 - 170 */
-        @keyframes draw-two-sides { from { stroke-dashoffset: 510; } to { stroke-dashoffset: 340; } }
-        @keyframes draw-three-sides { from { stroke-dashoffset: 340; } to { stroke-dashoffset: 170; } }
-        @keyframes draw-four-sides { from { stroke-dashoffset: 170; } to { stroke-dashoffset: 0; } }
-
-        /* Ocean Breath Animation */
-        #pranayama-anim-container .anim-wave {
-            stroke: #a37e2c;
-            stroke-width: 8;
-            fill: none;
-            stroke-dasharray: 500;
-            stroke-dashoffset: 500;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-        }
-        .draw-wave-inhale {
-            animation-name: draw-wave;
-        }
-        .draw-wave-exhale {
-            animation-name: undraw-wave;
-        }
-
-        @keyframes draw-wave {
-            to { stroke-dashoffset: 0; }
-        }
-        @keyframes undraw-wave {
-            from { stroke-dashoffset: 0; }
-            to { stroke-dashoffset: 500; }
-        }
-
-        /* Nadi Shodhana Animation */
-        #pranayama-anim-container .anim-nostril-path {
-            stroke: #a37e2c;
-            stroke-width: 8;
-            fill: none;
-            stroke-dasharray: 250;
-            stroke-dashoffset: 250;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-        }
-        .anim-nostril-path.active {
-            animation-name: draw-path;
-        }
-
-        @keyframes draw-path {
-            to { stroke-dashoffset: 0; }
-        }
-
-        /* --- Mind Map Section --- */
-        .mind-map-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            position: relative;
-            padding: 2rem;
-        }
-        .mind-map-center {
-            position: relative;
-        }
-        .mind-map-node {
-            background-color: rgba(20, 15, 30, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid #4a3a69;
-            border-radius: 50%;
-            width: 140px;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-            z-index: 1;
-        }
-        .mind-map-node:hover {
-            border-color: #c8a44d;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(200, 164, 77, 0.4);
-        }
-        .mind-map-node.center-node {
-            width: 170px;
-            height: 170px;
-            border-color: #a37e2c;
-        }
-        .mind-map-node .node-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .mind-map-node .node-title {
-            font-family: 'IM Fell English', serif;
-            font-weight: bold;
-            font-size: 0.9rem;
-            line-height: 1.1;
-        }
-        .pillar-node {
-            position: absolute;
-        }
-        .mind-map-line {
-            position: absolute;
-            background-color: rgba(163, 126, 44, 0.3);
-            height: 2px;
-            transform-origin: left center;
-            z-index: 0;
+            background: linear-gradient(to right, transparent, #D2B48C, transparent);
+            margin: 1rem 0;
+            border: 0;
         }
     </style>
 </head>
-<body class="bg-[#1a1a1a] text-[#e0e0e0]">
-    <div id="floating-items-container" class="fixed top-0 left-0 w-full h-full pointer-events-none" style="z-index: -1;"></div>
-    <div id="loading-message" class="fixed inset-0 flex items-center justify-center bg-[#1a132b] z-50">
-        <div class="text-center p-8 rounded-lg">
-            <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#a37e2c] mx-auto mb-4"></div>
-            <p class="text-lg font-semibold font-cinzel text-[#a37e2c]">Despertando a Rota Pagã...</p>
-        </div>
-    </div>
+<body class="text-gray-200">
 
-    <div id="error-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-        <div class="bg-[#1a132b] rounded-lg p-8 shadow-xl max-w-lg mx-auto border border-[#a37e2c]">
-            <h3 id="modal-title" class="text-xl font-bold font-cinzel text-red-500 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-3"></i><span>Erro</span></h3>
-            <div id="modal-message" class="text-[#e0e0e0] mb-6 text-sm space-y-2"></div>
-            <button id="close-modal-btn" class="w-full btn-primary py-2 px-4 rounded-lg">Compreendido</button>
-        </div>
-    </div>
-    
-    <div id="detail-modal" class="detail-modal">
-        <div class="detail-modal-content">
-            <i class="fas fa-times close-modal-icon" id="close-detail-modal"></i>
-            <div id="detail-modal-body"></div>
-        </div>
-    </div>
-
-    <div id="pranayama-guide" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex-col items-center justify-center z-40 hidden">
-        <div id="pranayama-anim-container" class="w-48 h-48 relative">
-            <!-- Animation shapes will be injected here by JS -->
-        </div>
-        <p id="pranayama-instruction" class="text-2xl font-cinzel text-white mt-8"></p>
-        <p id="pranayama-timer" class="text-xl font-mono text-amber-300/70 mt-4"></p>
-        <button id="stop-pranayama-btn" class="btn-secondary py-2 px-6 rounded-lg mt-8">Parar</button>
-    </div>
-
-    <div id="app-container" class="hidden">
-        <header class="bg-black/50 backdrop-blur-sm text-white p-6 text-center shadow-lg border-b-2 border-[#a37e2c]">
-            <h1 class="text-3xl font-bold font-cinzel tracking-wider">Grimório Virtual</h1>
-            <div id="user-id-display" class="text-sm mt-2 text-gray-400"></div>
-        </header>
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
         
-        <nav id="main-nav" class="bg-[#1a132b]/80 backdrop-blur-sm flex flex-wrap justify-center shadow-md sticky top-0 z-10">
-            <button class="tab active py-4 px-6 font-semibold transition-colors text-sm" data-section="herbario-floresta-section"><i class="fas fa-leaf mr-2"></i>Herbário da Floresta</button>
-            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="cosmograma-cristalino-section"><i class="fas fa-gem mr-2"></i>Cosmograma Cristalino</button>
-            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="chakra-section"><i class="fas fa-atom mr-2"></i>Centros de Poder</button>
-            <button class="tab py-4 px-6 font-semibold transition-colors text-sm" data-section="pranayama-section"><i class="fas fa-wind mr-2"></i>Sopros de Vida</button>
-            <a href="https://rotapagan.netlify.app/" target="_blank" class="tab py-4 px-6 font-semibold transition-colors text-sm text-amber-300 hover:text-amber-100"><i class="fas fa-external-link-alt mr-2"></i>Acessar Rota Pagã</a>
+        <!-- Cabeçalho -->
+        <header class="text-center mb-8">
+            <h1 class="text-5xl sm:text-6xl font-bold text-[#3C2A1E] mb-2" style="font-family: 'IM Fell English SC', serif;">
+                Guia Vibracional
+            </h1>
+            <p class="text-xl text-[#854d0e]">Florescer - Domando a Fera Interior</p>
+            <hr class="decorative-divider mt-4">
+        </header>
+
+        <!-- Navegação por Abas -->
+        <nav class="mb-8">
+            <h2 class="text-lg font-semibold text-[#5f4c3b] mb-3 text-center">Navegue pela Jornada:</h2>
+            <div class="flex flex-wrap gap-2 justify-center">
+                <!-- Abas para as Etapas -->
+                <button id="tab-btn-etapa1" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa1')">Etapa 1: Despertar</button>
+                <button id="tab-btn-etapa2" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa2')">Etapa 2: Semeando</button>
+                <button id="tab-btn-etapa3" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa3')">Etapa 3: Transformação</button>
+                <button id="tab-btn-etapa4" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa4')">Etapa 4: Colheita</button>
+                <button id="tab-btn-etapa5" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa5')">Etapa 5: Legado</button>
+                <button id="tab-btn-etapa6" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa6')">Etapa 6: Introspecção</button>
+                <button id="tab-btn-etapa7" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base" onclick="showTab('etapa7')">Etapa 7: União</button>
+
+                <!-- Abas para Guias Práticos -->
+                <button id="tab-btn-pranayamas" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base font-medium border-2 border-transparent border-b-amber-700 text-amber-800" onclick="showTab('pranayamas')">Guia de Pranayamas</button>
+                <button id="tab-btn-matriz" class="tab-button px-4 py-2 rounded-t-lg text-sm sm:text-base font-medium border-2 border-transparent border-b-amber-700 text-amber-800" onclick="showTab('matriz')">Matriz Vibracional</button>
+            </div>
         </nav>
 
-        <main class="container mx-auto p-4 md:p-8">
-            
-            <section id="herbario-floresta-section" class="content-section active"></section>
-            <section id="cosmograma-cristalino-section" class="content-section"></section>
-            <section id="chakra-section" class="content-section"></section>
-            <section id="pranayama-section" class="content-section"></section>
-
+        <!-- Área de Conteúdo Dinâmico -->
+        <main id="content-area">
+            <!-- O conteúdo será injetado aqui pelo JavaScript -->
         </main>
+
     </div>
-    
-    <script type="module" src="index.tsx"></script>
+
+    <script>
+        // --- BANCO DE DADOS DO GUIA ---
+        // Dados extraídos e sintetizados do seu documento "Guia Vibracional Visual"
+        const guideData = {
+            etapas: {
+                etapa1: {
+                    titulo: 'Etapa 1: Despertar da Consciência',
+                    foco: 'O início de toda transformação. Ganhar clareza e autoconsciência sem julgamento, mapeando o "território atual" de hábitos e crenças.',
+                    pilares: [
+                        { nome: 'Terra 🌍', desc: 'Corpo, estabilidade, aterramento. A base material (Chakra Raiz) para a consciência se erguer com segurança.' },
+                        { nome: 'Luz 💡', desc: 'Percepção, consciência, verdade. A "perspectiva cósmica" que ilumina os padrões do subconsciente.' }
+                    ],
+                    chakras: [
+                        { nome: 'Muladhara (Raiz)', cor: 'chakra-muladhara', desc: 'Centro de segurança, estabilidade e pertencimento.' },
+                        { nome: 'Ajna (Frontal)', cor: 'chakra-ajna', desc: 'Centro da intuição, percepção e clareza mental.' }
+                    ],
+                    arquétipos: '<strong>Perseu e Medusa</strong> (Confronto da Sombra com observação neutra), <strong>Rá</strong> (Despertar da consciência), <strong>Atena</strong> (Sabedoria estratégica), <strong>Ma\'at</strong> (Verdade e ordem interior).',
+                    ferramentas: '<strong>PNL:</strong> Auto-Observação Neutra, Ancoragem da Atenção Plena. <br><strong>Ciclos:</strong> Lua Nova (Intenções), Imbolc (Renovação), Exu (Abertura de caminhos).'
+                },
+                etapa2: {
+                    titulo: 'Etapa 2: Semeando com Propósito',
+                    foco: 'Direcionar a consciência despertada. Conectar os desejos de mudança a um "porquê" profundo, alinhando ações com valores essenciais.',
+                    pilares: [
+                        { nome: 'Água 🌊', desc: 'Emoções, intuição, criatividade. Navegar pelas águas internas para descobrir o que genuinamente nos move.' },
+                        { nome: 'Ar 🌬️', desc: 'Coração, compaixão, conexão. Validar o propósito pelo coração (Anahata), transcendendo o ego.' }
+                    ],
+                    chakras: [
+                        { nome: 'Svadhisthana (Sacral)', cor: 'chakra-svadhisthana', desc: 'Centro de criatividade, emoções e prazer.' },
+                        { nome:F: 'Anahata (Cardíaco)', cor: 'chakra-anahata', desc: 'Centro do amor incondicional, compaixão e equilíbrio.' }
+                    ],
+                    arquétipos: '<strong>Hércules</strong> (Determinação e força), <strong>Ísis</strong> (Perseverança e intuição), <strong>Apolo</strong> (Clareza de visão), <strong>Rá</strong> (Energia vital criadora).',
+                    ferramentas: '<strong>PNL:</strong> Metas Bem Formuladas (S.M.A.R.T.), Visualização Criativa, Alinhamento de Valores. <br><strong>Ciclos:</strong> Lua Crescente (Nutrir), Ostara (Equilíbrio), Oxalá (Clareza divina).'
+                },
+                etapa3: {
+                    titulo: 'Etapa 3: Transformação Resiliente',
+                    foco: 'O coração da transformação. O confronto ativo com a "fera interior" (hábitos limitantes), mobilizando força de vontade e disciplina para transmutar energia.',
+                    pilares: [
+                        { nome: 'Fogo 🔥', desc: 'Energia, ação, vontade. O grande agente de transformação (Manipura) que purifica, queima o antigo e forja o novo.' }
+                    ],
+                    chakras: [
+                        { nome: 'Manipura (Plexo Solar)', cor: 'chakra-manipura', desc: 'Centro de poder pessoal, autoestima e força de vontade.' }
+                    ],
+                    arquétipos: '<strong>Teseu e o Minotauro</strong> (Jornada no labirinto do inconsciente), <strong>Hórus vs. Set</strong> (Luta interna pela ordem e caos), <strong>Sekhmet</strong> (Poder destrutivo e transformador do Fogo).',
+                    ferramentas: '<strong>PNL:</strong> Reestruturação Cognitiva (Reframing), Modelagem, Técnica do Swish. <br><strong>Ciclos:</strong> Lua Cheia (Pico de poder), Beltane (Vitalidade), Ogum (Corte de padrões).'
+                },
+                etapa4: {
+                    titulo: 'Etapa 4: Colheita Consciente',
+                    foco: 'Fase de integração, celebração e gratidão. Reconhecer o progresso, solidificar novos hábitos e cultivar o amor-próprio.',
+                    pilares: [
+                        { nome: 'Ar 🌬️', desc: 'Equilíbrio, harmonia, relacionamentos. A respiração consciente (Anahata) como ferramenta para sustentar a paz interior e o amor-próprio.' }
+                    ],
+                    chakras: [
+                        { nome: 'Anahata (Cardíaco)', cor: 'chakra-anahata', desc: 'Centro de integração, gratidão, cura e aceitação de si.' }
+                    ],
+                    arquétipos: '<strong>Era de Ouro</strong> (Estado interno de paz), <strong>Ascensão de Osíris</strong> (Sabedoria pós-jornada), <strong>Dionísio & Bastet</strong> (Celebração, alegria, contentamento).',
+                    ferramentas: '<strong>PNL:</strong> Análise de Resultados, Celebração (reforço neural), Compromisso Contínuo. <br><strong>Ciclos:</strong> Lua Minguante (Introspecção), Lughnasadh (Festa da colheita), Oxum (Prosperidade).'
+                },
+                etapa5: {
+                    titulo: 'Etapa 5: Irradiando o Legado',
+                    foco: 'Transição do crescimento interior para o impacto exterior. Compartilhar a luz e a sabedoria adquiridas de forma autêntica.',
+                    pilares: [
+                        { nome: 'Som 🎶', desc: 'Comunicação, expressão, vibração. O uso da "voz" (Vishuddha) para articular a jornada e transformar experiência em sabedoria.' }
+                    ],
+                    chakras: [
+                        { nome: 'Vishuddha (Laríngeo)', cor: 'chakra-vishuddha', desc: 'Centro da comunicação, autoexpressão e verdade.' }
+                    ],
+                    arquétipos: '<strong>Prometeu</strong> (Doador do conhecimento), <strong>Ptah</strong> (Construção de legado duradouro), <strong>Iemanjá & Tot</strong> (Sabedoria ancestral e transmissão do conhecimento).',
+                    ferramentas: '<strong>PNL:</strong> Mentoria, Definição de Novas Metas (expansão). <br><strong>Ciclos:</strong> Lua Nova (Novos projetos), Mabon (Partilhar a colheita), Iemanjá (Sabedoria maternal).'
+                },
+                etapa6: {
+                    titulo: 'Etapa 6: Introspecção Curativa',
+                    foco: 'Reconhecer que o crescimento é espiral. Um mergulho profundo na sombra para curar padrões recorrentes e fortalecer a resiliência.',
+                    pilares: [
+                        { nome: 'Luz 💡', desc: 'Intuição, visão interna. A luz da consciência (Ajna) direcionada para dentro, para explorar e curar os cantos escuros da psique.' }
+                    ],
+                    chakras: [
+                        { nome: 'Ajna (Frontal)', cor: 'chakra-ajna', desc: 'Centro da jornada introspectiva, intuição e percepção sutil.' }
+                    ],
+                    arquétipos: '<strong>Hades</strong> (Profundidade, riquezas ocultas no inconsciente), <strong>Anúbis</strong> (Guia seguro pelo submundo, ressignificação da "morte" de padrões).',
+                    ferramentas: '<strong>PNL:</strong> Identificação de Padrões Limitantes, Reenquadramento Transformador, Busca por Recursos Internos e Apoio Externo.'
+                },
+                etapa7: {
+                    titulo: 'Etapa 7: União Transcendental',
+                    foco: 'A culminação da jornada. A experiência da unidade, transcendência do ego e conexão com a consciência pura. Viver em estado de fluxo e presença.',
+                    pilares: [
+                        { nome: 'Mente 🤯', desc: 'Consciência Pura, Unidade. A mente (Sahasrara) transcende o finito e se reconhece como manifestação da totalidade.' }
+                    ],
+                    chakras: [
+                        { nome: 'Sahasrara (Coroa)', cor: 'chakra-sahasrara', desc: 'Portal para a consciência universal, iluminação e paz profunda.' }
+                    ],
+                    arquétipos: '<strong>Shiva</strong> (Consciência transcendental pura, o observador silencioso), <strong>União com Rá</strong> (Fusão da consciência individual com a fonte primordial).',
+                    ferramentas: '<strong>PNL:</strong> Estado de Flow Contínuo, Mindfulness Absoluto, Entrega e Confiança Divina.'
+                }
+            },
+            pranayamas: [
+                {
+                    nome: 'Dirga Pranayama (Respiração Diafragmática)',
+                    efeito: 'Calmante/Base',
+                    tecnica: 'Inspire lentamente pelo nariz, sentindo o abdômen expandir, depois as costelas, e por último o peito. Expire suavemente no sentido inverso.',
+                    beneficios: 'Estimula o nervo vago, promove relaxamento profundo, melhora a eficiência da troca gasosa.',
+                    contraindicacoes: 'Nenhuma (praticar com suavidade).'
+                },
+                {
+                    nome: 'Nadi Shodhana (Narinas Alternadas)',
+                    efeito: 'Equilibrante/Calmante',
+                    tecnica: 'Use o Vishnu Mudra. Feche a narina direita, inspire pela esquerda. Feche a esquerda, expire pela direita. Inspire pela direita. Feche a direita, expire pela esquerda. (Este é 1 ciclo).',
+                    beneficios: 'Equilibra os hemisférios cerebrais (energias Ida e Pingala), acalma a mente, reduz a ansiedade.',
+                    contraindicacoes: 'Nenhuma (evitar retenção se iniciante).'
+                },
+                {
+                    nome: 'Kapalabhati (Crânio Brilhante)',
+                    efeito: 'Energizante',
+                    tecnica: 'Expirações curtas, rápidas e vigorosas pelo nariz, contraindo ativamente o baixo abdômen. A inspiração é passiva e automática.',
+                    beneficios: 'Energizante, limpa as vias aéreas, estimula o metabolismo, promove clareza mental.',
+                    contraindicacoes: 'Gravidez, pressão alta não controlada, doenças cardíacas, hérnia, epilepsia.'
+                },
+                {
+                    nome: 'Bhastrika (Respiração do Fole)',
+                    efeito: 'Muito Energizante',
+                    tecnica: 'Inspire e expire vigorosa e ativamente pelo nariz, usando o diafragma como um fole. Ambas as fases são forçadas.',
+                    beneficios: 'Gera calor, aumenta a energia rapidamente, oxigena o sangue.',
+                    contraindicacoes: 'As mesmas de Kapalabhati (pressão alta, gravidez, problemas cardíacos).'
+                },
+                {
+                    nome: 'Ujjayi (Respiração Vitoriosa)',
+                    efeito: 'Calmante/Foco',
+                    tecnica: 'Crie uma suave constrição na parte de trás da garganta, produzindo um som suave de "onda do oceano" ao respirar pelo nariz.',
+                    beneficios: 'Acalma o sistema nervoso, aumenta o foco, sincroniza respiração e movimento.',
+                    contraindicacoes: 'Nenhuma (evitar tensão na garganta).'
+                },
+                {
+                    nome: 'Sitali & Sitkari (Respirações Refrescantes)',
+                    efeito: 'Refrescante',
+                    tecnica: '<strong>Sitali:</strong> Inspire pela língua enrolada em tubo. <br><strong>Sitkari:</strong> Inspire através dos dentes cerrados. Em ambos, expire pelo nariz.',
+                    beneficios: 'Reduzem o calor corporal, acalmam emoções "quentes" como raiva e irritabilidade.',
+                    contraindicacoes: 'Pressão baixa, asma, ambiente frio.'
+                }
+            ],
+            matriz: [
+                ['1. Despertar', 'Muladhara & Ajna', 'Terra & Luz', 'Perseu/Medusa, Rá, Atena', 'Auto-Observação Neutra', 'Imbolc / Lua Nova / Exu', 'Clareza'],
+                ['2. Semeando', 'Svadhisthana & Anahata', 'Água & Ar', 'Hércules, Ísis, Apolo', 'Visualização Criativa', 'Ostara / Lua Crescente / Oxalá', 'Propósito'],
+                ['3. Transformação', 'Manipura', 'Fogo', 'Teseu/Minotauro, Hórus/Set', 'Reestruturação Cognitiva', 'Beltane / Lua Cheia / Ogum', 'Coragem'],
+                ['4. Colheita', 'Anahata', 'Ar', 'Era de Ouro, Osíris, Dionísio', 'Celebração (Reforço)', 'Lughnasadh / Lua Minguante / Oxum', 'Gratidão'],
+                ['5. Legado', 'Vishuddha', 'Som', 'Prometeu, Ptah, Iemanjá', 'Mentoria', 'Mabon / Lua Nova / Iemanjá', 'Generosidade'],
+                ['6. Introspecção', 'Ajna', 'Luz', 'Hades, Anúbis', 'Reenquadramento de Crenças', 'N/A', 'Resiliência'],
+                ['7. União', 'Sahasrara', 'Mente', 'Shiva, União com Rá', 'Estado de Flow', 'Samhain / Lua Cheia / Oxalá', 'Unidade']
+            ]
+        };
+
+        // --- LÓGICA DE RENDERIZAÇÃO ---
+
+        const contentArea = document.getElementById('content-area');
+        const allTabButtons = document.querySelectorAll('.tab-button');
+        let currentTab = 'etapa1';
+
+        // Função para mostrar a aba selecionada
+        function showTab(tabId) {
+            currentTab = tabId;
+            // Atualiza estilo dos botões
+            allTabButtons.forEach(btn => {
+                if (btn.id === `tab-btn-${tabId}`) {
+                    btn.classList.add('tab-active');
+                    btn.classList.remove('tab-inactive');
+                } else {
+                    btn.classList.add('tab-inactive');
+                    btn.classList.remove('tab-active');
+                }
+            });
+
+            // Limpa o conteúdo anterior
+            contentArea.innerHTML = '';
+
+            // Renderiza o conteúdo da aba
+            if (tabId.startsWith('etapa')) {
+                renderEtapa(guideData.etapas[tabId]);
+            } else if (tabId === 'pranayamas') {
+                renderPranayamas();
+            } else if (tabId === 'matriz') {
+                renderMatriz();
+            }
+        }
+
+        // Função para renderizar uma Etapa
+        function renderEtapa(etapa) {
+            let pilaresHtml = etapa.pilares.map(pilar => `
+                <div class="mb-3">
+                    <h4 class="text-lg font-semibold text-amber-700">${pilar.nome}</h4>
+                    <p class="text-sm">${pilar.desc}</p>
+                </div>
+            `).join('');
+
+            let chakrasHtml = etapa.chakras.map(chakra => `
+                <div class="flex items-center mb-2">
+                    <span class="chakra-dot ${chakra.cor}"></span>
+                    <div>
+                        <h4 class="text-lg font-semibold text-amber-700">${chakra.nome}</h4>
+                        <p class="text-sm">${chakra.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            contentArea.innerHTML = `
+                <div class="content-card animate-fade-in">
+                    <h2 class="text-3xl font-bold mb-4 text-[#854d0e]" style="font-family: 'IM Fell English SC', serif;">${etapa.titulo}</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Foco Psicoespiritual</h3>
+                        <p>${etapa.foco}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Pilares Fundamentais</h3>
+                            ${pilaresHtml}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Centros Energéticos</h3>
+                            ${chakrasHtml}
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Arquétipos</h3>
+                        <p>${etapa.arquétipos}</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#3C2A1E] mb-2 border-b border-[#D2B48C] pb-1">Ferramentas e Rituais</h3>
+                        <p>${etapa.ferramentas}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para renderizar o Guia de Pranayamas
+        function renderPranayamas() {
+            let pranayamasHtml = guideData.pranayamas.map(p => `
+                <div class="content-card">
+                    <h3 class="text-2xl font-semibold text-amber-800 mb-3">${p.nome}</h3>
+                    <span class="inline-block bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium mb-3">${p.efeito}</span>
+
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-[#3C2A1E]">Técnica:</h4>
+                        <p class="text-sm">${p.tecnica}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-[#3C2A1E]">Benefícios:</h4>
+                        <p class="text-sm">${p.beneficios}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-red-800">Contraindicações:</h4>
+                        <p class="text-red-900 text-sm">${p.contraindicacoes}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            contentArea.innerHTML = `
+                <h2 class="text-3xl font-bold text-center text-amber-800 mb-6" style="font-family: 'IM Fell English SC', serif;">Guia Visual de Pranayamas</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${pranayamasHtml}
+                </div>
+            `;
+        }
+
+        // Função para renderizar a Matriz Vibracional
+        function renderMatriz() {
+            let headers = ['Etapa', 'Chakras', 'Pilar(es)', 'Arquétipos', 'Foco PNL', 'Ciclos', 'Qualidade'];
+
+            let headerHtml = headers.map(h => `<th class="p-3 text-left text-sm font-semibold text-amber-800 uppercase tracking-wider">${h}</th>`).join('');
+
+            let bodyHtml = guideData.matriz.map((row, index) => `
+                <tr class="border-b border-amber-800/20 ${index % 2 === 0 ? 'bg-amber-100/30' : 'bg-transparent'}">
+                    ${row.map(cell => `<td class="p-3 text-sm">${cell}</td>`).join('')}
+                </tr>
+            `).join('');
+
+            contentArea.innerHTML = `
+                <h2 class="text-3xl font-bold text-center text-amber-800 mb-6" style="font-family: 'IM Fell English SC', serif;">Matriz Vibracional "Florescer"</h2>
+                <div class="content-card overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-amber-200/50">
+                            <tr>
+                                ${headerHtml}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${bodyHtml}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adiciona uma animação simples de fade-in
+            contentArea.classList.add('transition-opacity', 'duration-500');
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .animate-fade-in {
+                    animation: fadeIn 0.5s ease-in-out;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Carrega a primeira aba por padrão
+            showTab('etapa1');
+        });
+
+    </script>
 </body>
 </html>
