@@ -1,318 +1,948 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grimório Virtual</title>
+    <title>Grimório Virtual: Rota Pagã</title>
+    <!-- Carrega o Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carrega as Fontes Místicas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Tema Grimório Digital Místico --- */
-        @keyframes stars {
-            from { background-position: 0 0; }
-            to { background-position: -10000px 5000px; }
-        }
-        html {
-            background-color: #0c0a1d; /* Roxo-preto profundo */
-        }
+        /* Define as fontes personalizadas */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0c0a1d;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            animation: stars 200s linear infinite;
-            color: #d1d5db; /* cinza-300 */
+            /* Fundo gradiente azul-escuro-roxo */
+            background: linear-gradient(180deg, #0a041a 0%, #1a0a2a 50%, #2a0a3a 100%);
         }
-        .font-title { font-family: 'IM Fell English SC', serif; }
-
-        /* --- Componentes Personalizados --- */
-        .tab-button {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+        .font-fantasy {
+            font-family: 'Cinzel', serif;
+        }
+        /* Estilização da Prateleira de Livros (Barra Lateral) */
+        .bookshelf-bg {
+            /* Fundo de madeira escura com textura sutil e borda de pedra */
+            background-color: #3a2a1a; /* Cor de madeira escura */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border-right: 6px solid #574030; /* Borda de "pedra" / madeira mais grossa */
+            box-shadow: inset -10px 0 15px rgba(0,0,0,0.4);
+        }
+        /* Estilização dos "Livros" (Links) */
+        .book-spine {
+            position: relative;
+            background: linear-gradient(90deg, #5a3a2a 0%, #7b5a4a 10%, #5a3a2a 100%); /* Simula lombada de couro */
+            color: #f0e68c; /* Cor de letra dourada (Khaki) */
+            border-top: 2px solid #8c6a54;
+            border-bottom: 2px solid #4a2a1a;
+            box-shadow: inset 3px 0 5px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
-            position: relative;
-            background: transparent;
-            border: 2px solid transparent;
-            color: #a5b4fc; /* indigo-300 */
+            transform-origin: left;
         }
-        .tab-button:hover {
-            color: #fde047; /* yellow-300 */
-            text-shadow: 0 0 8px rgba(253, 224, 71, 0.5);
+        .book-spine:hover {
+            transform: translateX(10px) rotateY(-5deg);
+            background: linear-gradient(90deg, #6a4a3a 0%, #8b6a5a 10%, #6a4a3a 100%);
+            box-shadow: inset 3px 0 7px rgba(0,0,0,0.4), 2px 4px 8px rgba(0,0,0,0.4);
         }
-        .tab-button.tab-active {
-            font-weight: 700;
-            color: #fde047; /* yellow-300 */
-            background-color: rgba(49, 46, 129, 0.4); /* indigo-900 com transparência */
-            border-image: linear-gradient(to right, #a5b4fc, #fde047) 1;
-            box-shadow: 0 0 15px rgba(253, 224, 71, 0.3);
+        /* Estilo Glassmorphism para os Paineis de Conteúdo */
+        .content-panel {
+            background: rgba(15, 10, 30, 0.6); /* Fundo de vidro escuro */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
         }
-        .content-card {
-            background-color: rgba(17, 11, 41, 0.7); /* Roxo-preto com mais transparência */
-            border: 1px solid #4338ca; /* indigo-700 */
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            position: relative;
+        /* Estrelas do Canvas (Fundo) */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
-        .content-card::before { /* Brilho decorativo */
-            content: '✧';
-            position: absolute;
-            top: 0.5rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            color: #a5b4fc;
-            opacity: 0.4;
+
+        /* Estilo para Acordeão (Jornada Florescer e Pilares) */
+        .accordion-button {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
         }
-        .card-title {
-            font-family: 'IM Fell English SC', serif;
-            color: #fde047; /* yellow-300 */
-            text-shadow: 0 0 5px rgba(253, 224, 71, 0.7);
+        .accordion-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
-        .card-subtitle {
-            color: #a5b4fc; /* indigo-300 */
-            border-bottom: 1px solid rgba(129, 140, 248, 0.2);
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
         }
-        .chakra-dot {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 0.5rem;
-            border: 2px solid rgba(224, 231, 255, 0.8); /* indigo-100 */
-            box-shadow: 0 0 5px, inset 0 0 3px;
+        .accordion-content.open {
+            max-height: 5000px; /* Altura grande para acomodar o conteúdo */
+            padding: 1.5rem; /* p-6 */
         }
-        .chakra-muladhara { background-color: #EF4444; box-shadow: 0 0 5px #EF4444, inset 0 0 3px #EF4444; }
-        .chakra-svadhisthana { background-color: #F97316; box-shadow: 0 0 5px #F97316, inset 0 0 3px #F97316; }
-        .chakra-manipura { background-color: #EAB308; box-shadow: 0 0 5px #EAB308, inset 0 0 3px #EAB308; }
-        .chakra-anahata { background-color: #22C55E; box-shadow: 0 0 5px #22C55E, inset 0 0 3px #22C55E; }
-        .chakra-vishuddha { background-color: #3B82F6; box-shadow: 0 0 5px #3B82F6, inset 0 0 3px #3B82F6; }
-        .chakra-ajna { background-color: #6366F1; box-shadow: 0 0 5px #6366F1, inset 0 0 3px #6366F1; }
-        .chakra-sahasrara { background-color: #A855F7; box-shadow: 0 0 5px #A855F7, inset 0 0 3px #A855F7; }
+        .accordion-button.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border-top-color: #f0e68c;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
-<body>
+<body class="h-full text-gray-200 bg-gray-900 overflow-hidden">
+    <!-- Canvas Estrelado (Fundo) -->
+    <canvas id="starfield"></canvas>
 
-    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+    <div class="flex flex-col md:flex-row h-screen relative z-10">
 
-        <header class="text-center mb-12">
-            <h1 class="font-title text-5xl sm:text-6xl font-bold text-amber-200 mb-2" style="text-shadow: 0 0 15px rgba(252, 211, 77, 0.5), 0 0 5px rgba(255,255,255,0.3);">
-                Grimório Virtual
-            </h1>
-        </header>
+        <!-- BARRA LATERAL: A PRATELEIRA DE LIVROS ÉLFICA (NAV) -->
+        <nav class="w-full md:w-72 bookshelf-bg p-5 overflow-y-auto shadow-lg flex-shrink-0 z-20">
+            <div class="flex items-center justify-center space-x-2 mb-6">
+                <!-- SVG de Vinha Élfica -->
+                <svg width="30" height="40" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-yellow-400">
+                    <path d="M50 130C50 130 50 99.5 50 90C40 85 10 75 10 50C10 25 40 15 50 10C50 0 50 0 50 0M50 130C50 130 50 99.5 50 90C60 85 90 75 90 50C90 25 60 15 50 10" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 65C27 63 35 60 40 50" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M78 65C73 63 65 60 60 50" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="50" cy="70" r="8" fill="currentColor"/>
+                </svg>
+                <h1 class="text-3xl font-fantasy text-yellow-200 text-shadow">Rota Pagã</h1>
+            </div>
 
-        <nav class="mb-8">
-            <div class="flex flex-wrap gap-2 justify-center p-2 rounded-xl bg-black/20 backdrop-blur-sm border border-indigo-900/50">
-                <button id="tab-btn-etapa1" class="tab-button" onclick="showTab('etapa1')">Etapa 1: Despertar</button>
-                <button id="tab-btn-etapa2" class="tab-button" onclick="showTab('etapa2')">Etapa 2: Semeando</button>
-                <button id="tab-btn-etapa3" class="tab-button" onclick="showTab('etapa3')">Etapa 3: Transformação</button>
-                <button id="tab-btn-etapa4" class="tab-button" onclick="showTab('etapa4')">Etapa 4: Colheita</button>
-                <button id="tab-btn-etapa5" class="tab-button" onclick="showTab('etapa5')">Etapa 5: Legado</button>
-                <button id="tab-btn-etapa6" class="tab-button" onclick="showTab('etapa6')">Etapa 6: Introspecção</button>
-                <button id="tab-btn-etapa7" class="tab-button" onclick="showTab('etapa7')">Etapa 7: União</button>
-                <button id="tab-btn-pranayamas" class="tab-button" onclick="showTab('pranayamas')">Pranayamas</button>
-                <button id="tab-btn-matriz" class="tab-button" onclick="showTab('matriz')">Matriz Vibracional</button>
+            <div class="space-y-2">
+                <!-- Livros na Prateleira (Links de Navegação) -->
+                <a href="#" onclick="showPage('page-santuario')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Santuário (Início)
+                </a>
+                <a href="#" onclick="showPage('page-jornada')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Jornada Florescer
+                </a>
+                <a href="#" onclick="showPage('page-pantaculos')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Pantáculos Planetários
+                </a>
+                <a href="#" onclick="showPage('page-forjador')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    O Forjador de Sigilos
+                </a>
+                <a href="#" onclick="showPage('page-pilares')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Pilares da Dieta
+                </a>
+                <a href="#" onclick="showPage('page-compendio')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Compêndio Sincrético
+                </a>
+                 <a href="#" onclick="showPage('page-sopros')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Sopros de Vida (Prana)
+                </a>
+                <a href="#" onclick="showPage('page-roda')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    A Roda do Ano
+                </a>
+                <a href="#" onclick="showPage('page-panteao')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    O Panteão
+                </a>
+                <a href="#" onclick="showPage('page-galeria')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    Galeria Onírica
+                </a>
+
+                <!-- Divisor de Pedra -->
+                <div class="border-t-4 border-stone-600 my-4 shadow-inner"></div>
+
+                <a href="#" onclick="showPage('page-oraculo')" class="block book-spine font-fantasy text-lg p-3 rounded-md border-yellow-500 border-l-8">
+                    Oráculo Astral (API)
+                </a>
+                <a href="#" onclick="showPage('page-guardiao')" class="block book-spine font-fantasy text-lg p-3 rounded-md">
+                    O Guardião (Sobre)
+                </a>
             </div>
         </nav>
 
-        <main id="content-area"></main>
+        <!-- ÁREA DE CONTEÚDO PRINCIPAL -->
+        <main class="flex-1 p-4 md:p-8 overflow-y-auto h-full z-10">
+            <!-- Todas as páginas estão aqui, ocultas por padrão. O JS as exibirá. -->
 
+            <!-- PÁGINA INICIAL (SANTUÁRIO) -->
+            <section id="page-santuario" class="content-panel p-6">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Bem-vindo ao Santuário</h2>
+                <p class="text-lg leading-relaxed mb-4">
+                    Este é o seu Grimório Virtual, um repositório vivo de conhecimento místico e prático. Cada "livro" na prateleira à esquerda abre um portal para um pilar diferente da sua jornada.
+                </p>
+                <p class="mb-6">
+                    Explore os Pantáculos antigos, forje seus próprios Sigilos de intenção, ou consulte o Oráculo Astral para alinhar sua jornada com os cosmos. Este espaço combina sabedoria ancestral com ferramentas modernas, servindo como a porta de entrada pública para o App da Rota Pagã.
+                </p>
+                <div class="border-t border-yellow-800/50 pt-4">
+                    <p class="text-sm text-yellow-200/70">Use a "prateleira" (navegação) para selecionar um tópico.</p>
+                </div>
+            </section>
+
+            <!-- PÁGINA: JORNADA FLORESCER (DINÂMICA) -->
+            <section id="page-jornada" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-6">A Jornada Florescer: As 7 Etapas</h2>
+                <div id="jornada-container" class="space-y-4">
+                    <!-- O conteúdo do JSON será inserido aqui pelo JavaScript -->
+                </div>
+            </section>
+
+            <!-- PÁGINA: PANTÁCULOS PLANETÁRIOS (JÚPITER & SOL) -->
+            <section id="page-pantaculos" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Pantáculos Planetários: O Poder dos Selos</h2>
+                <p class="mb-6">Os Quadrados Mágicos, ou Kameas Planetários, são a base da magia cerimonial ocidental (como detalhado nas Clavículas de Salomão e na Cabala Prática). Eles são pantáculos que traduzem a energia pura de um planeta em uma matriz matemática. Ao usá-los, você alinha sua intenção com a força cósmica específica do planeta. Você está em um ciclo de Júpiter (Chesed) e vem de um ciclo do Sol (Tipheret).</p>
+
+                <!-- Seção SOL -->
+                <div class="mb-6">
+                    <h3 class="font-fantasy text-2xl text-yellow-300 mb-2">O Selo do Sol (Tipheret / 6x6)</h3>
+                    <p class="mb-3">O Sol rege a identidade, o sucesso, a vitalidade, a liderança e a consciência superior (o "Eu Superior"). Seu ciclo dura 3 anos no sistema Schutz.</p>
+                    <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
+                        <li>**Número Mágico:** 111 (A soma de qualquer linha/coluna/diagonal)</li>
+                        <li>**Soma Total:** 666 (O número de todos os 36 quadrados)</li>
+                        <li>**Associado a:** Tipheret (Beleza, Harmonia), Arcanjo Miguel, Ouro.</li>
+                        <li>**Usos Mágicos:** Vitalidade, cura, sucesso em empreendimentos, clareza espiritual, autoridade e iluminação.</li>
+                    </ul>
+                    <p class="text-sm text-yellow-200/70 italic">Suas palavras "Fé", "Magia", "Disciplina" e "Farol" foram forjadas sob esta influência para construir sua identidade central.</p>
+                </div>
+
+                <!-- Seção JÚPITER -->
+                <div class="mb-4">
+                    <h3 class="font-fantasy text-2xl text-yellow-300 mb-2">O Selo de Júpiter (Chesed / 4x4)</h3>
+                    <p class="mb-3">Júpiter rege a expansão, abundância, sorte, sabedoria superior, oportunidades e generosidade. Este é o seu ciclo atual (39-46 anos).</p>
+                    <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
+                        <li>**Número Mágico:** 34 (A soma de qualquer linha/coluna/diagonal)</li>
+                        <li>**Soma Total:** 136</li>
+                        <li>**Associado a:** Chesed (Misericórdia, Expansão), Arcanjo Sachiel (ou Tzadkiel), Estanho.</li>
+                        <li>**Usos Mágicos:** Atrair abundância material e espiritual, expandir negócios, abrir oportunidades, obter sabedoria e promover generosidade.</li>
+                    </ul>
+                    <p class="text-sm text-yellow-200/70 italic">Este é o quadrado mágico que você usará para forjar seus sigilos durante este ciclo de 7 anos, começando com "Florescer".</p>
+                </div>
+            </section>
+
+            <!-- PÁGINA: FORJADOR DE SIGILOS (TUTORIAL) -->
+            <section id="page-forjador" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">O Forjador de Sigilos</h2>
+                <p class="mb-6">Um sigilo é uma intenção focada e destilada em um símbolo de poder. Ele "fala" diretamente ao subconsciente (Método PNL/Caos) e se alinha com as forças cósmicas (Método Planetário). Aqui está como forjar seus próprios selos para manifestar mudança.</p>
+
+                <!-- Método 1: PNL / Magia do Caos -->
+                <div class="mb-6">
+                    <h3 class="font-fantasy text-2xl text-yellow-300 mb-2">Método 1: O Glifo da Intenção (PNL / Magia do Caos)</h3>
+                    <p class="mb-4">Este método programa seu subconsciente, transformando linguagem (Pilar do Som/Mente) em um símbolo abstrato.</p>
+                    <ol class="list-decimal list-inside space-y-3 pl-4">
+                        <li><strong>Formule a Intenção:</strong> Escreva seu desejo em tempo presente, de forma positiva. Ex: "MINHA VONTADE FLORESCE COM PODER E ALEGRIA".</li>
+                        <li><strong>Remova Vogais e Letras Repetidas:</strong>
+                            <ul>
+                                <li>MINHA VONTADE FLORESCE COM PODER E ALEGRIA</li>
+                                <li>MNH VNTD FLRSC CMPDR LGR</li>
+                            </ul>
+                        </li>
+                        <li><strong>Crie o Glifo:</strong> Combine as letras restantes (M, N, H, V, T, D, F, L, R, S, C, P, G) em um único símbolo abstrato. Desenhe-o até que a forma pareça "correta" e você não reconheça mais as letras individuais.</li>
+                        <li><strong>Carregue e Esqueça:</strong> Ative o sigilo em um momento de pico emocional ou gnose (meditação profunda, após um treino intenso) e depois "esqueça-o" conscientemente, permitindo que o subconsciente faça o trabalho.</li>
+                    </ol>
+                </div>
+
+                <!-- Método 2: Planetário -->
+                <div>
+                    <h3 class="font-fantasy text-2xl text-yellow-300 mb-2">Método 2: O Selo Planetário (Cabala / Salomão)</h3>
+                    <p class="mb-4">Este método alinha sua intenção com o seu Ciclo Planetário atual (Júpiter) para criar um pantáculo ou talismã duradouro.</p>
+                    <ol class="list-decimal list-inside space-y-3 pl-4">
+                        <li><strong>Formule a Intenção:</strong> Ex: "FLORESCER".</li>
+                        <li><strong>Traduza para Números:</strong> Use a tabela Cabalística (da apostila Schutz) para converter as letras em números:
+                            <ul>
+                                <li>F(80) + L(30) + O(70) + R(200) + E(5) + S(60) + C(20) + E(5) + R(200)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Reduza os Números:</strong> Reduza todos os números que não se encaixam no quadrado mágico do seu ciclo (Júpiter, que usa números de 1 a 16). *Este método requer uma tabela de correspondência direta (como a "Rosa Cruz") ou a redução pitagórica (Ex: F=80 -> 8).*</li>
+                        <li><strong>Trace no Quadrado Mágico:</strong> Usando o Kamea de Júpiter (4x4), desenhe uma linha contínua conectando os números correspondentes da sua intenção (começando com um círculo no primeiro número e terminando com um traço no último).</li>
+                        <li><strong>Consagre no Tempo Certo:</strong> (Das Clavículas) Para Júpiter, consagre seu sigilo/pantáculo em uma Quinta-feira (dia de Júpiter), na hora planetária de Júpiter, usando as correspondências corretas (cor Azul ou Roxa, incenso de Sândalo ou Cedro).</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- PÁGINA: PILARES DA DIETA (DOS SEUS ARQUIVOS) -->
+            <section id="page-pilares" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-6">Os 4 Pilares da Dieta</h2>
+                <div class="space-y-4" id="pilares-accordion">
+                    <!-- Pilar 1: Fundamentos -->
+                    <div>
+                        <button onclick="toggleAccordion(event)" class="accordion-button w-full text-left p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-fantasy text-xl text-yellow-200">Pilar 1: Fundamentos da Dieta (Base para Energia e Saúde)</span>
+                            <span class="accordion-arrow text-yellow-200 text-2xl transform transition-transform duration-300">&darr;</span>
+                        </button>
+                        <div class="accordion-content bg-gray-900/30 rounded-b-lg">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-300">Equilíbrio Calórico (Ajuste Individual):</h4>
+                            <p class="mb-3">Meta Inicial: 2200-2600 kcal/dia (para homem 40+, moderadamente ativo). Ajuste monitorando o peso e energia.</p>
+
+                            <h4 class="font-bold text-lg mb-2 text-yellow-300">Macronutrientes Balanceados:</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Proteínas (Músculo/Reparo):</strong> 1 a 1.5 g/kg de peso. (Fontes: Frango, peixe, ovos, feijão, lentilha, tofu). Incluir em todas as refeições principais.</li>
+                                <li><strong>Carboidratos (Energia/Treino):</strong> Foco em grãos integrais, frutas e vegetais (batata doce). Limitar farinha branca e açúcares.</li>
+                                <li><strong>Gorduras Saudáveis (Hormônios/Cérebro):</strong> Abacate, azeite, nozes, sementes, peixes gordos. Substituir gorduras saturadas/trans.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 2: Planejamento -->
+                    <div>
+                        <button onclick="toggleAccordion(event)" class="accordion-button w-full text-left p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-fantasy text-xl text-yellow-200">Pilar 2: Planejamento e Preparação (Estratégia Semanal)</span>
+                            <span class="accordion-arrow text-yellow-200 text-2xl transform transition-transform duration-300">&darr;</span>
+                        </button>
+                        <div class="accordion-content bg-gray-900/30 rounded-b-lg">
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Planejamento Semanal:</strong> Reserve um tempo (ex: domingo) para planejar refeições e lanches da semana. Foque na variedade.</li>
+                                <li><strong>Lista de Compras Inteligente:</strong> Crie a lista baseada no planejamento para evitar desperdício e priorizar alimentos frescos.</li>
+                                <li><strong>Meal Prep (Preparação Antecipada):</strong> Cozinhe componentes (grãos, proteínas) e prepare vegetais com antecedência para montar refeições rapidamente.</li>
+                                <li><strong>Lanches Estratégicos:</strong> Tenha opções saudáveis (iogurte, nozes, ovos cozidos) para manter a energia estável.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 3: Timing Nutricional -->
+                    <div>
+                        <button onclick="toggleAccordion(event)" class="accordion-button w-full text-left p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-fantasy text-xl text-yellow-200">Pilar 3: Timing Nutricional (Otimizando Treinos)</span>
+                            <span class="accordion-arrow text-yellow-200 text-2xl transform transition-transform duration-300">&darr;</span>
+                        </button>
+                        <div class="accordion-content bg-gray-900/30 rounded-b-lg">
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Pré-Treino (1-2 horas antes):</strong> Foco em Carboidratos Complexos + Proteína moderada (Ex: Aveia com frutas; Batata doce com ovo).</li>
+                                <li><strong>Durante o Treino:</strong> Foco principal na Hidratação (água). Para treinos muito longos (+90 min), considere eletrólitos/carboidratos.</li>
+                                <li><strong>Pós-Treino (1-2 horas após):</strong> Essencial para recuperação. Foco em Proteína de boa qualidade + Carboidratos (Ex: Shake de proteína com banana; Frango com arroz integral).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 4: Limitações -->
+                    <div>
+                        <button onclick="toggleAccordion(event)" class="accordion-button w-full text-left p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-fantasy text-xl text-yellow-200">Pilar 4: Limitações e Moderação (Sustentabilidade)</span>
+                            <span class="accordion-arrow text-yellow-200 text-2xl transform transition-transform duration-300">&darr;</span>
+                        </button>
+                        <div class="accordion-content bg-gray-900/30 rounded-b-lg">
+                            <h4 class="font-bold text-lg mb-2 text-yellow-300">Alimentos a Limitar (Foco na Qualidade):</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Ultraprocessados:</strong> Ricos em aditivos, açúcar e gorduras ruins (salgadinhos, bolachas recheadas, fast food).</li>
+                                <li><strong>Bebidas Açucaradas:</strong> Refrigerantes, sucos de caixinha, energéticos.</li>
+                                <li><strong>Excesso de Sal (Sódio):</strong> Encontrado em embutidos, enlatados, temperos prontos.</li>
+                                <li><strong>Álcool:</strong> Consumir com moderação. Prejudica a recuperação muscular e o sono.</li>
+                                <li><strong>Gorduras Saturadas e Trans:</strong> Carnes gordas, frituras, margarina, produtos industrializados.</li>
+                            </ul>
+                            <h4 class="font-bold text-lg mt-4 mb-2 text-yellow-300">Princípio 80/20 (Flexibilidade):</h4>
+                            <p>80% do tempo, siga o plano saudável. 20% do tempo, permita-se exceções conscientes e sem culpa. Isso torna a dieta sustentável a longo prazo e evita a sensação de privação.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA: ORÁCULO ASTRAL (API GEMINI) -->
+            <section id="page-oraculo" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Oráculo Astral do Florescimento</h2>
+                <p class="mb-6">Insira seus dados de nascimento. O Oráculo usará a API Gemini para calcular seu alinhamento planetário (Freemium) e gerar uma análise preditiva (Premium) para guiar sua jornada.</p>
+
+                <div class="space-y-4 max-w-lg">
+                    <div>
+                        <label for="nome" class="block text-sm font-medium text-yellow-200">Nome</label>
+                        <input type="text" id="nome" value="Leandro" class="mt-1 block w-full bg-gray-900/50 border border-yellow-800/50 rounded-md shadow-sm p-2 text-white focus:ring-yellow-400 focus:border-yellow-400">
+                    </div>
+                    <div>
+                        <label for="data" class="block text-sm font-medium text-yellow-200">Data de Nascimento</label>
+                        <input type="date" id="data" value="1986-07-01" class="mt-1 block w-full bg-gray-900/50 border border-yellow-800/50 rounded-md shadow-sm p-2 text-white focus:ring-yellow-400 focus:border-yellow-400" style="color-scheme: dark;">
+                    </div>
+                    <div>
+                        <label for="hora" class="block text-sm font-medium text-yellow-200">Hora de Nascimento (24h)</label>
+                        <input type="time" id="hora" value="19:40" class="mt-1 block w-full bg-gray-900/50 border border-yellow-800/50 rounded-md shadow-sm p-2 text-white focus:ring-yellow-400 focus:border-yellow-400" style="color-scheme: dark;">
+                    </div>
+                    <div>
+                        <label for="local" class="block text-sm font-medium text-yellow-200">Local de Nascimento (Cidade, Estado, País)</label>
+                        <input type="text" id="local" value="São Paulo, SP, Brasil" class="mt-1 block w-full bg-gray-900/50 border border-yellow-800/50 rounded-md shadow-sm p-2 text-white focus:ring-yellow-400 focus:border-yellow-400">
+                    </div>
+                    <button id="calculate-btn" onclick="calculateAstral()" class="w-full bg-yellow-600 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-md shadow-lg transition duration-300 font-fantasy text-lg">
+                        Consultar Oráculo
+                    </button>
+                </div>
+
+                <!-- Área de Resultados -->
+                <div id="loading-spinner" class="hidden my-8 flex justify-center items-center space-x-3">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-400 h-12 w-12"></div>
+                    <span class="font-fantasy text-yellow-200">Calculando os fios do destino...</span>
+                </div>
+
+                <div id="results-area" class="hidden mt-8 space-y-6">
+                    <!-- Resultado Freemium -->
+                    <div id="freemium-result" class="border border-yellow-800/50 rounded-lg p-4">
+                        <h3 class="font-fantasy text-2xl text-yellow-300 mb-3">Dados Astrais (Freemium)</h3>
+                        <div id="freemium-content" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- JS inserirá os dados aqui -->
+                        </div>
+                    </div>
+                    <!-- Resultado Premium -->
+                    <div id="premium-result" class="border border-yellow-500 rounded-lg p-6 bg-yellow-900/20">
+                        <h3 class="font-fantasy text-2xl text-yellow-200 mb-3">Análise Preditiva (Premium)</h3>
+                        <p id="premium-content" class="text-lg leading-relaxed whitespace-pre-wrap">
+                            <!-- JS inserirá a análise aqui -->
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- OUTRAS PÁGINAS (COMPÊNDIO, SOPROS, RODA, PANTEÃO, GALERIA, GUARDIÃO) -->
+            <!-- O conteúdo real dessas páginas seria adicionado de forma similar -->
+
+            <section id="page-compendio" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Compêndio Sincrético</h2>
+                <p>Aqui entra o guia detalhado de Ervas, Cristais e Rituais para os 7 Pilares...</p>
+            </section>
+
+            <section id="page-sopros" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Sopros de Vida (Guia de Pranayamas)</h2>
+                <p>Aqui entra o guia visual de Pranayamas, classificado por níveis de proficiência...</p>
+            </section>
+
+            <section id="page-roda" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">A Roda do Ano</h2>
+                <p>Aqui entra o guia dos calendários Solar (Sabbaths) e Lunar (Esbats) para o Hemisfério Sul...</p>
+            </section>
+
+            <section id="page-panteao" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">O Panteão</h2>
+                <p>Aqui entra o conteúdo honrando Pã, Hécate, Eros, As Parcas, Aradia e Cosme & Damião...</p>
+            </section>
+
+            <section id="page-galeria" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">Galeria Onírica</h2>
+                <p>Aqui entra a análise de Salvador Dalí e René Magritte e sua conexão com o Pilar da Mente/Luz...</p>
+            </section>
+
+             <section id="page-guardiao" class="content-panel p-6 hidden">
+                <h2 class="font-fantasy text-4xl text-yellow-200 mb-4">O Guardião</h2>
+                <p>Email: leandromellof@gmail.com</p>
+                <p>Informações sobre o criador do Grimório...</p>
+            </section>
+
+        </main>
     </div>
 
+    <!-- SCRIPTS JAVASCRIPT -->
     <script>
-        const guideData = {
-            etapas: {
-                etapa1: {
-                    titulo: 'Etapa 1: Despertar da Consciência',
-                    foco: 'O início de toda transformação. Ganhar clareza e autoconsciência sem julgamento, mapeando o "território atual" de hábitos e crenças.',
-                    pilares: [
-                        { nome: 'Terra 🌍', desc: 'Corpo, estabilidade, aterramento. A base material (Chakra Raiz) para a consciência se erguer com segurança.' },
-                        { nome: 'Luz 💡', desc: 'Percepção, consciência, verdade. A "perspectiva cósmica" que ilumina os padrões do subconsciente.' }
-                    ],
-                    chakras: [
-                        { nome: 'Muladhara (Raiz)', cor: 'chakra-muladhara', desc: 'Centro de segurança, estabilidade e pertencimento.' },
-                        { nome: 'Ajna (Frontal)', cor: 'chakra-ajna', desc: 'Centro da intuição, percepção e clareza mental.' }
-                    ],
-                    arquétipos: '<strong>Perseu e Medusa</strong> (Confronto da Sombra com observação neutra), <strong>Rá</strong> (Despertar da consciência), <strong>Atena</strong> (Sabedoria estratégica), <strong>Ma\'at</strong> (Verdade e ordem interior).',
-                    ferramentas: '<strong>PNL:</strong> Auto-Observação Neutra, Ancoragem da Atenção Plena. <br><strong>Ciclos:</strong> Lua Nova (Intenções), Imbolc (Renovação), Exu (Abertura de caminhos).'
-                },
-                etapa2: {
-                    titulo: 'Etapa 2: Semeando com Propósito',
-                    foco: 'Direcionar a consciência despertada. Conectar os desejos de mudança a um "porquê" profundo, alinhando ações com valores essenciais.',
-                    pilares: [
-                        { nome: 'Água 🌊', desc: 'Emoções, intuição, criatividade. Navegar pelas águas internas para descobrir o que genuinamente nos move.' },
-                        { nome: 'Ar 🌬️', desc: 'Coração, compaixão, conexão. Validar o propósito pelo coração (Anahata), transcendendo o ego.' }
-                    ],
-                    chakras: [
-                        { nome: 'Svadhisthana (Sacral)', cor: 'chakra-svadhisthana', desc: 'Centro de criatividade, emoções e prazer.' },
-                        { nome: 'Anahata (Cardíaco)', cor: 'chakra-anahata', desc: 'Centro do amor incondicional, compaixão e equilíbrio.' }
-                    ],
-                    arquétipos: '<strong>Hércules</strong> (Determinação e força), <strong>Ísis</strong> (Perseverança e intuição), <strong>Apolo</strong> (Clareza de visão), <strong>Rá</strong> (Energia vital criadora).',
-                    ferramentas: '<strong>PNL:</strong> Metas Bem Formuladas (S.M.A.R.T.), Visualização Criativa, Alinhamento de Valores. <br><strong>Ciclos:</strong> Lua Crescente (Nutrir), Ostara (Equilíbrio), Oxalá (Clareza divina).'
-                },
-                etapa3: {
-                    titulo: 'Etapa 3: Transformação Resiliente',
-                    foco: 'O coração da transformação. O confronto ativo com a "fera interior" (hábitos limitantes), mobilizando força de vontade e disciplina para transmutar energia.',
-                    pilares: [
-                        { nome: 'Fogo 🔥', desc: 'Energia, ação, vontade. O grande agente de transformação (Manipura) que purifica, queima o antigo e forja o novo.' }
-                    ],
-                    chakras: [
-                        { nome: 'Manipura (Plexo Solar)', cor: 'chakra-manipura', desc: 'Centro de poder pessoal, autoestima e força de vontade.' }
-                    ],
-                    arquétipos: '<strong>Teseu e o Minotauro</strong> (Jornada no labirinto do inconsciente), <strong>Hórus vs. Set</strong> (Luta interna pela ordem e caos), <strong>Sekhmet</strong> (Poder destrutivo e transformador do Fogo).',
-                    ferramentas: '<strong>PNL:</strong> Reestruturação Cognitiva (Reframing), Modelagem, Técnica do Swish. <br><strong>Ciclos:</strong> Lua Cheia (Pico de poder), Beltane (Vitalidade), Ogum (Corte de padrões).'
-                },
-                etapa4: {
-                    titulo: 'Etapa 4: Colheita Consciente',
-                    foco: 'Fase de integração, celebração e gratidão. Reconhecer o progresso, solidificar novos hábitos e cultivar o amor-próprio.',
-                    pilares: [
-                        { nome: 'Ar 🌬️', desc: 'Equilíbrio, harmonia, relacionamentos. A respiração consciente (Anahata) como ferramenta para sustentar a paz interior e o amor-próprio.' }
-                    ],
-                    chakras: [
-                        { nome: 'Anahata (Cardíaco)', cor: 'chakra-anahata', desc: 'Centro de integração, gratidão, cura e aceitação de si.' }
-                    ],
-                    arquétipos: '<strong>Era de Ouro</strong> (Estado interno de paz), <strong>Ascensão de Osíris</strong> (Sabedoria pós-jornada), <strong>Dionísio & Bastet</strong> (Celebração, alegria, contentamento).',
-                    ferramentas: '<strong>PNL:</strong> Análise de Resultados, Celebração (reforço neural), Compromisso Contínuo. <br><strong>Ciclos:</strong> Lua Minguante (Introspecção), Lughnasadh (Festa da colheita), Oxum (Prosperidade).'
-                },
-                etapa5: {
-                    titulo: 'Etapa 5: Irradiando o Legado',
-                    foco: 'Transição do crescimento interior para o impacto exterior. Compartilhar a luz e a sabedoria adquiridas de forma autêntica.',
-                    pilares: [
-                        { nome: 'Som 🎶', desc: 'Comunicação, expressão, vibração. O uso da "voz" (Vishuddha) para articular a jornada e transformar experiência em sabedoria.' }
-                    ],
-                    chakras: [
-                        { nome: 'Vishuddha (Laríngeo)', cor: 'chakra-vishuddha', desc: 'Centro da comunicação, autoexpressão e verdade.' }
-                    ],
-                    arquétipos: '<strong>Prometeu</strong> (Doador do conhecimento), <strong>Ptah</strong> (Construção de legado duradouro), <strong>Iemanjá & Tot</strong> (Sabedoria ancestral e transmissão do conhecimento).',
-                    ferramentas: '<strong>PNL:</strong> Mentoria, Definição de Novas Metas (expansão). <br><strong>Ciclos:</strong> Lua Nova (Novos projetos), Mabon (Partilhar a colheita), Iemanjá (Sabedoria maternal).'
-                },
-                etapa6: {
-                    titulo: 'Etapa 6: Introspecção Curativa',
-                    foco: 'Reconhecer que o crescimento é espiral. Um mergulho profundo na sombra para curar padrões recorrentes e fortalecer a resiliência.',
-                    pilares: [
-                        { nome: 'Luz 💡', desc: 'Intuição, visão interna. A luz da consciência (Ajna) direcionada para dentro, para explorar e curar os cantos escuros da psique.' }
-                    ],
-                    chakras: [
-                        { nome: 'Ajna (Frontal)', cor: 'chakra-ajna', desc: 'Centro da jornada introspectiva, intuição e percepção sutil.' }
-                    ],
-                    arquétipos: '<strong>Hades</strong> (Profundidade, riquezas ocultas no inconsciente), <strong>Anúbis</strong> (Guia seguro pelo submundo, ressignificação da "morte" de padrões).',
-                    ferramentas: '<strong>PNL:</strong> Identificação de Padrões Limitantes, Reenquadramento Transformador, Busca por Recursos Internos e Apoio Externo.'
-                },
-                etapa7: {
-                    titulo: 'Etapa 7: União Transcendental',
-                    foco: 'A culminação da jornada. A experiência da unidade, transcendência do ego e conexão com a consciência pura. Viver em estado de fluxo e presença.',
-                    pilares: [
-                        { nome: 'Mente 🤯', desc: 'Consciência Pura, Unidade. A mente (Sahasrara) transcende o finito e se reconhece como manifestação da totalidade.' }
-                    ],
-                    chakras: [
-                        { nome: 'Sahasrara (Coroa)', cor: 'chakra-sahasrara', desc: 'Portal para a consciência universal, iluminação e paz profunda.' }
-                    ],
-                    arquétipos: '<strong>Shiva</strong> (Consciência transcendental pura, o observador silencioso), <strong>União com Rá</strong> (Fusão da consciência individual com a fonte primordial).',
-                    ferramentas: '<strong>PNL:</strong> Estado de Flow Contínuo, Mindfulness Absoluto, Entrega e Confiança Divina.'
-                }
+        // --- DADOS DA JORNADA FLORESCER (JSON INCORPORADO) ---
+        // Estes são os dados que você preparou para o Jules, agora prontos para uso.
+        const jornadaData = [
+            {
+                "etapa": "Etapa 1: Despertar da Consciência",
+                "cor_principal": "Verde Esmeralda",
+                "chakra": "Muladhara (Raiz) & Ajna (Frontal)",
+                "pilar": "Pilar da Terra - Corpo & Pilar da Luz (Início)",
+                "arvore_elemento": "Bambu (Verde) - Resiliência e crescimento inicial.",
+                "ciclo_lunar": "Lua Nova (Branco) - Plantar intenções de florescimento.",
+                "ciclo_sazonal": "Imbolc (1/2 de Agosto) - Renovação e primeira luz.",
+                "orixa": "Exu (Branco) - Abrir caminhos para o novo ciclo.",
+                "integracao_pratica": "Oferenda a Exu: Preparar itens (Velas, Bebida, Frutas). Realizar ritual pedindo clareza e abertura para florescer.",
+                "mitologia": [
+                    "Grego: Perseu e Medusa - Coragem para olhar a 'fera' e iniciar a jornada.",
+                    "Egípcio: Despertar de Rá - Renovação diária da consciência para crescer."
+                ],
+                "pnl": [
+                    "Auto-Observação: Diário de hábitos (Foco na vibração e energia).",
+                    "Metáfora da Fera: Visualizar 'fera' (Resistências ao florescimento).",
+                    "Ancoragem: Âncora vibracional de presença e clareza."
+                ],
+                "acao": "Prática diária: Diário, Visualização, Âncora.",
+                "qualidade_desejada": "Discernimento, Clareza, Autoconsciência Vibracional.",
+                "deuses_associados": "Grega: Atena (Sabedoria Estratégica), Egípcia: Ma'at (Verdade Interior).",
+                "elementos_sensoriais": [
+                    "Erva: Sálvia - Purificação para novos começos.",
+                    "Incenso: Olíbano - Conexão espiritual inicial.",
+                    "Chá: Hortelã-pimenta - Clareza mental e energia para despertar."
+                ]
             },
-            pranayamas: [
-                {
-                    nome: 'Dirga Pranayama (Respiração Diafragmática)',
-                    efeito: 'Calmante/Base',
-                    tecnica: 'Inspire lentamente pelo nariz, sentindo o abdômen expandir, depois as costelas, e por último o peito. Expire suavemente no sentido inverso.',
-                    beneficios: 'Estimula o nervo vago, promove relaxamento profundo, melhora a eficiência da troca gasosa.',
-                    contraindicacoes: 'Nenhuma (praticar com suavidade).'
-                },
-                {
-                    nome: 'Nadi Shodhana (Narinas Alternadas)',
-                    efeito: 'Equilibrante/Calmante',
-                    tecnica: 'Use o Vishnu Mudra. Feche a narina direita, inspire pela esquerda. Feche a esquerda, expire pela direita. Inspire pela direita. Feche a direita, expire pela esquerda. (Este é 1 ciclo).',
-                    beneficios: 'Equilibra os hemisférios cerebrais (energias Ida e Pingala), acalma a mente, reduz a ansiedade.',
-                    contraindicacoes: 'Nenhuma (evitar retenção se iniciante).'
-                },
-                {
-                    nome: 'Kapalabhati (Crânio Brilhante)',
-                    efeito: 'Energizante',
-                    tecnica: 'Expirações curtas, rápidas e vigorosas pelo nariz, contraindo ativamente o baixo abdômen. A inspiração é passiva e automática.',
-                    beneficios: 'Energizante, limpa as vias aéreas, estimula o metabolismo, promove clareza mental.',
-                    contraindicacoes: 'Gravidez, pressão alta não controlada, doenças cardíacas, hérnia, epilepsia.'
-                },
-                {
-                    nome: 'Bhastrika (Respiração do Fole)',
-                    efeito: 'Muito Energizante',
-                    tecnica: 'Inspire e expire vigorosa e ativamente pelo nariz, usando o diafragma como um fole. Ambas as fases são forçadas.',
-                    beneficios: 'Gera calor, aumenta a energia rapidamente, oxigena o sangue.',
-                    contraindicacoes: 'As mesmas de Kapalabhati (pressão alta, gravidez, problemas cardíacos).'
-                },
-                {
-                    nome: 'Ujjayi (Respiração Vitoriosa)',
-                    efeito: 'Calmante/Foco',
-                    tecnica: 'Crie uma suave constrição na parte de trás da garganta, produzindo um som suave de "onda do oceano" ao respirar pelo nariz.',
-                    beneficios: 'Acalma o sistema nervoso, aumenta o foco, sincroniza respiração e movimento.',
-                    contraindicacoes: 'Nenhuma (evitar tensão na garganta).'
-                },
-                {
-                    nome: 'Sitali & Sitkari (Respirações Refrescantes)',
-                    efeito: 'Refrescante',
-                    tecnica: '<strong>Sitali:</strong> Inspire pela língua enrolada em tubo. <br><strong>Sitkari:</strong> Inspire através dos dentes cerrados. Em ambos, expire pelo nariz.',
-                    beneficios: 'Reduzem o calor corporal, acalmam emoções "quentes" como raiva e irritabilidade.',
-                    contraindicacoes: 'Pressão baixa, asma, ambiente frio.'
+            {
+                "etapa": "Etapa 2: Semeando com Propósito",
+                "cor_principal": "Amarelo Dourado",
+                "chakra": "Svadhisthana (Sacral) & Anahata (Cardíaco)",
+                "pilar": "Pilar da Água - Emoções & Pilar do Ar (Início)",
+                "arvore_elemento": "Baobá (Amarelo/Dourado) - Sabedoria ancestral para guiar o propósito.",
+                "ciclo_lunar": "Lua Crescente (Laranja) - Nutrir e expandir o propósito.",
+                "ciclo_sazonal": "Ostara - Equilíbrio na semeadura do propósito.",
+                "orixa": "Oxalá (Branco) - Paz e sabedoria divina no propósito.",
+                "integracao_pratica": "Oferenda a Oxalá: Vestir branco, orar por paz/sabedoria, usar imagem/objeto, visualizar metas florescendo.",
+                "mitologia": [
+                    "Grego: 12 trabalhos de Hércules - Determinação na jornada do propósito.",
+                    "Egípcio: Busca de Ísis por Osíris - Perseverança na missão de florescer."
+                ],
+                "pnl": [
+                    "Metas S.M.A.R.T.: Alinhadas com o 'Florescer' e a conexão com a fonte.",
+                    "Visualização Criativa: Sentir a vibração do propósito realizado.",
+                    "Alinhamento de Valores: Conectar metas à sua essência e ao ciclo de Júpiter/Chesed."
+                ],
+                "acao": "Mural dos Deuses Vibracional: Criar quadro visual e consagrá-lo.",
+                "qualidade_desejada": "Determinação, Foco, Visão Clara do Propósito de Florescer.",
+                "deuses_associados": "Grega: Apolo (Clareza Profética), Egípcia: Rá (Energia Vital para o Propósito).",
+                "elementos_sensoriais": [
+                    "Erva: Louro - Sucesso e clareza na direção do florescimento.",
+                    "Incenso: Sândalo - Foco na meditação do propósito.",
+                    "Chá: Gengibre com Limão - Energia e clareza para definir o caminho."
+                ]
+            },
+            {
+                "etapa": "Etapa 3: Transformação Resiliente",
+                "cor_principal": "Vermelho Fogo",
+                "chakra": "Manipura (Plexo Solar)",
+                "pilar": "Pilar do Fogo - Energia/Ação",
+                "arvore_elemento": "Carvalho (Vermelho Fogo) - Força e resistência para superar obstáculos.",
+                "ciclo_lunar": "Lua Cheia - Pico de energia para transmutar a 'fera'.",
+                "ciclo_sazonal": "Beltane - Vitalidade e paixão para impulsionar a transformação.",
+                "orixa": "Ogum (Vermelho Fogo) - Coragem para cortar padrões limitantes.",
+                "integracao_pratica": "Conexão com a Força Interior: Visualizar força (Ogum/Carvalho), afirmações de disciplina, rituais de transmutação.",
+                "mitologia": [
+                    "Grego: Teseu e Minotauro - Navegar o labirinto interior e domar a sombra.",
+                    "Egípcio: Hórus combatendo Set - Integrar o caos para alcançar a ordem."
+                ],
+                "pnl": [
+                    "Reestruturação Cognitiva: Transformar pensamentos que impedem o florescimento.",
+                    "Modelagem: Inspirar-se em exemplos de disciplina e superação.",
+                    "Técnica do Swish: Substituir imagem da 'fera' pela do 'eu florescendo'."
+                ],
+                "acao": "Plano de ação detalhado: Passos concretos para superar bloqueios.",
+                "qualidade_desejada": "Força de Vontade, Coragem, Resiliência.",
+                "deuses_associados": "Grega: Hércules (Força para Superar), Egípcia: Sekhmet (Poder de Transformação).",
+                "elementos_sensoriais": [
+                    "Erva: Alecrim - Coragem e impulso para ação.",
+                    "Incenso: Mirra e Olíbano - Proteção e força interior.",
+                    "Chá: Canela com Pimenta Caiena - Vitalidade e fogo interior."
+                ]
+            },
+            {
+                "etapa": "Etapa 4: Colheita Consciente",
+                "cor_principal": "Rosa Quente",
+                "chakra": "Anahata (Coração)",
+                "pilar": "Pilar do Ar - Respiração/Relacionamentos",
+                "arvore_elemento": "Girassol (Rosa) - Celebrar alegria e abundância.",
+                "ciclo_lunar": "Lua Minguante (Verde Musgo) - Gratidão pela colheita.",
+                "ciclo_sazonal": "Lughnasadh - Celebrar os frutos da disciplina.",
+                "orixa": "Oxum (Rosa) - Reconhecer beleza e prosperidade.",
+                "integracao_pratica": "Oferenda a Oxum: Oferenda com gratidão, vestir cores alegres, usar espelho, plantar girassóis.",
+                "mitologia": [
+                    "Grego: Retorno da Era de Ouro - Harmonia interior alcançada.",
+                    "Egípcio: Ascensão de Osíris - Elevação da consciência."
+                ],
+                "pnl": [
+                    "Análise de Resultados: Avaliar florescimento, ajustar planos.",
+                    "Celebração: Reconhecer esforço e transformação.",
+                    "Compromisso Contínuo: Manter hábitos que nutrem."
+                ],
+                "acao": "Ritual Diário: Foco em gratidão, contentamento, visualização da abundância.",
+                "qualidade_desejada": "Gratidão, Contentamento, Celebração.",
+                "deuses_associados": "Grega: Dionísio (Alegria da Colheita), Egípcia: Bastet (Contentamento e Prazer).",
+                "elementos_sensoriais": [
+                    "Erva: Manjericão - Símbolo de alegria e prosperidade.",
+                    "Incenso: Benjoim e Olíbano - Celebrar abundância e elevação.",
+                    "Chá: Camomila e Erva-Cidreira - Calma e bem-estar no ritual diário."
+                ]
+            },
+            {
+                "etapa": "Etapa 5: Irradiando o Legado",
+                "cor_principal": "Azul Royal",
+                "chakra": "Vishuddha (Garganta)",
+                "pilar": "Pilar do Som - Comunicação/Expressão",
+                "arvore_elemento": "Gameleira (Azul Royal) - Conectar com sabedoria ancestral.",
+                "ciclo_lunar": "Lua Nova (Prata) - Plantar sementes de novos projetos.",
+                "ciclo_sazonal": "Mabon - Equilíbrio e sabedoria para compartilhar.",
+                "orixa": "Iemanjá (Azul Royal) - Sabedoria maternal para guiar o legado.",
+                "integracao_pratica": "Oferenda a Iemanjá: Oferenda pedindo sabedoria, conectar com natureza (água), usar imagem/objeto, plantar gameleira, compartilhar conhecimento.",
+                "mitologia": [
+                    "Grego: O Legado de Prometeu - Compartilhar a 'chama' do conhecimento.",
+                    "Egípcio: O Legado de Ptah - Criar legado duradouro pela maestria."
+                ],
+                "pnl": [
+                    "Mentoria: Inspirar outros com sua jornada.",
+                    "Novas Metas: Definir desafios que expandam o legado.",
+                    "Gratidão: Agradecer apoio e oportunidades de compartilhar."
+                ],
+                "acao": "Compartilhar a Jornada: Semear inspiração.",
+                "qualidade_desejada": "Inspiração, Generosidade, Visão de Futuro.",
+                "deuses_associados": "Grega: Prometeu (Altruísmo do Conhecimento), Egípcia: Tot (Sabedoria como Legado).",
+                "elementos_sensoriais": [
+                    "Erva: Hortelã e Louro - Inspiração para comunicar, clareza no propósito.",
+                    "Incenso: Alecrim e Sândalo - Clareza mental para metas, conexão ancestral.",
+                    "Chá: Jasmim e Erva-Doce - Otimismo e doçura ao compartilhar."
+                ]
+            },
+            {
+                "etapa": "Etapa 6: Introspecção Curativa",
+                "cor_principal": "Roxo/Violeta",
+                "chakra": "Ajna (Frontal)",
+                "pilar": "Pilar da Luz - Intuição/Visão",
+                "arvore_elemento": "Cipreste (Simbólico, Roxo) - Resistência e profundidade.",
+                "ciclo_lunar": "N/A",
+                "ciclo_sazonal": "N/A",
+                "orixa": "N/A",
+                "integracao_pratica": "Jornada de Introspecção e Reflexão: Meditação silenciosa, Journaling terapêutico, Visualização guiada (cura/superação).",
+                "mitologia": [
+                    "Jornada individual de ressignificar desafios."
+                ],
+                "pnl": [
+                    "Identificação de Padrões Limitantes: Análise profunda.",
+                    "Reenquadramento Transformador: Ver desafios como portais.",
+                    "Recursos Internos e Apoio Externo: Identificar forças, buscar ajuda."
+                ],
+                "acao": "Plano de Ação Estratégico e Terapêutico: Criar plano flexível focado em cura emocional.",
+                "qualidade_desejada": "Superação, Introspecção, Clareza.",
+                "deuses_associados": "Grego: Hades (Profundidade), Egípcio: Anúbis (Ressignificação).",
+                "elementos_sensoriais": [
+                    "Erva: Lavanda e Camomila - Relaxamento e clareza emocional.",
+                    "Incenso: Sândalo e Mirra - Introspecção profunda e purificação.",
+                    "Chá: Jasmim e Erva-Cidreira - Sono reparador e bem-estar emocional."
+                ]
+            },
+            {
+                "etapa": "Etapa 7: União Transcendental",
+                "cor_principal": "Branco/Dourado Luminoso",
+                "chakra": "Sahasrara (Coroa)",
+                "pilar": "Pilar da Mente - Consciência Pura",
+                "arvore_elemento": "Cristal de Quartzo (Branco/Translúcido) - Amplificar luz e conexão.",
+                "ciclo_lunar": "Lua Cheia Radiante (Branco Luminoso) - Culminação, iluminação.",
+                "ciclo_sazonal": "Samhain - Portal para transcendência.",
+                "orixa": "Oxalá (Forma Suprema, Branco Luminoso) - Paz absoluta, luz da criação.",
+                "integracao_pratica": "Conexão com a Fonte: Vestir branco/prata, Meditação silenciosa, Visualização Luz Divina, Cristal como canal, Oração de entrega.",
+                "mitologia": [
+                    "Indiano: Encontro de Shiva e Shakti - União consciência/energia, totalidade.",
+                    "Egípcio: A União com Rá - Iluminação e união com a fonte primordial."
+                ],
+                "pnl": [
+                    "Estado de Flow Contínuo: Viver o florescimento no presente.",
+                    "Mindfulness Absoluto: Presença total e testemunho consciente.",
+                    "Entrega e Confiança Divina: Confiar no fluxo e sabedoria superior."
+                ],
+                "acao": "Prática Contemplativa Diária: Bhakti Yoga, Meditação da União, Contemplação Natureza Divina.",
+                "qualidade_desejada": "Iluminação, Paz Profunda, Unidade com a 'Fonte'.",
+                "deuses_associados": "Indiano: Shiva (Consciência Transcendental).",
+                "elementos_sensoriais": [
+                    "Flor/Essência: Lótus Branco - Pureza, transcendência, despertar.",
+                    "Incenso: Âmbar Branco e Sândalo - Elevação, conexão divina, paz.",
+                    "Chá/Água: Chá Branco e Água de Rosas - Pureza, iluminação, amor divino."
+                ]
+            }
+        ];
+
+
+        // --- LÓGICA DO CANVAS DE ESTRELAS ---
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let stars = [];
+        const numStars = 500;
+        const warpSpeed = 0.5; // Velocidade lenta, estilo Fantasia
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5 + 0.5,
+                    speed: (Math.random() * 0.5 + 0.2) * warpSpeed,
+                    alpha: Math.random() * 0.5 + 0.5 // Opacidade variável
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let star of stars) {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(255, 255, 224, ${star.alpha})`; // Amarelo bem claro/branco
+                ctx.fill();
+            }
+        }
+
+        function updateStars() {
+            for (let star of stars) {
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
                 }
-            ],
-            matriz: [
-                ['1. Despertar', 'Muladhara & Ajna', 'Terra & Luz', 'Perseu/Medusa, Rá, Atena', 'Auto-Observação Neutra', 'Imbolc / Lua Nova / Exu', 'Clareza'],
-                ['2. Semeando', 'Svadhisthana & Anahata', 'Água & Ar', 'Hércules, Ísis, Apolo', 'Visualização Criativa', 'Ostara / Lua Crescente / Oxalá', 'Propósito'],
-                ['3. Transformação', 'Manipura', 'Fogo', 'Teseu/Minotauro, Hórus/Set', 'Reestruturação Cognitiva', 'Beltane / Lua Cheia / Ogum', 'Coragem'],
-                ['4. Colheita', 'Anahata', 'Ar', 'Era de Ouro, Osíris, Dionísio', 'Celebração (Reforço)', 'Lughnasadh / Lua Minguante / Oxum', 'Gratidão'],
-                ['5. Legado', 'Vishuddha', 'Som', 'Prometeu, Ptah, Iemanjá', 'Mentoria', 'Mabon / Lua Nova / Iemanjá', 'Generosidade'],
-                ['6. Introspecção', 'Ajna', 'Luz', 'Hades, Anúbis', 'Reenquadramento de Crenças', 'N/A', 'Resiliência'],
-                ['7. União', 'Sahasrara', 'Mente', 'Shiva, União com Rá', 'Estado de Flow', 'Samhain / Lua Cheia / Oxalá', 'Unidade']
-            ]
-        };
-
-        const contentArea = document.getElementById('content-area');
-        const allTabButtons = document.querySelectorAll('.tab-button');
-
-        function getEtapaHtml(etapa) {
-            let pilaresHtml = etapa.pilares.map(pilar => `<div class="mb-3"><h4 class="card-subtitle text-lg font-semibold text-amber-400">${pilar.nome}</h4><p class="text-gray-300 text-sm">${pilar.desc}</p></div>`).join('');
-            let chakrasHtml = etapa.chakras.map(chakra => `<div class="flex items-center mb-2"><span class="chakra-dot ${chakra.cor}"></span><div><h4 class="text-lg font-semibold text-purple-300">${chakra.nome}</h4><p class="text-gray-300 text-sm">${chakra.desc}</p></div></div>`).join('');
-            return `<div class="content-card animate-fade-in"><h2 class="card-title text-3xl font-bold mb-4">${etapa.titulo}</h2><div class="mb-6"><h3 class="card-subtitle text-xl font-semibold mb-2 pb-1">Foco Psicoespiritual</h3><p class="text-gray-300">${etapa.foco}</p></div><div class="grid md:grid-cols-2 gap-6 mb-6"><div><h3 class="card-subtitle text-xl font-semibold mb-2 pb-1">Pilares Fundamentais</h3>${pilaresHtml}</div><div><h3 class="card-subtitle text-xl font-semibold mb-2 pb-1">Centros Energéticos</h3>${chakrasHtml}</div></div><div class="mb-6"><h3 class="card-subtitle text-xl font-semibold mb-2 pb-1">Arquétipos</h3><p class="text-gray-300">${etapa.arquétipos}</p></div><div><h3 class="card-subtitle text-xl font-semibold mb-2 pb-1">Ferramentas e Rituais</h3><p class="text-gray-300">${etapa.ferramentas}</p></div></div>`;
+            }
         }
 
-        function getPranayamasHtml() {
-            let pranayamasHtml = guideData.pranayamas.map(p => `<div class="content-card"><h3 class="card-title text-2xl font-semibold mb-3">${p.nome}</h3><span class="inline-block bg-purple-900/50 text-purple-200 px-3 py-1 rounded-full text-sm font-medium mb-3">${p.efeito}</span><div class="mb-3"><h4 class="font-semibold text-amber-200/90">Técnica:</h4><p class="text-gray-300 text-sm">${p.tecnica}</p></div><div class="mb-3"><h4 class="font-semibold text-amber-200/90">Benefícios:</h4><p class="text-gray-300 text-sm">${p.beneficios}</p></div><div><h4 class="font-semibold text-red-400">Contraindicações:</h4><p class="text-red-300 text-sm">${p.contraindicacoes}</p></div></div>`).join('');
-            return `<h2 class="font-title text-3xl font-bold text-center text-amber-300 mb-6">Guia Visual de Pranayamas</h2><div class="grid md:grid-cols-2 gap-6">${pranayamasHtml}</div>`;
+        function animateStars() {
+            drawStars();
+            updateStars();
+            requestAnimationFrame(animateStars);
         }
 
-        function getMatrizHtml() {
-            let headers = ['Etapa', 'Chakras', 'Pilar(es)', 'Arquétipos', 'Foco PNL', 'Ciclos', 'Qualidade'];
-            let headerHtml = headers.map(h => `<th class="p-3 text-left text-sm font-semibold text-amber-200 uppercase tracking-wider">${h}</th>`).join('');
-            let bodyHtml = guideData.matriz.map((row, index) => `<tr class="border-b border-indigo-900/50 ${index % 2 === 0 ? 'bg-purple-900/20' : 'bg-transparent'}">${row.map(cell => `<td class="p-3 text-sm text-gray-300">${cell}</td>`).join('')}</tr>`).join('');
-            return `<h2 class="font-title text-3xl font-bold text-center text-amber-300 mb-6">Matriz Vibracional "Florescer"</h2><div class="content-card overflow-x-auto"><table class="min-w-full"><thead class="bg-purple-900/30"><tr>${headerHtml}</tr></thead><tbody>${bodyHtml}</tbody></table></div>`;
-        }
+        createStars();
+        animateStars();
 
-        function showTab(tabId) {
-            allTabButtons.forEach(btn => {
-                btn.classList.toggle('tab-active', btn.id === `tab-btn-${tabId}`);
+
+        // --- LÓGICA DE NAVEGAÇÃO DAS PÁGINAS ---
+        const pages = document.querySelectorAll('main > section');
+        function showPage(pageId) {
+            // Esconde todas as páginas
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Mostra a página selecionada
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            } else {
+                // Se a página não existir, mostra a home
+                document.getElementById('page-santuario').classList.remove('hidden');
+            }
+        }
+        // Mostrar a página inicial (Santuário) por padrão
+        showPage('page-santuario');
+
+
+        // --- LÓGICA DO ACORDEÃO (JORNADA E PILARES) ---
+        function toggleAccordion(event) {
+            const button = event.currentTarget;
+            const content = button.nextElementSibling;
+            const isOpen = button.classList.contains('open');
+
+            // Fecha todos os acordeões abertos no *mesmo container*
+            const container = button.closest('.space-y-4'); // Encontra o pai do acordeão
+            container.querySelectorAll('.accordion-button').forEach(btn => {
+                btn.classList.remove('open');
+                btn.nextElementSibling.classList.remove('open');
             });
 
-            let contentHtml = '';
-            if (tabId.startsWith('etapa')) {
-                contentHtml = getEtapaHtml(guideData.etapas[tabId]);
-            } else if (tabId === 'pranayamas') {
-                contentHtml = getPranayamasHtml();
-            } else if (tabId === 'matriz') {
-                contentHtml = getMatrizHtml();
+            // Abre ou fecha o item clicado
+            if (!isOpen) {
+                button.classList.add('open');
+                content.classList.add('open');
             }
-            contentArea.innerHTML = contentHtml;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Remove a classe de transição que não é mais necessária aqui
-            // contentArea.classList.add('transition-opacity', 'duration-500');
-            const style = document.createElement('style');
-            style.innerHTML = `.animate-fade-in { animation: fadeIn 0.5s ease-in-out; } @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
-            document.head.appendChild(style);
-            showTab('etapa1');
-        });
+        // --- PREENCHER DINAMICAMENTE A JORNADA FLORESCER ---
+        function popularJornada() {
+            const container = document.getElementById('jornada-container');
+            if (!container) return;
+
+            let htmlContent = '';
+            jornadaData.forEach((etapa, index) => {
+                // Formata listas
+                const mitologiaHtml = etapa.mitologia.map(m => `<li class="ml-4 list-disc">${m}</li>`).join('');
+                const pnlHtml = etapa.pnl.map(p => `<li class="ml-4 list-disc">${p}</li>`).join('');
+                const sensoriaisHtml = etapa.elementos_sensoriais.map(s => `<li class="ml-4 list-disc">${s}</li>`).join('');
+
+                htmlContent += `
+                    <div>
+                        <button onclick="toggleAccordion(event)" class="accordion-button w-full text-left p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-fantasy text-xl text-yellow-200">${etapa.etapa}</span>
+                            <span class="accordion-arrow text-yellow-200 text-2xl transform transition-transform duration-300">&darr;</span>
+                        </button>
+                        <div class="accordion-content bg-gray-900/30 rounded-b-lg text-yellow-100/90">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-fantasy text-lg text-yellow-300 mb-2">Alinhamentos</h4>
+                                    <p><strong>Pilar:</strong> ${etapa.pilar}</p>
+                                    <p><strong>Chakra:</strong> ${etapa.chakra}</p>
+                                    <p><strong>Cor:</strong> ${etapa.cor_principal}</p>
+                                    <p><strong>Orixá:</strong> ${etapa.orixa}</p>
+                                    <p><strong>Ciclo Sazonal:</strong> ${etapa.ciclo_sazonal}</p>
+                                    <p><strong>Ciclo Lunar:</strong> ${etapa.ciclo_lunar}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-fantasy text-lg text-yellow-300 mb-2">Arquétipos</h4>
+                                    <ul class="space-y-1">${mitologiaHtml}</ul>
+                                    <p class="mt-2"><strong>Deuses:</strong> ${etapa.deuses_associados}</p>
+                                    <p><strong>Qualidade:</strong> ${etapa.qualidade_desejada}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-fantasy text-lg text-yellow-300 mb-2">Ferramentas (PNL/Mente)</h4>
+                                    <ul class="space-y-1">${pnlHtml}</ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-fantasy text-lg text-yellow-300 mb-2">Ações e Rituais</h4>
+                                    <p><strong>Ação Principal:</strong> ${etapa.acao}</p>
+                                    <p class="mt-2"><strong>Prática de Integração:</strong> ${etapa.integracao_pratica}</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="font-fantasy text-lg text-yellow-300 mb-2">Correspondências Sensoriais</h4>
+                                    <ul class="space-y-1">${sensoriaisHtml}</ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = htmlContent;
+        }
+
+        // Chama a função para construir o acordeão da Jornada assim que o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', popularJornada);
+
+
+        // --- LÓGICA DA API GEMINI (ORÁCULO ASTRAL) ---
+        const calculateBtn = document.getElementById('calculate-btn');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const resultsArea = document.getElementById('results-area');
+        const freemiumContent = document.getElementById('freemium-content');
+        const premiumContent = document.getElementById('premium-content');
+
+        // Função de Retry Exponencial
+        async function fetchWithRetry(apiUrl, payload, retries = 5, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                    if (response.status === 429 || response.status >= 500) {
+                        // Throttling ou erro de servidor, espera e tenta novamente
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                        continue;
+                    }
+                    // Outros erros (ex: 400 Bad Request) não devem ser tentados novamente
+                    return await response.json();
+                } catch (error) {
+                    // Erros de rede, tenta novamente
+                    if (i === retries - 1) throw error; // Lança erro na última tentativa
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                }
+            }
+            throw new Error('Falha na chamada da API após múltiplas tentativas.');
+        }
+
+
+        async function calculateAstral() {
+            const nome = document.getElementById('nome').value;
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+            const local = document.getElementById('local').value;
+
+            if (!data || !hora || !local || !nome) {
+                alert("Por favor, preencha todos os campos de nascimento.");
+                return;
+            }
+
+            loadingSpinner.classList.remove('hidden');
+            resultsArea.classList.add('hidden');
+            freemiumContent.innerHTML = "";
+            premiumContent.textContent = "";
+
+            const apiKey = ""; // A API Key será injetada pelo ambiente
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            // O Prompt de Sistema define as regras e o estilo
+            const systemPrompt = `Você é o "Oráculo Astral", um astrólogo mestre que combina o rigor técnico do astro.com com a profundidade da Cabala Hermética e do sincretismo (como nos arquivos de Nilton Schutz e Clavículas de Salomão).
+            Seu tom é sábio, místico e prático.
+            Você DEVE responder APENAS com a estrutura JSON definida no schema.
+            A 'analisePremium' deve ser uma análise preditiva e de personalidade profunda, focando no potencial de "Florescimento" do usuário, conectando seus principais posicionamentos (Sol, Lua, Ascendente) aos desafios e oportunidades da vida, sugerindo caminhos práticos (alinhados aos 7 pilares e ciclos planetários cabalísticos).`;
+
+            // O Prompt do Usuário fornece os dados brutos
+            const userPrompt = `Calcule os dados principais e gere a análise para:
+            Nome: ${nome}
+            Data: ${data}
+            Hora: ${hora}
+            Local: ${local}
+
+            Siga o schema JSON exatamente. A análise deve ser profunda e mística.`;
+
+            // O Schema JSON força a IA a estruturar a saída
+            const responseSchema = {
+                type: "OBJECT",
+                properties: {
+                    "dadosFreemium": {
+                        type: "OBJECT",
+                        properties: {
+                            "Sol": {
+                                type: "OBJECT",
+                                properties: {"posicao": { "type": "STRING" }, "casa": { "type": "STRING" } }
+                            },
+                            "Lua": {
+                                type: "OBJECT",
+                                properties: {"posicao": { "type": "STRING" }, "casa": { "type": "STRING" } }
+                            },
+                            "Ascendente": {
+                                type: "OBJECT",
+                                properties: {"posicao": { "type": "STRING" }}
+                            },
+                             "RegenteNascimento": {
+                                type: "OBJECT",
+                                properties: {"planeta": { "type": "STRING" }, "justificativa": { "type": "STRING" } }
+                            }
+                        }
+                    },
+                    "analisePremium": {
+                        type: "STRING",
+                        description: "Uma análise profunda e preditiva (3-5 parágrafos) em português, focada no potencial de Florescimento, desafios kármicos, e conexões com a jornada cabalística e os 7 pilares."
+                    }
+                },
+                required: ["dadosFreemium", "analisePremium"]
+            };
+
+            // Construção do Payload final
+            const payload = {
+                contents: [{
+                    parts: [{ text: userPrompt }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: responseSchema,
+                    temperature: 0.8 // Um pouco mais criativo para a análise
+                }
+            };
+
+            try {
+                const result = await fetchWithRetry(apiUrl, payload);
+
+                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0].text) {
+                    const jsonText = result.candidates[0].content.parts[0].text;
+                    const parsedData = JSON.parse(jsonText);
+
+                    // 1. Popular os Dados Freemium
+                    const freemiumData = parsedData.dadosFreemium;
+                    freemiumContent.innerHTML = `
+                        <div class="p-3 bg-gray-900/50 rounded"><strong>Sol:</strong> ${freemiumData.Sol.posicao} (Casa ${freemiumData.Sol.casa})</div>
+                        <div class="p-3 bg-gray-900/50 rounded"><strong>Lua:</strong> ${freemiumData.Lua.posicao} (Casa ${freemiumData.Lua.casa})</div>
+                        <div class="p-3 bg-gray-900/50 rounded"><strong>Ascendente:</strong> ${freemiumData.Ascendente.posicao}</div>
+                        <div class="p-3 bg-gray-900/50 rounded col-span-2 md:col-span-3"><strong>Regente Hora Nasc.:</strong> ${freemiumData.RegenteNascimento.planeta} (${freemiumData.RegenteNascimento.justificativa})</div>
+                    `;
+
+                    // 2. Popular a Análise Premium
+                    premiumContent.textContent = parsedData.analisePremium;
+
+                    resultsArea.classList.remove('hidden');
+
+                } else {
+                    console.error("Erro: Resposta inesperada da API", result);
+                    premiumContent.textContent = "O Oráculo não pôde calcular os dados. Verifique o formato da resposta ou tente novamente.\n" + (result.promptFeedback ? JSON.stringify(result.promptFeedback) : JSON.stringify(result));
+                    resultsArea.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error('Falha ao consultar o Oráculo Astral:', error);
+                premiumContent.textContent = 'Houve uma falha ao conectar-se ao Oráculo. A energia cósmica pode estar instável. Por favor, tente novamente mais tarde.';
+                resultsArea.classList.remove('hidden');
+            } finally {
+                loadingSpinner.classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
