@@ -333,7 +333,7 @@
     </button>
 
     <!-- Sidebar (Navegação com Estilo de Prateleira) -->
-    <aside id="sidebar" class="sidebar bookshelf-bg fixed top-0 left-0 w-72 h-screen pt-4 transform -translate-x-full lg:translate-x-0">
+    <aside id="sidebar" class="bookshelf-bg fixed top-0 left-0 w-72 h-screen pt-4 transform -translate-x-full lg:translate-x-0">
         <div class="h-full px-4 pb-4 overflow-y-auto">
             <h1 class="brand-title text-3xl text-center py-4 mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
                 Rota Pagã
@@ -403,7 +403,7 @@
             </div>
         </div>
         <!-- Etapa 2 -->
-        <div class="content-card glass-effect">
+        <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa2_details')">
             <h2 class="text-2xl font-bold mb-3 text-svadhisthana">Etapa 2: Semeando com Propósito</h2>
             <p class="mb-4">Foco: Alinhar desejos com valores, encontrar o "porquê" profundo.</p>
             <div class="grid md:grid-cols-2 gap-4 text-sm">
@@ -414,7 +414,7 @@
             </div>
         </div>
         <!-- Etapa 3 -->
-        <div class="content-card glass-effect">
+        <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa3_details')">
             <h2 class="text-2xl font-bold mb-3 text-manipura">Etapa 3: Transformação Resiliente</h2>
             <p class="mb-4">Foco: Confronto ativo com padrões, mobilização da força de vontade (Fogo).</p>
             <div class="grid md:grid-cols-2 gap-4 text-sm">
@@ -424,20 +424,23 @@
                 <div><strong class="text-gray-100">Ferramentas:</strong> Reestruturação Cognitiva, Lua Cheia.</div>
             </div>
         </div>
-        <!-- Etapas 4-7 (resumidas) -->
-         <div class="content-card glass-effect">
+        <!-- Etapa 4 -->
+         <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa4_details')">
             <h2 class="text-2xl font-bold mb-3 text-anahata">Etapa 4: Colheita Consciente</h2>
              <p class="mb-4">Foco: Integração, gratidão, solidificar novos hábitos, amor-próprio.</p>
          </div>
-         <div class="content-card glass-effect">
+        <!-- Etapa 5 -->
+         <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa5_details')">
             <h2 class="text-2xl font-bold mb-3 text-vishuddha">Etapa 5: Irradiando o Legado</h2>
             <p class="mb-4">Foco: Compartilhar a sabedoria adquirida, expressão autêntica.</p>
         </div>
-         <div class="content-card glass-effect">
+        <!-- Etapa 6 -->
+         <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa6_details')">
             <h2 class="text-2xl font-bold mb-3 text-ajna">Etapa 6: Introspecção Curativa</h2>
             <p class="mb-4">Foco: Mergulho profundo na sombra para curar padrões recorrentes.</p>
         </div>
-         <div class="content-card glass-effect">
+        <!-- Etapa 7 -->
+         <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa7_details')">
             <h2 class="text-2xl font-bold mb-3 text-sahasrara">Etapa 7: União Transcendental</h2>
             <p class="mb-4">Foco: Experiência da unidade, transcendência do ego, consciência pura.</p>
         </div>
@@ -676,20 +679,148 @@
                 <strong>Atenção:</strong> As informações sobre plantas medicinais são para conhecimento tradicional e não substituem consulta a um profissional de saúde qualificado. A identificação correta das plantas é crucial. Use com responsabilidade.
             </p>
         </div>
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Herbário Sazonal</h1>
-        <p class="page-subtitle">Um guia sincrético de ervas encontradas no Brasil, organizadas por bioma.</p>
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Nosso Herbário Sazonal (Aqui do Hemisfério Sul)</h1>
+        <p class="page-subtitle">Olha que legal: cada estação aqui no Hemisfério Sul (começando lá nos seus meses) traz um poder e uma energia diferente, sabe? E as plantas que florescem em cada época são tipo a "tradução" desse poder. Pense nas estações como a "respiração" do ano. Elas servem como nossas ferramentas, tanto pra saúde do corpo (medicinais) quanto pra alma (mágicas). Aqui, vamos ver como usar cada uma!</p>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-green-400">Bioma: Mata Atlântica</h2>
-            <div class="mb-4">
-                <h3 class="text-lg font-semibold text-white">Arruda (Ruta graveolens)</h3>
-                <div class="syncretic-box text-sm">
-                    <strong>Uso Tradicional (Sincrético):</strong> A grande erva de proteção e banimento. Usada em banhos de descarrego.
-                    <br><strong>Uso Científico (Fitoterápico):</strong> Contém Rutina. Propriedades anti-inflamatórias. <strong>Atenção:</strong> Tóxica em altas doses.
+        <div class="space-y-16">
+            <!-- Verão -->
+            <div>
+                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #EAB308) 1;">Verão (Dezembro a Março): A Abundância</h2>
+                <p class="mb-8 text-slate-300">Essa é a estação da vibração total! É puro calor e alegria. É a energia "pra fora", de socializar, de festa. Tem tudo a ver com a energia do fogo, com prosperidade e com "crescer" na vida. As plantas dessa época são cheias de "luz solar" guardada.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Manjericão (Ocimum basilicum)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A Erva da Boa Vizinhança</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dele é ótimo pra digestão, sabe? Alivia gases e cólicas. Se exagerou na comida, ele ajuda a "assentar" o estômago. Também ajuda a desinflamar. É só ferver a água, jogar as folhas frescas, abafar uns 5 minutinhos e pronto!</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Puxa, não pode faltar em salada (especialmente com tomate e queijo), molho pesto e em qualquer prato italiano. Uma dica: coloque as folhas frescas só no finalzinho do preparo, pra elas não perderem o cheiro e o sabor com o calor.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Tem tudo a ver com alegria, paz na família e atrair coisa boa (dinheiro!). Um banho de manjericão (ferva, coe e jogue do pescoço pra baixo depois do seu banho normal) limpa a energia que tá pesada e traz uma paz... Incenso dele é ótimo pra limpar o ar antes de um ritual ou de uma conversa importante em casa.</p></div>
+                            <div class="syncretic-box mt-4"><strong class="text-yellow-300">Dica extra:</strong> Deixe um pezinho de manjericão bem cuidado na entrada de casa ou na janela da cozinha. Dizem que ele não deixa a energia ruim e a inveja entrarem.</div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Alecrim (Rosmarinus officinalis)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Orvalho do Mar</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>Dizem que é ótimo pra memória e pra se concentrar. O chá ajuda a espantar o cansaço da mente e do corpo. O chazinho de manhã é tipo um "despertador" natural. Também ajuda na digestão de comidas mais pesadas, como carnes.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Perfeito pra carnes (tipo cordeiro ou porco), frango, batata assada e pães (como o focaccia). Experimenta esfregar um galhinho no frango antes de assar, ou jogar um ramo na assadeira das batatas. Muda o sabor!</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>É uma erva do Sol, tem uma força danada! Banhos com alecrim dão ânimo e clareza. É ótimo pra tomar antes de uma entrevista de emprego ou de uma prova, pra ficar com a mente afiada. O incenso limpa e protege.</p></div>
+                            <div class="syncretic-box mt-4"><strong class="text-yellow-300">Dica extra:</strong> Dizem que um galhinho debaixo do travesseiro ajuda a lembrar dos sonhos e protege de pesadelos.</div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Hortelã (Mentha sp.)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Sopro Fresquinho</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá é uma maravilha pra digestão! Também alivia enjoo e dor de cabeça (especialmente as que vêm de "estômago ruim"). E dá uma acalmada boa. Se exagerou na comida ou bebida, o chá de hortelã é o melhor amigo pra "assentar" tudo.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Fica ótimo em sucos (abacaxi com hortelã é um clássico!), saladas, sobremesas (com chocolate!) e na comida árabe (como no tabule ou kibe).</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>É a erva da grana e da cura! Banhos com hortelã limpam a gente e ajudam a abrir os caminhos do dinheiro. Dizem que ter um pé de hortelã em casa (e cuidar bem dele!) ajuda a grana a circular. O incenso clareia a mente e manda a tristeza embora.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outono -->
+            <div>
+                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #4A5568) 1;">Outono (Março a Junho): O Recolhimento</h2>
+                <p class="mb-8 text-slate-300">Época de colher o que a gente plantou, de olhar mais pra dentro e se preparar. A energia vai ficando mais quietinha. As folhas caem, o ar fica mais seco. É um convite pra gente "desapegar" do que não serve mais, igualzinho às árvores. É um tempo ótimo pra agradecer e lembrar da nossa família que veio antes.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Sálvia (Salvia officinalis)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A que Salva</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá é excelente pra garganta inflamada (fazer gargarejo é tiro e queda!). O gargarejo é simples: faça o chá, deixe amornar e coloque uma pitada de sal. Também alivia os sintomas da menopausa (os "calorões"). É um ótimo antisséptico pra boca.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar com calma, porque é forte! Uma folhinha só já dá um perfume enorme. Fica boa em carne de porco, aves, sopas (especialmente de abóbora) e pra dar gosto na manteiga.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Essa é a "faxineira" número um! Queimar a sálvia seca (o tal do "smudging") é o jeito mais conhecido e forte de limpar energia ruim de casa, das pessoas e até de objetos. É simples: acenda a ponta do maço seco, deixe fazer fumaça (sem fogo!) e vá passando pela casa, principalmente nos cantos. Traz sabedoria e proteção.</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Guaco (Mikania glomerata)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Abraço da Floresta</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É famoso por "cortar" a asma! O chá (ou xarope) é super forte pra abrir o peito, ótimo pra tosse, catarro e pros problemas de respiração que vêm com o friozinho. É o que as avós sempre dão pra gente. O xarope caseiro (com mel) é um clássico. É como se ele "aquecesse" o peito por dentro.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Usado em banhos e amuletos pra proteger a saúde. Não é uma erva de "limpeza pesada", é mais uma erva de "cuidado" e "conforto". O banho é bom pra quando você se sente "gripado" de energia, sabe? Dizem que protege a gente de "maus ares" ou doenças que vêm pelo vento.</p></div>
+                        </div>
+                    </div>
+                     <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Calêndula (Calendula officinalis)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Solzinho de Dentro</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>Essa aqui é a melhor amiga da pele! Pomada ou óleo de calêndula é ótimo pra cicatrizar machucado, queimadura, assadura e acalmar inflamação (tipo espinha). É muito suave, um carinho na pele. O chá também ajuda a desinflamar por dentro, bom pro estômago.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>As pétalas dão uma cor linda na comida (é tipo um "açafrão dos pobres") e ficam bonitas na salada. Pode misturar as pétalas secas no arroz na hora de cozinhar, ele fica amarelinho!</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Tem a ver com o Sol (ela parece um solzinho!). Dizem que o banho de calêndula ajuda na autoestima, atrai sucesso e alegria. É ótimo pra "brilhar", pra se sentir mais confiante. Também protege e ajuda a ter sonhos mais claros (é só botar debaixo do travesseiro).</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inverno -->
+            <div>
+                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #4A5568, #3B82F6) 1;">Inverno (Junho a Setembro): A Introspecção</h2>
+                <p class="mb-8 text-slate-300">É quando temos a noite mais longa do ano! A natureza parece que "dorme". A energia tá toda guardadinha, lá no fundo. É o tempo do silêncio, de ficar mais em casa, de cuidar da nossa "raiz" por dentro, de descansar e juntar força pra próxima primavera.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Eucalipto (Eucalyptus globulus)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O "Faxineiro" Astral</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>Cheirar o vapor do chá é o melhor remédio pra nariz entupido, sinusite e bronquite. É um baita desinfetante pro ar. Uma dica ótima é pingar umas gotas do óleo essencial no box, na hora do banho quente. O vapor que sobe limpa tudo! Ou fazer a inalação com a bacia de água quente, clássico das avós.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele é o "desinfetante do astral". O banho de eucalipto é forte! É pra quando você foi num lugar muito "carregado" (hospital, velório, reunião tensa) e voltou se sentindo pesado. Ele "zera" a energia. Queimar as folhas secas limpa o ambiente depois de doença ou briga. Ele abre o nariz e a alma!</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Azevinho (Ilex aquifolium)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Guardião do Inverno</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>(Opa, cuidado: as frutinhas vermelhas são venenosas! Não coma!). Antigamente, usavam as folhas pra febre, mas hoje não é recomendado. O uso dele é mais simbólico mesmo.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>É o grande símbolo do Solstício de Inverno. Ele tá sempre verde, mostrando que a vida continua mesmo no frio. É um símbolo de esperança e proteção. Dizem que pendurar um ramo (sem as frutinhas, por segurança) em casa dá uma proteção poderosa contra energias ruins nos meses mais escuros.</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Camélia (Camellia japonica)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A Beleza Forte</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O óleo da semente dela (muito usado na Ásia, é o óleo de Tsubaki) é excelente pra pele e pro cabelo. É um segredo de beleza antigo lá do Japão.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>O mais legal é que ela dá flor no frio! É o símbolo da beleza que nasce no meio do perrengue, da resiliência. Ela não é uma erva de "banho" ou "fumaça", é mais de contemplação. Ter as flores dela por perto, num altar, traz paz e lembra a gente da nossa própria força de "florescer" quando tudo tá difícil.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primavera -->
+            <div>
+                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #3B82F6, #22C55E) 1;">Primavera (Setembro a Dezembro): O Despertar</h2>
+                <p class="mb-8 text-slate-300">Agora sim! É o "bom dia!" da natureza. A energia explode pra todo lado! Tudo acorda, tudo quer nascer. É tempo de coisa nova, de começar projetos, de otimismo, de fertilidade... e de amor, claro!</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Lavanda (Lavandula angustifolia)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A Alma da Paz</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dela é um dos melhores calmantes que existem. Ótimo pra ansiedade, estresse e pra quem não dorme direito. Alivia até dor de cabeça de tensão. Um chazinho antes de dormir é como um "boa noite" pra ansiedade. Pingar uma gotinha do óleo essencial no travesseiro também faz mágica.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar bem pouquinho! Fica uma delícia em sobremesas, biscoitos e limonadas (experimente!). Mas vá com calma, se errar a mão, parece que tá comendo sabonete! É só um toque.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Traz harmonia e paz. O banho de lavanda parece que "lava a alma" e acalma o coração. Sabe aquele dia que foi caótico, cheio de briga e estresse? É esse banho. O incenso é ótimo pra meditar. E os saquinhos com a flor seca no armário (sachês) são um clássico!</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Camomila (Matricaria chamomilla)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Ouro Calminho</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É um calmante bem suave, o "abraço de mãe" em forma de chá. Bom pro estômago e pros nervos. O chá ajuda a dormir e alivia cólicas (até em bebês). Fazer compressa com o chá gelado também é ótimo pra acalmar olho inchado de cansaço.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>O uso mais comum é o chá, claro. Mas dá pra usar as flores pra aromatizar sobremesas leves.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Erva de prosperidade e calma. Tem a ver com o Sol. Dizem que lavar o rosto e as mãos com o chá atrai sorte (até em jogo!) e ajuda nos negócios. O banho de camomila relaxa e atrai amor, mas um amor sereno, tranquilo.</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Hibisco (Hibiscus sabdariffa)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Toque de Atração</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá (feito da flor seca, aquele vermelho azedinho) é cheio de antioxidante, ajuda a controlar a pressão e a desinchar (é diurético). Ótimo pra tomar gelado no verão.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Muito usado em chás gelados (com canela e gengibre fica ótimo!), geleias e pra dar cor em bebidas.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele tem tudo a ver com amor, paixão e "magnetismo pessoal". É a erva da "sensualidade" e do amor-próprio. O banho de hibisco (sempre teste na pele antes, pra ver se não tem alergia!) é pra "despertar" sua Vênus interior, pra se sentir mais confiante, poderoso(a) e atraente!</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-         <!-- ... (outros biomas ... -->
     </template>
 
     <!-- Template: Guia de Cristais -->
@@ -992,13 +1123,10 @@
         function drawStars() {
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             for (const star of stars) {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                // Cor levemente azulada para um efeito mais realista
+                // Usando fillRect para desenhar quadrados pequenos e nítidos em vez de círculos
                 ctx.fillStyle = `rgba(220, 230, 255, ${star.alpha})`;
-                ctx.fill();
+                ctx.fillRect(star.x, star.y, star.radius * 2, star.radius * 2); // Usar raio como tamanho
             }
         }
 
@@ -1191,8 +1319,38 @@
         const detailedContent = {
             etapa1_details: {
                 title: "Aprofundando: Despertar da Consciência",
-                summary: "<ul><li class='mb-2'>Reconhecimento de padrões de comportamento que se repetem.</li><li class='mb-2'>Mapeamento de crenças limitantes que impedem o crescimento.</li><li class='mb-2'>Prática da auto-observação sem julgamento ou crítica.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                summary: "<ul><li class='mb-2'>Reconhecimento de padrões de comportamento.</li><li class='mb-2'>Mapeamento de crenças limitantes.</li><li class='mb-2'>Auto-observação sem julgamento.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
                 full: "<p>Este é o momento de introspecção radical. De olhar para o espelho sem filtros e perguntar: 'Quais são os padrões que me governam?'</p><p>Não se trata de julgamento, mas de mapeamento. Como um cartógrafo da sua própria alma, você irá delinear os rios dos seus hábitos, as montanhas das suas crenças e os vales sombrios dos seus medos. Apenas observar. Apenas reconhecer. Este é o ato mais corajoso e o primeiro passo real para qualquer transformação duradoura.</p>"
+            },
+            etapa2_details: {
+                title: "Aprofundando: Semeando com Propósito",
+                summary: "<ul><li class='mb-2'>Conectar desejos a valores essenciais.</li><li class='mb-2'>Encontrar o 'porquê' profundo das suas metas.</li><li class='mb-2'>Alinhar ações com um propósito maior.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>Com a clareza do Despertar, a próxima fase é direcionar essa consciência. Um desejo sem propósito é como uma semente jogada em solo infértil. Aqui, você irá nutrir suas intenções, conectando-as a um 'porquê' que ressoa com sua alma. O que realmente te move? O que você quer criar no mundo? Esta etapa transforma desejos vagos em intenções poderosas e focadas.</p>"
+            },
+            etapa3_details: {
+                title: "Aprofundando: Transformação Resiliente",
+                summary: "<ul><li class='mb-2'>Confronto ativo com a 'sombra'.</li><li class='mb-2'>Mobilização da força de vontade e disciplina.</li><li class='mb-2'>Transmutação de energia negativa em força.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>Esta é a forja. O coração da jornada. Armado com clareza e propósito, é hora de confrontar ativamente os padrões que você mapeou. É a batalha interna, onde a disciplina se torna sua espada e a resiliência, sua armadura. Cada desafio superado, cada hábito transformado, é uma transmutação do 'chumbo' da sua psique no 'ouro' da sua força interior.</p>"
+            },
+            etapa4_details: {
+                title: "Aprofundando: Colheita Consciente",
+                summary: "<ul><li class='mb-2'>Integração de novos hábitos.</li><li class='mb-2'>Prática da gratidão e celebração.</li><li class='mb-2'>Cultivo do amor-próprio e aceitação.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>Após a batalha, vem a paz da colheita. Esta etapa é sobre integração e reconhecimento. É o momento de celebrar suas vitórias, por menores que pareçam. Solidificar os novos hábitos através da gratidão e cultivar um profundo senso de amor-próprio. A colheita não é apenas sobre os frutos externos, mas sobre a nutrição interna que você conquistou.</p>"
+            },
+            etapa5_details: {
+                title: "Aprofundando: Irradiando o Legado",
+                summary: "<ul><li class='mb-2'>Compartilhar a sabedoria adquirida.</li><li class='mb-2'>Transição do crescimento interno para o impacto externo.</li><li class='mb-2'>Expressão autêntica da sua jornada.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>A luz que você acendeu dentro de si não foi feita para ficar escondida. Irradiar o legado é sobre compartilhar sua jornada, sua sabedoria e sua luz com o mundo. Não de forma arrogante, mas como um farol para outros que podem estar começando sua própria jornada. É a transição do 'eu' para o 'nós', onde sua transformação inspira a transformação dos outros.</p>"
+            },
+            etapa6_details: {
+                title: "Aprofundando: Introspecção Curativa",
+                summary: "<ul><li class='mb-2'>Reconhecer que o crescimento é espiral.</li><li class='mb-2'>Mergulho profundo em padrões recorrentes.</li><li class='mb-2'>Fortalecimento da resiliência através da autoanálise.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>O crescimento não é uma linha reta, é uma espiral. Periodicamente, retornamos a temas antigos, mas de um novo nível de consciência. Esta etapa é um mergulho voluntário na sombra, não para lutar, mas para curar. É onde você revisita padrões recorrentes com compaixão e sabedoria, fortalecendo sua resiliência e aprofundando sua autocompreensão.</p>"
+            },
+            etapa7_details: {
+                title: "Aprofundando: União Transcendental",
+                summary: "<ul><li class='mb-2'>Experiência da unidade e conexão.</li><li class='mb-2'>Transcendência do ego.</li><li class='mb-2'>Viver em estado de fluxo e presença.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>A culminação da jornada. Aqui, as fronteiras do 'eu' se dissolvem em uma experiência de unidade com o todo. Não é um estado permanente de iluminação, mas a compreensão vivida de que você é uma manifestação do cosmos. É a capacidade de viver em um estado de fluxo, presença e conexão profunda, onde a jornada e o destino se tornam um só.</p>"
             }
         };
 
