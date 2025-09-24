@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Phosphor Icons (para ícones) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- jsPDF Library for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Fundo Azul-Escuro/Roxo Místico */
         body {
@@ -47,38 +49,178 @@
             border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
         }
 
-        .sidebar {
+        .bookshelf-bg {
+            background: linear-gradient(180deg, #0f0524 0%, #1a202c 100%); /* Fundo mais escuro */
+            border-right: 1px solid #4A5568; /* Borda para separar */
             z-index: 40;
             transition: all 0.3s ease;
+            /* Estilo para simular a madeira ou prateleira */
+            background-image:
+                linear-gradient(rgba(74, 85, 104, 0.2) 1px, transparent 1px), /* Linhas horizontais */
+                linear-gradient(90deg, rgba(74, 85, 104, 0.1) 1px, transparent 1px); /* Linhas verticais (sutl) */
+            background-size: 100% 40px, 100% 40px; /* Altura da "prateleira" */
         }
 
-        /* Links da Sidebar */
-        .sidebar-link {
+        .bookshelf-bg::before { /* Sombra da prateleira na parede */
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 10px;
+            background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+            pointer-events: none;
+        }
+
+
+        .book-spine {
+            position: relative;
+            padding: 0.75rem 1rem; /* py-3 px-4 */
+            margin-bottom: 0.5rem; /* Espaçamento entre livros */
+            border-radius: 0.375rem; /* rounded-md */
+            text-decoration: none;
+            color: #E2E8F0; /* text-gray-200 */
+            font-family: 'Cinzel', serif; /* Fonte para o "título" do livro */
+            font-weight: 400; /* Peso normal para o texto do link */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-left-color 0.4s ease;
+            border-left: 4px solid transparent; /* Borda inicial transparente */
+            display: flex; /* Para alinhar melhor o texto e o ícone */
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+            /* Estilos para a aparência de "livro" */
+            background-color: rgba(30, 41, 59, 0.7); /* Cor de livro escuro com transparência */
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3); /* Sombra para dar profundidade */
+        }
+
+        .book-spine:hover {
+            transform: translateX(8px) scale(1.02); /* Efeito de "livro saindo da prateleira" */
+            box-shadow: 5px 0 15px rgba(0,0,0,0.6), inset 4px 0px 8px -3px rgba(255,255,255,0.2);
+            z-index: 10;
+            color: #fde047; /* Cor dourada ao hover */
+            background-color: rgba(45, 55, 72, 0.8); /* Fundo um pouco mais claro no hover */
+        }
+
+        .book-spine.active {
+            border-left-color: #fde047; /* Borda dourada para o livro ativo */
+            color: #fde047;
+            font-weight: 700;
+            transform: translateX(3px); /* Levemente para fora */
+            box-shadow: 2px 0 10px rgba(0,0,0,0.4), inset 4px 0px 6px -2px rgba(255,255,255,0.15);
+            background-color: rgba(55, 65, 81, 0.9); /* Fundo ativo mais opaco */
+        }
+
+        /* Estilo para links premium bloqueados */
+        .book-spine.premium-locked {
+            opacity: 0.6;
+            filter: grayscale(80%);
+            cursor: not-allowed;
+            background-color: rgba(20, 20, 20, 0.5);
+            border-left-color: #EF4444 !important; /* Vermelho para indicar bloqueio */
+        }
+        .book-spine.premium-locked:hover {
+            transform: none; /* Sem efeito de hover para bloqueado */
+            box-shadow: none;
+            color: #E2E8F0;
+            background-color: rgba(20, 20, 20, 0.5);
+        }
+
+
+        /* Cores dos "livros" */
+        .book-color-1 { background-color: rgba(45, 55, 72, 0.7); }
+        .book-color-2 { background-color: rgba(49, 130, 206, 0.4); }
+        .book-color-3 { background-color: rgba(107, 70, 193, 0.4); }
+        .book-color-4 { background-color: rgba(221, 107, 32, 0.4); }
+        .book-color-5 { background-color: rgba(72, 187, 120, 0.4); }
+
+        .sidebar i {
+            margin-left: auto;
+            padding-left: 0.5rem;
+        }
+
+        /* Estilos do Modal de Detalhes */
+        .detail-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(15, 5, 36, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 100;
             display: flex;
             align-items: center;
-            padding: 0.75rem 1.25rem;
-            color: #D1D5DB; /* gray-300 */
-            font-weight: 500;
-            border-radius: 0.5rem; /* rounded-lg */
-            transition: all 0.2s ease;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .detail-modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content-wrapper {
+            background: rgba(22, 11, 50, 0.8);
+            border: 1px solid #fde047;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
+            box-shadow: 0 0 40px rgba(253, 224, 71, 0.3);
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
         }
-        .sidebar-link:hover, .sidebar-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: #FFFFFF;
+        .detail-modal.visible .modal-content-wrapper {
+            transform: scale(1);
         }
-        .sidebar-link i {
-            margin-right: 0.75rem;
-            font-size: 1.25rem;
+        .close-modal-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #E2E8F0;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            line-height: 1;
+        }
+        .close-modal-btn:hover {
+            color: #fde047;
+            transform: rotate(90deg);
+        }
+        .modal-body h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #fde047;
+            margin-bottom: 1rem;
+        }
+        .modal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #D1D5DB;
+        }
+        .export-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #fde047;
+            color: #0f0524;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-         .sidebar-link:hover i {
-            transform: scale(1.1) rotate(-5deg);
+        .export-btn:hover {
+            background-color: #FFFFFF;
+            box-shadow: 0 0 15px rgba(253, 224, 71, 0.5);
         }
 
         /* Conteúdo Principal */
         .main-content {
-            height: 100vh;
+            /* height: 100vh; -- Removido para o layout flex */
             overflow-y: auto; /* Apenas o conteúdo rola, não o body */
         }
         .content-card {
@@ -135,6 +277,22 @@
             margin-top: 1rem;
         }
 
+        .section-disclaimer {
+            background-color: rgba(159, 63, 63, 0.2);
+            border: 1px solid #9B2C2C;
+            color: #FED7D7;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-disclaimer i {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            color: #F56565;
+        }
+
         /* Placeholder image styles */
         .placeholder-img {
             background-color: #374151; /* gray-700 */
@@ -160,7 +318,7 @@
         @media (min-width: 1024px) {
             #menu-button { display: none; }
             #sidebar { transform: translateX(0); }
-            #main-content { margin-left: 18rem; }
+            /* #main-content { margin-left: 18rem; } -- Regra movida para o wrapper do conteúdo */
         }
     </style>
 </head>
@@ -174,103 +332,67 @@
         <i class="ph ph-list text-2xl"></i>
     </button>
 
-    <!-- Sidebar (Navegação) -->
-    <aside id="sidebar" class="sidebar glass-effect fixed top-0 left-0 w-72 h-screen pt-4 transform -translate-x-full lg:translate-x-0">
+    <!-- Sidebar (Navegação com Estilo de Prateleira) -->
+    <aside id="sidebar" class="sidebar bookshelf-bg fixed top-0 left-0 w-72 h-screen pt-4 transform -translate-x-full lg:translate-x-0">
         <div class="h-full px-4 pb-4 overflow-y-auto">
             <h1 class="brand-title text-3xl text-center py-4 mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
                 Rota Pagã
             </h1>
             <p class="text-center text-sm text-gray-400 mb-6 -mt-2">leandromellof@gmail.com</p>
 
-            <ul class="space-y-2">
-                <!-- Links de Navegação (Ícones Místicos) -->
-                <li>
-                    <a href="#" class="sidebar-link active" onclick="showPage('page-jornada', this, event)">
-                        <i class="ph ph-spiral"></i> Jornada Florescer
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-compendio', this, event)">
-                        <i class="ph ph-scroll"></i> Compêndio Sincrético
-                    </a>
-                </li>
-                 <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-herbario', this, event)">
-                        <i class="ph ph-flower-lotus"></i> Herbário Sazonal (BR)
-                    </a>
-                </li>
-                 <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-cristais', this, event)">
-                        <i class="ph ph-atom"></i> Guia de Cristais
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-sopros', this, event)">
-                        <i class="ph ph-wind"></i> Sopros de Vida
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-roda-do-ano', this, event)">
-                        <i class="ph ph-yin-yang"></i> Roda do Ano
-                    </a>
-                </li>
+            <div class="space-y-2">
+                <h2 class="font-bold text-sm text-yellow-200/50 uppercase tracking-widest mb-2 px-3">O Grimório Virtual</h2>
+                <a href="#" onclick="showPage('page-jornada', this, event)" class="block book-spine book-color-1 active">Jornada Florescer</a>
+                <a href="#" onclick="showPage('page-compendio', this, event)" class="block book-spine book-color-2">Compêndio Sincrético</a>
+                <a href="#" onclick="showPage('page-herbario', this, event)" class="block book-spine book-color-3">Herbário Sazonal (BR)</a>
+                <a href="#" onclick="showPage('page-cristais', this, event)" class="block book-spine book-color-4">Guia de Cristais</a>
+                <a href="#" onclick="showPage('page-sopros', this, event)" class="block book-spine book-color-5">Sopros de Vida</a>
+                <a href="#" onclick="showPage('page-roda-do-ano', this, event)" class="block book-spine book-color-1">Roda do Ano</a>
+                <a href="#" onclick="showPage('page-panteao', this, event)" class="block book-spine book-color-2">O Panteão</a>
+                <a href="#" onclick="showPage('page-galeria', this, event)" class="block book-spine book-color-3">Galeria Onírica</a>
 
-                <!-- NOVO LINK PARA SIGILOS -->
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-sigilos', this, event)">
-                        <i class="ph ph-magic-wand"></i> O Forjador de Sigilos
-                    </a>
-                </li>
+                <div class="border-t-2 border-stone-600/50 my-4"></div>
 
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-panteao', this, event)">
-                        <i class="ph ph-key"></i> O Panteão
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-galeria', this, event)">
-                        <i class="ph ph-eye"></i> Galeria Onírica
-                    </a>
-                </li>
+                <h2 class="font-bold text-sm text-yellow-200/50 uppercase tracking-widest mb-2 px-3">A Rota Pagã (App)</h2>
+                <a href="#" onclick="showPage('page-sigilos', this, event)" class="block book-spine book-color-4 premium-locked">O Forjador de Sigilos <i class="ph-fill ph-lock ml-auto"></i></a>
 
-                <li class="pt-4 border-t border-gray-700">
-                    <a href="#" class="sidebar-link" onclick="showPage('page-guardiao', this, event)">
-                        <i class="ph ph-user-circle"></i> Guardião
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-santuario', this, event)">
-                        <i class="ph ph-star-four"></i> Santuário
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-link" onclick="showPage('page-consultas', this, event)">
-                        <i class="ph ph-chats-circle"></i> Consultas
-                    </a>
-                </li>
-                <li class="pt-4 border-t border-gray-700">
-                    <a href="#" class="sidebar-link">
-                        <i class="ph ph-sign-out"></i> Sair
-                    </a>
-                </li>
-            </ul>
+                <div class="border-t-2 border-stone-600/50 my-4"></div>
+
+                <a href="#" onclick="showPage('page-guardiao', this, event)" class="block book-spine book-color-5">Guardião</a>
+                <a href="#" onclick="showPage('page-santuario', this, event)" class="block book-spine book-color-1">Santuário</a>
+                <a href="#" onclick="showPage('page-consultas', this, event)" class="block book-spine book-color-2">Consultas</a>
+                <a href="#" class="block book-spine book-color-3">Sair</a>
+            </div>
         </div>
     </aside>
 
-    <!-- Conteúdo Principal -->
-    <main id="main-content" class="main-content p-4 pt-16 lg:pt-8 transition-all duration-300 ease-in-out">
-        <!-- O conteúdo das páginas será injetado aqui -->
-    </main>
+    <!-- Wrapper para Conteúdo Principal e Rodapé -->
+    <div class="w-full flex flex-col lg:ml-72" style="height: 100vh;">
+        <!-- Conteúdo Principal -->
+        <main id="main-content" class="main-content p-4 pt-16 lg:pt-8 transition-all duration-300 ease-in-out flex-grow">
+            <!-- O conteúdo das páginas será injetado aqui -->
+        </main>
+
+        <!-- Rodapé Global com Aviso -->
+        <footer class="p-4 text-center text-xs text-gray-400 bg-black/20 flex-shrink-0">
+            <div class="container mx-auto max-w-4xl">
+                <p class="mb-2">
+                    <strong class="text-red-400">Aviso Importante:</strong> As informações contidas neste aplicativo são baseadas em saberes ancestrais, folclore e práticas espirituais. Elas têm propósito educacional e de enriquecimento cultural. <strong>Não substituem a orientação de profissionais de saúde.</strong> Consulte sempre seu médico ou especialista antes de usar plantas ou cristais para fins medicinais. Pratique com respeito, segurança e responsabilidade.
+                </p>
+                <p>&copy; 2025 Rota Pagã. Forjado em sabedoria e código.</p>
+            </div>
+        </footer>
+    </div>
 
     <!-- TEMPLATES DE PÁGINA (Conteúdo Oculto) -->
 
     <!-- Template: Jornada Florescer (As 7 Etapas) -->
     <template id="page-jornada">
         <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Jornada Florescer</h1>
-        <p class="page-subtitle">As 7 Etapas da Jornada para Domar a Fera Interior.</p>
+        <p class="page-subtitle">As 7 Etapas da Jornada para Domar a Fera Interior. Clique em um card para aprofundar.</p>
 
         <!-- Etapa 1 -->
-        <div class="content-card glass-effect">
+        <div class="content-card glass-effect cursor-pointer hover:border-amber-300/50" onclick="showDetailModal('etapa1_details')">
             <h2 class="text-2xl font-bold mb-3 text-muladhara">Etapa 1: Despertar da Consciência</h2>
             <p class="mb-4">Foco: Clareza, auto-observação neutra, mapeamento de hábitos.</p>
             <div class="grid md:grid-cols-2 gap-4 text-sm">
@@ -548,6 +670,12 @@
 
     <!-- Template: Herbário Sazonal -->
     <template id="page-herbario">
+        <div class="section-disclaimer">
+            <i class="ph ph-warning-circle"></i>
+            <p class="text-sm md:text-md leading-relaxed">
+                <strong>Atenção:</strong> As informações sobre plantas medicinais são para conhecimento tradicional e não substituem consulta a um profissional de saúde qualificado. A identificação correta das plantas é crucial. Use com responsabilidade.
+            </p>
+        </div>
         <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Herbário Sazonal</h1>
         <p class="page-subtitle">Um guia sincrético de ervas encontradas no Brasil, organizadas por bioma.</p>
 
@@ -566,6 +694,12 @@
 
     <!-- Template: Guia de Cristais -->
     <template id="page-cristais">
+        <div class="section-disclaimer">
+            <i class="ph ph-warning-circle"></i>
+            <p class="text-sm md:text-md leading-relaxed">
+                <strong>Atenção:</strong> As informações sobre cristais são para fins de estudo de práticas espirituais e de bem-estar. Não substituem tratamentos médicos ou psicológicos. Use com respeito e intenção clara.
+            </p>
+        </div>
         <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-400">Guia de Cristais</h1>
         <p class="page-subtitle">Aprimorando o uso, limpeza e programação das suas ferramentas minerais.</p>
 
@@ -808,17 +942,30 @@
         <p class="page-subtitle">Agende um atendimento individual.</p>
     </template>
 
+    <!-- Modal para Conteúdo Aprofundado -->
+    <div id="detail-modal" class="detail-modal">
+        <div class="modal-content-wrapper">
+            <button id="close-modal-btn" class="close-modal-btn">&times;</button>
+            <div id="modal-body" class="modal-body">
+                <!-- Conteúdo dinâmico será injetado aqui -->
+            </div>
+        </div>
+    </div>
+
     <script>
         const mainContent = document.getElementById('main-content');
         const sidebar = document.getElementById('sidebar');
         const menuButton = document.getElementById('menu-button');
         let activeLink = document.querySelector('.sidebar-link.active');
 
-        // --- Início: Animação do Céu Estrelado ---
+        // --- Início: Animação do Céu Estrelado (Efeito Galáxia) ---
         const canvas = document.getElementById('starry-sky');
         const ctx = canvas.getContext('2d');
         let stars = [];
-        let numStars = 500; // Número de estrelas
+        let numStars = 600;
+        let starBaseSpeed = 0.05; // Velocidade normal, bem lenta
+        let starZoomSpeed = 2;    // Velocidade ao "mergulhar" na galáxia
+        let currentStarSpeed = starBaseSpeed;
 
         function setCanvasSize() {
             canvas.width = window.innerWidth;
@@ -828,53 +975,74 @@
         function createStars() {
             stars = [];
             for (let i = 0; i < numStars; i++) {
+                const radius = Math.random() * 0.8 + 0.2; // Raio menor para estrelas pontuais
+                const alpha = Math.random() * 0.6 + 0.4; // Opacidade inicial
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 1.5 + 0.5, // Raio pequeno
-                    speed: Math.random() * 0.3 + 0.1 // Velocidade lenta
+                    radius: radius,
+                    alpha: alpha,
+                    originalAlpha: alpha, // Armazena a opacidade base
+                    alphaSpeed: (Math.random() * 0.008 + 0.003) * (Math.random() > 0.5 ? 1 : -1), // Velocidade de brilho
+                    speed: (Math.random() * 0.2 + 0.1) // Velocidade base individual
                 });
             }
         }
 
         function drawStars() {
+            if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Cor da estrela
 
-            for (let star of stars) {
+            for (const star of stars) {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                // Cor levemente azulada para um efeito mais realista
+                ctx.fillStyle = `rgba(220, 230, 255, ${star.alpha})`;
                 ctx.fill();
             }
         }
 
         function updateStars() {
-            for (let star of stars) {
-                star.y -= star.speed; // Movimento sutil para cima
+            for (const star of stars) {
+                star.y += star.speed * currentStarSpeed; // Movimento para baixo, controlado pela velocidade atual
 
-                // Se a estrela sair do topo, reaparece embaixo
-                if (star.y < 0) {
-                    star.y = canvas.height;
+                // Se a estrela sair da tela, ela reaparece em cima
+                if (star.y > canvas.height) {
+                    star.y = 0;
                     star.x = Math.random() * canvas.width;
+                }
+
+                // Efeito de cintilação continua o mesmo
+                star.alpha += star.alphaSpeed;
+                if (star.alpha > star.originalAlpha + 0.2 || star.alpha < star.originalAlpha - 0.2) {
+                    star.alphaSpeed *= -1;
                 }
             }
         }
 
+        let animationFrameId;
         function animate() {
             drawStars();
             updateStars();
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
         }
 
-        // Event Listeners da Animação
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
             setCanvasSize();
             createStars();
-        });
+        };
+
+        window.addEventListener('resize', handleResize);
 
         setCanvasSize();
         createStars();
         animate();
+
+        // Limpeza do listener no futuro, se necessário (ex: em um app SPA complexo)
+        // return () => {
+        //     window.removeEventListener('resize', handleResize);
+        //     cancelAnimationFrame(animationFrameId);
+        // };
         // --- Fim: Animação do Céu Estrelado ---
 
 
@@ -1013,6 +1181,95 @@
             ctx.stroke();
         }
         // --- Fim: Lógica do Forjador de Sigilos ---
+
+
+        // --- Início: Lógica do Modal, Zoom e Freemium ---
+        const detailModal = document.getElementById('detail-modal');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        const detailedContent = {
+            etapa1_details: {
+                title: "Aprofundando: Despertar da Consciência",
+                summary: "<ul><li class='mb-2'>Reconhecimento de padrões de comportamento que se repetem.</li><li class='mb-2'>Mapeamento de crenças limitantes que impedem o crescimento.</li><li class='mb-2'>Prática da auto-observação sem julgamento ou crítica.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+                full: "<p>Este é o momento de introspecção radical. De olhar para o espelho sem filtros e perguntar: 'Quais são os padrões que me governam?'</p><p>Não se trata de julgamento, mas de mapeamento. Como um cartógrafo da sua própria alma, você irá delinear os rios dos seus hábitos, as montanhas das suas crenças e os vales sombrios dos seus medos. Apenas observar. Apenas reconhecer. Este é o ato mais corajoso e o primeiro passo real para qualquer transformação duradoura.</p>"
+            }
+        };
+
+        // Simulação do status do usuário - mude para 'true' para ver a versão Premium
+        let isPremiumUser = false;
+
+        function zoomInGalaxy() {
+            currentStarSpeed = starZoomSpeed;
+        }
+
+        function zoomOutGalaxy() {
+            currentStarSpeed = starBaseSpeed;
+        }
+
+        function exportContentToPdf(contentId) {
+            const { jsPDF } = window.jspdf;
+            const contentData = detailedContent[contentId];
+            if (!contentData) {
+                console.error("Conteúdo não encontrado para exportar:", contentId);
+                return;
+            }
+
+            const doc = new jsPDF();
+
+            // Basic HTML stripping for clean text
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = contentData.full;
+            const cleanText = tempDiv.textContent || "";
+
+            // Using standard PDF fonts to avoid issues
+            doc.setFont("helvetica", "bold");
+            doc.text(contentData.title, 15, 20);
+
+            doc.setFont("helvetica", "normal");
+            const splitText = doc.splitTextToSize(cleanText, 180); // 180 is the width of the text block
+            doc.text(splitText, 15, 30);
+
+            // Sanitize title for filename
+            const fileName = contentData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            doc.save(fileName + ".pdf");
+        }
+
+        function showDetailModal(contentId) {
+            if (!detailModal || !modalBody) return;
+            const contentData = detailedContent[contentId];
+            if (!contentData) {
+                console.error("Conteúdo detalhado não encontrado para o ID:", contentId);
+                return;
+            }
+
+            const contentToShow = isPremiumUser ? contentData.full : contentData.summary;
+            const exportButtonHtml = isPremiumUser
+                ? `<button id="export-pdf-btn" class="export-btn" onclick="exportContentToPdf('${contentId}')">Exportar para PDF</button>`
+                : '';
+
+            modalBody.innerHTML = `
+                <h2>${contentData.title}</h2>
+                <div class="prose prose-invert max-w-none">${contentToShow}</div>
+                ${exportButtonHtml}
+            `;
+            detailModal.classList.add('visible');
+            zoomInGalaxy();
+        }
+
+        function closeDetailModal() {
+            if (!detailModal) return;
+            detailModal.classList.remove('visible');
+            zoomOutGalaxy();
+        }
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeDetailModal);
+        if (detailModal) detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) closeDetailModal();
+        });
+        // --- Fim: Lógica do Modal de Aprofundamento e Zoom ---
+
+
         // --- Fim: Lógica de Navegação ---
 
     </script>
