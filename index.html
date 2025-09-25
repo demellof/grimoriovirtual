@@ -1148,40 +1148,55 @@
 
     </template>
 
-    <!-- Template: O Panteão (Homenagem) -->
+    <!-- Template: O Panteão (A Caverna das Sombras) -->
     <template id="page-panteao">
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-300">O Panteão</h1>
-        <p class="page-subtitle">Honrando os Guardiões, Arquétipos e Forças que inspiram este Grimório.</p>
+        <!-- O container principal da caverna, com fundo escuro e centralizado -->
+        <div id="panteao-container" class="w-full bg-black/50 text-amber-100 font-sans p-4 md:p-8 flex flex-col items-center relative rounded-lg border border-amber-900/50">
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-green-400">Pã: O Espírito Indomado</h2>
-            <p class="mb-4">Patrono do **Pilar da Terra** e do **Herbário Sazonal**.</p>
-        </div>
+            <!-- Fundo da Caverna (Estilizado) -->
+            <div class="absolute inset-0 bg-gray-900 -z-10" style="background-image: radial-gradient(circle at center, rgba(31, 25, 18, 0.5) 0%, rgba(0,0,0,1) 70%);"></div>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-indigo-300">Hécate: A Guardiã das Encruzilhadas</h2>
-            <p class="mb-4">Patrona da **Roda do Ano** e do **Pilar da Luz** (Intuição).</p>
-        </div>
+            <!-- Conteúdo Principal -->
+            <div class="z-10 flex flex-col items-center w-full">
+                <!-- 1. Título -->
+                <header class="text-center mb-4">
+                    <h1 class="text-4xl md:text-5xl font-bold text-amber-300" style="text-shadow: 0 0 10px rgba(252, 211, 77, 0.4)">
+                        A Caverna das Sombras
+                    </h1>
+                    <p class="text-lg text-amber-100/70">O coração do Panteão</p>
+                </header>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-rose-400">Eros: O Grande Conciliador</h2>
-            <p class="mb-4">Patrono do **Pilar do Ar/Coração** (Anahata) e da própria "Jornada Florescer".</p>
-        </div>
+                <!-- 2. A Fogueira Central -->
+                <div class="my-6 text-7xl md:text-8xl animate-pulse" style="animation-duration: 2s;" title="A Fogueira">
+                    🔥
+                </div>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-gray-300">As Parcas (Moiras): As Tecelãs</h2>
-            <p class="mb-4">Supervisoras da **Jornada Florescer** como um todo.</p>
-        </div>
+                <!-- 3. Navegação das Paredes -->
+                <nav id="panteao-nav" class="flex justify-center gap-2 md:gap-4 mb-8 bg-gray-800/40 p-2 rounded-lg border border-gray-700/50">
+                    <!-- Botões de navegação serão gerados pelo JS -->
+                </nav>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-purple-300">Aradia: A Sábia Mestra</h2>
-            <p class="mb-4">A alma deste **Grimório Virtual**.</p>
-        </div>
+                <!-- 4. A Parede da Caverna (Onde a mágica acontece) -->
+                <main id="panteao-wall" class="w-full max-w-3xl min-h-[400px] flex items-center justify-center">
+                    <!-- Os glifos ou a sombra ativa serão renderizados aqui pelo JS -->
+                </main>
 
-        <div class="content-card glass-effect">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-400">Cosme e Damião: Os Curadores Sincréticos</h2>
-            <p class="mb-4">Abençoam o **Compêndio Sincrético**, unindo o ritual (Pilar da Água) e a fitoterapia (Pilar da Terra).</p>
+                <!-- Rodapé da Caverna -->
+                <footer class="mt-12 w-full max-w-3xl text-center text-amber-100/50 text-sm p-4 border-t border-gray-800/50">
+                    <p>"Não tenha medo do escuro. Ele é só a tela em branco. (...) Escuta o que elas têm pra contar... sobre você!"</p>
+                </footer>
+            </div>
         </div>
+        <!-- Estilos de animação específicos para o Panteão -->
+        <style>
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn {
+              animation: fadeIn 0.7s ease-out;
+            }
+        </style>
     </template>
 
     <!-- Template: Galeria Onírica (Surrealismo) -->
@@ -1342,6 +1357,11 @@
                     mainContent.innerHTML = template.innerHTML;
                     mainContent.style.opacity = 1; // Fade in
                     mainContent.scrollTop = 0; // Rola para o topo
+
+                    // Gatilho para a lógica específica da página do Panteão
+                    if (pageId === 'page-panteao') {
+                        initPanteao();
+                    }
                 }, 200);
 
                 if (activeLink) {
@@ -1573,6 +1593,211 @@
         });
         // --- Fim: Lógica do Modal de Aprofundamento e Zoom ---
 
+
+        // --- Início: Dados e Lógica do Panteão ---
+        const panteaoSections = [
+          { id: 0, title: "Primordiais", archetypes: ['pai-ceu', 'mae-terra'] },
+          { id: 1, title: "Luminares", archetypes: ['deus-sol', 'deusa-lua'] },
+          { id: 2, title: "Agentes da Transformação", archetypes: ['mensageiro', 'ferreiro'] },
+        ];
+
+        const archetypeData = {
+          'pai-ceu': {
+            title: "O PAI-CÉU (O Cara da Ordem)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></svg>',
+            sombraQueDanca: "Um cara alto, todo imponente, com ombros largos. A capa dele vira um céu cheio de estrelas que se movem certinho. Ele é pura presença.",
+            oQueEh: "Ele é tipo a Estrutura, a Lei, a Ordem de tudo. A consciência que bota ordem no caos. Ele é a 'coluna' do universo e também a sua garra pra construir coisas, ter disciplina e dizer 'Eu vou!'.",
+            emVoce: "É a sua força de vontade. Sua habilidade de criar regras e planos. É aquela voz que te faz acordar cedo pra malhar, mesmo querendo ficar na cama. É o seu lado que gosta de planilhas e de ver as coisas funcionando direito.",
+            ladoRuim: "Tirania, rigidez demais, controle excessivo. A lógica fria sem coração. É o 'pai chato' ou o crítico interno que só pega no pé e nunca diz 'parabéns'.",
+            praRefletir: "Onde na sua vida tá faltando um pouco mais de estrutura? E onde essa estrutura toda virou uma prisão que te impede de viver?",
+            praticaRapida: "Pega um papel e caneta. Escreve aí uma 'regra' (hábito ou crença) que hoje mais te prende do que ajuda. Agora, como o dono da sua mente, reescreve essa regra. Deixa ela de um jeito que te dê liberdade E organização ao mesmo tempo.",
+            invocacao: "Quando precisar de foco, disciplina ou coragem pra botar ordem na casa, respire fundo, visualize a montanha e repita: 'Eu defino meus limites. Eu construo minha realidade. Minha vontade é minha estrutura.'",
+          },
+          'mae-terra': {
+            title: "A MÃE-TERRA (A Mãe que Nutre)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 4.4 2.9 8.1 6.8 9.5" /><path d="M12 12a10 10 0 0 1 10 10c0-4.4-2.9-8.1-6.8-9.5" /><path d="M2 12h20" /></svg>',
+            sombraQueDanca: "Uma figura com formas mais redondas, bem acolhedora. Dela, saem e voltam plantas e rios, como se ela estivesse respirando devagarinho, num ritmo constante.",
+            oQueEh: "Ela é a própria Natureza! A Fertilidade, o lugar de onde tudo nasce e pra onde tudo volta. É o corpo, a matéria, a paciência das estações. Ela é aquele 'sim' gigante pra vida, sem pedir nada em troca.",
+            emVoce: "Sua criatividade natural. Sua capacidade de cuidar dos outros e dos seus projetos. A paciência pra esperar a hora certa de colher. Sua conexão com seu corpo e com os ciclos da natureza (sono, fome, etc.).",
+            ladoRuim: "Ficar parado no mesmo lugar, a inércia. A superproteger tanto que sufoca. O apego que não deixa as coisas (ou pessoas) crescerem e irem embora. É aquela zona de conforto que virou um pântano.",
+            praRefletir: "O que você tá nutrindo em sua vida agora (projetos, gente, você mesmo)? E o que tá aí, doidinho pra nascer de você? Você tá dando 'comida' (tempo, energia) pro que você quer que cresça?",
+            praticaRapida: "Toca numa planta ou na terra. Se não der, só imagina raízes saindo dos seus pés. Agradece! Agora, pensa num projeto que você tá 'sufocando' de tanto perfeccionismo. Decide UMA coisinha pra soltar ele e deixar ele crescer em paz.",
+            invocacao: "Quando se sentir sem criatividade ou 'seco', toque o chão e diga: 'Eu sou fértil. Eu recebo a abundância do universo. Eu nutro a vida que cresce em mim e ao meu redor.'",
+          },
+          'deus-sol': {
+            title: "O DEUS-SOL (A Consciência Ligada no 220)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>',
+            sombraQueDanca: "Uma sombra que pulsa com luz e calor. É tão brilhante que quase não parece sombra. Ela se move com confiança total, sem hesitar um segundo.",
+            oQueEh: "Ele é a Luz da Razão, a Clareza total! O herói que bota nome no 'dragão' da ignorância pra poder vencer ele. É a lâmpada que acende na sua cabeça! É a energia de agir, de aparecer, de dizer 'Eu Sou!'.",
+            emVoce: "Sua autoconfiança, sua coragem de falar o que pensa, sua capacidade de liderar e de brilhar sem vergonha nenhuma. Sua capacidade de subir num palco e defender sua ideia.",
+            ladoRuim: "Arrogância, ego gigante, aquela luz que cega os outros em vez de ajudar. É achar que só a sua opinião importa e acabar 'queimando' as pessoas ao seu redor.",
+            praRefletir: "Onde é que você precisa levar mais clareza na sua vida e acabar com as dúvidas? Você tá usando sua luz pra iluminar o caminho ou pra cegar todo mundo com seu brilho?",
+            praticaRapida: "Fecha os olhos. Imagina um solzinho dourado bem no seu plexo solar. Sente ele esquentar e pulsar. Cada vez que você inspirar, vê essa luz crescendo, forte e quente. Respira fundo essa clareza!",
+            invocacao: "De manhã, ou quando precisar de coragem, abra os braços pro sol (ou só imagine ele) e declare: 'Eu sou luz. Eu sou claro(a). Eu brilho minha verdade sem medo.'",
+          },
+          'deusa-lua': {
+            title: "A DEUSA-LUA (O Mistério da Intuição)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>',
+            sombraQueDanca: "Uma sombra que muda suavemente: de moça, pra mãe, pra anciã, e volta. Ela nunca tá parada, tá sempre fluindo. Ela segura um caldeirão que reflete as estrelas.",
+            oQueEh: "Ela é pura Intuição! O Inconsciente, a Magia que fala baixinho. A guardiã dos sonhos e dos segredos da alma. Sabe aquela sensação de 'não sei por que, mas sei que é por aqui'? É ela falando.",
+            emVoce: "Sua intuição. Seus sonhos. Sua empatia, sua capacidade de 'sacar' o ambiente sem ninguém falar nada. Sua habilidade de se adaptar às mudanças da vida. A sabedoria que vem do seu corpo.",
+            ladoRuim: "Viver na ilusão, emoções bagunçadas, medo do que a gente não conhece. É confundir intuição com paranoia. É se afogar num copo d'água emocional ou viver no 'mundo da lua'.",
+            praRefletir: "Qual é a mensagem que a sua intuição (sua Lua aí dentro) tá tentando te mandar, mas a sua cabeça teimosa (o Sol) fica ignorando? Você tá respeitando seus ciclos de energia (agir vs. descansar)?",
+            praticaRapida: "Hoje à noite, antes de dormir, bota um copo de água do lado da cama. Pede pra sua intuição te trazer uma mensagem clara nos seus sonhos. Deixa um caderninho ali perto. Ao acordar, ANTES de tudo, anota o que vier. Depois, bebe a água.",
+            invocacao: "Quando a mente estiver muito barulhenta, pare. Respire fundo, coloque a mão no peito e pergunte em silêncio: 'O que eu realmente sinto sobre isso?' E aí, escute. O primeiro sussurro é a resposta.",
+          },
+          'mensageiro': {
+            title: "O MENSAGEIRO DIVINO (O Cara da Mudança)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a10 10 0 0 1 0 17.75" /><path d="M8 3.13a10 10 0 0 0 0 17.75" /><path d="M12 4v16" /><path d="M8 8l4-4 4 4" /><path d="M16 16l-4 4-4-4" /></svg>',
+            sombraQueDanca: "Uma sombra rápida, que parece dançar e se dividir. Ela não para! Você olha e é um coiote, pisca e já é um cara com tênis de asinha. Sempre correndo.",
+            oQueEh: "Ele é o 'Malandro' (no bom sentido!), o cara que quebra as regras pra deixar o novo entrar. O mensageiro que liga o mundo dos Deuses com o nosso. É a internet, a piada que quebra o gelo, a 'malandragem' divina que acha soluções que ninguém pensou.",
+            emVoce: "Seu senso de humor! Sua criatividade pra resolver pepinos. Sua lábia pra negociar, sua curiosidade que te faz clicar em links aleatórios e aprender coisas novas. Sua velocidade de pensamento.",
+            ladoRuim: "A mentira, a fofoca, passar os outros pra trás. É ser o '171'. A ansiedade de quem tem mil abas abertas no navegador e não foca em nenhuma. É prometer e não entregar.",
+            praRefletir: "Você tá se comunicando de um jeito autêntico e claro? Ou tá usando um monte de máscara pra agradar ou conseguir o que quer? Você tá usando sua inteligência pra criar pontes ou pra cavar buracos?",
+            praticaRapida: "Bota a mão de leve na sua garganta. Fecha os olhos. Canta uma nota só (pode ser o som 'HAM') e sente a vibração na sua mão. Agora, pensa numa verdade importante que você precisa falar (pra alguém ou pra você) hoje.",
+            invocacao: "Antes de uma conversa difícil ou uma prova, estale os dedos e diga: 'Minha mente é rápida. Minha palavra é clara. Eu conecto os mundos com facilidade e humor.'",
+          },
+          'ferreiro': {
+            title: "O FERREIRO DIVINO (O Cara da Resiliência)",
+            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 20a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 13.8 14h-3.6a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 8.8 8H18a5 5 0 0 1 4 8 5 5 0 0 1-4 4h-2.8Z" /><path d="M6 20h2" /><path d="M7 14v6" /><path d="M18 8V6a2 2 0 0 0-2-2H8" /></svg>',
+            sombraQueDanca: "Uma sombra forte, focada, curvada sobre a bigorna. A cada batida do martelo, faíscas de luz (da fogueira) iluminam a caverna. Ela não tem pressa; cada batida é perfeita.",
+            oQueEh: "Esse é o Alquimista, o Artesão da Alma! É ele quem pega o material bruto da dor e, usando o fogo da crise e a pressão da vida, transforma isso numa ferramenta poderosa. Ele é a resiliência em pessoa!",
+            emVoce: "Sua capacidade de transformar um trauma em sabedoria. Sua resiliência. Sua disciplina de ir pra terapia. Aquela força que você só descobre quando o bicho pega, que te faz levantar e dizer: 'Ok, doeu. O que eu aprendo com isso agora?'",
+            ladoRuim: "Amargura, querer ficar sozinho, isolamento. É o cara que fica no porão remoendo a raiva, construindo armas pra se vingar em vez de ferramentas pra se curar. É guardar rancor até azedar.",
+            praRefletir: "Qual 'ferida' da sua vida, se você olhar pra ela com consciência e coragem, pode virar sua maior força? Você tá fugindo do fogo da transformação ou tá disposto a entrar na forja pra sair mais forte?",
+            praticaRapida: "(Com segurança!) Escreve num papel a 'matéria bruta' (uma dor, um trauma) que você tá pronto pra transformar. Vai pra um lugar seguro e queime o papel. Fica olhando as chamas. Intencione que a energia presa ali seja liberada e forjada em sabedoria.",
+            invocacao: "Quando estiver passando por um perrengue, sentindo a pressão, respire fundo, bata o pé no chão e afirme: 'Eu não quebro, eu forjo. Esta pressão me transforma. Esta dor vira o meu poder.'",
+          },
+        };
+        // --- Fim: Dados e Lógica do Panteão ---
+
+        let currentPanteaoWall = 0;
+
+        function renderPanteaoNav() {
+            const navContainer = document.getElementById('panteao-nav');
+            if (!navContainer) return;
+            navContainer.innerHTML = panteaoSections.map(section => `
+                <button
+                  data-wall-id="${section.id}"
+                  class="panteao-nav-btn px-4 py-2 md:px-6 md:py-3 rounded-md transition-all ${currentPanteaoWall === section.id ? 'bg-amber-700 text-white font-bold shadow-lg' : 'bg-gray-700/50 text-amber-200/80 hover:bg-gray-600/70'}"
+                >
+                  ${section.title}
+                </button>
+            `).join('');
+        }
+
+        function renderPanteaoWall(wallId) {
+            currentPanteaoWall = wallId;
+            renderPanteaoNav(); // Re-render nav to update active state
+
+            const wallContainer = document.getElementById('panteao-wall');
+            if (!wallContainer) return;
+
+            const section = panteaoSections.find(s => s.id === wallId);
+            if (!section) return;
+
+            const glyphsHtml = section.archetypes.map(archetypeId => {
+                const data = archetypeData[archetypeId];
+                return `
+                  <div class="flex flex-col items-center gap-2">
+                    <button
+                      data-glyph-id="${archetypeId}"
+                      class="panteao-glyph-btn p-6 bg-gray-800/50 border-2 border-amber-800/60 rounded-xl text-amber-300 hover:bg-amber-900/50 hover:border-amber-600 hover:shadow-lg transition-all duration-300"
+                      title="Tocar no glifo: ${data.title}"
+                    >
+                      ${data.glyph}
+                    </button>
+                    <span class="text-amber-100/70">${data.title.split(' (')[0]}</span>
+                  </div>
+                `;
+            }).join('');
+
+            wallContainer.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6 items-center justify-center animate-fadeIn">
+                    ${glyphsHtml}
+                    <div class="w-full text-center text-amber-100/60 md:absolute mt-4 md:mt-0" style="bottom: -2rem;">
+                        <p>Toque em um glifo para despertar a sombra.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderArchetypeShadow(archetypeId) {
+            const wallContainer = document.getElementById('panteao-wall');
+            if (!wallContainer) return;
+
+            const data = archetypeData[archetypeId];
+            if (!data) return;
+
+            const infoButtonsHtml = [
+                { label: "Em Você", content: data.emVoce },
+                { label: "O Lado Ruim", content: data.ladoRuim },
+                { label: "Pra Refletir", content: data.praRefletir },
+                { label: "Prática Rápida", content: data.praticaRapida },
+                { label: "Pra Chamar Essa Força", content: data.invocacao },
+            ].map(btn => `<button data-modal-title="${btn.label}" data-modal-content="${btn.content}" class="panteao-modal-btn bg-amber-800/50 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700/70 transition-all text-sm">${btn.label}</button>`).join('');
+
+            wallContainer.innerHTML = `
+                <div class="w-full max-w-3xl p-6 bg-gray-900/80 border border-amber-900/40 rounded-xl shadow-2xl shadow-black/50 animate-fadeIn backdrop-blur-md">
+                    <div class="flex justify-between items-start">
+                      <h2 class="text-3xl font-bold text-amber-300 mb-4">${data.title}</h2>
+                      <button class="panteao-close-shadow-btn text-gray-500 hover:text-amber-300 transition-colors" title="Voltar aos Glifos">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                      </button>
+                    </div>
+                    <div class="mb-4 p-3 italic text-amber-100/80 bg-gray-800/50 rounded-md border border-gray-700/50">
+                      <p><strong class="text-amber-200">Sombra que Dança:</strong> ${data.sombraQueDanca}</p>
+                    </div>
+                    <p class="text-lg text-gray-200 leading-relaxed mb-6">${data.oQueEh}</p>
+                    <div class="flex flex-wrap gap-2">${infoButtonsHtml}</div>
+                </div>
+            `;
+        }
+
+        function showPanteaoModal(title, content) {
+            const modal = document.getElementById('detail-modal'); // Reutilizando o modal existente
+            const modalBody = document.getElementById('modal-body');
+            if (!modal || !modalBody) return;
+
+            modalBody.innerHTML = `<h2>${title}</h2><p class="whitespace-pre-wrap leading-relaxed">${content}</p>`;
+            modal.classList.add('visible');
+            zoomInGalaxy(); // Reutilizando o efeito de zoom
+        }
+
+        function initPanteao() {
+            const panteaoContainer = document.getElementById('panteao-container');
+            if (!panteaoContainer) return;
+
+            renderPanteaoWall(0); // Renderiza a primeira parede por padrão
+
+            panteaoContainer.addEventListener('click', function(e) {
+                const navBtn = e.target.closest('.panteao-nav-btn');
+                const glyphBtn = e.target.closest('.panteao-glyph-btn');
+                const closeShadowBtn = e.target.closest('.panteao-close-shadow-btn');
+                const modalBtn = e.target.closest('.panteao-modal-btn');
+
+                if (navBtn) {
+                    const wallId = parseInt(navBtn.dataset.wallId, 10);
+                    if (currentPanteaoWall !== wallId) renderPanteaoWall(wallId);
+                    return;
+                }
+                if (glyphBtn) {
+                    const archetypeId = glyphBtn.dataset.glyphId;
+                    renderArchetypeShadow(archetypeId);
+                    return;
+                }
+                if (closeShadowBtn) {
+                    renderPanteaoWall(currentPanteaoWall);
+                    return;
+                }
+                if (modalBtn) {
+                    const title = modalBtn.dataset.modalTitle;
+                    const content = modalBtn.dataset.modalContent;
+                    showPanteaoModal(title, content);
+                    return;
+                }
+            });
+        }
 
         // --- Fim: Lógica de Navegação ---
 
