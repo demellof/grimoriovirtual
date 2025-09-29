@@ -50,15 +50,23 @@
         }
 
         .bookshelf-bg {
-            background: linear-gradient(180deg, #0f0524 0%, #1a202c 100%); /* Fundo mais escuro */
-            border-right: 1px solid #4A5568; /* Borda para separar */
+            /* A warmer, richer wood color inspired by the reference image */
+            background: linear-gradient(180deg, #3a2f20 0%, #1c1108 100%);
+            border-right: 2px solid #000; /* Darker, more defined border */
             z-index: 40;
             transition: all 0.3s ease;
-            /* Estilo para simular a madeira ou prateleira */
+            /* Subtle shelf lines */
             background-image:
-                linear-gradient(rgba(74, 85, 104, 0.2) 1px, transparent 1px), /* Linhas horizontais */
-                linear-gradient(90deg, rgba(74, 85, 104, 0.1) 1px, transparent 1px); /* Linhas verticais (sutl) */
-            background-size: 100% 40px, 100% 40px; /* Altura da "prateleira" */
+                linear-gradient(rgba(255, 220, 185, 0.04) 1px, transparent 1px);
+            background-size: 100% 40px;
+            box-shadow: inset -10px 0 15px -5px rgba(0,0,0,0.6); /* Deeper inner shadow for depth */
+        }
+
+        /* Ornate separator for the bookshelf, giving it a magical feel */
+        #sidebar .border-t-2 {
+            border: none; /* Remove the simple top border */
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(253, 224, 71, 0.4), transparent);
         }
 
         .bookshelf-bg::before { /* Sombra da prateleira na parede */
@@ -68,7 +76,7 @@
             right: 0;
             bottom: 0;
             width: 10px;
-            background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+            background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
             pointer-events: none;
         }
 
@@ -305,6 +313,139 @@
             font-family: 'Cinzel', serif;
         }
 
+        /* Estilos para Abas do Herbário */
+        .herbario-tabs {
+            display: flex;
+            gap: 0.5rem; /* 8px */
+            margin-bottom: 1.5rem; /* 24px */
+            border-bottom: 2px solid rgba(107, 114, 128, 0.2); /* gray-500 com opacidade */
+        }
+        .herbario-tab-btn {
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600;
+            color: #9CA3AF; /* gray-400 */
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateY(2px); /* Alinha com a borda inferior */
+        }
+        .herbario-tab-btn:hover {
+            color: #F3F4F6; /* gray-100 */
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .herbario-tab-btn.active {
+            color: #fde047; /* Amarelo dourado */
+            border-bottom-color: #fde047;
+        }
+        .herbario-tab-content {
+            display: none; /* Oculto por padrão */
+        }
+        .herbario-tab-content.active {
+            display: block; /* Visível quando ativo */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Estilos para Roda do Ano Interativa */
+        .roda-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .roda-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+
+        .roda-ano {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transform: rotate(-22.5deg); /* Alinha Yule/Litha verticalmente */
+        }
+
+        .sabbat-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(253, 224, 71, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #9CA3AF; /* gray-400 */
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .sabbat-item:hover {
+            transform: scale(1.15) !important; /* !important para sobrepor o transform do JS */
+            border-color: #fde047;
+            color: #fde047;
+            z-index: 10;
+        }
+        .sabbat-item.active {
+            transform: scale(1.1) !important;
+            border-color: #fde047;
+            color: #fde047;
+            background-color: rgba(55, 65, 81, 0.8);
+            box-shadow: 0 0 20px rgba(253, 224, 71, 0.4);
+            z-index: 5;
+        }
+        .sabbat-item .sabbat-title {
+             transform: rotate(22.5deg); /* Gira o texto para ficar reto */
+        }
+
+        .roda-info-panel {
+            flex-grow: 1;
+            max-width: 500px;
+            min-height: 400px; /* Garante altura mínima */
+        }
+        .roda-info-content {
+            display: none;
+        }
+        .roda-info-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        .roda-info-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .roda-info-content p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .roda-info-content ul {
+            list-style-position: inside;
+            list-style-type: disc;
+            padding-left: 1rem;
+        }
+
+
         /* Menu Mobile */
         #menu-button {
             display: block;
@@ -349,6 +490,7 @@
                 <a href="#" onclick="showPage('page-sopros', this, event)" class="block book-spine book-color-5">Sopros de Vida</a>
                 <a href="#" onclick="showPage('page-roda-do-ano', this, event)" class="block book-spine book-color-1">Roda do Ano</a>
                 <a href="#" onclick="showPage('page-panteao', this, event)" class="block book-spine book-color-2">O Panteão</a>
+                <a href="#" onclick="showPage('page-semanal', this, event)" class="block book-spine book-color-5">Correspondências Semanais</a>
                 <a href="#" onclick="showPage('page-galeria', this, event)" class="block book-spine book-color-3">Galeria Onírica</a>
 
                 <div class="border-t-2 border-stone-600/50 my-4"></div>
@@ -679,12 +821,55 @@
                 <strong>Atenção:</strong> As informações sobre plantas medicinais são para conhecimento tradicional e não substituem consulta a um profissional de saúde qualificado. A identificação correta das plantas é crucial. Use com responsabilidade.
             </p>
         </div>
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Nosso Herbário Sazonal (Aqui do Hemisfério Sul)</h1>
-        <p class="page-subtitle">Olha que legal: cada estação aqui no Hemisfério Sul (começando lá nos seus meses) traz um poder e uma energia diferente, sabe? E as plantas que florescem em cada época são tipo a "tradução" desse poder. Pense nas estações como a "respiração" do ano. Elas servem como nossas ferramentas, tanto pra saúde do corpo (medicinais) quanto pra alma (mágicas). Aqui, vamos ver como usar cada uma!</p>
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Herbário Solar & Lunar</h1>
+        <p class="page-subtitle">Navegue pelas estações do Hemisfério Sul, cada uma pulsando com uma energia celestial única, refletida nas plantas que florescem sob sua influência.</p>
 
-        <div class="space-y-16">
+        <!-- Abas do Herbário -->
+        <div class="herbario-tabs">
+            <button class="herbario-tab-btn active" onclick="switchHerbarioTab('primavera')"><i class="ph-fill ph-moon-crescent"></i>Primavera</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('verao')"><i class="ph-fill ph-sun"></i>Verão</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('outono')"><i class="ph-fill ph-moon-waning-crescent"></i>Outono</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('inverno')"><i class="ph-fill ph-moon"></i>Inverno</button>
+        </div>
+
+        <!-- Conteúdo das Abas -->
+        <div id="herbario-content">
+            <!-- Primavera -->
+            <div id="tab-primavera" class="herbario-tab-content active">
+                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #3B82F6, #22C55E) 1;">Primavera (Setembro a Dezembro): O Despertar</h2>
+                <p class="mb-8 text-slate-300">Agora sim! É o "bom dia!" da natureza. A energia explode pra todo lado! Tudo acorda, tudo quer nascer. É tempo de coisa nova, de começar projetos, de otimismo, de fertilidade... e de amor, claro!</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Lavanda (Lavandula angustifolia)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A Alma da Paz</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dela é um dos melhores calmantes que existem. Ótimo pra ansiedade, estresse e pra quem não dorme direito. Alivia até dor de cabeça de tensão. Um chazinho antes de dormir é como um "boa noite" pra ansiedade. Pingar uma gotinha do óleo essencial no travesseiro também faz mágica.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar bem pouquinho! Fica uma delícia em sobremesas, biscoitos e limonadas (experimente!). Mas vá com calma, se errar a mão, parece que tá comendo sabonete! É só um toque.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Traz harmonia e paz. O banho de lavanda parece que "lava a alma" e acalma o coração. Sabe aquele dia que foi caótico, cheio de briga e estresse? É esse banho. O incenso é ótimo pra meditar. E os saquinhos com a flor seca no armário (sachês) são um clássico!</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Camomila (Matricaria chamomilla)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Ouro Calminho</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É um calmante bem suave, o "abraço de mãe" em forma de chá. Bom pro estômago e pros nervos. O chá ajuda a dormir e alivia cólicas (até em bebês). Fazer compressa com o chá gelado também é ótimo pra acalmar olho inchado de cansaço.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>O uso mais comum é o chá, claro. Mas dá pra usar as flores pra aromatizar sobremesas leves.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Erva de prosperidade e calma. Tem a ver com o Sol. Dizem que lavar o rosto e as mãos com o chá atrai sorte (até em jogo!) e ajuda nos negócios. O banho de camomila relaxa e atrai amor, mas um amor sereno, tranquilo.</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Hibisco (Hibiscus sabdariffa)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Toque de Atração</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá (feito da flor seca, aquele vermelho azedinho) é cheio de antioxidante, ajuda a controlar a pressão e a desinchar (é diurético). Ótimo pra tomar gelado no verão.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Muito usado em chás gelados (com canela e gengibre fica ótimo!), geleias e pra dar cor em bebidas.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele tem tudo a ver com amor, paixão e "magnetismo pessoal". É a erva da "sensualidade" e do amor-próprio. O banho de hibisco (sempre teste na pele antes, pra ver se não tem alergia!) é pra "despertar" sua Vênus interior, pra se sentir mais confiante, poderoso(a) e atraente!</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Verão -->
-            <div>
+            <div id="tab-verao" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #EAB308) 1;">Verão (Dezembro a Março): A Abundância</h2>
                 <p class="mb-8 text-slate-300">Essa é a estação da vibração total! É puro calor e alegria. É a energia "pra fora", de socializar, de festa. Tem tudo a ver com a energia do fogo, com prosperidade e com "crescer" na vida. As plantas dessa época são cheias de "luz solar" guardada.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -719,9 +904,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- Outono -->
-            <div>
+            <div id="tab-outono" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #4A5568) 1;">Outono (Março a Junho): O Recolhimento</h2>
                 <p class="mb-8 text-slate-300">Época de colher o que a gente plantou, de olhar mais pra dentro e se preparar. A energia vai ficando mais quietinha. As folhas caem, o ar fica mais seco. É um convite pra gente "desapegar" do que não serve mais, igualzinho às árvores. É um tempo ótimo pra agradecer e lembrar da nossa família que veio antes.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -753,9 +937,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- Inverno -->
-            <div>
+            <div id="tab-inverno" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #4A5568, #3B82F6) 1;">Inverno (Junho a Setembro): A Introspecção</h2>
                 <p class="mb-8 text-slate-300">É quando temos a noite mais longa do ano! A natureza parece que "dorme". A energia tá toda guardadinha, lá no fundo. É o tempo do silêncio, de ficar mais em casa, de cuidar da nossa "raiz" por dentro, de descansar e juntar força pra próxima primavera.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -781,41 +964,6 @@
                         <div class="space-y-3 text-slate-300">
                             <div><strong class="text-green-400">Pra Saúde:</strong><p>O óleo da semente dela (muito usado na Ásia, é o óleo de Tsubaki) é excelente pra pele e pro cabelo. É um segredo de beleza antigo lá do Japão.</p></div>
                             <div><strong class="text-purple-400">Magia:</strong><p>O mais legal é que ela dá flor no frio! É o símbolo da beleza que nasce no meio do perrengue, da resiliência. Ela não é uma erva de "banho" ou "fumaça", é mais de contemplação. Ter as flores dela por perto, num altar, traz paz e lembra a gente da nossa própria força de "florescer" quando tudo tá difícil.</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Primavera -->
-            <div>
-                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #3B82F6, #22C55E) 1;">Primavera (Setembro a Dezembro): O Despertar</h2>
-                <p class="mb-8 text-slate-300">Agora sim! É o "bom dia!" da natureza. A energia explode pra todo lado! Tudo acorda, tudo quer nascer. É tempo de coisa nova, de começar projetos, de otimismo, de fertilidade... e de amor, claro!</p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Lavanda (Lavandula angustifolia)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">A Alma da Paz</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dela é um dos melhores calmantes que existem. Ótimo pra ansiedade, estresse e pra quem não dorme direito. Alivia até dor de cabeça de tensão. Um chazinho antes de dormir é como um "boa noite" pra ansiedade. Pingar uma gotinha do óleo essencial no travesseiro também faz mágica.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar bem pouquinho! Fica uma delícia em sobremesas, biscoitos e limonadas (experimente!). Mas vá com calma, se errar a mão, parece que tá comendo sabonete! É só um toque.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Traz harmonia e paz. O banho de lavanda parece que "lava a alma" e acalma o coração. Sabe aquele dia que foi caótico, cheio de briga e estresse? É esse banho. O incenso é ótimo pra meditar. E os saquinhos com a flor seca no armário (sachês) são um clássico!</p></div>
-                        </div>
-                    </div>
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Camomila (Matricaria chamomilla)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">O Ouro Calminho</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É um calmante bem suave, o "abraço de mãe" em forma de chá. Bom pro estômago e pros nervos. O chá ajuda a dormir e alivia cólicas (até em bebês). Fazer compressa com o chá gelado também é ótimo pra acalmar olho inchado de cansaço.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>O uso mais comum é o chá, claro. Mas dá pra usar as flores pra aromatizar sobremesas leves.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Erva de prosperidade e calma. Tem a ver com o Sol. Dizem que lavar o rosto e as mãos com o chá atrai sorte (até em jogo!) e ajuda nos negócios. O banho de camomila relaxa e atrai amor, mas um amor sereno, tranquilo.</p></div>
-                        </div>
-                    </div>
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Hibisco (Hibiscus sabdariffa)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">O Toque de Atração</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá (feito da flor seca, aquele vermelho azedinho) é cheio de antioxidante, ajuda a controlar a pressão e a desinchar (é diurético). Ótimo pra tomar gelado no verão.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Muito usado em chás gelados (com canela e gengibre fica ótimo!), geleias e pra dar cor em bebidas.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele tem tudo a ver com amor, paixão e "magnetismo pessoal". É a erva da "sensualidade" e do amor-próprio. O banho de hibisco (sempre teste na pele antes, pra ver se não tem alergia!) é pra "despertar" sua Vênus interior, pra se sentir mais confiante, poderoso(a) e atraente!</p></div>
                         </div>
                     </div>
                 </div>
@@ -988,63 +1136,69 @@
         </div>
     </template>
 
-    <!-- Template: Roda do Ano (Calendários) -->
+    <!-- Template: Roda do Ano Interativa -->
     <template id="page-roda-do-ano">
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Roda do Ano: Os Ciclos Solares (Hemisfério Sul)</h1>
-        <p class="page-subtitle">Você já se sentiu mais introspectivo no inverno ou mais expansivo no verão? Isso não é coincidência; é a sua conexão com os ciclos da Terra. A Roda do Ano é o mapa que nos ajuda a entender e honrar essa jornada.</p>
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Roda do Ano Interativa (Hemisfério Sul)</h1>
+        <p class="page-subtitle">A jornada da natureza é a nossa jornada. Toque em um festival para explorar sua energia e significado.</p>
 
-        <div class="content-card glass-effect space-y-6">
-            <div>
-                <h2 class="text-3xl font-bold text-amber-300 mb-3">Por que no Hemisfério Sul?</h2>
-                <p>Muitos livros focam no Hemisfério Norte (celebrando o verão em junho, por exemplo). Aqui, honramos a nossa realidade: celebramos o Solstício de Verão em Dezembro, o Outono em Março, o Inverno em Junho e a Primavera em Setembro. Esta é a Roda que gira para nós.</p>
+        <div class="roda-container">
+            <div class="roda-ano" id="roda-ano-container">
+                <!-- Sabbats serão injetados aqui pelo JS -->
             </div>
-            <div class="border-t border-stone-600/50"></div>
-            <div>
-                <h2 class="text-3xl font-bold text-amber-300 mb-3">Os Quatro Pilares Solares</h2>
-                <p>A Roda tem oito festivais (Sabbats), mas este guia foca nos quatro pilares astronômicos, os eventos que marcam o auge de cada estação. (Os outros quatro, que marcam os pontos médios, exploraremos em outro guia).</p>
+            <div class="roda-info-panel glass-effect content-card" id="roda-info-panel">
+                <!-- Conteúdo dos Sabbats será injetado aqui -->
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-8 mt-12">
-            <!-- Litha -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-yellow-400 mb-3">1. Solstício de Verão (Litha)</h3>
-                <p class="text-lg text-yellow-300/80 italic mb-4">(Aprox. 21 de Dezembro)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>É o dia mais longo e a noite mais curta do ano. O Sol atinge seu ponto mais alto no céu, como um rei no seu trono. É o auge do poder solar e o início oficial do Verão.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Triunfo da Luz</strong><p>Este é o momento de "Pico da Luz". A natureza está em sua plenitude máxima, vibrando com energia, cor e fertilidade. É a celebração da abundância, da paixão, da alegria e da expansão.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Acender Velas: Honre o Sol acendendo velas douradas ou amarelas.</li><li>Altar Solar: Crie um altar com símbolos solares, girassóis, frutas cítricas e cristais como o Citrino.</li><li>Banho de Ervas Solares: Tome um banho com alecrim ou calêndula para absorver a energia do dia.</li></ul></div>
-                </div>
+        <!-- Dados para a Roda do Ano (para o JS) -->
+        <div id="roda-ano-data" class="hidden">
+            <div data-sabbat="yule">
+                <h3 class="text-sky-300">Solstício de Inverno (Yule)</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 21 de Junho</p>
+                <p>Na noite mais longa, celebramos o renascimento da luz. É um momento de introspecção profunda, honrando o silêncio e a escuridão, sabendo que a semente do novo Sol foi plantada. É a promessa de um novo ciclo.</p>
+                <ul><li><strong>Energias:</strong> Renascimento, Esperança, Introspecção, Paz.</li><li><strong>Rituais:</strong> Acender velas para chamar o Sol, meditar sobre seus potenciais, queimar um Yule Log com intenções para o novo ciclo.</li></ul>
             </div>
-            <!-- Mabon -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-orange-400 mb-3">2. Equinócio de Outono (Mabon)</h3>
-                <p class="text-lg text-orange-300/80 italic mb-4">(Aprox. 20 de Março)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>O dia e a noite têm a mesma duração. É um momento de equilíbrio perfeito. A partir daqui, as noites começarão a ficar mais longas que os dias. É o início oficial do Outono.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Banquete do Agradecimento</strong><p>Mabon é o "Dia de Ação de Graças" pagão. É o momento de olhar para trás, para a luz do verão, e agradecer por tudo o que colhemos.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Banquete de Gratidão: Prepare uma refeição com alimentos da estação (abóbora, milho, maçã) e partilhe.</li><li>Altar da Colheita: Decore seu altar com pinhas, folhas secas, sementes e frutas da época.</li><li>Caminhada na Natureza: Faça uma caminhada consciente, observando as cores e os sinais da mudança.</li></ul></div>
-                </div>
+            <div data-sabbat="imbolc">
+                <h3 class="text-pink-300">Imbolc</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 1 de Agosto</p>
+                <p>O primeiro tremular da Primavera. A terra começa a despertar de seu sono de inverno. É o festival da luz crescente, da purificação e da inspiração. Honramos a Deusa Brígida, guardiã do fogo da criatividade e da cura.</p>
+                <ul><li><strong>Energias:</strong> Despertar, Purificação, Inspiração, Novos Planos.</li><li><strong>Rituais:</strong> Limpeza de primavera (física e energética), acender velas brancas, criar um altar para Brígida com símbolos de fogo e água.</li></ul>
             </div>
-            <!-- Yule -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-sky-400 mb-3">3. Solstício de Inverno (Yule)</h3>
-                <p class="text-lg text-sky-300/80 italic mb-4">(Aprox. 21 de Junho)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>A noite mais longa e o dia mais curto do ano. O Sol está em seu ponto mais baixo. É o início oficial do Inverno.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Renascimento da Esperança</strong><p>No ponto mais profundo da escuridão, celebramos a promessa do retorno da luz. Este é o "nascimento" do novo Sol.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Vigília do Sol: Acorde antes do amanhecer para saudar os primeiros raios do Sol "renascido".</li><li>Queima de Intenções (Yule Log): Escreva em um papel o que você quer deixar ir e o que quer convidar, e queime-o com segurança.</li><li>Meditação da Semente: Medite sobre o seu potencial silencioso, guardado para a primavera.</li></ul></div>
-                </div>
+            <div data-sabbat="ostara">
+                <h3 class="text-green-300">Equinócio de Primavera (Ostara)</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 22 de Setembro</p>
+                <p>O equilíbrio perfeito entre dia e noite, com a luz agora vencendo a escuridão. A vida explode em toda parte. É um tempo de fertilidade, novos começos e alegria pura. A energia é de crescimento rápido e de colocar planos em ação.</p>
+                <ul><li><strong>Energias:</strong> Equilíbrio, Fertilidade, Novos Começos, Ação.</li><li><strong>Rituais:</strong> Plantar sementes (literais e figurativas), pintar ovos com sigilos de seus desejos, passar tempo na natureza observando o despertar da vida.</li></ul>
             </div>
-            <!-- Ostara -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-green-400 mb-3">4. Equinócio de Primavera (Ostara)</h3>
-                <p class="text-lg text-green-300/80 italic mb-4">(Aprox. 22 de Setembro)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>O dia e a noite novamente têm a mesma duração. A partir daqui, os dias começarão a ficar mais longos. É o início oficial da Primavera.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: A Explosão da Vida</strong><p>Se Yule foi a promessa, Ostara é a explosão da vida. A terra desperta do seu sono. É um tempo de fertilidade, novos começos e crescimento acelerado.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Plantio de Sementes: Plante sementes (literalmente!) e dedique cada uma a um sonho para este ciclo.</li><li>Limpeza de Primavera: Faça uma limpeza física e energética em casa.</li><li>Altar da Primavera: Decore seu altar com flores frescas e ovos coloridos.</li></ul></div>
-                </div>
+            <div data-sabbat="beltane">
+                <h3 class="text-red-400">Beltane</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 31 de Outubro</p>
+                <p>O festival do fogo e da fertilidade, celebrando a união sagrada do Deus e da Deusa. A vida está em seu auge de paixão e vitalidade. É um tempo para celebrar a sensualidade, a alegria e a união, pulando fogueiras para purificação e sorte.</p>
+                <ul><li><strong>Energias:</strong> Paixão, Fertilidade, União, Vitalidade, Alegria.</li><li><strong>Rituais:</strong> Acender fogueiras, dançar ao redor de um mastro de fitas (Maypole), criar guirlandas de flores, celebrar o amor e a vida.</li></ul>
+            </div>
+            <div data-sabbat="litha">
+                <h3 class="text-yellow-300">Solstício de Verão (Litha)</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 21 de Dezembro</p>
+                <p>O dia mais longo do ano, o pico do poder do Sol. O Deus Sol está em seu trono, e a natureza está em sua plenitude. É uma celebração da abundância, do crescimento, da energia masculina e da realização. A luz triunfou.</p>
+                <ul><li><strong>Energias:</strong> Abundância, Poder, Crescimento, Celebração.</li><li><strong>Rituais:</strong> Banhos de ervas solares (alecrim, calêndula), criar altares com símbolos solares, passar o dia ao ar livre absorvendo a energia do Sol.</li></ul>
+            </div>
+            <div data-sabbat="lammas">
+                <h3 class="text-orange-400">Lammas / Lughnasadh</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 1 de Fevereiro</p>
+                <p>A primeira colheita. Agradecemos os primeiros frutos do nosso trabalho e honramos o sacrifício do Deus do Grão, que morre para nos alimentar. É um tempo de gratidão, de partilha e de reconhecer os primeiros resultados de nossos esforços.</p>
+                <ul><li><strong>Energias:</strong> Colheita, Gratidão, Sacrifício, Partilha.</li><li><strong>Rituais:</strong> Assar pão, fazer bonecos de milho ou trigo, partilhar uma refeição com os primeiros alimentos da colheita, agradecer pela abundância.</li></ul>
+            </div>
+            <div data-sabbat="mabon">
+                <h3 class="text-amber-500">Equinócio de Outono (Mabon)</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 20 de Março</p>
+                <p>A segunda colheita e o Dia de Ação de Graças pagão. Novamente, dia e noite são iguais, mas agora a escuridão começa a crescer. É tempo de agradecer, de equilíbrio e de se preparar para o inverno, estocando as bênçãos (físicas e espirituais).</p>
+                <ul><li><strong>Energias:</strong> Gratidão, Equilíbrio, Colheita, Preparação.</li><li><strong>Rituais:</strong> Fazer um banquete de outono, decorar o altar com folhas secas e alimentos da estação, meditar sobre o que você colheu no último ano.</li></ul>
+            </div>
+            <div data-sabbat="samhain">
+                <h3 class="text-purple-400">Samhain</h3>
+                <p class="text-sm text-gray-400 mb-4">Aprox. 30 de Abril</p>
+                <p>O fim do ano pagão e o início de um novo ciclo. O véu entre os mundos está no seu ponto mais fino, tornando a comunicação com os ancestrais mais fácil. É um tempo de honrar os que vieram antes, de adivinhação e de deixar ir o que precisa morrer.</p>
+                <ul><li><strong>Energias:</strong> Memória, Adivinhação, Morte e Renascimento, Deixar Ir.</li><li><strong>Rituais:</strong> Montar um altar para os ancestrais com fotos e oferendas, praticar oráculos (Tarô, Runas), fazer uma "Ceia Mudo" para os espíritos.</li></ul>
             </div>
         </div>
     </template>
@@ -1217,6 +1371,119 @@
         </div>
     </template>
 
+    <!-- NOVO TEMPLATE: Correspondências Semanais -->
+    <template id="page-semanal">
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-purple-400">Correspondências Semanais</h1>
+        <p class="page-subtitle">Cada dia da semana pulsa com uma energia única, governada por um planeta e um arcanjo. Alinhar suas intenções com essas forças pode potencializar suas magias, rituais e até mesmo seu humor.</p>
+
+        <div class="overflow-x-auto glass-effect rounded-lg border border-purple-400/20">
+            <table class="w-full text-left">
+                <thead class="text-xs text-amber-200 uppercase bg-black/30">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">Dia da Semana</th>
+                        <th scope="col" class="px-6 py-4">Planeta Regente</th>
+                        <th scope="col" class="px-6 py-4">Arcanjo Guardião</th>
+                        <th scope="col" class="px-6 py-4">Cores & Energias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Domingo -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-yellow-300 whitespace-nowrap">Domingo</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-sun text-2xl text-yellow-400"></i> Sol</td>
+                        <td class="px-6 py-4">Miguel</td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-yellow-400 border border-yellow-200"></div>
+                                <div class="w-4 h-4 rounded-full bg-orange-500 border border-orange-300"></div>
+                                <div class="w-4 h-4 rounded-full bg-white border border-gray-300"></div>
+                            </div>
+                            <span class="text-sm">Sucesso, Vitalidade, Cura, Alegria</span>
+                        </td>
+                    </tr>
+                    <!-- Segunda-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-slate-200 whitespace-nowrap">Segunda-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-moon text-2xl text-slate-300"></i> Lua</td>
+                        <td class="px-6 py-4">Gabriel</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-slate-200 border border-slate-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-white border border-gray-300"></div>
+                            </div>
+                            <span class="text-sm">Intuição, Sonhos, Emoções, Feminino</span>
+                        </td>
+                    </tr>
+                    <!-- Terça-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-red-400 whitespace-nowrap">Terça-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-red-500"></i> Marte</td>
+                        <td class="px-6 py-4">Samuel (Camael)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-red-600 border border-red-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-orange-600 border border-orange-400"></div>
+                            </div>
+                            <span class="text-sm">Ação, Coragem, Conflito, Proteção</span>
+                        </td>
+                    </tr>
+                    <!-- Quarta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-violet-400 whitespace-nowrap">Quarta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-violet-500"></i> Mercúrio</td>
+                        <td class="px-6 py-4">Rafael</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-100"></div>
+                                <div class="w-4 h-4 rounded-full bg-violet-500 border border-violet-300"></div>
+                            </div>
+                            <span class="text-sm">Comunicação, Estudo, Viagens</span>
+                        </td>
+                    </tr>
+                    <!-- Quinta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-blue-400 whitespace-nowrap">Quinta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-blue-500"></i> Júpiter</td>
+                        <td class="px-6 py-4">Saquiel (Zadkiel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-blue-600 border border-blue-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-purple-600 border border-purple-400"></div>
+                            </div>
+                            <span class="text-sm">Expansão, Prosperidade, Sorte</span>
+                        </td>
+                    </tr>
+                    <!-- Sexta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-pink-400 whitespace-nowrap">Sexta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-pink-500"></i> Vênus</td>
+                        <td class="px-6 py-4">Anael (Haniel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-pink-500 border border-pink-300"></div>
+                                <div class="w-4 h-4 rounded-full bg-emerald-500 border border-emerald-300"></div>
+                            </div>
+                            <span class="text-sm">Amor, Beleza, Harmonia, Artes</span>
+                        </td>
+                    </tr>
+                    <!-- Sábado -->
+                    <tr class="">
+                        <th scope="row" class="px-6 py-4 font-bold text-gray-400 whitespace-nowrap">Sábado</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-gray-500"></i> Saturno</td>
+                        <td class="px-6 py-4">Cassiel (Tzaphkiel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-gray-800 border border-gray-600"></div>
+                                <div class="w-4 h-4 rounded-full bg-black border border-gray-500"></div>
+                            </div>
+                            <span class="text-sm">Disciplina, Limites, Banimento</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
     <!-- Templates: Páginas Placeholder -->
     <template id="page-guardiao">
         <h1 class="page-title">Guardião</h1>
@@ -1362,6 +1629,10 @@
                     if (pageId === 'page-panteao') {
                         initPanteao();
                     }
+                    // Gatilho para a lógica da Roda do Ano
+                    if (pageId === 'page-roda-do-ano') {
+                        initRodaDoAno();
+                    }
                 }, 200);
 
                 if (activeLink) {
@@ -1475,6 +1746,92 @@
             ctx.stroke();
         }
         // --- Fim: Lógica do Forjador de Sigilos ---
+
+
+        // --- Início: Lógica das Abas do Herbário ---
+        function switchHerbarioTab(tabId) {
+            // Esconde todos os conteúdos de aba
+            const tabContents = document.querySelectorAll('.herbario-tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove a classe ativa de todos os botões de aba
+            const tabButtons = document.querySelectorAll('.herbario-tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostra o conteúdo da aba clicada e ativa o botão
+            const selectedContent = document.getElementById('tab-' + tabId);
+            const selectedButton = document.querySelector(`.herbario-tab-btn[onclick="switchHerbarioTab('${tabId}')"]`);
+            if (selectedContent && selectedButton) {
+                selectedContent.classList.add('active');
+                selectedButton.classList.add('active');
+            }
+        }
+        // --- Fim: Lógica das Abas do Herbário ---
+
+
+        // --- Início: Lógica da Roda do Ano ---
+        function showSabbatInfo(sabbatId) {
+            // Deactivate all items and panels
+            document.querySelectorAll('.sabbat-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.roda-info-content').forEach(content => content.classList.remove('active'));
+
+            // Activate the selected one
+            const activeItem = document.querySelector(`.sabbat-item[data-sabbat="${sabbatId}"]`);
+            const activeContent = document.getElementById(`info-${sabbatId}`);
+
+            if (activeItem) activeItem.classList.add('active');
+            if (activeContent) activeContent.classList.add('active');
+        }
+
+        function initRodaDoAno() {
+            const container = document.getElementById('roda-ano-container');
+            const infoPanel = document.getElementById('roda-info-panel');
+            const dataContainer = document.getElementById('roda-ano-data');
+
+            if (!container || !infoPanel || !dataContainer) return;
+
+            // Clear previous elements if any to prevent duplication on re-clicks
+            container.innerHTML = '';
+            infoPanel.innerHTML = '';
+
+            const sabbatsData = Array.from(dataContainer.children);
+            const sabbatOrder = ['yule', 'imbolc', 'ostara', 'beltane', 'litha', 'lammas', 'mabon', 'samhain'];
+            const radius = 140;
+
+            sabbatOrder.forEach((sabbatId, index) => {
+                const angle = (index / sabbatOrder.length) * 2 * Math.PI;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+
+                const sabbatElement = document.createElement('div');
+                sabbatElement.className = 'sabbat-item';
+
+                const sabbatData = sabbatsData.find(d => d.dataset.sabbat === sabbatId);
+                if (sabbatData) {
+                    const title = sabbatData.querySelector('h3').textContent.split(' (')[0];
+                    sabbatElement.innerHTML = `<span class="sabbat-title">${title}</span>`;
+                    sabbatElement.dataset.sabbat = sabbatId;
+                    sabbatElement.onclick = () => showSabbatInfo(sabbatId);
+                    sabbatElement.style.transform = `translate(${x}px, ${y}px)`;
+                    container.appendChild(sabbatElement);
+
+                    // Clone the info content to the panel
+                    const infoContent = document.createElement('div');
+                    infoContent.id = `info-${sabbatId}`;
+                    infoContent.className = 'roda-info-content';
+                    infoContent.innerHTML = sabbatData.innerHTML;
+                    infoPanel.appendChild(infoContent);
+                }
+            });
+
+            // Show Yule by default
+            showSabbatInfo('yule');
+        }
+        // --- Fim: Lógica da Roda do Ano ---
 
 
         // --- Início: Lógica do Modal, Zoom e Freemium ---
