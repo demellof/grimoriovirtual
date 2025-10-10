@@ -50,15 +50,23 @@
         }
 
         .bookshelf-bg {
-            background: linear-gradient(180deg, #0f0524 0%, #1a202c 100%); /* Fundo mais escuro */
-            border-right: 1px solid #4A5568; /* Borda para separar */
+            /* A warmer, richer wood color inspired by the reference image */
+            background: linear-gradient(180deg, #3a2f20 0%, #1c1108 100%);
+            border-right: 2px solid #000; /* Darker, more defined border */
             z-index: 40;
             transition: all 0.3s ease;
-            /* Estilo para simular a madeira ou prateleira */
+            /* Subtle shelf lines */
             background-image:
-                linear-gradient(rgba(74, 85, 104, 0.2) 1px, transparent 1px), /* Linhas horizontais */
-                linear-gradient(90deg, rgba(74, 85, 104, 0.1) 1px, transparent 1px); /* Linhas verticais (sutl) */
-            background-size: 100% 40px, 100% 40px; /* Altura da "prateleira" */
+                linear-gradient(rgba(255, 220, 185, 0.04) 1px, transparent 1px);
+            background-size: 100% 40px;
+            box-shadow: inset -10px 0 15px -5px rgba(0,0,0,0.6); /* Deeper inner shadow for depth */
+        }
+
+        /* Ornate separator for the bookshelf, giving it a magical feel */
+        #sidebar .border-t-2 {
+            border: none; /* Remove the simple top border */
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(253, 224, 71, 0.4), transparent);
         }
 
         .bookshelf-bg::before { /* Sombra da prateleira na parede */
@@ -68,7 +76,7 @@
             right: 0;
             bottom: 0;
             width: 10px;
-            background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+            background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
             pointer-events: none;
         }
 
@@ -305,6 +313,139 @@
             font-family: 'Cinzel', serif;
         }
 
+        /* Estilos para Abas do Herbário */
+        .herbario-tabs {
+            display: flex;
+            gap: 0.5rem; /* 8px */
+            margin-bottom: 1.5rem; /* 24px */
+            border-bottom: 2px solid rgba(107, 114, 128, 0.2); /* gray-500 com opacidade */
+        }
+        .herbario-tab-btn {
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600;
+            color: #9CA3AF; /* gray-400 */
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateY(2px); /* Alinha com a borda inferior */
+        }
+        .herbario-tab-btn:hover {
+            color: #F3F4F6; /* gray-100 */
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .herbario-tab-btn.active {
+            color: #fde047; /* Amarelo dourado */
+            border-bottom-color: #fde047;
+        }
+        .herbario-tab-content {
+            display: none; /* Oculto por padrão */
+        }
+        .herbario-tab-content.active {
+            display: block; /* Visível quando ativo */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Estilos para Roda do Ano Interativa */
+        .roda-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .roda-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+
+        .roda-ano {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transform: rotate(-22.5deg); /* Alinha Yule/Litha verticalmente */
+        }
+
+        .sabbat-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(253, 224, 71, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #9CA3AF; /* gray-400 */
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .sabbat-item:hover {
+            transform: scale(1.15) !important; /* !important para sobrepor o transform do JS */
+            border-color: #fde047;
+            color: #fde047;
+            z-index: 10;
+        }
+        .sabbat-item.active {
+            transform: scale(1.1) !important;
+            border-color: #fde047;
+            color: #fde047;
+            background-color: rgba(55, 65, 81, 0.8);
+            box-shadow: 0 0 20px rgba(253, 224, 71, 0.4);
+            z-index: 5;
+        }
+        .sabbat-item .sabbat-title {
+             transform: rotate(22.5deg); /* Gira o texto para ficar reto */
+        }
+
+        .roda-info-panel {
+            flex-grow: 1;
+            max-width: 500px;
+            min-height: 400px; /* Garante altura mínima */
+        }
+        .roda-info-content {
+            display: none;
+        }
+        .roda-info-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        .roda-info-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .roda-info-content p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .roda-info-content ul {
+            list-style-position: inside;
+            list-style-type: disc;
+            padding-left: 1rem;
+        }
+
+
         /* Menu Mobile */
         #menu-button {
             display: block;
@@ -349,6 +490,7 @@
                 <a href="#" onclick="showPage('page-sopros', this, event)" class="block book-spine book-color-5">Sopros de Vida</a>
                 <a href="#" onclick="showPage('page-roda-do-ano', this, event)" class="block book-spine book-color-1">Roda do Ano</a>
                 <a href="#" onclick="showPage('page-panteao', this, event)" class="block book-spine book-color-2">O Panteão</a>
+                <a href="#" onclick="showPage('page-semanal', this, event)" class="block book-spine book-color-5">Correspondências Semanais</a>
                 <a href="#" onclick="showPage('page-galeria', this, event)" class="block book-spine book-color-3">Galeria Onírica</a>
 
                 <div class="border-t-2 border-stone-600/50 my-4"></div>
@@ -679,12 +821,55 @@
                 <strong>Atenção:</strong> As informações sobre plantas medicinais são para conhecimento tradicional e não substituem consulta a um profissional de saúde qualificado. A identificação correta das plantas é crucial. Use com responsabilidade.
             </p>
         </div>
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Nosso Herbário Sazonal (Aqui do Hemisfério Sul)</h1>
-        <p class="page-subtitle">Olha que legal: cada estação aqui no Hemisfério Sul (começando lá nos seus meses) traz um poder e uma energia diferente, sabe? E as plantas que florescem em cada época são tipo a "tradução" desse poder. Pense nas estações como a "respiração" do ano. Elas servem como nossas ferramentas, tanto pra saúde do corpo (medicinais) quanto pra alma (mágicas). Aqui, vamos ver como usar cada uma!</p>
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">Herbário Solar & Lunar</h1>
+        <p class="page-subtitle">Navegue pelas estações do Hemisfério Sul, cada uma pulsando com uma energia celestial única, refletida nas plantas que florescem sob sua influência.</p>
 
-        <div class="space-y-16">
+        <!-- Abas do Herbário -->
+        <div class="herbario-tabs">
+            <button class="herbario-tab-btn active" onclick="switchHerbarioTab('primavera')"><i class="ph-fill ph-moon-crescent"></i>Primavera</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('verao')"><i class="ph-fill ph-sun"></i>Verão</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('outono')"><i class="ph-fill ph-moon-waning-crescent"></i>Outono</button>
+            <button class="herbario-tab-btn" onclick="switchHerbarioTab('inverno')"><i class="ph-fill ph-moon"></i>Inverno</button>
+        </div>
+
+        <!-- Conteúdo das Abas -->
+        <div id="herbario-content">
+            <!-- Primavera -->
+            <div id="tab-primavera" class="herbario-tab-content active">
+                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #3B82F6, #22C55E) 1;">Primavera (Setembro a Dezembro): O Despertar</h2>
+                <p class="mb-8 text-slate-300">Agora sim! É o "bom dia!" da natureza. A energia explode pra todo lado! Tudo acorda, tudo quer nascer. É tempo de coisa nova, de começar projetos, de otimismo, de fertilidade... e de amor, claro!</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Lavanda (Lavandula angustifolia)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">A Alma da Paz</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dela é um dos melhores calmantes que existem. Ótimo pra ansiedade, estresse e pra quem não dorme direito. Alivia até dor de cabeça de tensão. Um chazinho antes de dormir é como um "boa noite" pra ansiedade. Pingar uma gotinha do óleo essencial no travesseiro também faz mágica.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar bem pouquinho! Fica uma delícia em sobremesas, biscoitos e limonadas (experimente!). Mas vá com calma, se errar a mão, parece que tá comendo sabonete! É só um toque.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Traz harmonia e paz. O banho de lavanda parece que "lava a alma" e acalma o coração. Sabe aquele dia que foi caótico, cheio de briga e estresse? É esse banho. O incenso é ótimo pra meditar. E os saquinhos com a flor seca no armário (sachês) são um clássico!</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Camomila (Matricaria chamomilla)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Ouro Calminho</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É um calmante bem suave, o "abraço de mãe" em forma de chá. Bom pro estômago e pros nervos. O chá ajuda a dormir e alivia cólicas (até em bebês). Fazer compressa com o chá gelado também é ótimo pra acalmar olho inchado de cansaço.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>O uso mais comum é o chá, claro. Mas dá pra usar as flores pra aromatizar sobremesas leves.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Erva de prosperidade e calma. Tem a ver com o Sol. Dizem que lavar o rosto e as mãos com o chá atrai sorte (até em jogo!) e ajuda nos negócios. O banho de camomila relaxa e atrai amor, mas um amor sereno, tranquilo.</p></div>
+                        </div>
+                    </div>
+                    <div class="content-card glass-effect">
+                        <h3 class="text-3xl font-bold text-amber-300">Hibisco (Hibiscus sabdariffa)</h3>
+                        <p class="text-lg text-amber-200/80 italic mb-4">O Toque de Atração</p>
+                        <div class="space-y-3 text-slate-300">
+                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá (feito da flor seca, aquele vermelho azedinho) é cheio de antioxidante, ajuda a controlar a pressão e a desinchar (é diurético). Ótimo pra tomar gelado no verão.</p></div>
+                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Muito usado em chás gelados (com canela e gengibre fica ótimo!), geleias e pra dar cor em bebidas.</p></div>
+                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele tem tudo a ver com amor, paixão e "magnetismo pessoal". É a erva da "sensualidade" e do amor-próprio. O banho de hibisco (sempre teste na pele antes, pra ver se não tem alergia!) é pra "despertar" sua Vênus interior, pra se sentir mais confiante, poderoso(a) e atraente!</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Verão -->
-            <div>
+            <div id="tab-verao" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #EAB308) 1;">Verão (Dezembro a Março): A Abundância</h2>
                 <p class="mb-8 text-slate-300">Essa é a estação da vibração total! É puro calor e alegria. É a energia "pra fora", de socializar, de festa. Tem tudo a ver com a energia do fogo, com prosperidade e com "crescer" na vida. As plantas dessa época são cheias de "luz solar" guardada.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -719,9 +904,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- Outono -->
-            <div>
+            <div id="tab-outono" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #F97316, #4A5568) 1;">Outono (Março a Junho): O Recolhimento</h2>
                 <p class="mb-8 text-slate-300">Época de colher o que a gente plantou, de olhar mais pra dentro e se preparar. A energia vai ficando mais quietinha. As folhas caem, o ar fica mais seco. É um convite pra gente "desapegar" do que não serve mais, igualzinho às árvores. É um tempo ótimo pra agradecer e lembrar da nossa família que veio antes.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -753,9 +937,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- Inverno -->
-            <div>
+            <div id="tab-inverno" class="herbario-tab-content">
                 <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #4A5568, #3B82F6) 1;">Inverno (Junho a Setembro): A Introspecção</h2>
                 <p class="mb-8 text-slate-300">É quando temos a noite mais longa do ano! A natureza parece que "dorme". A energia tá toda guardadinha, lá no fundo. É o tempo do silêncio, de ficar mais em casa, de cuidar da nossa "raiz" por dentro, de descansar e juntar força pra próxima primavera.</p>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -781,41 +964,6 @@
                         <div class="space-y-3 text-slate-300">
                             <div><strong class="text-green-400">Pra Saúde:</strong><p>O óleo da semente dela (muito usado na Ásia, é o óleo de Tsubaki) é excelente pra pele e pro cabelo. É um segredo de beleza antigo lá do Japão.</p></div>
                             <div><strong class="text-purple-400">Magia:</strong><p>O mais legal é que ela dá flor no frio! É o símbolo da beleza que nasce no meio do perrengue, da resiliência. Ela não é uma erva de "banho" ou "fumaça", é mais de contemplação. Ter as flores dela por perto, num altar, traz paz e lembra a gente da nossa própria força de "florescer" quando tudo tá difícil.</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Primavera -->
-            <div>
-                <h2 class="section-title text-amber-400 text-4xl" style="border-image: linear-gradient(to right, #3B82F6, #22C55E) 1;">Primavera (Setembro a Dezembro): O Despertar</h2>
-                <p class="mb-8 text-slate-300">Agora sim! É o "bom dia!" da natureza. A energia explode pra todo lado! Tudo acorda, tudo quer nascer. É tempo de coisa nova, de começar projetos, de otimismo, de fertilidade... e de amor, claro!</p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Lavanda (Lavandula angustifolia)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">A Alma da Paz</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chazinho dela é um dos melhores calmantes que existem. Ótimo pra ansiedade, estresse e pra quem não dorme direito. Alivia até dor de cabeça de tensão. Um chazinho antes de dormir é como um "boa noite" pra ansiedade. Pingar uma gotinha do óleo essencial no travesseiro também faz mágica.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Tem que usar bem pouquinho! Fica uma delícia em sobremesas, biscoitos e limonadas (experimente!). Mas vá com calma, se errar a mão, parece que tá comendo sabonete! É só um toque.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Traz harmonia e paz. O banho de lavanda parece que "lava a alma" e acalma o coração. Sabe aquele dia que foi caótico, cheio de briga e estresse? É esse banho. O incenso é ótimo pra meditar. E os saquinhos com a flor seca no armário (sachês) são um clássico!</p></div>
-                        </div>
-                    </div>
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Camomila (Matricaria chamomilla)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">O Ouro Calminho</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>É um calmante bem suave, o "abraço de mãe" em forma de chá. Bom pro estômago e pros nervos. O chá ajuda a dormir e alivia cólicas (até em bebês). Fazer compressa com o chá gelado também é ótimo pra acalmar olho inchado de cansaço.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>O uso mais comum é o chá, claro. Mas dá pra usar as flores pra aromatizar sobremesas leves.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Erva de prosperidade e calma. Tem a ver com o Sol. Dizem que lavar o rosto e as mãos com o chá atrai sorte (até em jogo!) e ajuda nos negócios. O banho de camomila relaxa e atrai amor, mas um amor sereno, tranquilo.</p></div>
-                        </div>
-                    </div>
-                    <div class="content-card glass-effect">
-                        <h3 class="text-3xl font-bold text-amber-300">Hibisco (Hibiscus sabdariffa)</h3>
-                        <p class="text-lg text-amber-200/80 italic mb-4">O Toque de Atração</p>
-                        <div class="space-y-3 text-slate-300">
-                            <div><strong class="text-green-400">Pra Saúde:</strong><p>O chá (feito da flor seca, aquele vermelho azedinho) é cheio de antioxidante, ajuda a controlar a pressão e a desinchar (é diurético). Ótimo pra tomar gelado no verão.</p></div>
-                            <div><strong class="text-blue-400">Na Cozinha:</strong><p>Muito usado em chás gelados (com canela e gengibre fica ótimo!), geleias e pra dar cor em bebidas.</p></div>
-                            <div><strong class="text-purple-400">Magia:</strong><p>Dizem que ele tem tudo a ver com amor, paixão e "magnetismo pessoal". É a erva da "sensualidade" e do amor-próprio. O banho de hibisco (sempre teste na pele antes, pra ver se não tem alergia!) é pra "despertar" sua Vênus interior, pra se sentir mais confiante, poderoso(a) e atraente!</p></div>
                         </div>
                     </div>
                 </div>
@@ -988,63 +1136,17 @@
         </div>
     </template>
 
-    <!-- Template: Roda do Ano (Calendários) -->
+    <!-- Template: Roda do Ano Interativa -->
     <template id="page-roda-do-ano">
-        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Roda do Ano: Os Ciclos Solares (Hemisfério Sul)</h1>
-        <p class="page-subtitle">Você já se sentiu mais introspectivo no inverno ou mais expansivo no verão? Isso não é coincidência; é a sua conexão com os ciclos da Terra. A Roda do Ano é o mapa que nos ajuda a entender e honrar essa jornada.</p>
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Roda do Ano Interativa (Hemisfério Sul)</h1>
+        <p class="page-subtitle">A jornada da natureza é a nossa jornada. Toque em um festival para explorar sua energia e significado.</p>
 
-        <div class="content-card glass-effect space-y-6">
-            <div>
-                <h2 class="text-3xl font-bold text-amber-300 mb-3">Por que no Hemisfério Sul?</h2>
-                <p>Muitos livros focam no Hemisfério Norte (celebrando o verão em junho, por exemplo). Aqui, honramos a nossa realidade: celebramos o Solstício de Verão em Dezembro, o Outono em Março, o Inverno em Junho e a Primavera em Setembro. Esta é a Roda que gira para nós.</p>
+        <div class="roda-container">
+            <div class="roda-ano" id="roda-ano-container">
+                <!-- Sabbats serão injetados aqui pelo JS -->
             </div>
-            <div class="border-t border-stone-600/50"></div>
-            <div>
-                <h2 class="text-3xl font-bold text-amber-300 mb-3">Os Quatro Pilares Solares</h2>
-                <p>A Roda tem oito festivais (Sabbats), mas este guia foca nos quatro pilares astronômicos, os eventos que marcam o auge de cada estação. (Os outros quatro, que marcam os pontos médios, exploraremos em outro guia).</p>
-            </div>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-8 mt-12">
-            <!-- Litha -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-yellow-400 mb-3">1. Solstício de Verão (Litha)</h3>
-                <p class="text-lg text-yellow-300/80 italic mb-4">(Aprox. 21 de Dezembro)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>É o dia mais longo e a noite mais curta do ano. O Sol atinge seu ponto mais alto no céu, como um rei no seu trono. É o auge do poder solar e o início oficial do Verão.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Triunfo da Luz</strong><p>Este é o momento de "Pico da Luz". A natureza está em sua plenitude máxima, vibrando com energia, cor e fertilidade. É a celebração da abundância, da paixão, da alegria e da expansão.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Acender Velas: Honre o Sol acendendo velas douradas ou amarelas.</li><li>Altar Solar: Crie um altar com símbolos solares, girassóis, frutas cítricas e cristais como o Citrino.</li><li>Banho de Ervas Solares: Tome um banho com alecrim ou calêndula para absorver a energia do dia.</li></ul></div>
-                </div>
-            </div>
-            <!-- Mabon -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-orange-400 mb-3">2. Equinócio de Outono (Mabon)</h3>
-                <p class="text-lg text-orange-300/80 italic mb-4">(Aprox. 20 de Março)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>O dia e a noite têm a mesma duração. É um momento de equilíbrio perfeito. A partir daqui, as noites começarão a ficar mais longas que os dias. É o início oficial do Outono.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Banquete do Agradecimento</strong><p>Mabon é o "Dia de Ação de Graças" pagão. É o momento de olhar para trás, para a luz do verão, e agradecer por tudo o que colhemos.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Banquete de Gratidão: Prepare uma refeição com alimentos da estação (abóbora, milho, maçã) e partilhe.</li><li>Altar da Colheita: Decore seu altar com pinhas, folhas secas, sementes e frutas da época.</li><li>Caminhada na Natureza: Faça uma caminhada consciente, observando as cores e os sinais da mudança.</li></ul></div>
-                </div>
-            </div>
-            <!-- Yule -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-sky-400 mb-3">3. Solstício de Inverno (Yule)</h3>
-                <p class="text-lg text-sky-300/80 italic mb-4">(Aprox. 21 de Junho)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>A noite mais longa e o dia mais curto do ano. O Sol está em seu ponto mais baixo. É o início oficial do Inverno.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: O Renascimento da Esperança</strong><p>No ponto mais profundo da escuridão, celebramos a promessa do retorno da luz. Este é o "nascimento" do novo Sol.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Vigília do Sol: Acorde antes do amanhecer para saudar os primeiros raios do Sol "renascido".</li><li>Queima de Intenções (Yule Log): Escreva em um papel o que você quer deixar ir e o que quer convidar, e queime-o com segurança.</li><li>Meditação da Semente: Medite sobre o seu potencial silencioso, guardado para a primavera.</li></ul></div>
-                </div>
-            </div>
-            <!-- Ostara -->
-            <div class="content-card glass-effect">
-                <h3 class="text-4xl font-bold text-green-400 mb-3">4. Equinócio de Primavera (Ostara)</h3>
-                <p class="text-lg text-green-300/80 italic mb-4">(Aprox. 22 de Setembro)</p>
-                <div class="space-y-4">
-                    <div><strong class="text-xl text-white block">O que é?</strong><p>O dia e a noite novamente têm a mesma duração. A partir daqui, os dias começarão a ficar mais longos. É o início oficial da Primavera.</p></div>
-                    <div><strong class="text-xl text-white block">O Arquétipo: A Explosão da Vida</strong><p>Se Yule foi a promessa, Ostara é a explosão da vida. A terra desperta do seu sono. É um tempo de fertilidade, novos começos e crescimento acelerado.</p></div>
-                    <div><strong class="text-xl text-white block">Rituais e Práticas</strong><ul class="list-disc list-inside ml-4 mt-2"><li>Plantio de Sementes: Plante sementes (literalmente!) e dedique cada uma a um sonho para este ciclo.</li><li>Limpeza de Primavera: Faça uma limpeza física e energética em casa.</li><li>Altar da Primavera: Decore seu altar com flores frescas e ovos coloridos.</li></ul></div>
-                </div>
+            <div class="roda-info-panel glass-effect content-card" id="roda-info-panel">
+                <!-- Conteúdo dos Sabbats será injetado aqui -->
             </div>
         </div>
     </template>
@@ -1217,6 +1319,119 @@
         </div>
     </template>
 
+    <!-- NOVO TEMPLATE: Correspondências Semanais -->
+    <template id="page-semanal">
+        <h1 class="page-title text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-purple-400">Correspondências Semanais</h1>
+        <p class="page-subtitle">Cada dia da semana pulsa com uma energia única, governada por um planeta e um arcanjo. Alinhar suas intenções com essas forças pode potencializar suas magias, rituais e até mesmo seu humor.</p>
+
+        <div class="overflow-x-auto glass-effect rounded-lg border border-purple-400/20">
+            <table class="w-full text-left">
+                <thead class="text-xs text-amber-200 uppercase bg-black/30">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">Dia da Semana</th>
+                        <th scope="col" class="px-6 py-4">Planeta Regente</th>
+                        <th scope="col" class="px-6 py-4">Arcanjo Guardião</th>
+                        <th scope="col" class="px-6 py-4">Cores & Energias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Domingo -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-yellow-300 whitespace-nowrap">Domingo</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-sun text-2xl text-yellow-400"></i> Sol</td>
+                        <td class="px-6 py-4">Miguel</td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-yellow-400 border border-yellow-200"></div>
+                                <div class="w-4 h-4 rounded-full bg-orange-500 border border-orange-300"></div>
+                                <div class="w-4 h-4 rounded-full bg-white border border-gray-300"></div>
+                            </div>
+                            <span class="text-sm">Sucesso, Vitalidade, Cura, Alegria</span>
+                        </td>
+                    </tr>
+                    <!-- Segunda-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-slate-200 whitespace-nowrap">Segunda-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-moon text-2xl text-slate-300"></i> Lua</td>
+                        <td class="px-6 py-4">Gabriel</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-slate-200 border border-slate-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-white border border-gray-300"></div>
+                            </div>
+                            <span class="text-sm">Intuição, Sonhos, Emoções, Feminino</span>
+                        </td>
+                    </tr>
+                    <!-- Terça-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-red-400 whitespace-nowrap">Terça-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-red-500"></i> Marte</td>
+                        <td class="px-6 py-4">Samuel (Camael)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-red-600 border border-red-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-orange-600 border border-orange-400"></div>
+                            </div>
+                            <span class="text-sm">Ação, Coragem, Conflito, Proteção</span>
+                        </td>
+                    </tr>
+                    <!-- Quarta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-violet-400 whitespace-nowrap">Quarta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-violet-500"></i> Mercúrio</td>
+                        <td class="px-6 py-4">Rafael</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-100"></div>
+                                <div class="w-4 h-4 rounded-full bg-violet-500 border border-violet-300"></div>
+                            </div>
+                            <span class="text-sm">Comunicação, Estudo, Viagens</span>
+                        </td>
+                    </tr>
+                    <!-- Quinta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-blue-400 whitespace-nowrap">Quinta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-blue-500"></i> Júpiter</td>
+                        <td class="px-6 py-4">Saquiel (Zadkiel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-blue-600 border border-blue-400"></div>
+                                <div class="w-4 h-4 rounded-full bg-purple-600 border border-purple-400"></div>
+                            </div>
+                            <span class="text-sm">Expansão, Prosperidade, Sorte</span>
+                        </td>
+                    </tr>
+                    <!-- Sexta-feira -->
+                    <tr class="border-b border-purple-400/20">
+                        <th scope="row" class="px-6 py-4 font-bold text-pink-400 whitespace-nowrap">Sexta-feira</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-pink-500"></i> Vênus</td>
+                        <td class="px-6 py-4">Anael (Haniel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-pink-500 border border-pink-300"></div>
+                                <div class="w-4 h-4 rounded-full bg-emerald-500 border border-emerald-300"></div>
+                            </div>
+                            <span class="text-sm">Amor, Beleza, Harmonia, Artes</span>
+                        </td>
+                    </tr>
+                    <!-- Sábado -->
+                    <tr class="">
+                        <th scope="row" class="px-6 py-4 font-bold text-gray-400 whitespace-nowrap">Sábado</th>
+                        <td class="px-6 py-4 flex items-center gap-2"><i class="ph-fill ph-planet text-2xl text-gray-500"></i> Saturno</td>
+                        <td class="px-6 py-4">Cassiel (Tzaphkiel)</td>
+                        <td class="px-6 py-4">
+                             <div class="flex items-center gap-2 mb-1">
+                                <div class="w-4 h-4 rounded-full bg-gray-800 border border-gray-600"></div>
+                                <div class="w-4 h-4 rounded-full bg-black border border-gray-500"></div>
+                            </div>
+                            <span class="text-sm">Disciplina, Limites, Banimento</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
     <!-- Templates: Páginas Placeholder -->
     <template id="page-guardiao">
         <h1 class="page-title">Guardião</h1>
@@ -1362,6 +1577,10 @@
                     if (pageId === 'page-panteao') {
                         initPanteao();
                     }
+                    // Gatilho para a lógica da Roda do Ano
+                    if (pageId === 'page-roda-do-ano') {
+                        initRodaDoAno();
+                    }
                 }, 200);
 
                 if (activeLink) {
@@ -1477,48 +1696,110 @@
         // --- Fim: Lógica do Forjador de Sigilos ---
 
 
-        // --- Início: Lógica do Modal, Zoom e Freemium ---
+        // --- Início: Lógica das Abas do Herbário ---
+        function switchHerbarioTab(tabId) {
+            // Esconde todos os conteúdos de aba
+            const tabContents = document.querySelectorAll('.herbario-tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove a classe ativa de todos os botões de aba
+            const tabButtons = document.querySelectorAll('.herbario-tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostra o conteúdo da aba clicada e ativa o botão
+            const selectedContent = document.getElementById('tab-' + tabId);
+            const selectedButton = document.querySelector(`.herbario-tab-btn[onclick="switchHerbarioTab('${tabId}')"]`);
+            if (selectedContent && selectedButton) {
+                selectedContent.classList.add('active');
+                selectedButton.classList.add('active');
+            }
+        }
+        // --- Fim: Lógica das Abas do Herbário ---
+
+
+        // --- Início: Lógica da Roda do Ano ---
+        function showSabbatInfo(sabbatId) {
+            // Deactivate all items and panels
+            document.querySelectorAll('.sabbat-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.roda-info-content').forEach(content => content.classList.remove('active'));
+
+            // Activate the selected one
+            const activeItem = document.querySelector(`.sabbat-item[data-sabbat="${sabbatId}"]`);
+            const activeContent = document.getElementById(`info-${sabbatId}`);
+
+            if (activeItem) activeItem.classList.add('active');
+            if (activeContent) activeContent.classList.add('active');
+        }
+
+        async function initRodaDoAno() {
+            const data = await loadGrimoireData();
+            const container = document.getElementById('roda-ano-container');
+            const infoPanel = document.getElementById('roda-info-panel');
+
+            if (!container || !infoPanel || !data || !data.rodaDoAno) return;
+
+            container.innerHTML = '';
+            infoPanel.innerHTML = '';
+
+            const sabbatOrder = ['yule', 'imbolc', 'ostara', 'beltane', 'litha', 'lammas', 'mabon', 'samhain'];
+            const radius = 140;
+
+            sabbatOrder.forEach((sabbatId, index) => {
+                const sabbatData = data.rodaDoAno[sabbatId];
+                if (!sabbatData) return;
+
+                const angle = (index / sabbatOrder.length) * 2 * Math.PI;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+
+                // Create the button on the wheel
+                const sabbatElement = document.createElement('div');
+                sabbatElement.className = 'sabbat-item';
+                sabbatElement.innerHTML = `<span class="sabbat-title">${sabbatData.title.split(' (')[0]}</span>`;
+                sabbatElement.dataset.sabbat = sabbatId;
+                sabbatElement.onclick = () => showSabbatInfo(sabbatId);
+                sabbatElement.style.transform = `translate(${x}px, ${y}px)`;
+                container.appendChild(sabbatElement);
+
+                // Create the corresponding info panel
+                const infoContent = document.createElement('div');
+                infoContent.id = `info-${sabbatId}`;
+                infoContent.className = 'roda-info-content';
+                infoContent.innerHTML = `
+                    <h3 class="${sabbatData.color}">${sabbatData.title}</h3>
+                    <p class="text-sm text-gray-400 mb-4">${sabbatData.date}</p>
+                    <p>${sabbatData.description}</p>
+                    ${sabbatData.details}
+                `;
+                infoPanel.appendChild(infoContent);
+            });
+
+            showSabbatInfo('yule');
+        }
+        // --- Fim: Lógica da Roda do Ano ---
+
+        // --- Início: Lógica de Dados e Modal ---
+        let grimoireData = null;
+
+        async function loadGrimoireData() {
+            if (!grimoireData) {
+                try {
+                    const response = await fetch('grimoire_data.json');
+                    grimoireData = await response.json();
+                } catch (error) {
+                    console.error("Falha ao carregar os dados do grimório:", error);
+                }
+            }
+            return grimoireData;
+        }
+
         const detailModal = document.getElementById('detail-modal');
         const modalBody = document.getElementById('modal-body');
         const closeModalBtn = document.getElementById('close-modal-btn');
-
-        const detailedContent = {
-            etapa1_details: {
-                title: "Aprofundando: Despertar da Consciência",
-                summary: "<ul><li class='mb-2'>Reconhecimento de padrões de comportamento.</li><li class='mb-2'>Mapeamento de crenças limitantes.</li><li class='mb-2'>Auto-observação sem julgamento.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>Este é o momento de introspecção radical. De olhar para o espelho sem filtros e perguntar: 'Quais são os padrões que me governam?'</p><p>Não se trata de julgamento, mas de mapeamento. Como um cartógrafo da sua própria alma, você irá delinear os rios dos seus hábitos, as montanhas das suas crenças e os vales sombrios dos seus medos. Apenas observar. Apenas reconhecer. Este é o ato mais corajoso e o primeiro passo real para qualquer transformação duradoura.</p>"
-            },
-            etapa2_details: {
-                title: "Aprofundando: Semeando com Propósito",
-                summary: "<ul><li class='mb-2'>Conectar desejos a valores essenciais.</li><li class='mb-2'>Encontrar o 'porquê' profundo das suas metas.</li><li class='mb-2'>Alinhar ações com um propósito maior.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>Com a clareza do Despertar, a próxima fase é direcionar essa consciência. Um desejo sem propósito é como uma semente jogada em solo infértil. Aqui, você irá nutrir suas intenções, conectando-as a um 'porquê' que ressoa com sua alma. O que realmente te move? O que você quer criar no mundo? Esta etapa transforma desejos vagos em intenções poderosas e focadas.</p>"
-            },
-            etapa3_details: {
-                title: "Aprofundando: Transformação Resiliente",
-                summary: "<ul><li class='mb-2'>Confronto ativo com a 'sombra'.</li><li class='mb-2'>Mobilização da força de vontade e disciplina.</li><li class='mb-2'>Transmutação de energia negativa em força.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>Esta é a forja. O coração da jornada. Armado com clareza e propósito, é hora de confrontar ativamente os padrões que você mapeou. É a batalha interna, onde a disciplina se torna sua espada e a resiliência, sua armadura. Cada desafio superado, cada hábito transformado, é uma transmutação do 'chumbo' da sua psique no 'ouro' da sua força interior.</p>"
-            },
-            etapa4_details: {
-                title: "Aprofundando: Colheita Consciente",
-                summary: "<ul><li class='mb-2'>Integração de novos hábitos.</li><li class='mb-2'>Prática da gratidão e celebração.</li><li class='mb-2'>Cultivo do amor-próprio e aceitação.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>Após a batalha, vem a paz da colheita. Esta etapa é sobre integração e reconhecimento. É o momento de celebrar suas vitórias, por menores que pareçam. Solidificar os novos hábitos através da gratidão e cultivar um profundo senso de amor-próprio. A colheita não é apenas sobre os frutos externos, mas sobre a nutrição interna que você conquistou.</p>"
-            },
-            etapa5_details: {
-                title: "Aprofundando: Irradiando o Legado",
-                summary: "<ul><li class='mb-2'>Compartilhar a sabedoria adquirida.</li><li class='mb-2'>Transição do crescimento interno para o impacto externo.</li><li class='mb-2'>Expressão autêntica da sua jornada.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>A luz que você acendeu dentro de si não foi feita para ficar escondida. Irradiar o legado é sobre compartilhar sua jornada, sua sabedoria e sua luz com o mundo. Não de forma arrogante, mas como um farol para outros que podem estar começando sua própria jornada. É a transição do 'eu' para o 'nós', onde sua transformação inspira a transformação dos outros.</p>"
-            },
-            etapa6_details: {
-                title: "Aprofundando: Introspecção Curativa",
-                summary: "<ul><li class='mb-2'>Reconhecer que o crescimento é espiral.</li><li class='mb-2'>Mergulho profundo em padrões recorrentes.</li><li class='mb-2'>Fortalecimento da resiliência através da autoanálise.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>O crescimento não é uma linha reta, é uma espiral. Periodicamente, retornamos a temas antigos, mas de um novo nível de consciência. Esta etapa é um mergulho voluntário na sombra, não para lutar, mas para curar. É onde você revisita padrões recorrentes com compaixão e sabedoria, fortalecendo sua resiliência e aprofundando sua autocompreensão.</p>"
-            },
-            etapa7_details: {
-                title: "Aprofundando: União Transcendental",
-                summary: "<ul><li class='mb-2'>Experiência da unidade e conexão.</li><li class='mb-2'>Transcendência do ego.</li><li class='mb-2'>Viver em estado de fluxo e presença.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
-                full: "<p>A culminação da jornada. Aqui, as fronteiras do 'eu' se dissolvem em uma experiência de unidade com o todo. Não é um estado permanente de iluminação, mas a compreensão vivida de que você é uma manifestação do cosmos. É a capacidade de viver em um estado de fluxo, presença e conexão profunda, onde a jornada e o destino se tornam um só.</p>"
-            }
-        };
 
         // Simulação do status do usuário - mude para 'true' para ver a versão Premium
         let isPremiumUser = false;
@@ -1531,45 +1812,47 @@
             currentStarSpeed = starBaseSpeed;
         }
 
-        function exportContentToPdf(contentId) {
+        async function exportContentToPdf(contentKey) {
+            const data = await loadGrimoireData();
+            if (!data) return;
+
             const { jsPDF } = window.jspdf;
-            const contentData = detailedContent[contentId];
+            const contentData = data.jornadaFlorescer[contentKey];
             if (!contentData) {
-                console.error("Conteúdo não encontrado para exportar:", contentId);
+                console.error("Conteúdo não encontrado para exportar:", contentKey);
                 return;
             }
 
             const doc = new jsPDF();
 
-            // Basic HTML stripping for clean text
             const tempDiv = document.createElement("div");
             tempDiv.innerHTML = contentData.full;
             const cleanText = tempDiv.textContent || "";
 
-            // Using standard PDF fonts to avoid issues
             doc.setFont("helvetica", "bold");
             doc.text(contentData.title, 15, 20);
 
             doc.setFont("helvetica", "normal");
-            const splitText = doc.splitTextToSize(cleanText, 180); // 180 is the width of the text block
+            const splitText = doc.splitTextToSize(cleanText, 180);
             doc.text(splitText, 15, 30);
 
-            // Sanitize title for filename
             const fileName = contentData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
             doc.save(fileName + ".pdf");
         }
 
-        function showDetailModal(contentId) {
-            if (!detailModal || !modalBody) return;
-            const contentData = detailedContent[contentId];
+        async function showDetailModal(contentKey) {
+            const data = await loadGrimoireData();
+            if (!detailModal || !modalBody || !data) return;
+
+            const contentData = data.jornadaFlorescer[contentKey];
             if (!contentData) {
-                console.error("Conteúdo detalhado não encontrado para o ID:", contentId);
+                console.error("Conteúdo detalhado não encontrado para o ID:", contentKey);
                 return;
             }
 
             const contentToShow = isPremiumUser ? contentData.full : contentData.summary;
             const exportButtonHtml = isPremiumUser
-                ? `<button id="export-pdf-btn" class="export-btn" onclick="exportContentToPdf('${contentId}')">Exportar para PDF</button>`
+                ? `<button id="export-pdf-btn" class="export-btn" onclick="exportContentToPdf('${contentKey}')">Exportar para PDF</button>`
                 : '';
 
             modalBody.innerHTML = `
@@ -1591,92 +1874,19 @@
         if (detailModal) detailModal.addEventListener('click', (e) => {
             if (e.target === detailModal) closeDetailModal();
         });
-        // --- Fim: Lógica do Modal de Aprofundamento e Zoom ---
+        // --- Fim: Lógica do Modal ---
 
 
         // --- Início: Dados e Lógica do Panteão ---
-        const panteaoSections = [
-          { id: 0, title: "Primordiais", archetypes: ['pai-ceu', 'mae-terra'] },
-          { id: 1, title: "Luminares", archetypes: ['deus-sol', 'deusa-lua'] },
-          { id: 2, title: "Agentes da Transformação", archetypes: ['mensageiro', 'ferreiro'] },
-        ];
-
-        const archetypeData = {
-          'pai-ceu': {
-            title: "O PAI-CÉU (O Cara da Ordem)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></svg>',
-            sombraQueDanca: "Um cara alto, todo imponente, com ombros largos. A capa dele vira um céu cheio de estrelas que se movem certinho. Ele é pura presença.",
-            oQueEh: "Ele é tipo a Estrutura, a Lei, a Ordem de tudo. A consciência que bota ordem no caos. Ele é a 'coluna' do universo e também a sua garra pra construir coisas, ter disciplina e dizer 'Eu vou!'.",
-            emVoce: "É a sua força de vontade. Sua habilidade de criar regras e planos. É aquela voz que te faz acordar cedo pra malhar, mesmo querendo ficar na cama. É o seu lado que gosta de planilhas e de ver as coisas funcionando direito.",
-            ladoRuim: "Tirania, rigidez demais, controle excessivo. A lógica fria sem coração. É o 'pai chato' ou o crítico interno que só pega no pé e nunca diz 'parabéns'.",
-            praRefletir: "Onde na sua vida tá faltando um pouco mais de estrutura? E onde essa estrutura toda virou uma prisão que te impede de viver?",
-            praticaRapida: "Pega um papel e caneta. Escreve aí uma 'regra' (hábito ou crença) que hoje mais te prende do que ajuda. Agora, como o dono da sua mente, reescreve essa regra. Deixa ela de um jeito que te dê liberdade E organização ao mesmo tempo.",
-            invocacao: "Quando precisar de foco, disciplina ou coragem pra botar ordem na casa, respire fundo, visualize a montanha e repita: 'Eu defino meus limites. Eu construo minha realidade. Minha vontade é minha estrutura.'",
-          },
-          'mae-terra': {
-            title: "A MÃE-TERRA (A Mãe que Nutre)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 4.4 2.9 8.1 6.8 9.5" /><path d="M12 12a10 10 0 0 1 10 10c0-4.4-2.9-8.1-6.8-9.5" /><path d="M2 12h20" /></svg>',
-            sombraQueDanca: "Uma figura com formas mais redondas, bem acolhedora. Dela, saem e voltam plantas e rios, como se ela estivesse respirando devagarinho, num ritmo constante.",
-            oQueEh: "Ela é a própria Natureza! A Fertilidade, o lugar de onde tudo nasce e pra onde tudo volta. É o corpo, a matéria, a paciência das estações. Ela é aquele 'sim' gigante pra vida, sem pedir nada em troca.",
-            emVoce: "Sua criatividade natural. Sua capacidade de cuidar dos outros e dos seus projetos. A paciência pra esperar a hora certa de colher. Sua conexão com seu corpo e com os ciclos da natureza (sono, fome, etc.).",
-            ladoRuim: "Ficar parado no mesmo lugar, a inércia. A superproteger tanto que sufoca. O apego que não deixa as coisas (ou pessoas) crescerem e irem embora. É aquela zona de conforto que virou um pântano.",
-            praRefletir: "O que você tá nutrindo em sua vida agora (projetos, gente, você mesmo)? E o que tá aí, doidinho pra nascer de você? Você tá dando 'comida' (tempo, energia) pro que você quer que cresça?",
-            praticaRapida: "Toca numa planta ou na terra. Se não der, só imagina raízes saindo dos seus pés. Agradece! Agora, pensa num projeto que você tá 'sufocando' de tanto perfeccionismo. Decide UMA coisinha pra soltar ele e deixar ele crescer em paz.",
-            invocacao: "Quando se sentir sem criatividade ou 'seco', toque o chão e diga: 'Eu sou fértil. Eu recebo a abundância do universo. Eu nutro a vida que cresce em mim e ao meu redor.'",
-          },
-          'deus-sol': {
-            title: "O DEUS-SOL (A Consciência Ligada no 220)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>',
-            sombraQueDanca: "Uma sombra que pulsa com luz e calor. É tão brilhante que quase não parece sombra. Ela se move com confiança total, sem hesitar um segundo.",
-            oQueEh: "Ele é a Luz da Razão, a Clareza total! O herói que bota nome no 'dragão' da ignorância pra poder vencer ele. É a lâmpada que acende na sua cabeça! É a energia de agir, de aparecer, de dizer 'Eu Sou!'.",
-            emVoce: "Sua autoconfiança, sua coragem de falar o que pensa, sua capacidade de liderar e de brilhar sem vergonha nenhuma. Sua capacidade de subir num palco e defender sua ideia.",
-            ladoRuim: "Arrogância, ego gigante, aquela luz que cega os outros em vez de ajudar. É achar que só a sua opinião importa e acabar 'queimando' as pessoas ao seu redor.",
-            praRefletir: "Onde é que você precisa levar mais clareza na sua vida e acabar com as dúvidas? Você tá usando sua luz pra iluminar o caminho ou pra cegar todo mundo com seu brilho?",
-            praticaRapida: "Fecha os olhos. Imagina um solzinho dourado bem no seu plexo solar. Sente ele esquentar e pulsar. Cada vez que você inspirar, vê essa luz crescendo, forte e quente. Respira fundo essa clareza!",
-            invocacao: "De manhã, ou quando precisar de coragem, abra os braços pro sol (ou só imagine ele) e declare: 'Eu sou luz. Eu sou claro(a). Eu brilho minha verdade sem medo.'",
-          },
-          'deusa-lua': {
-            title: "A DEUSA-LUA (O Mistério da Intuição)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>',
-            sombraQueDanca: "Uma sombra que muda suavemente: de moça, pra mãe, pra anciã, e volta. Ela nunca tá parada, tá sempre fluindo. Ela segura um caldeirão que reflete as estrelas.",
-            oQueEh: "Ela é pura Intuição! O Inconsciente, a Magia que fala baixinho. A guardiã dos sonhos e dos segredos da alma. Sabe aquela sensação de 'não sei por que, mas sei que é por aqui'? É ela falando.",
-            emVoce: "Sua intuição. Seus sonhos. Sua empatia, sua capacidade de 'sacar' o ambiente sem ninguém falar nada. Sua habilidade de se adaptar às mudanças da vida. A sabedoria que vem do seu corpo.",
-            ladoRuim: "Viver na ilusão, emoções bagunçadas, medo do que a gente não conhece. É confundir intuição com paranoia. É se afogar num copo d'água emocional ou viver no 'mundo da lua'.",
-            praRefletir: "Qual é a mensagem que a sua intuição (sua Lua aí dentro) tá tentando te mandar, mas a sua cabeça teimosa (o Sol) fica ignorando? Você tá respeitando seus ciclos de energia (agir vs. descansar)?",
-            praticaRapida: "Hoje à noite, antes de dormir, bota um copo de água do lado da cama. Pede pra sua intuição te trazer uma mensagem clara nos seus sonhos. Deixa um caderninho ali perto. Ao acordar, ANTES de tudo, anota o que vier. Depois, bebe a água.",
-            invocacao: "Quando a mente estiver muito barulhenta, pare. Respire fundo, coloque a mão no peito e pergunte em silêncio: 'O que eu realmente sinto sobre isso?' E aí, escute. O primeiro sussurro é a resposta.",
-          },
-          'mensageiro': {
-            title: "O MENSAGEIRO DIVINO (O Cara da Mudança)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a10 10 0 0 1 0 17.75" /><path d="M8 3.13a10 10 0 0 0 0 17.75" /><path d="M12 4v16" /><path d="M8 8l4-4 4 4" /><path d="M16 16l-4 4-4-4" /></svg>',
-            sombraQueDanca: "Uma sombra rápida, que parece dançar e se dividir. Ela não para! Você olha e é um coiote, pisca e já é um cara com tênis de asinha. Sempre correndo.",
-            oQueEh: "Ele é o 'Malandro' (no bom sentido!), o cara que quebra as regras pra deixar o novo entrar. O mensageiro que liga o mundo dos Deuses com o nosso. É a internet, a piada que quebra o gelo, a 'malandragem' divina que acha soluções que ninguém pensou.",
-            emVoce: "Seu senso de humor! Sua criatividade pra resolver pepinos. Sua lábia pra negociar, sua curiosidade que te faz clicar em links aleatórios e aprender coisas novas. Sua velocidade de pensamento.",
-            ladoRuim: "A mentira, a fofoca, passar os outros pra trás. É ser o '171'. A ansiedade de quem tem mil abas abertas no navegador e não foca em nenhuma. É prometer e não entregar.",
-            praRefletir: "Você tá se comunicando de um jeito autêntico e claro? Ou tá usando um monte de máscara pra agradar ou conseguir o que quer? Você tá usando sua inteligência pra criar pontes ou pra cavar buracos?",
-            praticaRapida: "Bota a mão de leve na sua garganta. Fecha os olhos. Canta uma nota só (pode ser o som 'HAM') e sente a vibração na sua mão. Agora, pensa numa verdade importante que você precisa falar (pra alguém ou pra você) hoje.",
-            invocacao: "Antes de uma conversa difícil ou uma prova, estale os dedos e diga: 'Minha mente é rápida. Minha palavra é clara. Eu conecto os mundos com facilidade e humor.'",
-          },
-          'ferreiro': {
-            title: "O FERREIRO DIVINO (O Cara da Resiliência)",
-            glyph: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 20a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 13.8 14h-3.6a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 8.8 8H18a5 5 0 0 1 4 8 5 5 0 0 1-4 4h-2.8Z" /><path d="M6 20h2" /><path d="M7 14v6" /><path d="M18 8V6a2 2 0 0 0-2-2H8" /></svg>',
-            sombraQueDanca: "Uma sombra forte, focada, curvada sobre a bigorna. A cada batida do martelo, faíscas de luz (da fogueira) iluminam a caverna. Ela não tem pressa; cada batida é perfeita.",
-            oQueEh: "Esse é o Alquimista, o Artesão da Alma! É ele quem pega o material bruto da dor e, usando o fogo da crise e a pressão da vida, transforma isso numa ferramenta poderosa. Ele é a resiliência em pessoa!",
-            emVoce: "Sua capacidade de transformar um trauma em sabedoria. Sua resiliência. Sua disciplina de ir pra terapia. Aquela força que você só descobre quando o bicho pega, que te faz levantar e dizer: 'Ok, doeu. O que eu aprendo com isso agora?'",
-            ladoRuim: "Amargura, querer ficar sozinho, isolamento. É o cara que fica no porão remoendo a raiva, construindo armas pra se vingar em vez de ferramentas pra se curar. É guardar rancor até azedar.",
-            praRefletir: "Qual 'ferida' da sua vida, se você olhar pra ela com consciência e coragem, pode virar sua maior força? Você tá fugindo do fogo da transformação ou tá disposto a entrar na forja pra sair mais forte?",
-            praticaRapida: "(Com segurança!) Escreve num papel a 'matéria bruta' (uma dor, um trauma) que você tá pronto pra transformar. Vai pra um lugar seguro e queime o papel. Fica olhando as chamas. Intencione que a energia presa ali seja liberada e forjada em sabedoria.",
-            invocacao: "Quando estiver passando por um perrengue, sentindo a pressão, respire fundo, bata o pé no chão e afirme: 'Eu não quebro, eu forjo. Esta pressão me transforma. Esta dor vira o meu poder.'",
-          },
-        };
-        // --- Fim: Dados e Lógica do Panteão ---
-
         let currentPanteaoWall = 0;
 
-        function renderPanteaoNav() {
+        async function renderPanteaoNav() {
+            const data = await loadGrimoireData();
+            if (!data) return;
+
             const navContainer = document.getElementById('panteao-nav');
             if (!navContainer) return;
-            navContainer.innerHTML = panteaoSections.map(section => `
+            navContainer.innerHTML = data.panteao.sections.map(section => `
                 <button
                   data-wall-id="${section.id}"
                   class="panteao-nav-btn px-4 py-2 md:px-6 md:py-3 rounded-md transition-all ${currentPanteaoWall === section.id ? 'bg-amber-700 text-white font-bold shadow-lg' : 'bg-gray-700/50 text-amber-200/80 hover:bg-gray-600/70'}"
@@ -1686,28 +1896,31 @@
             `).join('');
         }
 
-        function renderPanteaoWall(wallId) {
+        async function renderPanteaoWall(wallId) {
             currentPanteaoWall = wallId;
-            renderPanteaoNav(); // Re-render nav to update active state
+            await renderPanteaoNav();
+
+            const data = await loadGrimoireData();
+            if (!data) return;
 
             const wallContainer = document.getElementById('panteao-wall');
             if (!wallContainer) return;
 
-            const section = panteaoSections.find(s => s.id === wallId);
+            const section = data.panteao.sections.find(s => s.id === wallId);
             if (!section) return;
 
             const glyphsHtml = section.archetypes.map(archetypeId => {
-                const data = archetypeData[archetypeId];
+                const archetype = data.panteao.archetypes[archetypeId];
                 return `
                   <div class="flex flex-col items-center gap-2">
                     <button
                       data-glyph-id="${archetypeId}"
                       class="panteao-glyph-btn p-6 bg-gray-800/50 border-2 border-amber-800/60 rounded-xl text-amber-300 hover:bg-amber-900/50 hover:border-amber-600 hover:shadow-lg transition-all duration-300"
-                      title="Tocar no glifo: ${data.title}"
+                      title="Tocar no glifo: ${archetype.title}"
                     >
-                      ${data.glyph}
+                      ${archetype.glyph}
                     </button>
-                    <span class="text-amber-100/70">${data.title.split(' (')[0]}</span>
+                    <span class="text-amber-100/70">${archetype.title.split(' (')[0]}</span>
                   </div>
                 `;
             }).join('');
@@ -1722,74 +1935,79 @@
             `;
         }
 
-        function renderArchetypeShadow(archetypeId) {
+        async function renderArchetypeShadow(archetypeId) {
+            const data = await loadGrimoireData();
+            if (!data) return;
+
             const wallContainer = document.getElementById('panteao-wall');
             if (!wallContainer) return;
 
-            const data = archetypeData[archetypeId];
-            if (!data) return;
+            const archetype = data.panteao.archetypes[archetypeId];
+            if (!archetype) return;
 
             const infoButtonsHtml = [
-                { label: "Em Você", content: data.emVoce },
-                { label: "O Lado Ruim", content: data.ladoRuim },
-                { label: "Pra Refletir", content: data.praRefletir },
-                { label: "Prática Rápida", content: data.praticaRapida },
-                { label: "Pra Chamar Essa Força", content: data.invocacao },
-            ].map(btn => `<button data-modal-title="${btn.label}" data-modal-content="${btn.content}" class="panteao-modal-btn bg-amber-800/50 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700/70 transition-all text-sm">${btn.label}</button>`).join('');
+                { label: "Em Você", content: archetype.emVoce },
+                { label: "O Lado Ruim", content: archetype.ladoRuim },
+                { label: "Pra Refletir", content: archetype.praRefletir },
+                { label: "Prática Rápida", content: archetype.praticaRapida },
+                { label: "Pra Chamar Essa Força", content: archetype.invocacao },
+            ].map(btn => `<button data-modal-title="${btn.label}" data-modal-content='${btn.content}' class="panteao-modal-btn bg-amber-800/50 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700/70 transition-all text-sm">${btn.label}</button>`).join('');
 
             wallContainer.innerHTML = `
                 <div class="w-full max-w-3xl p-6 bg-gray-900/80 border border-amber-900/40 rounded-xl shadow-2xl shadow-black/50 animate-fadeIn backdrop-blur-md">
                     <div class="flex justify-between items-start">
-                      <h2 class="text-3xl font-bold text-amber-300 mb-4">${data.title}</h2>
+                      <h2 class="text-3xl font-bold text-amber-300 mb-4">${archetype.title}</h2>
                       <button class="panteao-close-shadow-btn text-gray-500 hover:text-amber-300 transition-colors" title="Voltar aos Glifos">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
                       </button>
                     </div>
                     <div class="mb-4 p-3 italic text-amber-100/80 bg-gray-800/50 rounded-md border border-gray-700/50">
-                      <p><strong class="text-amber-200">Sombra que Dança:</strong> ${data.sombraQueDanca}</p>
+                      <p><strong class="text-amber-200">Sombra que Dança:</strong> ${archetype.sombraQueDanca}</p>
                     </div>
-                    <p class="text-lg text-gray-200 leading-relaxed mb-6">${data.oQueEh}</p>
+                    <p class="text-lg text-gray-200 leading-relaxed mb-6">${archetype.oQueEh}</p>
                     <div class="flex flex-wrap gap-2">${infoButtonsHtml}</div>
                 </div>
             `;
         }
 
         function showPanteaoModal(title, content) {
-            const modal = document.getElementById('detail-modal'); // Reutilizando o modal existente
+            const modal = document.getElementById('detail-modal');
             const modalBody = document.getElementById('modal-body');
             if (!modal || !modalBody) return;
 
             modalBody.innerHTML = `<h2>${title}</h2><p class="whitespace-pre-wrap leading-relaxed">${content}</p>`;
             modal.classList.add('visible');
-            zoomInGalaxy(); // Reutilizando o efeito de zoom
+            zoomInGalaxy();
         }
 
-        function initPanteao() {
+        async function initPanteao() {
             const panteaoContainer = document.getElementById('panteao-container');
             if (!panteaoContainer) return;
 
-            renderPanteaoWall(0); // Renderiza a primeira parede por padrão
+            await renderPanteaoWall(0);
 
-            panteaoContainer.addEventListener('click', function(e) {
+            panteaoContainer.addEventListener('click', async function(e) {
                 const navBtn = e.target.closest('.panteao-nav-btn');
-                const glyphBtn = e.target.closest('.panteao-glyph-btn');
-                const closeShadowBtn = e.target.closest('.panteao-close-shadow-btn');
-                const modalBtn = e.target.closest('.panteao-modal-btn');
-
                 if (navBtn) {
                     const wallId = parseInt(navBtn.dataset.wallId, 10);
-                    if (currentPanteaoWall !== wallId) renderPanteaoWall(wallId);
+                    if (currentPanteaoWall !== wallId) await renderPanteaoWall(wallId);
                     return;
                 }
+
+                const glyphBtn = e.target.closest('.panteao-glyph-btn');
                 if (glyphBtn) {
                     const archetypeId = glyphBtn.dataset.glyphId;
-                    renderArchetypeShadow(archetypeId);
+                    await renderArchetypeShadow(archetypeId);
                     return;
                 }
+
+                const closeShadowBtn = e.target.closest('.panteao-close-shadow-btn');
                 if (closeShadowBtn) {
-                    renderPanteaoWall(currentPanteaoWall);
+                    await renderPanteaoWall(currentPanteaoWall);
                     return;
                 }
+
+                const modalBtn = e.target.closest('.panteao-modal-btn');
                 if (modalBtn) {
                     const title = modalBtn.dataset.modalTitle;
                     const content = modalBtn.dataset.modalContent;

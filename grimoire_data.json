@@ -1,0 +1,172 @@
+{
+  "jornadaFlorescer": {
+    "etapa1_details": {
+      "title": "Aprofundando: Despertar da Consciência",
+      "summary": "<ul><li class='mb-2'>Reconhecimento de padrões de comportamento.</li><li class='mb-2'>Mapeamento de crenças limitantes.</li><li class='mb-2'>Auto-observação sem julgamento.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>Este é o momento de introspecção radical. De olhar para o espelho sem filtros e perguntar: 'Quais são os padrões que me governam?'</p><p>Não se trata de julgamento, mas de mapeamento. Como um cartógrafo da sua própria alma, você irá delinear os rios dos seus hábitos, as montanhas das suas crenças e os vales sombrios dos seus medos. Apenas observar. Apenas reconhecer. Este é o ato mais corajoso e o primeiro passo real para qualquer transformação duradoura.</p>"
+    },
+    "etapa2_details": {
+      "title": "Aprofundando: Semeando com Propósito",
+      "summary": "<ul><li class='mb-2'>Conectar desejos a valores essenciais.</li><li class='mb-2'>Encontrar o 'porquê' profundo das suas metas.</li><li class='mb-2'>Alinhar ações com um propósito maior.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>Com a clareza do Despertar, a próxima fase é direcionar essa consciência. Um desejo sem propósito é como uma semente jogada em solo infértil. Aqui, você irá nutrir suas intenções, conectando-as a um 'porquê' que ressoa com sua alma. O que realmente te move? O que você quer criar no mundo? Esta etapa transforma desejos vagos em intenções poderosas e focadas.</p>"
+    },
+    "etapa3_details": {
+      "title": "Aprofundando: Transformação Resiliente",
+      "summary": "<ul><li class='mb-2'>Confronto ativo com a 'sombra'.</li><li class='mb-2'>Mobilização da força de vontade e disciplina.</li><li class='mb-2'>Transmutação de energia negativa em força.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>Esta é a forja. O coração da jornada. Armado com clareza e propósito, é hora de confrontar ativamente os padrões que você mapeou. É a batalha interna, onde a disciplina se torna sua espada e a resiliência, sua armadura. Cada desafio superado, cada hábito transformado, é uma transmutação do 'chumbo' da sua psique no 'ouro' da sua força interior.</p>"
+    },
+    "etapa4_details": {
+      "title": "Aprofundando: Colheita Consciente",
+      "summary": "<ul><li class='mb-2'>Integração de novos hábitos.</li><li class='mb-2'>Prática da gratidão e celebração.</li><li class='mb-2'>Cultivo do amor-próprio e aceitação.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>Após a batalha, vem a paz da colheita. Esta etapa é sobre integração e reconhecimento. É o momento de celebrar suas vitórias, por menores que pareçam. Solidificar os novos hábitos através da gratidão e cultivar um profundo senso de amor-próprio. A colheita não é apenas sobre os frutos externos, mas sobre a nutrição interna que você conquistou.</p>"
+    },
+    "etapa5_details": {
+      "title": "Aprofundando: Irradiando o Legado",
+      "summary": "<ul><li class='mb-2'>Compartilhar a sabedoria adquirida.</li><li class='mb-2'>Transição do crescimento interno para o impacto externo.</li><li class='mb-2'>Expressão autêntica da sua jornada.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>A luz que você acendeu dentro de si não foi feita para ficar escondida. Irradiar o legado é sobre compartilhar sua jornada, sua sabedoria e sua luz com o mundo. Não de forma arrogante, mas como um farol para outros que podem estar começando sua própria jornada. É a transição do 'eu' para o 'nós', onde sua transformação inspira a transformação dos outros.</p>"
+    },
+    "etapa6_details": {
+      "title": "Aprofundando: Introspecção Curativa",
+      "summary": "<ul><li class='mb-2'>Reconhecer que o crescimento é espiral.</li><li class='mb-2'>Mergulho profundo em padrões recorrentes.</li><li class='mb-2'>Fortalecimento da resiliência através da autoanálise.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>O crescimento não é uma linha reta, é uma espiral. Periodicamente, retornamos a temas antigos, mas de um novo nível de consciência. Esta etapa é um mergulho voluntário na sombra, não para lutar, mas para curar. É onde você revisita padrões recorrentes com compaixão e sabedoria, fortalecendo sua resiliência e aprofundando sua autocompreensão.</p>"
+    },
+    "etapa7_details": {
+      "title": "Aprofundando: União Transcendental",
+      "summary": "<ul><li class='mb-2'>Experiência da unidade e conexão.</li><li class='mb-2'>Transcendência do ego.</li><li class='mb-2'>Viver em estado de fluxo e presença.</li></ul><p class='mt-4 text-amber-300/80'>Conteúdo completo disponível para membros Premium.</p>",
+      "full": "<p>A culminação da jornada. Aqui, as fronteiras do 'eu' se dissolvem em uma experiência de unidade com o todo. Não é um estado permanente de iluminação, mas a compreensão vivida de que você é uma manifestação do cosmos. É a capacidade de viver em um estado de fluxo, presença e conexão profunda, onde a jornada e o destino se tornam um só.</p>"
+    }
+  },
+  "panteao": {
+    "sections": [
+      { "id": 0, "title": "Primordiais", "archetypes": ["pai-ceu", "mae-terra"] },
+      { "id": 1, "title": "Luminares", "archetypes": ["deus-sol", "deusa-lua"] },
+      { "id": 2, "title": "Agentes da Transformação", "archetypes": ["mensageiro", "ferreiro"] }
+    ],
+    "archetypes": {
+      "pai-ceu": {
+        "title": "O PAI-CÉU (O Cara da Ordem)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 3 4 8 5-5 5 15H2L8 3z\" /></svg>",
+        "sombraQueDanca": "Um cara alto, todo imponente, com ombros largos. A capa dele vira um céu cheio de estrelas que se movem certinho. Ele é pura presença.",
+        "oQueEh": "Ele é tipo a Estrutura, a Lei, a Ordem de tudo. A consciência que bota ordem no caos. Ele é a 'coluna' do universo e também a sua garra pra construir coisas, ter disciplina e dizer 'Eu vou!'.",
+        "emVoce": "É a sua força de vontade. Sua habilidade de criar regras e planos. É aquela voz que te faz acordar cedo pra malhar, mesmo querendo ficar na cama. É o seu lado que gosta de planilhas e de ver as coisas funcionando direito.",
+        "ladoRuim": "Tirania, rigidez demais, controle excessivo. A lógica fria sem coração. É o 'pai chato' ou o crítico interno que só pega no pé e nunca diz 'parabéns'.",
+        "praRefletir": "Onde na sua vida tá faltando um pouco mais de estrutura? E onde essa estrutura toda virou uma prisão que te impede de viver?",
+        "praticaRapida": "Pega um papel e caneta. Escreve aí uma 'regra' (hábito ou crença) que hoje mais te prende do que ajuda. Agora, como o dono da sua mente, reescreve essa regra. Deixa ela de um jeito que te dê liberdade E organização ao mesmo tempo.",
+        "invocacao": "Quando precisar de foco, disciplina ou coragem pra botar ordem na casa, respire fundo, visualize a montanha e repita: 'Eu defino meus limites. Eu construo minha realidade. Minha vontade é minha estrutura.'"
+      },
+      "mae-terra": {
+        "title": "A MÃE-TERRA (A Mãe que Nutre)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2a10 10 0 0 0-10 10c0 4.4 2.9 8.1 6.8 9.5\" /><path d=\"M12 12a10 10 0 0 1 10 10c0-4.4-2.9-8.1-6.8-9.5\" /><path d=\"M2 12h20\" /></svg>",
+        "sombraQueDanca": "Uma figura com formas mais redondas, bem acolhedora. Dela, saem e voltam plantas e rios, como se ela estivesse respirando devagarinho, num ritmo constante.",
+        "oQueEh": "Ela é a própria Natureza! A Fertilidade, o lugar de onde tudo nasce e pra onde tudo volta. É o corpo, a matéria, a paciência das estações. Ela é aquele 'sim' gigante pra vida, sem pedir nada em troca.",
+        "emVoce": "Sua criatividade natural. Sua capacidade de cuidar dos outros e dos seus projetos. A paciência pra esperar a hora certa de colher. Sua conexão com seu corpo e com os ciclos da natureza (sono, fome, etc.).",
+        "ladoRuim": "Ficar parado no mesmo lugar, a inércia. A superproteger tanto que sufoca. O apego que não deixa as coisas (ou pessoas) crescerem e irem embora. É aquela zona de conforto que virou um pântano.",
+        "praRefletir": "O que você tá nutrindo em sua vida agora (projetos, gente, você mesmo)? E o que tá aí, doidinho pra nascer de você? Você tá dando 'comida' (tempo, energia) pro que você quer que cresça?",
+        "praticaRapida": "Toca numa planta ou na terra. Se não der, só imagina raízes saindo dos seus pés. Agradece! Agora, pensa num projeto que você tá 'sufocando' de tanto perfeccionismo. Decide UMA coisinha pra soltar ele e deixar ele crescer em paz.",
+        "invocacao": "Quando se sentir sem criatividade ou 'seco', toque o chão e diga: 'Eu sou fértil. Eu recebo a abundância do universo. Eu nutro a vida que cresce em mim e ao meu redor.'"
+      },
+      "deus-sol": {
+        "title": "O DEUS-SOL (A Consciência Ligada no 220)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\" /><path d=\"M12 2v2\" /><path d=\"M12 20v2\" /><path d=\"m4.93 4.93 1.41 1.41\" /><path d=\"m17.66 17.66 1.41 1.41\" /><path d=\"M2 12h2\" /><path d=\"M20 12h2\" /><path d=\"m6.34 17.66-1.41 1.41\" /><path d=\"m19.07 4.93-1.41 1.41\" /></svg>",
+        "sombraQueDanca": "Uma sombra que pulsa com luz e calor. É tão brilhante que quase não parece sombra. Ela se move com confiança total, sem hesitar um segundo.",
+        "oQueEh": "Ele é a Luz da Razão, a Clareza total! O herói que bota nome no 'dragão' da ignorância pra poder vencer ele. É a lâmpada que acende na sua cabeça! É a energia de agir, de aparecer, de dizer 'Eu Sou!'.",
+        "emVoce": "Sua autoconfiança, sua coragem de falar o que pensa, sua capacidade de liderar e de brilhar sem vergonha nenhuma. Sua capacidade de subir num palco e defender sua ideia.",
+        "ladoRuim": "Arrogância, ego gigante, aquela luz que cega os outros em vez de ajudar. É achar que só a sua opinião importa e acabar 'queimando' as pessoas ao seu redor.",
+        "praRefletir": "Onde é que você precisa levar mais clareza na sua vida e acabar com as dúvidas? Você tá usando sua luz pra iluminar o caminho ou pra cegar todo mundo com seu brilho?",
+        "praticaRapida": "Fecha os olhos. Imagina um solzinho dourado bem no seu plexo solar. Sente ele esquentar e pulsar. Cada vez que você inspirar, vê essa luz crescendo, forte e quente. Respira fundo essa clareza!",
+        "invocacao": "De manhã, ou quando precisar de coragem, abra os braços pro sol (ou só imagine ele) e declare: 'Eu sou luz. Eu sou claro(a). Eu brilho minha verdade sem medo.'"
+      },
+      "deusa-lua": {
+        "title": "A DEUSA-LUA (O Mistério da Intuição)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\" /></svg>",
+        "sombraQueDanca": "Uma sombra que muda suavemente: de moça, pra mãe, pra anciã, e volta. Ela nunca tá parada, tá sempre fluindo. Ela segura um caldeirão que reflete as estrelas.",
+        "oQueEh": "Ela é pura Intuição! O Inconsciente, a Magia que fala baixinho. A guardiã dos sonhos e dos segredos da alma. Sabe aquela sensação de 'não sei por que, mas sei que é por aqui'? É ela falando.",
+        "emVoce": "Sua intuição. Seus sonhos. Sua empatia, sua capacidade de 'sacar' o ambiente sem ninguém falar nada. Sua habilidade de se adaptar às mudanças da vida. A sabedoria que vem do seu corpo.",
+        "ladoRuim": "Viver na ilusão, emoções bagunçadas, medo do que a gente não conhece. É confundir intuição com paranoia. É se afogar num copo d'água emocional ou viver no 'mundo da lua'.",
+        "praRefletir": "Qual é a mensagem que a sua intuição (sua Lua aí dentro) tá tentando te mandar, mas a sua cabeça teimosa (o Sol) fica ignorando? Você tá respeitando seus ciclos de energia (agir vs. descansar)?",
+        "praticaRapida": "Hoje à noite, antes de dormir, bota um copo de água do lado da cama. Pede pra sua intuição te trazer uma mensagem clara nos seus sonhos. Deixa um caderninho ali perto. Ao acordar, ANTES de tudo, anota o que vier. Depois, bebe a água.",
+        "invocacao": "Quando a mente estiver muito barulhenta, pare. Respire fundo, coloque a mão no peito e pergunte em silêncio: 'O que eu realmente sinto sobre isso?' E aí, escute. O primeiro sussurro é a resposta."
+      },
+      "mensageiro": {
+        "title": "O MENSAGEIRO DIVINO (O Cara da Mudança)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 3.13a10 10 0 0 1 0 17.75\" /><path d=\"M8 3.13a10 10 0 0 0 0 17.75\" /><path d=\"M12 4v16\" /><path d=\"M8 8l4-4 4 4\" /><path d=\"M16 16l-4 4-4-4\" /></svg>",
+        "sombraQueDanca": "Uma sombra rápida, que parece dançar e se dividir. Ela não para! Você olha e é um coiote, pisca e já é um cara com tênis de asinha. Sempre correndo.",
+        "oQueEh": "Ele é o 'Malandro' (no bom sentido!), o cara que quebra as regras pra deixar o novo entrar. O mensageiro que liga o mundo dos Deuses com o nosso. É a internet, a piada que quebra o gelo, a 'malandragem' divina que acha soluções que ninguém pensou.",
+        "emVoce": "Seu senso de humor! Sua criatividade pra resolver pepinos. Sua lábia pra negociar, sua curiosidade que te faz clicar em links aleatórios e aprender coisas novas. Sua velocidade de pensamento.",
+        "ladoRuim": "A mentira, a fofoca, passar os outros pra trás. É ser o '171'. A ansiedade de quem tem mil abas abertas no navegador e não foca em nenhuma. É prometer e não entregar.",
+        "praRefletir": "Você tá se comunicando de um jeito autêntico e claro? Ou tá usando um monte de máscara pra agradar ou conseguir o que quer? Você tá usando sua inteligência pra criar pontes ou pra cavar buracos?",
+        "praticaRapida": "Bota a mão de leve na sua garganta. Fecha os olhos. Canta uma nota só (pode ser o som 'HAM') e sente a vibração na sua mão. Agora, pensa numa verdade importante que você precisa falar (pra alguém ou pra você) hoje.",
+        "invocacao": "Antes de uma conversa difícil ou uma prova, estale os dedos e diga: 'Minha mente é rápida. Minha palavra é clara. Eu conecto os mundos com facilidade e humor.'"
+      },
+      "ferreiro": {
+        "title": "O FERREIRO DIVINO (O Cara da Resiliência)",
+        "glyph": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15.2 20a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 13.8 14h-3.6a1 1 0 0 1-.9-.6l-2-4A1 1 0 0 1 8.8 8H18a5 5 0 0 1 4 8 5 5 0 0 1-4 4h-2.8Z\" /><path d=\"M6 20h2\" /><path d=\"M7 14v6\" /><path d=\"M18 8V6a2 2 0 0 0-2-2H8\" /></svg>",
+        "sombraQueDanca": "Uma sombra forte, focada, curvada sobre a bigorna. A cada batida do martelo, faíscas de luz (da fogueira) iluminam a caverna. Ela não tem pressa; cada batida é perfeita.",
+        "oQueEh": "Esse é o Alquimista, o Artesão da Alma! É ele quem pega o material bruto da dor e, usando o fogo da crise e a pressão da vida, transforma isso numa ferramenta poderosa. Ele é a resiliência em pessoa!",
+        "emVoce": "Sua capacidade de transformar um trauma em sabedoria. Sua resiliência. Sua disciplina de ir pra terapia. Aquela força que você só descobre quando o bicho pega, que te faz levantar e dizer: 'Ok, doeu. O que eu aprendo com isso agora?'",
+        "ladoRuim": "Amargura, querer ficar sozinho, isolamento. É o cara que fica no porão remoendo a raiva, construindo armas pra se vingar em vez de ferramentas pra se curar. É guardar rancor até azedar.",
+        "praRefletir": "Qual 'ferida' da sua vida, se você olhar pra ela com consciência e coragem, pode virar sua maior força? Você tá fugindo do fogo da transformação ou tá disposto a entrar na forja pra sair mais forte?",
+        "praticaRapida": "(Com segurança!) Escreve num papel a 'matéria bruta' (uma dor, um trauma) que você tá pronto pra transformar. Vai pra um lugar seguro e queime o papel. Fica olhando as chamas. Intencione que a energia presa ali seja liberada e forjada em sabedoria.",
+        "invocacao": "Quando estiver passando por um perrengue, sentindo a pressão, respire fundo, bata o pé no chão e afirme: 'Eu não quebro, eu forjo. Esta pressão me transforma. Esta dor vira o meu poder.'"
+      }
+    }
+  },
+  "rodaDoAno": {
+    "yule": {
+      "title": "Solstício de Inverno (Yule)",
+      "date": "Aprox. 21 de Junho",
+      "color": "text-sky-300",
+      "description": "Na noite mais longa, celebramos o renascimento da luz. É um momento de introspecção profunda, honrando o silêncio e a escuridão, sabendo que a semente do novo Sol foi plantada. É a promessa de um novo ciclo.",
+      "details": "<ul><li><strong>Energias:</strong> Renascimento, Esperança, Introspecção, Paz.</li><li><strong>Rituais:</strong> Acender velas para chamar o Sol, meditar sobre seus potenciais, queimar um Yule Log com intenções para o novo ciclo.</li></ul>"
+    },
+    "imbolc": {
+      "title": "Imbolc",
+      "date": "Aprox. 1 de Agosto",
+      "color": "text-pink-300",
+      "description": "O primeiro tremular da Primavera. A terra começa a despertar de seu sono de inverno. É o festival da luz crescente, da purificação e da inspiração. Honramos a Deusa Brígida, guardiã do fogo da criatividade e da cura.",
+      "details": "<ul><li><strong>Energias:</strong> Despertar, Purificação, Inspiração, Novos Planos.</li><li><strong>Rituais:</strong> Limpeza de primavera (física e energética), acender velas brancas, criar um altar para Brígida com símbolos de fogo e água.</li></ul>"
+    },
+    "ostara": {
+      "title": "Equinócio de Primavera (Ostara)",
+      "date": "Aprox. 22 de Setembro",
+      "color": "text-green-300",
+      "description": "O equilíbrio perfeito entre dia e noite, com a luz agora vencendo a escuridão. A vida explode em toda parte. É um tempo de fertilidade, novos começos e alegria pura. A energia é de crescimento rápido e de colocar planos em ação.",
+      "details": "<ul><li><strong>Energias:</strong> Equilíbrio, Fertilidade, Novos Começos, Ação.</li><li><strong>Rituais:</strong> Plantar sementes (literais e figurativas), pintar ovos com sigilos de seus desejos, passar tempo na natureza observando o despertar da vida.</li></ul>"
+    },
+    "beltane": {
+      "title": "Beltane",
+      "date": "Aprox. 31 de Outubro",
+      "color": "text-red-400",
+      "description": "O festival do fogo e da fertilidade, celebrando a união sagrada do Deus e da Deusa. A vida está em seu auge de paixão e vitalidade. É um tempo para celebrar a sensualidade, a alegria e a união, pulando fogueiras para purificação e sorte.",
+      "details": "<ul><li><strong>Energias:</strong> Paixão, Fertilidade, União, Vitalidade, Alegria.</li><li><strong>Rituais:</strong> Acender fogueiras, dançar ao redor de um mastro de fitas (Maypole), criar guirlandas de flores, celebrar o amor e a vida.</li></ul>"
+    },
+    "litha": {
+      "title": "Solstício de Verão (Litha)",
+      "date": "Aprox. 21 de Dezembro",
+      "color": "text-yellow-300",
+      "description": "O dia mais longo do ano, o pico do poder do Sol. O Deus Sol está em seu trono, e a natureza está em sua plenitude. É uma celebração da abundância, do crescimento, da energia masculina e da realização. A luz triunfou.",
+      "details": "<ul><li><strong>Energias:</strong> Abundância, Poder, Crescimento, Celebração.</li><li><strong>Rituais:</strong> Banhos de ervas solares (alecrim, calêndula), criar altares com símbolos solares, passar o dia ao ar livre absorvendo a energia do Sol.</li></ul>"
+    },
+    "lammas": {
+      "title": "Lammas / Lughnasadh",
+      "date": "Aprox. 1 de Fevereiro",
+      "color": "text-orange-400",
+      "description": "A primeira colheita. Agradecemos os primeiros frutos do nosso trabalho e honramos o sacrifício do Deus do Grão, que morre para nos alimentar. É um tempo de gratidão, de partilha e de reconhecer os primeiros resultados de nossos esforços.",
+      "details": "<ul><li><strong>Energias:</strong> Colheita, Gratidão, Sacrifício, Partilha.</li><li><strong>Rituais:</strong> Assar pão, fazer bonecos de milho ou trigo, partilhar uma refeição com os primeiros alimentos da colheita, agradecer pela abundância.</li></ul>"
+    },
+    "mabon": {
+      "title": "Equinócio de Outono (Mabon)",
+      "date": "Aprox. 20 de Março",
+      "color": "text-amber-500",
+      "description": "A segunda colheita e o Dia de Ação de Graças pagão. Novamente, dia e noite são iguais, mas agora a escuridão começa a crescer. É tempo de agradecer, de equilíbrio e de se preparar para o inverno, estocando as bênçãos (físicas e espirituais).",
+      "details": "<ul><li><strong>Energias:</strong> Gratidão, Equilíbrio, Colheita, Preparação.</li><li><strong>Rituais:</strong> Fazer um banquete de outono, decorar o altar com folhas secas e alimentos da estação, meditar sobre o que você colheu no último ano.</li></ul>"
+    },
+    "samhain": {
+      "title": "Samhain",
+      "date": "Aprox. 30 de Abril",
+      "color": "text-purple-400",
+      "description": "O fim do ano pagão e o início de um novo ciclo. O véu entre os mundos está no seu ponto mais fino, tornando a comunicação com os ancestrais mais fácil. É um tempo de honrar os que vieram antes, de adivinhação e de deixar ir o que precisa morrer.",
+      "details": "<ul><li><strong>Energias:</strong> Memória, Adivinhação, Morte e Renascimento, Deixar Ir.</li><li><strong>Rituais:</strong> Montar um altar para os ancestrais com fotos e oferendas, praticar oráculos (Tarô, Runas), fazer uma 'Ceia Mudo' para os espíritos.</li></ul>"
+    }
+  }
+}
